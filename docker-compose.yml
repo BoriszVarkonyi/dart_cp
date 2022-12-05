@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+    mysql:
+        image: mariadb:10.4
+        restart: always
+        environment:
+            - MYSQL_ROOT_PASSWORD=toor
+            - MYSQL_USER=root
+            - MYSQL_PASSWORD=toor
+            - MYSQL_DATABASE=dartagnan
+        ports:
+          - "3306:3306"
+        volumes:
+            - "./docker/volumes/mysql:/var/lib/mysql"
+            - "./docker/volumes/mysql-initdb:/docker-entrypoint-initdb.d"
+        command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+        networks:
+            - web
+        container_name: django_db
+    backend:
+        build:
+            context: "."
+            target: backend
+        restart: unless-stopped
+        ports:
+            - "8082:80"
+        volumes:
+            - "./backend:/var/www/dartagnan/backend"
+        working_dir: /var/www/dartagnan/backend
+        command: python manage.py runserver 0.0.0.0:80
+        networks:
+            - web
+        container_name: django_backend
+
+networks:
+    web: {}
