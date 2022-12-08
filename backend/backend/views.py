@@ -1,10 +1,11 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, permissions
 from .models import * 
 from .serializers import *
 
 class FencerViewSet(viewsets.ModelViewSet):
   queryset = FencerModel.objects.all()
   serializer_class = FencerSerializer
+  permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 class CompetitionViewSet(viewsets.ModelViewSet):
   queryset = CompetitionModel.objects.all()
