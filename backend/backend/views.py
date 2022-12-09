@@ -10,11 +10,14 @@ class FencerViewSet(viewsets.ModelViewSet):
 class CompetitionViewSet(viewsets.ModelViewSet):
   queryset = CompetitionModel.objects.all()
   serializer_class = CompetitionSerializer
+  permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 class TournamentViewSet(viewsets.ModelViewSet):
   queryset = TournamentModel.objects.all()
   serializer_class = TournamentSerializer
+  permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 class WeaponControlViewSet(viewsets.ModelViewSet):
   queryset = WeaponControlModel.objects.all()
   serializer_class = WeaponControlSerializer
+  permission_classes = [permissions.IsAuthenticatedOrReadOnly]
