@@ -12,8 +12,7 @@ services:
         ports:
           - "3306:3306"
         volumes:
-            - "./docker/volumes/mysql:/var/lib/mysql"
-            - "./docker/volumes/mysql-initdb:/docker-entrypoint-initdb.d"
+            - "./docker/db:/home"
         command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
         networks:
             - web

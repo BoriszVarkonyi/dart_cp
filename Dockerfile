@@ -9,6 +9,3 @@ WORKDIR /var/www/dartagnan/backend
 COPY backend/requirements.txt ./
 RUN pip install -r requirements.txt
 COPY . .
-
-EXPOSE 8082
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8082"]
