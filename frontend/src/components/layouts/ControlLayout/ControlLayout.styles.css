@@ -1,0 +1,17 @@
+.ControlLayout {
+    display: grid;
+	grid-template-columns: auto 1fr;
+	grid-template-rows: 2.5rem 1fr;
+}
+
+.Header {
+	grid-area: 1 / 1 / 2 / 3;
+}
+
+.NavBar {
+	grid-area: 2 / 1 / 3 / 2;
+}
+
+.Main {
+	grid-area: 2 / 2 / 3 / 3;
+}

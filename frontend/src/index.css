@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+:root {
+  --c-PrimaryBlue-100: #d6e7f0;
+  --c-PrimaryBlue-200: #adcee0;
+  --c-PrimaryBlue-300: #84b6d1;
+  --c-PrimaryBlue-400: #5b9dc1;
+  --c-PrimaryBlue-500: #3285b2;
+  --c-PrimaryBlue-600: #286a8e;
+  --c-PrimaryBlue-700: #1e506b;
+  --c-PrimaryBlue-800: #143547;
+  --c-PrimaryBlue-900: #0a1b24;
+
+  --c-PrimaryGreen-200: #a1d9b4;
+  --c-PrimaryGreen-900: #d0ecda;
+  --c-PrimaryGreen-300: #71c78f;
+  --c-PrimaryGreen-400: #42b469;
+  --c-PrimaryGreen-500: #13a144;
+  --c-PrimaryGreen-600: #0f8136;
+  --c-PrimaryGreen-700: #0b6129;
+  --c-PrimaryGreen-800: #08401b;
+  --c-PrimaryGreen-900: #04200e;
+
+  --c-PrimaryMix-100: #cfe8e1;
+  --c-PrimaryMix-200: #9fd1c4;
+  --c-PrimaryMix-300: #70bba6;
+  --c-PrimaryMix-400: #40a489;
+  --c-PrimaryMix-500: #108d6b;
+  --c-PrimaryMix-600: #0d7156;
+  --c-PrimaryMix-700: #0a5540;
+  --c-PrimaryMix-800: #06382b;
+  --c-PrimaryMix-900: #031c15;
+
+  --c-White: #ffffff;
+
+  --c-Gray-100: #FBFCFD;
+  --c-Gray-200: #F6F9FC;
+  --c-Gray-300: #EDF4F9;
+  --c-Gray-400: #EDF4F9;
+  --c-Gray-500: #BAC1C6;
+  --c-Gray-600: #8C9194;
+  --c-Gray-700: #5D6063;
+  --c-Gray-800: #2F3031;
+  --c-Gray-900: #06070E;
+
+  --c-Black: #000000;
+}
+
+body, #root {
+  margin: 0;
+  font-family: Poppins, sans-serif;
+  padding: 0;
+  line-height: 1.2;
+  font-size: 14px;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+img {
+  margin: 0;
+  padding: 0;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  padding: 0;
+  margin: 0;
+}

@@ -1,0 +1,59 @@
+#root {
+    animation: gradient 5s ease infinite;
+    background: var(--c-PrimaryBlue-400);
+    /*
+    background:
+        radial-gradient(
+        farthest-corner at top left,
+        var(--c-PrimaryBlue-400) 0%,
+        var(--c-PrimaryMix-400) 50%,
+        var(--c-PrimaryGreen-400) 100%);
+    background-size: 200% 200%;
+    */
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+
+.PanelLayout {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Panel {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 1fr;
+    position: relative;
+    background: var(--c-White);
+}
+
+.PageHeader {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 1fr;
+    align-items: center;
+    padding: 20px;
+    background: var(--c-PrimaryBlue-100);
+}
+
+.PanelContent {
+    padding: 20px;
+}
+
+.FencersImage {
+
+}

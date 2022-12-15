@@ -1,0 +1,94 @@
+body::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 400px;
+    height: 50px;
+    background: var(--c-PrimaryBlue-400);
+}
+
+.LoginLayout {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 1fr;
+    position: relative;
+}
+
+.LoginBlock {
+    box-sizing: border-box;
+    padding: 100px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    width: 400px;
+    /*border-radius: 0 50px 0 0;*/
+    background: var(--c-White);
+    background:
+        radial-gradient(
+        farthest-corner at top left,
+        var(--c-Gray-400) 0%,
+        var(--c-Gray-200) 100%);
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.LoginBackground {
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 0;
+    width: auto;
+    /*border-radius: 0 0 0 50px;*/
+    background: var(--c-PrimaryBlue-400);
+    background:
+        radial-gradient(
+        farthest-corner at top left,
+        var(--c-PrimaryBlue-500) 0%,
+        var(--c-PrimaryMix-400) 50%,
+        var(--c-PrimaryGreen-300) 100%);
+    opacity: 1;
+    /*background-image: radial-gradient(#444cf7 1.05px, transparent 1.05px);
+    background-size: 21px 21px;*/
+}
+
+.LoginHeader {
+    position: absolute;
+    top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.LogoImage {
+    width: 110px;
+    height: 110px;
+    aspect-ratio: 1;
+    margin-bottom: 30px;
+}
+
+.LoginText {
+    margin-bottom: 80px;
+}
+
+.LoginForm {
+
+}
+
+.CopyrightText {
+    position: absolute;
+    left: 3px;
+    bottom: 3px;
+}
+
+.FencersImage {
+    z-index: 2;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    mix-blend-mode: overlay;
+}
