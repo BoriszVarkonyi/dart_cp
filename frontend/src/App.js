@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import LoginLayout from "./components/layouts/LoginLayout/LoginLayout";
 import ControlLayout from "./components/layouts/ControlLayout/ControlLayout";
 import PanelLayout from "./components/layouts/PanelLayout/PanelLayout";
-
+import Profile from "./views/Login/Profile"
 function App() {
   return (
     <>
@@ -10,6 +10,7 @@ function App() {
         <Route path="/" element={<LoginLayout />} />
         <Route path="/panel/*" element={<PanelLayout />} />
         <Route path="/control/*" element={<ControlLayout />} />
+        <Route path="/profile" element={<Profile />} />
         <Route
           path="*"
           element={

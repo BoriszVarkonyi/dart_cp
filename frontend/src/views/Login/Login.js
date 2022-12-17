@@ -22,9 +22,9 @@ export default function Login() {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(clearMessage());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(clearMessage());
+  // }, [dispatch]);
 
   //react-router-doms usNavigate hook
   const navigate = useNavigate();
@@ -32,13 +32,12 @@ export default function Login() {
   //onSubmit function, after submit it navigates to the /panel path
   const onSubmit = (data) => {
     const { email, password } = data;
-    setLoading(true);
-
-    dispatch(login({ email, password }))
+    //setLoading(true);
+    dispatch(login({ 'username': email, 'password': password }))
       .unwrap()
       .then(() => {
         navigate("/profile");
-        window.location.reload();
+        //window.location.reload();
       })
       .catch(() => {
         setLoading(false);
@@ -53,9 +52,9 @@ export default function Login() {
   const emailRules = {
     required: "Please enter your email address!",
     pattern: {
-      value:
-        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-      message: "Please enter a valid email address!",
+      //value:
+      // /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+      //message: "Please enter a valid email address!",
     },
   };
 
