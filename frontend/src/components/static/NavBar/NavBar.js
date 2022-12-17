@@ -12,7 +12,7 @@ export default function NavBar() {
         <h3>d'ARTAGNAN CONTROL</h3>
         <div className="optionContainer">
           <h3>TOURNAMENT</h3>
-          <Button onClick={navigate("/control/215/competitions")}>Competitions</Button>
+          <Button>Competitions</Button>
           <Button>Timetable</Button>
           ide jön majd selectes szarság
         </div>

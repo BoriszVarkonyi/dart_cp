@@ -5,7 +5,7 @@ import PanelLayout from "./components/layouts/PanelLayout/PanelLayout";
 
 function App() {
   return (
-    <div className="App">
+    <>
       <Routes>
         <Route path="/" element={<LoginLayout />} />
         <Route path="/panel/*" element={<PanelLayout />} />
@@ -20,7 +20,7 @@ function App() {
           }
         />
       </Routes>
-    </div>
+    </>
   );
 }
 
