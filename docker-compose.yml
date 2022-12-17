@@ -10,7 +10,7 @@ services:
             - MYSQL_PASSWORD=toor
             - MYSQL_DATABASE=dartagnan
         ports:
-          - "3306:3306"
+          - "3308:3306"
         volumes:
             - "./docker/db:/home"
         command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
