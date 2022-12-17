@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState, useEffect  } from "react";
 import { Button, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {login} from "../../slices/auth"
+import { clearMessage } from "../../slices/message";
 
 export default function Login() {
   //react-hook-form
@@ -12,14 +15,39 @@ export default function Login() {
     formState: { errors },
   } = useForm();
 
+  const [loading, setLoading] = useState(false);
+
+  const { isLoggedIn } = useSelector((state) => state.auth);
+  const { message } = useSelector((state) => state.message);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(clearMessage());
+  }, [dispatch]);
+
   //react-router-doms usNavigate hook
   const navigate = useNavigate();
 
   //onSubmit function, after submit it navigates to the /panel path
   const onSubmit = (data) => {
-    console.log(data);
-    navigate("/panel")
+    const { email, password } = data;
+    setLoading(true);
+
+    dispatch(login({ email, password }))
+      .unwrap()
+      .then(() => {
+        navigate("/profile");
+        window.location.reload();
+      })
+      .catch(() => {
+        setLoading(false);
+      });
   };
+
+  if (isLoggedIn) {
+    return <Navigate to="/profile" />;
+  }
 
   //validate rules for the email input
   const emailRules = {
@@ -64,6 +92,11 @@ export default function Login() {
           Login
         </Button>
       </Box>
+      {message && (
+          <div>
+            {message}
+          </div>
+      )}
     </div>
   );
 }
