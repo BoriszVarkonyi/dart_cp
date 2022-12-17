@@ -33,8 +33,7 @@ export default function Login() {
   const onSubmit = (data) => {
     const { email, password } = data;
     setLoading(true);
-
-    dispatch(login({ email, password }))
+    dispatch(login({ 'username': email, 'password': password }))
       .unwrap()
       .then(() => {
         navigate("/profile");
@@ -53,8 +52,8 @@ export default function Login() {
   const emailRules = {
     required: "Please enter your email address!",
     pattern: {
-      value:
-        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+      //value:
+      // /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
       message: "Please enter a valid email address!",
     },
   };

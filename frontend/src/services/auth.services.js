@@ -12,27 +12,18 @@ const register = (username, email, password) => {
 // http://localhost:8082/api/accounts/register/
 
 
-const config = {
-  method: 'post',
-  url: 'http://localhost:8082/api/token/',
-  headers: { 
-    'Content-Type': 'application/json'
-  },
-};
-
 const login = (username, password) => {
-  return axios(config)
-    // .post(API_URL, {
-    //   username,
-    //   password,
-    // })
-    // .then((response) => {
-    //   if (response.data.accessToken) {
-    //     localStorage.setItem("user", JSON.stringify(response.data));
-    //   }
-
-    //   return response.data;
-    // });
+  return axios
+  .post(API_URL, {
+    username,
+    password,
+  })
+  .then((response) => {
+    if (response.data.accessToken) {
+      localStorage.setItem("user", JSON.stringify(response.data));
+    }
+    return response.data;
+  });
 };
 
 const logout = () => {
