@@ -36,7 +36,7 @@ export default function Tournaments() {
   };
 
   const modifyButton = () => {
-    console.log("modify gomb megnyomvaaaaa");
+    navigate("/panel/tournament")
   };
 
   const deleteButton = () => {
@@ -44,7 +44,7 @@ export default function Tournaments() {
   };
 
   const createButton = () => {
-    navigate("/panel/createtournament")
+    navigate("/panel/tournament")
   };
 
   //When a row is selected it handles the selected state
@@ -55,8 +55,8 @@ export default function Tournaments() {
   return (
     <div className="Panel">
       <div className="PageHeader">
-        <h2>Your tournament</h2>
-        <div>
+        <h2 className="PageTitle">Your tournament</h2>
+        <div className="PageButtonsWrapper">
           {/*Conditonal rendering by isSelected state*/}
           {!isSelected && <Button variant="contained" onClick={createButton}> Create </Button>}
           {isSelected && <Button variant="contained" onClick={deleteButton}> Delete </Button>}
@@ -64,10 +64,11 @@ export default function Tournaments() {
           {isSelected && <Button variant="contained" onClick={openButton}> Open </Button>}
         </div>
       </div>
-      <div className="PanelContent">
+      <div className="PanelContentSingle">
         <div className="TableGrid">
           <div style={{ height: 300, width: "100%" }}>
             <DataGrid
+              checkboxSelection={true}
               onRowClick={handleRowData}
               onSelectionModelChange={handleEvent}
               rows={rows}
