@@ -2,19 +2,26 @@ import React from "react";
 import { Navigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { combineReducers } from "redux";
+import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
+  const navigate = useNavigate();
   const { user: currentUser } = useSelector((state) => state.auth);
-  console.log(currentUser)
+
+  const test = () => {
+    navigate("/panel")
+  }
 
   if (!currentUser) {
     return <Navigate to="/" />;
   }
   return (
     <div className="Panel">
+      <h1>This is a tempomary website</h1>
       <header>
         <h3>
-          <strong>{currentUser.meta.arg.username}</strong> Profile
+          username: <strong>{currentUser.meta.arg.username}</strong>
         </h3>
       </header>
       <p>
@@ -24,6 +31,7 @@ const Profile = () => {
       <p>
         <strong>Id:</strong> {currentUser.meta.requestId}
       </p>
+      <Button variant="contained" onClick={test}> Next Page</Button>
     </div>
   );
 };
