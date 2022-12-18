@@ -14,6 +14,7 @@ export default function Competitions() {
                 </div>
             </div>
             <div className="PanelContentSingle">
+                <p>Test</p>
                 <div className="TableGrid">
 
                 </div>
