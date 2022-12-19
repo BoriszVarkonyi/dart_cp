@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import datas from "../../assets/MOCK_DATA.json";
 import { Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
+import { get } from "../../services/backend.service";
+import { useSelector } from "react-redux";
 
-//Generates the rows
-const rows = datas.map(function callback(element) {
+const row = (element, index) => {
   return {
-    id: element.id,
-    tournamentName: element.name,
+    id: index,
+    tournamentName: element.title_long,
     startingDate: element.starting_date,
     endingDate: element.ending_date,
   };
-});
+}
 
 //Sets the columns
 const columns = [
@@ -21,10 +21,27 @@ const columns = [
   { field: "endingDate", headerName: "Ending Date", width: 200 },
 ];
 
+
 export default function Tournaments() {
   const [isSelected, setIsSelected] = useState(false);
   const [selectedRow, setSelectedRow] = useState({});
+  const { isLoggedIn } = useSelector((state) => state.auth);
+  const [rows, setRows] = useState([]);
+
+  useEffect(() => {
+    async function getData() {
+      const data = await get("tournaments/");
+      const rows = data.map((e,i) => row(e,i));
+      setRows(rows);
+    }
+    getData();
+  }, []);
+
   const navigate = useNavigate();
+
+  if (!isLoggedIn) {
+    return <Navigate to="/profile" />;
+  }
 
   const handleRowData = (params) => {
     return setSelectedRow(params);

@@ -13,7 +13,7 @@ const config = {
 
 async function get (url) {
   const resp = await instance.get(`${url}`, {
-    config
+    ...config
   });
   return await resp.data;
 };
@@ -22,7 +22,7 @@ async function post (url, payload) {
   try {
     const resp = await instance.post(`${url}`, {
       ...payload,
-      config
+      ...config
     });
     return resp.data;
   } catch (err) {

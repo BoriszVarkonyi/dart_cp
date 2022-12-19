@@ -2,13 +2,15 @@ import React from "react";
 import { Button } from "@mui/material";
 import { TextField } from "@mui/material";
 import { Box } from "@mui/system";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { post } from "../../services/backend.service";
-
+import { useSelector } from "react-redux";
 
 export default function Tournament() {
   const navigate = useNavigate();
+
+  const { isLoggedIn } = useSelector((state) => state.auth);
 
   const {
     register,
@@ -16,24 +18,23 @@ export default function Tournament() {
     formState: { errors }
   } = useForm();
 
+  if (!isLoggedIn) {
+    return <Navigate to="/profile" />;
+  }
+
   //Button functions
   const cancelButton = () => {
     navigate(-1)
   }
 
-  /*
-ending_date
-: 
-["This field is required."]
-starting_date
-: 
-["This field is required."]
-title_long
-: 
-["This field is required."]
-  */
-  const onSubmit = (data) => {
+  const onSubmitSave = (data) => {
     post("tournaments/", data);
+    return <Navigate to="/tournaments"/>;
+  }
+
+  const onSubmitSaveOpen = (data) => {
+    post("tournaments/", data);
+    return <Navigate to="/tournaments"/>;
   }
 
   return (
@@ -42,7 +43,7 @@ title_long
         <h2 className="PageTitle">Create new tournament</h2>
         <div className="PageButtonsWrapper">
           <Button variant="contained" onClick={cancelButton}>Cancel</Button>
-          <Button variant="contained" onClick={handleSubmit(onSubmit)}>Save</Button>
+          <Button variant="contained" onClick={handleSubmit(onSubmitSave)}>Save</Button>
           <Button variant="contained">Save & Open</Button>
         </div>
       </div>
