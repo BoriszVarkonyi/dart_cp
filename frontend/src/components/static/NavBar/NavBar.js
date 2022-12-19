@@ -10,21 +10,13 @@ export default function NavBar() {
     <div className="NavBar">
       <div>
         <h3>d'ARTAGNAN CONTROL</h3>
-        <div className="optionContainer">
-          <h3>TOURNAMENT</h3>
-          <Button>Competitions</Button>
-          <Button>Timetable</Button>
-          <Button>Timetable</Button>
-          <Button>Timetable</Button>
-          ide jön majd selectes szarság
-        </div>
-
-        <div className="optionContainer">
-          <h3>COMPETITION</h3>
-          <Button>Competitors</Button>
-          <Button>Registration</Button>
-          <Button>Weapon Control</Button>
-        </div>
+        <h3>TOURNAMENT</h3>
+        <Button>Competitions</Button>
+        <Button>Timetable</Button>
+        <h3>COMPETITION</h3>
+        <Button>Competitors</Button>
+        <Button>Registration</Button>
+        <Button>Weapon Control</Button>
       </div>
     </div>
   );

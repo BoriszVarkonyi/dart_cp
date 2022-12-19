@@ -1,5 +1,5 @@
 import React from "react";
-import styles from './ControlLayout.css';
+import './ControlLayout.css';
 import { Route, Routes } from "react-router-dom";
 import { ControlRoutes } from "./ControlRoutes";
 import NavBar from "../../static/NavBar/NavBar";

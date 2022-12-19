@@ -3,6 +3,7 @@ import "./LoginLayout.css";
 import fencersImage from "../../../assets/fencers.svg";
 import horseImage from "../../../assets/horse.svg";
 import Login from "../../../views/Login/Login";
+
 export default function LoginLayout() {
     return (
         <div className="LoginLayout">

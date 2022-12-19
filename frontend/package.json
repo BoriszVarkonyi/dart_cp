@@ -13,7 +13,6 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.2.1",
     "react": "^18.2.0",
-    "react-css-modules": "^4.7.11",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.40.0",
     "react-redux": "^8.0.5",
@@ -21,8 +20,7 @@
     "react-scripts": "5.0.1",
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.2",
-    "web-vitals": "^2.1.4",
-    "@reduxjs/toolkit": "^1.9.1"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
