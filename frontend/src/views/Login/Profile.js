@@ -4,13 +4,20 @@ import { useSelector } from "react-redux";
 import { combineReducers } from "redux";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import AuthService from "./../../services/auth.services"
 
 const Profile = () => {
   const navigate = useNavigate();
   const { user: currentUser } = useSelector((state) => state.auth);
 
+
+
   const test = () => {
     navigate("/panel")
+  }
+
+  const test2 = () =>{
+    AuthService.logout();
   }
 
   if (!currentUser) {
@@ -32,6 +39,7 @@ const Profile = () => {
         <strong>Id:</strong> {currentUser.meta.requestId}
       </p>
       <Button variant="contained" onClick={test}> Next Page</Button>
+      <Button variant="contained" onClick={test2}> Log oute</Button>
     </div>
   );
 };
