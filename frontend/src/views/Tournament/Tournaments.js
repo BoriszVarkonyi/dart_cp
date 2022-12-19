@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Button } from "@mui/material";
 import { Navigate, useNavigate } from "react-router-dom";
-import { get } from "../../services/backend.service";
+import { get, remove } from "../../services/backend.service";
 import { useSelector } from "react-redux";
 
-const row = (element, index) => {
+const row = (element) => {
   return {
-    id: index,
+    id: element.id,
     tournamentName: element.title_long,
     startingDate: element.starting_date,
     endingDate: element.ending_date,
@@ -24,7 +24,7 @@ const columns = [
 
 export default function Tournaments() {
   const [isSelected, setIsSelected] = useState(false);
-  const [selectedRow, setSelectedRow] = useState({});
+  const [selectedRowId, setSelectedRowId] = useState();
   const { isLoggedIn } = useSelector((state) => state.auth);
   const [rows, setRows] = useState([]);
 
@@ -44,20 +44,22 @@ export default function Tournaments() {
   }
 
   const handleRowData = (params) => {
-    return setSelectedRow(params);
+    console.log(params);
+    return setSelectedRowId(params.id);
   };
 
   //Button functions
   const openButton = () => {
-    console.log(selectedRow.row.tournamentName)
+    console.log(selectedRowId);
   };
 
   const modifyButton = () => {
     navigate("/panel/tournament")
   };
 
-  const deleteButton = () => {
-    console.log("delete gomb megnyomvaaaaa");
+  const deleteButton = async () => {
+    await remove(`tournaments/${selectedRowId}/`);
+    window.location.reload();
   };
 
   const createButton = () => {
