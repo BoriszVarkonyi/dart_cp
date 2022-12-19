@@ -14,6 +14,8 @@ export default function NavBar() {
           <h3>TOURNAMENT</h3>
           <Button>Competitions</Button>
           <Button>Timetable</Button>
+          <Button>Timetable</Button>
+          <Button>Timetable</Button>
           ide jön majd selectes szarság
         </div>
 

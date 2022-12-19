@@ -28,7 +28,10 @@
 }
 
 .NavBar {
-	width: 100%;
+	width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: radial-gradient(
         farthest-corner at top left,
         rgba(214,231,240,1),
