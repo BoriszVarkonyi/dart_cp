@@ -31,7 +31,7 @@ export default function Tournaments() {
   useEffect(() => {
     async function getData() {
       const data = await get("tournaments/");
-      const rows = data.map((e,i) => row(e,i));
+      const rows = data.map((e) => row(e));
       setRows(rows);
     }
     getData();
@@ -40,11 +40,10 @@ export default function Tournaments() {
   const navigate = useNavigate();
 
   if (!isLoggedIn) {
-    return <Navigate to="/profile" />;
+    return navigate("/");
   }
 
   const handleRowData = (params) => {
-    console.log(params);
     return setSelectedRowId(params.id);
   };
 
@@ -54,7 +53,7 @@ export default function Tournaments() {
   };
 
   const modifyButton = () => {
-    navigate("/panel/tournament")
+    navigate(`/panel/tournament/${selectedRowId}`);
   };
 
   const deleteButton = async () => {
@@ -63,7 +62,7 @@ export default function Tournaments() {
   };
 
   const createButton = () => {
-    navigate("/panel/tournament")
+    navigate("/panel/tournament");
   };
 
   //When a row is selected it handles the selected state

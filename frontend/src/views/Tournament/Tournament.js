@@ -27,14 +27,14 @@ export default function Tournament() {
     navigate(-1)
   }
 
-  const onSubmitSave = (data) => {
-    post("tournaments/", data);
-    return <Navigate to="/tournaments"/>;
+  const onSubmitSave = async (data) => {
+    await post("tournaments/", data);
+    return navigate(-1);
   }
 
-  const onSubmitSaveOpen = (data) => {
-    post("tournaments/", data);
-    return <Navigate to="/tournaments"/>;
+  const onSubmitSaveOpen = async (data) => {
+    //const resp = await post("tournaments/", data);
+    //return navigate(`/competition/${resp.id}`)
   }
 
   return (
@@ -44,7 +44,7 @@ export default function Tournament() {
         <div className="PageButtonsWrapper">
           <Button variant="contained" onClick={cancelButton}>Cancel</Button>
           <Button variant="contained" onClick={handleSubmit(onSubmitSave)}>Save</Button>
-          <Button variant="contained">Save & Open</Button>
+          <Button variant="contained" onClick={handleSubmit(onSubmitSaveOpen)}>Save & Open</Button>
         </div>
       </div>
       <Box className="PanelContent" component="form">

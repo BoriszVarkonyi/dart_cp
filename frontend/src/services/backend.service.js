@@ -12,10 +12,14 @@ const config = {
 };
 
 async function get (url) {
-  const resp = await instance.get(`${url}`, {
-    config
-  });
-  return await resp.data;
+  try {
+    const resp = await instance.get(`${url}`, {
+      config
+    });
+    return await resp.data;
+  } catch (err) {
+    return []; 
+  }
 };
 
 async function post (url, payload) {
