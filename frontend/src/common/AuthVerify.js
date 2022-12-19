@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import axios from "axios";
 
 const parseJwt = (token) => {
   try {
@@ -9,22 +8,34 @@ const parseJwt = (token) => {
   }
 };
 
-const AuthVerify = (props) => {
-  let location = useLocation();
+const refreshToken = () => {
+  const authData = JSON.parse(localStorage.getItem("user"));
+  const payload = {
+    refresh: authData.refresh,
+  };
 
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
-
-    if (user) {
-      const decodedJwt = parseJwt(user.access);
-
-      if (decodedJwt.exp * 1000 < Date.now()) {
-        props.logOut();
+  const apiResponse = axios
+    .post("http://localhost:8082/api/token/refresh/", payload)
+    .then((response) => {
+      if (response.data.access) {
+        localStorage.setItem("user", JSON.stringify({...authData, access: response.data.access}));
       }
-    }
-  }, [location, props]);
+    });
+};
 
-  return ;
+const refreshTokenTimer = () => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  if (user) {
+    const decodedJwt = parseJwt(user.access);
+    const expireTime = new Date(decodedJwt.exp * 1000);
+    const timeout = expireTime.getTime() - Date.now() - 290 * 1000;
+    setTimeout(() => refreshToken(), timeout);
+  }
+};
+
+const AuthVerify = {
+  refreshTokenTimer,
+  refreshToken,
 };
 
 export default AuthVerify;
