@@ -4,7 +4,7 @@ import Timetable from "../../../views/Timetable/Timetable"
 import Competitors from "../../../views/Competitor/Competitors"
 import Registration from "../../../views/Registration/Registration"
 
-export function ControlRoutes(){
+export function CompetitionRoutes(){
     return(
         <Routes>
             <Route path="competitions" element={<Competitions/>}/>

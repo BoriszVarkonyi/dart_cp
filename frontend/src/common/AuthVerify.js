@@ -28,14 +28,13 @@ const refreshTokenTimer = () => {
   if (user) {
     const decodedJwt = parseJwt(user.access);
     const expireTime = new Date(decodedJwt.exp * 1000);
-    const timeout = expireTime.getTime() - Date.now() - 290 * 1000;
-    setTimeout(() => refreshToken(), timeout);
+    const timeout = expireTime.getTime() - Date.now() - 60 * 1000;
+    setInterval(() => refreshToken(), timeout);
   }
 };
 
 const AuthVerify = {
-  refreshTokenTimer,
-  refreshToken,
+  refreshTokenTimer
 };
 
 export default AuthVerify;
