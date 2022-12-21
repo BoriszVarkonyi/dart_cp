@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Button } from "@mui/material";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { get, remove } from "../../services/backend.service";
 import { useSelector } from "react-redux";
 
@@ -28,14 +28,14 @@ export default function Tournaments() {
   const { isLoggedIn } = useSelector((state) => state.auth);
   const [rows, setRows] = useState([]);
 
-  useEffect(() => {
-    async function getData() {
-      const data = await get("tournaments/");
-      const rows = data.map((e) => row(e));
-      setRows(rows);
-    }
-    getData();
-  }, []);
+  // useEffect(() => {
+  //   async function getData() {
+  //     const data = await get("tournaments/");
+  //     const rows = data.map((e) => row(e));
+  //     setRows(rows);
+  //   }
+  //   getData();
+  // }, []);
 
   const navigate = useNavigate();
 
