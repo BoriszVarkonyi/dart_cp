@@ -1,21 +1,24 @@
 import React from "react";
 import "./ControlLayout.css";
 import { Route, Routes } from "react-router-dom";
-import { CompetitionRoutes } from "./CompetitionRoutes";
-import { useParams } from "react-router-dom";
-import { get } from "../../../services/backend.service";
+import { CompLayout } from "./CompLayout";
 
-import NavBar from "../../static/NavBar/NavBar";
-import Header from "../../static/Header/Header";
+import Competitions from "../../../views/Competition/Competitions";
+import Timetable from "../../../views/Timetable/Timetable";
+import Competitors from "../../../views/Competitor/Competitors";
+import Registration from "../../../views/Registration/Registration";
 
 export default function ControlLayout() {
-  const { id } = useParams();
   return (
     <div className="ControlLayout">
-      check if its an existin
-      tournamentaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
       <Routes className="Main">
-        <Route path=":id/*" element={<CompetitionRoutes />} />
+        {/*First id is tournament id, second is Comp. id.*/}
+        <Route path=":id" element={<CompLayout/>}>
+          <Route path="competitions" element={<Competitions />} />
+          <Route path="timetable" element={<Timetable />} />
+          <Route path="competitors" element={<Competitors />} />
+          <Route path="registration" element={<Registration />} />
+        </Route>
       </Routes>
     </div>
   );

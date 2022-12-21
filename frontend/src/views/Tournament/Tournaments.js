@@ -28,14 +28,15 @@ export default function Tournaments() {
   const { isLoggedIn } = useSelector((state) => state.auth);
   const [rows, setRows] = useState([]);
 
-  // useEffect(() => {
-  //   async function getData() {
-  //     const data = await get("tournaments/");
-  //     const rows = data.map((e) => row(e));
-  //     setRows(rows);
-  //   }
-  //   getData();
-  // }, []);
+  useEffect(() => {
+    async function getData() {
+      const data = await get("tournaments/");
+      const rows = data.map((e) => row(e));
+      console.log(rows)
+      setRows(rows);
+    }
+    getData();
+  }, []);
 
   const navigate = useNavigate();
 
