@@ -54,7 +54,7 @@ class WeaponControlModel(models.Model):
     issue_10 = models.SmallIntegerField(null=True, verbose_name="Curve on the blade")
     issue_11 = models.SmallIntegerField(null=True, verbose_name="Foucault current device")
     issue_12 = models.SmallIntegerField(null=True, verbose_name="Point and arm size")
-    issue_13 = models.SmallIntegerField(null=True, verbose_name="Lenght/ condition of body/ mask wire")
+    issue_13 = models.SmallIntegerField(null=True, verbose_name="Length/ condition of body/ mask wire")
     issue_14 = models.SmallIntegerField(null=True, verbose_name="Resistance of body/ mask wire")
     issue_15 = models.SmallIntegerField(null=True, verbose_name="Mask: FIE mark")
     issue_16 = models.SmallIntegerField(null=True, verbose_name="Mask: condition and insulation")
