@@ -3,6 +3,7 @@ import { Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid"
 
 export default function Competitions() {
+
     return (
         <div className="Main">
             <div className="PageHeader">
@@ -15,7 +16,6 @@ export default function Competitions() {
             </div>
             <div className="PanelContentSingle">
                 <div className="TableGrid">
-
                 </div>
             </div>
         </div>
