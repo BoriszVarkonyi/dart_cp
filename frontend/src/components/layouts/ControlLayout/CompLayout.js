@@ -6,6 +6,7 @@ import { Outlet } from "react-router-dom";
 export function CompLayout() {
   return (
     <>
+      
       <Header/>
       <NavBar/>
       <Outlet/>

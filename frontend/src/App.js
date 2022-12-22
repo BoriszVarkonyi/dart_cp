@@ -20,7 +20,6 @@ function App() {
 
   return (
     <>
-      <Button onClick={logout}>Log out</Button>
       <Routes>
         <Route path="/" element={<LoginLayout />} />
         <Route path="/panel/*" element={<PanelLayout />} />

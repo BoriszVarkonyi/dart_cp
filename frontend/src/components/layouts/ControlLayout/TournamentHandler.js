@@ -13,6 +13,7 @@ export default function ControlLayout() {
     <div className="ControlLayout">
       <Routes className="Main">
         {/*First id is tournament id, second is Comp. id.*/}
+        
         <Route path=":id" element={<CompLayout/>}>
           <Route path="competitions" element={<Competitions />} />
           <Route path="timetable" element={<Timetable />} />

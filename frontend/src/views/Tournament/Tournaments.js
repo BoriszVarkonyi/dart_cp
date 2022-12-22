@@ -12,7 +12,7 @@ const row = (element) => {
     startingDate: element.starting_date,
     endingDate: element.ending_date,
   };
-}
+};
 
 //Sets the columns
 const columns = [
@@ -21,54 +21,70 @@ const columns = [
   { field: "endingDate", headerName: "Ending Date", width: 200 },
 ];
 
-
 export default function Tournaments() {
   const [isSelected, setIsSelected] = useState(false);
   const [selectedRowId, setSelectedRowId] = useState();
   const { isLoggedIn } = useSelector((state) => state.auth);
   const [rows, setRows] = useState([]);
+  const [selectionModel, setSelectionModel] = useState([]);
 
+  const navigate = useNavigate();
+
+  //Gets the tournaments from api
   useEffect(() => {
     async function getData() {
       const data = await get("tournaments/");
       const rows = data.map((e) => row(e));
-      console.log(rows)
       setRows(rows);
     }
     getData();
   }, []);
 
-  const navigate = useNavigate();
+  //Makes only one row selected
+  const handleEvent = (params) => {
+    if (params.length > 1) {
+      const selectionSet = new Set(selectionModel);
+      const result = params.filter((s) => !selectionSet.has(s));
+      setSelectionModel(result);
+    } else {
+      setSelectionModel(params);
+    }
+  };
+
+  useEffect(() => {
+    selectionModel.length == 1 ? setIsSelected(true) : setIsSelected(false); //Sets the isSelected state
+    setSelectedRowId(selectionModel[0]); //Updates selectedRowId
+  }, [selectionModel]);
 
   if (!isLoggedIn) {
     return navigate("/");
   }
 
-  const handleRowData = (params) => {
-    return setSelectedRowId(params.id);
-  };
-
   //Button functions
-  const openButton = () => {
-    console.log(selectedRowId);
-  };
+  const openButton = () => {};
 
   const modifyButton = () => {
     navigate(`/panel/tournament/${selectedRowId}`);
   };
 
   const deleteButton = async () => {
+    //Deletes the tournament in the database
     await remove(`tournaments/${selectedRowId}/`);
-    window.location.reload();
+
+    //Deletes the row in the data grid
+    setRows((prevRows) => {
+      const rowToDeleteIndex = prevRows.findIndex(
+        (row) => row.id == selectedRowId
+      );
+      return [
+        ...rows.slice(0, rowToDeleteIndex),
+        ...rows.slice(rowToDeleteIndex + 1),
+      ];
+    });
   };
 
   const createButton = () => {
     navigate("/panel/tournament");
-  };
-
-  //When a row is selected it handles the selected state
-  const handleEvent = (params) => {
-    params.length == 1 ? setIsSelected(true) : setIsSelected(false);
   };
 
   return (
@@ -77,10 +93,26 @@ export default function Tournaments() {
         <h2 className="PageTitle">Your tournament</h2>
         <div className="PageButtonsWrapper">
           {/*Conditonal rendering by isSelected state*/}
-          {!isSelected && <Button variant="contained" onClick={createButton}> Create </Button>}
-          {isSelected && <Button variant="contained" onClick={deleteButton}> Delete </Button>}
-          {isSelected && <Button variant="contained" onClick={modifyButton}> Modify </Button>}
-          {isSelected && <Button variant="contained" onClick={openButton}> Open </Button>}
+          {!isSelected && (
+            <Button variant="contained" onClick={createButton}>
+              Create
+            </Button>
+          )}
+          {isSelected && (
+            <Button variant="contained" onClick={deleteButton}>
+              Delete
+            </Button>
+          )}
+          {isSelected && (
+            <Button variant="contained" onClick={modifyButton}>
+              Modify
+            </Button>
+          )}
+          {isSelected && (
+            <Button variant="contained" onClick={openButton}>
+              Open
+            </Button>
+          )}
         </div>
       </div>
       <div className="PanelContentSingle">
@@ -88,7 +120,7 @@ export default function Tournaments() {
           <div style={{ height: 300, width: "100%" }}>
             <DataGrid
               checkboxSelection={true}
-              onRowClick={handleRowData}
+              selectionModel={selectionModel}
               onSelectionModelChange={handleEvent}
               rows={rows}
               columns={columns}

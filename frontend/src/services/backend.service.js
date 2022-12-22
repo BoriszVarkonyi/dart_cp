@@ -2,7 +2,7 @@ import axios from "axios";
 import authHeader from "./auth-header";
 
 const instance = axios.create({
-  baseURL: 'http://localhost:8082/api',
+  baseURL: process.env.REACT_APP_API,
   timeout: 1000,
   headers: { 'Authorization': authHeader() }
 
@@ -25,7 +25,6 @@ async function get (url) {
 };
 
 async function post (url, payload) {
-  console.log(instance.baseURL)
   try {
     const resp = await instance.post(`${url}`, {
       ...payload,
