@@ -26,6 +26,7 @@ class TournamentSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = TournamentModel
         fields = [
+            'id',
             'title_long',
             'starting_date',
             'ending_date',
