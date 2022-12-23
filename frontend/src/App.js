@@ -8,6 +8,11 @@ import AuthVerify from "./common/AuthVerify";
 //Under construction. Will delete.
 import CreateCompetition from "./views/Competition/CreateCompetition";
 
+//Removes the tokens on page close
+window.onbeforeunload = function() {
+ // localStorage.removeItem('user');
+}
+
 
 function App() {
   AuthVerify.refreshTokenTimer();
