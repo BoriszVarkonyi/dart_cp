@@ -6,7 +6,7 @@ class FencerSerializer(serializers.HyperlinkedModelSerializer):
         model = FencerModel
         fields =  [
             'id', 
-            'competition',
+            'competitions',
             'nom',
             'pre_nom',
             'sexe',
