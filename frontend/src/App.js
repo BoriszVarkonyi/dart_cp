@@ -6,6 +6,7 @@ import PanelLayout from "./components/layouts/PanelLayout/PanelLayout";
 import AuthVerify from "./common/AuthVerify";
 
 //Under construction. Will delete.
+import AddCompetitor from "./views/Competitor/AddCompetitor";
 import CreateCompetition from "./views/Competition/CreateCompetition";
 
 //Removes the tokens on page close
@@ -24,7 +25,8 @@ function App() {
         <Route path=":id/*" element={<TournamentHandler />} />
 
         {/* Its just a test path*/}
-        <Route path="test" element={<CreateCompetition />} />
+        <Route path="test" element={<AddCompetitor />} />
+        <Route path="test2" element={<CreateCompetition />} />
         <Route
           path="*"
           element={

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   FormControl,
@@ -13,7 +14,8 @@ import { useForm } from "react-hook-form";
 import { post } from "../../services/backend.service";
 
 export default function CreateCompetition() {
-  const [isOther, setIsOther] = useState(false);
+  const [isOther, setIsOther] = useState(false);  
+  const navigate = useNavigate();
 
   //react-hook-form
   const {
@@ -24,14 +26,14 @@ export default function CreateCompetition() {
 
 
   const onSubmit = async (data) => {
-   // await post("competitions/", data);
+   await post("competitions/", data);
   }
   return (
     <div className="Main">
       <div className="PageHeader">
         <h2 className="PageTitle">Create competition</h2>
         <div className="PageButtonsWrapper">
-          <Button variant="contained">CANCEL</Button>
+          <Button variant="contained" onClick={() => navigate(-1)}>CANCEL</Button>
           <Button form="create-form" variant="contained" type="submit">
             CREATE COMPETITION
           </Button>
