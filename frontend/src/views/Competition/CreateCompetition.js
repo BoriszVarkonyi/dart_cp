@@ -14,7 +14,7 @@ import { useForm } from "react-hook-form";
 import { post } from "../../services/backend.service";
 
 export default function CreateCompetition() {
-  const [isOther, setIsOther] = useState(false);  
+  const [isOther, setIsOther] = useState(false);
   const navigate = useNavigate();
 
   //react-hook-form
@@ -24,16 +24,17 @@ export default function CreateCompetition() {
     formState: { errors },
   } = useForm();
 
-
   const onSubmit = async (data) => {
-   await post("competitions/", data);
-  }
+    await post("competitions/", data);
+  };
   return (
     <div className="Main">
       <div className="PageHeader">
         <h2 className="PageTitle">Create competition</h2>
         <div className="PageButtonsWrapper">
-          <Button variant="contained" onClick={() => navigate(-1)}>CANCEL</Button>
+          <Button variant="contained" onClick={() => navigate(-1)}>
+            CANCEL
+          </Button>
           <Button form="create-form" variant="contained" type="submit">
             CREATE COMPETITION
           </Button>
@@ -49,33 +50,46 @@ export default function CreateCompetition() {
           onSubmit={handleSubmit(onSubmit)}
         >
           <TextField
-            error={!!errors.compName}
-            helperText={errors?.compName?.message}
+            error={!!errors.assoc_tournament_id}
+            helperText={errors?.assoc_tournament_id?.message}
+            label="Tempomary type id here"
+            type="text"
+            margin="normal"
+            size="small"
+            variant="filled"
+            {...register("assoc_tournament_id", {
+              required: "Please enter the competition name!",
+            })}
+          />
+
+          <TextField
+            error={!!errors.title_long}
+            helperText={errors?.title_long?.message}
             label="Name"
             type="text"
             margin="normal"
             size="small"
             variant="filled"
-            {...register("compName", {
+            {...register("title_long", {
               required: "Please enter the competition name!",
             })}
           />
 
           <FormControl variant="filled">
             <TextField
-              error={!!errors.weaponType}
-              helperText={errors?.weaponType?.message}
+              error={!!errors.weapon_type}
+              helperText={errors?.weapon_type?.message}
               select
               label="Weapon type"
               id="weapon-type"
               defaultValue=""
-              {...register("weaponType", {
+              {...register("weapon_type", {
                 required: "Please choose a weapon type!",
               })}
             >
-              <MenuItem value="epee">Epee</MenuItem>
-              <MenuItem value="foil">Foil</MenuItem>
-              <MenuItem value="sabre">Sabre</MenuItem>
+              <MenuItem value="E">Epee</MenuItem>
+              <MenuItem value="F">Foil</MenuItem>
+              <MenuItem value="S">Sabre</MenuItem>
             </TextField>
           </FormControl>
 
@@ -104,39 +118,39 @@ export default function CreateCompetition() {
               defaultValue=""
               {...register("sex", { required: "Please choose sex!" })}
             >
-              <MenuItem value="male">Male</MenuItem>
-              <MenuItem value="female">Female</MenuItem>
-              <MenuItem value="mix">Mix</MenuItem>
+              <MenuItem value="M">Male</MenuItem>
+              <MenuItem value="F">Female</MenuItem>
+              <MenuItem value="X">Mix</MenuItem>
             </TextField>
           </FormControl>
 
           <FormControl variant="filled">
             <TextField
-              error={!!errors.compType}
-              helperText={errors?.compType?.message}
+              error={!!errors.type}
+              helperText={errors?.type?.message}
               select
               label="Competition type"
               id="compType"
               defaultValue=""
-              {...register("compType", {
+              {...register("type", {
                 required: "Please choose a competition type!",
               })}
             >
-              <MenuItem value="individual">Individual</MenuItem>
-              <MenuItem value="team">Team</MenuItem>
+              <MenuItem value="I">Individual</MenuItem>
+              <MenuItem value="T">Team</MenuItem>
             </TextField>
           </FormControl>
 
           {!isOther && (
             <FormControl variant="filled">
               <TextField
-                error={!!errors.ageGroup}
-                helperText={errors?.ageGroup?.message}
+                error={!!errors.age_group}
+                helperText={errors?.age_group?.message}
                 select
                 label="Age group"
                 id="ageGroup"
                 defaultValue=""
-                {...register("ageGroup", {
+                {...register("age_group", {
                   required: "Please choose an age gorup!",
                 })}
               >
@@ -152,15 +166,15 @@ export default function CreateCompetition() {
 
           {isOther && (
             <TextField
-              error={!!errors.ageGroup}
-              helperText={errors?.ageGroup?.message}
+              error={!!errors.age_group}
+              helperText={errors?.age_group?.message}
               label="Age group"
               type="text"
               margin="normal"
               size="small"
               variant="filled"
               autoFocus
-              {...register("ageGroup", {
+              {...register("age_group", {
                 required: "Please choose an age gorup!",
               })}
             />
@@ -168,17 +182,17 @@ export default function CreateCompetition() {
 
           <FormControl variant="filled">
             <TextField
-              error={!!errors.hostCountry}
-              helperText={errors?.hostCountry?.message}
+              error={!!errors.host_country}
+              helperText={errors?.host_country?.message}
               select
               label="Host country"
               id="hostCountry"
               defaultValue=""
-              {...register("hostCountry", {
+              {...register("host_country", {
                 required: "Please choose a host country!",
               })}
             >
-              <MenuItem value="nope">Biztos hogy nem írom ki</MenuItem>
+              <MenuItem value="ALA">Biztos hogy nem írom ki</MenuItem>
             </TextField>
           </FormControl>
 
@@ -194,14 +208,14 @@ export default function CreateCompetition() {
           />
 
           <TextField
-            error={!!errors.fee}
-            helperText={errors?.fee?.message}
+            error={!!errors.entry_fee}
+            helperText={errors?.entry_fee?.message}
             label="Entry fee"
             type="number"
             margin="normal"
             size="small"
             variant="filled"
-            {...register("fee", { required: "Please enter a fee!" })}
+            {...register("entry_fee", { required: "Please enter a fee!" })}
           />
           <TextField
             error={!!errors.currency}
@@ -215,8 +229,8 @@ export default function CreateCompetition() {
           />
 
           <TextField
-            error={!!errors.startingDate}
-            helperText={errors?.startingDate?.message}
+            error={!!errors.start_date}
+            helperText={errors?.start_date?.message}
             id="date"
             label="Starting Date"
             type="date"
@@ -224,13 +238,13 @@ export default function CreateCompetition() {
             variant="filled"
             defaultValue="2017-05-24"
             sx={{ width: 220 }}
-            {...register("startingDate", {
+            {...register("start_date", {
               required: "Please choose a starting date!",
             })}
           />
           <TextField
-            error={!!errors.endingDate}
-            helperText={errors?.endingDate?.message}
+            error={!!errors.end_date}
+            helperText={errors?.end_date?.message}
             id="date"
             label="Ending Date"
             type="date"
@@ -238,7 +252,7 @@ export default function CreateCompetition() {
             variant="filled"
             defaultValue="2017-05-24"
             sx={{ width: 220 }}
-            {...register("endingDate", {
+            {...register("end_date", {
               required: "Please choose an ending date!!",
             })}
           />

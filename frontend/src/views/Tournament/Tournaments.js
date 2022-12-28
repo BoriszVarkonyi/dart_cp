@@ -83,10 +83,6 @@ export default function Tournaments() {
     });
   };
 
-  const createButton = () => {
-    navigate("/panel/tournament");
-  };
-
   return (
     <div className="Panel">
       <div className="PageHeader">
@@ -94,7 +90,10 @@ export default function Tournaments() {
         <div className="PageButtonsWrapper">
           {/*Conditonal rendering by isSelected state*/}
           {!isSelected && (
-            <Button variant="contained" onClick={createButton}>
+            <Button
+              variant="contained"
+              onClick={() => navigate("/panel/tournament")}
+            >
               Create
             </Button>
           )}
