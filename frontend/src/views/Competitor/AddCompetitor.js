@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useSearchParams } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { FormControl, MenuItem, TextField, Button } from "@mui/material";
@@ -17,9 +17,21 @@ export default function AddCompetitor() {
     formState: { errors },
   } = useForm();
 
+  //DON'T USE THIS IN PRODUCTION!!!!
+  //TODO: get competition id from URL
   const onSubmit = async (data) => {
-    console.log(data)
+    data.competitions = ["http://localhost:8082/api/competitions/1/"]; //WARNING!!!!
+    data.statut = 'F'; //WARNING!!!!
+    data.barcode = Math.floor(Math.random() * (69420) + 420); //WARNING!!!!
+    console.log(data);
+    post("fencers/", data);
   };
+
+  //TODO: ID max length is 24
+  //TODO: nom, pre_nom max length is 72
+  //TODO: licence max length is 12
+  //TODO: import nation MenuItem from JSON or something
+  //TODO: club max length is 256
 
   return (
     <div className="Main">
@@ -42,50 +54,61 @@ export default function AddCompetitor() {
           onSubmit={handleSubmit(onSubmit)}
         >
           <TextField
-            error={!!errors.fName}
-            helperText={errors?.fName?.message}
+            error={!!errors.id}
+            helperText={errors?.id?.message}
+            label="Fencer id"
+            type="text"
+            margin="normal"
+            size="small"
+            variant="filled"
+            {...register("id", {
+              required: "Please enter an ID!",
+            })}
+          />
+          <TextField
+            error={!!errors.pre_nom}
+            helperText={errors?.pre_nom?.message}
             label="First Name"
             type="text"
             margin="normal"
             size="small"
             variant="filled"
-            {...register("fName", {
+            {...register("pre_nom", {
               required: "Please enter your first name!",
             })}
           />
-
           <TextField
-            error={!!errors.lName}
-            helperText={errors?.lName?.message}
+            error={!!errors.nom}
+            helperText={errors?.nom?.message}
             label="Last Name"
             type="text"
             margin="normal"
             size="small"
             variant="filled"
-            {...register("lName", {
+            {...register("nom", {
               required: "Please enter your last name!",
             })}
           />
 
           <FormControl variant="filled">
             <TextField
-              error={!!errors.sex}
-              helperText={errors?.sex?.message}
+              error={!!errors.sexe}
+              helperText={errors?.sexe?.message}
               select
               label="Sex"
               id="sex"
               defaultValue=""
-              {...register("sex", { required: "Please choose sex!" })}
+              {...register("sexe", { required: "Please choose sex!" })}
             >
-              <MenuItem value="male">Male</MenuItem>
-              <MenuItem value="female">Female</MenuItem>
-              <MenuItem value="mix">Mix</MenuItem>
+              <MenuItem value="M">Male</MenuItem>
+              <MenuItem value="F">Female</MenuItem>
+              <MenuItem value="X">Mix</MenuItem>
             </TextField>
           </FormControl>
-
+          
           <TextField
-            error={!!errors.dateOfBirth}
-            helperText={errors?.dateOfBirth?.message}
+            error={!!errors.date_naissance}
+            helperText={errors?.date_naissance?.message}
             id="date-of-birth"
             label="Date of Birth"
             type="date"
@@ -93,37 +116,37 @@ export default function AddCompetitor() {
             variant="filled"
             defaultValue="2017-05-24"
             sx={{ width: 220 }}
-            {...register("dateOfBirth", {
+            {...register("date_naissance", {
               required: "Please enter your date of birth!",
             })}
           />
 
           <FormControl variant="filled">
             <TextField
-              error={!!errors.laterality}
-              helperText={errors?.laterality?.message}
+              error={!!errors.lateralite}
+              helperText={errors?.lateralite?.message}
               select
               label="Laterality"
               id="laterality"
               defaultValue=""
-              {...register("laterality", {
+              {...register("lateralite", {
                 required: "Please select laterality!",
               })}
             >
-              <MenuItem value="left">Left</MenuItem>
-              <MenuItem value="right">Right</MenuItem>
+              <MenuItem value="G">Left</MenuItem>
+              <MenuItem value="D">Right</MenuItem>
             </TextField>
           </FormControl>
 
           <TextField
-            error={!!errors.license}
-            helperText={errors?.license?.message}
+            error={!!errors.licence}
+            helperText={errors?.licence?.message}
             label="License"
             type="text"
             margin="normal"
             size="small"
             variant="filled"
-            {...register("license", {
+            {...register("licence", {
               required: "Please enter your license!",
             })}
           />
@@ -156,26 +179,26 @@ export default function AddCompetitor() {
 
           <FormControl variant="filled">
             <TextField
-              error={!!errors.nationality}
-              helperText={errors?.nationality?.message}
+              error={!!errors.nation}
+              helperText={errors?.nation?.message}
               select
               label="Nationality"
               id="nationality"
               defaultValue=""
-              {...register("nationality", {
+              {...register("nation", {
                 required: "Please choose a nationality!",
               })}
             >
-              <MenuItem value="nope">Biztos hogy nem írom ki</MenuItem>
+              <MenuItem value="HUN">Hungary</MenuItem>
+              <MenuItem value="ALB">Albania</MenuItem>
+              <MenuItem value="Other">Other</MenuItem>
             </TextField>
           </FormControl>
 
           {!isOther && (
-            <FormControl variant="filled">
               <TextField
                 error={!!errors.club}
                 helperText={errors?.club?.message}
-                select
                 label="Club"
                 id="club"
                 defaultValue=""
@@ -183,10 +206,7 @@ export default function AddCompetitor() {
                   required: "Please choose a club!",
                 })}
               >
-                <MenuItem value="nope">Biztos hogy nem írom ki</MenuItem>
-                <MenuItem onClick={() => setIsOther(true)}>Other</MenuItem>
               </TextField>
-            </FormControl>
           )}
 
           {isOther && (
