@@ -40,11 +40,9 @@ export default function NavBar() {
               </div>
             </Link>
           </div>
+          
 
-          <p className="NavBarSectionTitle">Competition</p>
-          <div className="NavBarSection">
-
-            <div className="CompetitionSelect">
+          <div className="CompetitionSelect">
               <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
                 <Select
                   displayEmpty
@@ -62,6 +60,9 @@ export default function NavBar() {
                 </Select>
               </FormControl>
             </div>
+
+          <p className="NavBarSectionTitle">Competition</p>
+          <div className="NavBarSection">
 
             <Link to="competitors">
               <div className="NavBarRow">
@@ -81,7 +82,7 @@ export default function NavBar() {
               </div>
             </Link>
 
-            <Link>
+            <Link to="weapon_control">
               <div className="NavBarRow">
                 <div className="NavBarIconWrapper">
                   <BackpackIcon />

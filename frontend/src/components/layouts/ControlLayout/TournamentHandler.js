@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import { CompLayout } from "./CompLayout";
 
 import Competitions from "../../../views/Competition/Competitions";
-import CreateCompetition from "../../../views/Competition/CreateCompetition";
+import Competition from "../../../views/Competition/Competition";
 import Timetable from "../../../views/Timetable/Timetable";
 import Competitors from "../../../views/Competitor/Competitors";
 import AddCompetitor from "../../../views/Competitor/AddCompetitor"
@@ -18,10 +18,11 @@ export default function ControlLayout() {
       <Routes className="Main">
         {/*First id is tournament id, second is Comp. id.*/}
         
-        <Route path=":compId" element={<CompLayout/>}>
+        <Route path=":id" element={<CompLayout/>}>
           <Route path="competitions">
             <Route index element={<Competitions />} />
-            <Route path="create" element={<CreateCompetition/>}/>
+            <Route path="create" element={<Competition type="Create"/>}/>
+            <Route path="modify" element={<Competition type="Modify"/>}/>
           </Route>
           <Route path="timetable" element={<Timetable />} />
           <Route path="competitors">

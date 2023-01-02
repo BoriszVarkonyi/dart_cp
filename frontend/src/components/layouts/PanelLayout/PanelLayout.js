@@ -10,7 +10,8 @@ export default function LoginLayout() {
     <div className="PanelLayout">
       <Routes>
         <Route index element={<Tournaments />} />
-        <Route path="/tournament" element={<Tournament />} />
+        <Route path="/create_tournament" element={<Tournament type="Create" />} />
+        <Route path="/modify_tournament" element={<Tournament type="Modify" />} />
       </Routes>
       {/* <img className="FencersImage" src={fencersImage} /> */}
     </div>

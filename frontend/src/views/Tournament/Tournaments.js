@@ -4,6 +4,7 @@ import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { get, remove } from "../../services/backend.service";
 import { useSelector } from "react-redux";
+import useSingleRowSelection from "../../services/useSingleRowSelection";
 
 const row = (element) => {
   return {
@@ -22,11 +23,10 @@ const columns = [
 ];
 
 export default function Tournaments() {
-  const [isSelected, setIsSelected] = useState(false);
-  const [selectedRowId, setSelectedRowId] = useState();
+  //Makes only one row selected
+  const { isSelected, selectedRowId, selectionModel, handleEvent } = useSingleRowSelection();
   const { isLoggedIn } = useSelector((state) => state.auth);
   const [rows, setRows] = useState([]);
-  const [selectionModel, setSelectionModel] = useState([]);
 
   const navigate = useNavigate();
 
@@ -40,22 +40,6 @@ export default function Tournaments() {
     getData();
   }, []);
 
-  //Makes only one row selected
-  const handleEvent = (params) => {
-    if (params.length > 1) {
-      const selectionSet = new Set(selectionModel);
-      const result = params.filter((s) => !selectionSet.has(s));
-      setSelectionModel(result);
-    } else {
-      setSelectionModel(params);
-    }
-  };
-
-  useEffect(() => {
-    selectionModel.length == 1 ? setIsSelected(true) : setIsSelected(false); //Sets the isSelected state
-    setSelectedRowId(selectionModel[0]); //Updates selectedRowId
-  }, [selectionModel]);
-
   if (!isLoggedIn) {
     return navigate("/");
   }
@@ -64,7 +48,7 @@ export default function Tournaments() {
   const openButton = () => {};
 
   const modifyButton = () => {
-    navigate(`/panel/tournament/${selectedRowId}`);
+    navigate("modify_tournament", { state: {rowId: selectedRowId }});
   };
 
   const deleteButton = async () => {
@@ -92,7 +76,7 @@ export default function Tournaments() {
           {!isSelected && (
             <Button
               variant="contained"
-              onClick={() => navigate("/panel/tournament")}
+              onClick={() => navigate("create_tournament")}
             >
               Create
             </Button>

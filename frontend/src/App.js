@@ -6,7 +6,7 @@ import PanelLayout from "./components/layouts/PanelLayout/PanelLayout";
 import AuthVerify from "./common/AuthVerify";
 
 //Under construction. Will delete.
-import Timetable from "./views/Timetable/Timetable";
+import WeaponControls from "./views/WeaponControl/WeaponControls";
 
 //Removes the tokens on page close
 window.onbeforeunload = function() {
@@ -21,10 +21,10 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginLayout />} />
         <Route path="/panel/*" element={<PanelLayout />} />
-        <Route path=":id/*" element={<TournamentHandler />} />
+        <Route path=":tournamentId/*" element={<TournamentHandler />} />
 
         {/* Its just a test path*/}
-        <Route path="test" element={<Timetable />} />
+        <Route path="test" element={<WeaponControls />} />
         <Route
           path="*"
           element={

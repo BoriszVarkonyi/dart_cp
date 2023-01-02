@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { get, remove } from "../../services/backend.service";
 import {useParams} from 'react-router-dom';
+import useSingleRowSelection from "../../services/useSingleRowSelection";
 
 const columns = [
   { field: "name", headerName: "NAME", width: 200 },
@@ -39,12 +40,9 @@ const test = [
 
 export default function Competitions() {
   const navigate = useNavigate();
-  const [isSelected, setIsSelected] = useState(false);
-  const [selectedRowId, setSelectedRowId] = useState();
-  const [selectionModel, setSelectionModel] = useState([]);
+  const { isSelected, selectedRowId, selectionModel, handleEvent } = useSingleRowSelection();
   const [rows, setRows] = useState(test);
-  let { id, compId } = useParams();
-  console.log(id, compId);
+  let { tournaemntId, compId } = useParams();
 
   //Gets the tournaments from api
   // useEffect(() => {
@@ -54,23 +52,6 @@ export default function Competitions() {
   //     }
   //     getFencersData();
   // }, []);
-
-  //Makes only one row selected
-  const handleEvent = (params) => {
-    if (params.length > 1) {
-      const selectionSet = new Set(selectionModel);
-      const result = params.filter((s) => !selectionSet.has(s));
-      setSelectionModel(result);
-    } else {
-      setSelectionModel(params);
-    }
-  };
-
-  useEffect(() => {
-    selectionModel.length == 1 ? setIsSelected(true) : setIsSelected(false);
-    setSelectedRowId(selectionModel[0]);
-  }, [selectionModel]);
-
 
   const deleteButton = async () => {
     //Deletes the tournament in the database
@@ -99,7 +80,7 @@ export default function Competitions() {
             </Button>
           )}
           {isSelected && (
-            <Button variant="contained" /*onClick={modifyButton}*/>
+            <Button variant="contained" onClick={() => navigate("modify", { state: {rowId: selectedRowId }})}>
               Modify
             </Button>
           )}

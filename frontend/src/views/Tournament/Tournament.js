@@ -2,15 +2,17 @@ import React from "react";
 import { Button } from "@mui/material";
 import { TextField } from "@mui/material";
 import { Box } from "@mui/system";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { post } from "../../services/backend.service";
+import { post, update } from "../../services/backend.service";
 import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 
-export default function Tournament() {
-  const navigate = useNavigate();
-
+export default function Tournament(props) {
   const { isLoggedIn } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+  const { state } = useLocation();
+  const { rowId } = state;
 
   const {
     register,
@@ -18,13 +20,12 @@ export default function Tournament() {
     formState: { errors },
   } = useForm();
 
-  if (!isLoggedIn) {
-    return <Navigate to="/profile" />;
-  }
-
   const onSubmitSave = async (data) => {
-    console.log(data);
-    await post("tournaments/", data);
+    if (props.type == "Create") {
+      await post("tournaments/", data);
+    } else if (props.type == "Modify") {
+      //await update(`tournaments/${rowId}`, data);
+    }
     return navigate(-1);
   };
 
@@ -33,10 +34,11 @@ export default function Tournament() {
     //return navigate(`/competition/${resp.id}`)
   };
 
+  const text = `${props.type} tournament`;
   return (
     <div className="Panel">
       <div className="PageHeader">
-        <h2 className="PageTitle">Create new tournament</h2>
+        <h2 className="PageTitle">{text}</h2>
         <div className="PageButtonsWrapper">
           <Button variant="contained" onClick={() => navigate(-1)}>
             Cancel

@@ -3,6 +3,7 @@ import { Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { get } from "../../services/backend.service";
 import { useNavigate } from "react-router-dom";
+import useSingleRowSelection from "../../services/useSingleRowSelection";
 
 const row = (element) => {
   return {
@@ -40,9 +41,7 @@ const columns = [
 ];
 
 export default function Competitors() {
-  const [isSelected, setIsSelected] = useState(false);
-  const [selectedRowId, setSelectedRowId] = useState();
-  const [selectionModel, setSelectionModel] = useState([]);
+  const { isSelected, selectedRowId, selectionModel, handleEvent } = useSingleRowSelection();
   const [rows, setRows] = useState(test);
   const navigate = useNavigate();
 
@@ -54,22 +53,6 @@ export default function Competitors() {
   //     }
   //     getFencersData();
   //   }, []);
-
-  //Makes only one row selected
-  const handleEvent = (params) => {
-    if (params.length > 1) {
-      const selectionSet = new Set(selectionModel);
-      const result = params.filter((s) => !selectionSet.has(s));
-      setSelectionModel(result);
-    } else {
-      setSelectionModel(params);
-    }
-  };
-
-  useEffect(() => {
-    selectionModel.length == 1 ? setIsSelected(true) : setIsSelected(false);
-    setSelectedRowId(selectionModel[0]);
-  }, [selectionModel]);
 
   //Will be usefull
   //   const deleteButton = async () => {
