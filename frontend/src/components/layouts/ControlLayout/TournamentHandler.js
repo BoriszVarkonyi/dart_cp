@@ -9,6 +9,7 @@ import Timetable from "../../../views/Timetable/Timetable";
 import Competitors from "../../../views/Competitor/Competitors";
 import AddCompetitor from "../../../views/Competitor/AddCompetitor"
 import Registration from "../../../views/Registration/Registration";
+import WeaponControls from "../../../views/WeaponControl/WeaponControls"
 
 
 export default function ControlLayout() {
@@ -28,6 +29,7 @@ export default function ControlLayout() {
           <Route path="add" element={<AddCompetitor/>}/>
           </Route>
           <Route path="registration" element={<Registration />} />
+          <Route path="weapon_control" element={<WeaponControls/>}/>
         </Route>
       </Routes>
     </div>
