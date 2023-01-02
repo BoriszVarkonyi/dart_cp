@@ -6,7 +6,7 @@ class TournamentModel(models.Model):
     ending_date = models.DateField()
 
 class CompetitionModel(models.Model):
-    assoc_tournament_id = models.ForeignKey(TournamentModel, on_delete=models.CASCADE)
+    tournaments = models.ForeignKey(TournamentModel, on_delete=models.CASCADE)
     title_long = models.CharField(max_length=72)
     weapon_type = models.CharField(max_length=1, choices=WEAPON_CHOICE)
     is_wheelchair = models.BooleanField(default=False)
@@ -34,12 +34,12 @@ class FencerModel(models.Model):
     date_naissance = models.DateField()
     classement = models.IntegerField()
     points = models.IntegerField()
-    barcode = models.IntegerField()
+    barcode = models.IntegerField(default='00000000')
     registration_status = models.BooleanField(default=False)
 
 class WeaponControlModel(models.Model):
-    assoc_fencer_id = models.ForeignKey(FencerModel, on_delete=models.CASCADE)
-    assoc_competition_id = models.ForeignKey(CompetitionModel, on_delete=models.CASCADE)
+    fencers = models.ForeignKey(FencerModel, on_delete=models.CASCADE)
+    competitions = models.ForeignKey(CompetitionModel, on_delete=models.CASCADE)
 
     #issues
     issue_1 = models.SmallIntegerField(null=True, verbose_name="FIE mark on blade")

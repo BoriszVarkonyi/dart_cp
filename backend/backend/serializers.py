@@ -36,7 +36,8 @@ class CompetitionSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = CompetitionModel
         fields = [
-            'assoc_tournament_id',
+            'id',
+            'tournaments',
             'title_long',
             'weapon_type',
             'is_wheelchair',
@@ -55,8 +56,8 @@ class WeaponControlSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = WeaponControlModel
         fields = [
-            'assoc_fencer_id',
-            'assoc_competition_id',
+            'fencers',
+            'competitions',
             'issue_1',
             'issue_2',
             'issue_3',
