@@ -1,0 +1,17 @@
+.Header {
+    height: 2rem;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+	width: 100%;
+    background: linear-gradient(90deg,
+        var(--c-PrimaryBlue-300) 0%,
+		var(--c-PrimaryMix-300) 50%,
+        var(--c-PrimaryGreen-300) 100%);
+    box-shadow: var(--s-Standard);
+}
+
+.UserNameText {
+    font-weight: bold;
+    color: var(--c-White);
+}

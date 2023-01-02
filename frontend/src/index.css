@@ -47,6 +47,8 @@
 
   --l-Rounding: 7pt;
   --l-Border: 1pt;
+
+  --s-Standard: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 body, #root {

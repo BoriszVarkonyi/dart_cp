@@ -7,10 +7,10 @@ export default function Registration() {
             <div className="PageHeader">
                 <h2 className="PageTitle">Registration</h2>
                 <div className="PageButtonsWrapper">
-                    <Button variant="contained">Print Barcodes</Button>
-                    <Button variant="contained">Register out</Button>
-                    <Button variant="contained">Register in</Button>
-                    <Button variant="contained">Assign Barcode</Button>
+                    <Button variant="contained" size="small">Print Barcodes</Button>
+                    <Button variant="contained" size="small">Register out</Button>
+                    <Button variant="contained" size="small">Register in</Button>
+                    <Button variant="contained" size="small">Assign Barcode</Button>
                 </div>
             </div>
             <div className="PanelContentSingle">
