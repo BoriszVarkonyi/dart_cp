@@ -10,4 +10,5 @@ router.register(r'weaponcontrols', views.WeaponControlViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('uploadxml/', views.MyUploadView.as_view()),
 ]
