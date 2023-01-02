@@ -1,16 +1,32 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
+
 import LoginLayout from "./components/layouts/LoginLayout/LoginLayout";
-import ControlLayout from "./components/layouts/ControlLayout/ControlLayout";
+import TournamentHandler from "./components/layouts/ControlLayout/TournamentHandler";
 import PanelLayout from "./components/layouts/PanelLayout/PanelLayout";
-import Profile from "./views/Login/Profile"
+import AuthVerify from "./common/AuthVerify";
+
+//Under construction. Will delete.
+import AddCompetitor from "./views/Competitor/AddCompetitor";
+import CreateCompetition from "./views/Competition/CreateCompetition";
+
+//Removes the tokens on page close
+window.onbeforeunload = function() {
+ // localStorage.removeItem('user');
+}
+
+
 function App() {
+  AuthVerify.refreshTokenTimer();
   return (
     <>
       <Routes>
         <Route path="/" element={<LoginLayout />} />
         <Route path="/panel/*" element={<PanelLayout />} />
-        <Route path="/control/*" element={<ControlLayout />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path=":id/*" element={<TournamentHandler />} />
+
+        {/* Its just a test path*/}
+        <Route path="test" element={<AddCompetitor />} />
+        <Route path="test2" element={<CreateCompetition />} />
         <Route
           path="*"
           element={

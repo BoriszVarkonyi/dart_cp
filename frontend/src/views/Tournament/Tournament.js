@@ -15,36 +15,38 @@ export default function Tournament() {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
   } = useForm();
 
   if (!isLoggedIn) {
     return <Navigate to="/profile" />;
   }
 
-  //Button functions
-  const cancelButton = () => {
-    navigate(-1)
-  }
-
   const onSubmitSave = async (data) => {
+    console.log(data);
     await post("tournaments/", data);
     return navigate(-1);
-  }
+  };
 
   const onSubmitSaveOpen = async (data) => {
     //const resp = await post("tournaments/", data);
     //return navigate(`/competition/${resp.id}`)
-  }
+  };
 
   return (
     <div className="Panel">
       <div className="PageHeader">
         <h2 className="PageTitle">Create new tournament</h2>
         <div className="PageButtonsWrapper">
-          <Button variant="contained" onClick={cancelButton}>Cancel</Button>
-          <Button variant="contained" onClick={handleSubmit(onSubmitSave)}>Save</Button>
-          <Button variant="contained" onClick={handleSubmit(onSubmitSaveOpen)}>Save & Open</Button>
+          <Button variant="contained" onClick={() => navigate(-1)}>
+            Cancel
+          </Button>
+          <Button variant="contained" onClick={handleSubmit(onSubmitSave)}>
+            Save
+          </Button>
+          <Button variant="contained" onClick={handleSubmit(onSubmitSaveOpen)}>
+            Save & Open
+          </Button>
         </div>
       </div>
       <Box className="PanelContent" component="form">
@@ -57,7 +59,7 @@ export default function Tournament() {
             margin="normal"
             size="small"
             variant="filled"
-            {...register("title_long", { required: "Please enter a name!"})}
+            {...register("title_long", { required: "Please enter a name!" })}
           />
         </div>
         <div className="FormColumn">
@@ -72,8 +74,10 @@ export default function Tournament() {
             InputLabelProps={{
               shrink: true,
             }}
-            {...register("starting_date", { required: "Please enter a start date!"})} 
-            />
+            {...register("starting_date", {
+              required: "Please enter a start date!",
+            })}
+          />
           <TextField
             id="date"
             label="Ending Date"
@@ -85,8 +89,10 @@ export default function Tournament() {
             InputLabelProps={{
               shrink: true,
             }}
-            {...register("ending_date", { required: "Please enter an end date!"})} 
-            />
+            {...register("ending_date", {
+              required: "Please enter an end date!",
+            })}
+          />
         </div>
       </Box>
     </div>

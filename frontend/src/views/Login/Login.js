@@ -1,4 +1,4 @@
-import React, { useState, useEffect  } from "react";
+import React, { useState  } from "react";
 import { Button, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import { useForm } from "react-hook-form";
@@ -32,12 +32,12 @@ export default function Login() {
   //onSubmit function, after submit it navigates to the /panel path
   const onSubmit = (data) => {
     const { email, password } = data;
-    //setLoading(true);
+    setLoading(true);
     dispatch(login({ 'username': email, 'password': password }))
       .unwrap()
       .then(() => {
-        navigate("/profile");
-        //window.location.reload();
+        navigate("/panel");
+        window.location.reload();
       })
       .catch(() => {
         setLoading(false);
@@ -45,7 +45,7 @@ export default function Login() {
   };
 
   if (isLoggedIn) {
-    return <Navigate to="/profile" />;
+    return <Navigate to="/panel" />;
   }
 
   //validate rules for the email input
