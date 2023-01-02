@@ -6,9 +6,12 @@ import { Box } from "@mui/system";
 import { useForm } from "react-hook-form";
 import { post } from "../../services/backend.service";
 
+import {useParams} from 'react-router-dom';
+
 export default function AddCompetitor() {
   const [isOther, setIsOther] = useState(false);
   const navigate = useNavigate();
+  let { id, compId } = useParams();
 
   //react-hook-form
   const {
@@ -20,7 +23,7 @@ export default function AddCompetitor() {
   //DON'T USE THIS IN PRODUCTION!!!!
   //TODO: get competition id from URL
   const onSubmit = async (data) => {
-    data.competitions = ["http://localhost:8082/api/competitions/1/"]; //WARNING!!!!
+    data.competitions = [`http://localhost:8082/api/competitions/${compId}/`]; //WARNING!!!!
     data.statut = 'F'; //WARNING!!!!
     data.barcode = Math.floor(Math.random() * (69420) + 420); //WARNING!!!!
     console.log(data);

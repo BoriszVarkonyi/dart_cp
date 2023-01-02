@@ -4,6 +4,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { get, remove } from "../../services/backend.service";
+import {useParams} from 'react-router-dom';
 
 const columns = [
   { field: "name", headerName: "NAME", width: 200 },
@@ -42,6 +43,8 @@ export default function Competitions() {
   const [selectedRowId, setSelectedRowId] = useState();
   const [selectionModel, setSelectionModel] = useState([]);
   const [rows, setRows] = useState(test);
+  let { id, compId } = useParams();
+  console.log(id, compId);
 
   //Gets the tournaments from api
   // useEffect(() => {

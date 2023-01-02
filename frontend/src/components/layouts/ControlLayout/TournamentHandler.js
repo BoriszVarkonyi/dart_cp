@@ -18,7 +18,7 @@ export default function ControlLayout() {
       <Routes className="Main">
         {/*First id is tournament id, second is Comp. id.*/}
         
-        <Route path=":id" element={<CompLayout/>}>
+        <Route path=":compId" element={<CompLayout/>}>
           <Route path="competitions">
             <Route index element={<Competitions />} />
             <Route path="create" element={<CreateCompetition/>}/>
