@@ -1,0 +1,122 @@
+.NavBar {
+	width: 300px;
+    background: radial-gradient(
+        farthest-corner at top left,
+        rgba(214,231,240,1),
+        rgba(255,255,255,1));
+    border-radius: 0 2rem 0 0;
+    box-shadow: var(--s-Standard);
+    overflow: hidden;
+}
+
+.NavBarHead {
+    height: 2rem;
+    background: radial-gradient(
+        farthest-corner at top left,
+        var(--c-PrimaryBlue-100),
+        var(--c-White));
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.AppName {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.LogoImage {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+    margin: 0;
+}
+
+.NavBarContent {
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1.1;
+}
+
+.NavBarSectionTitle {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--c-Gray-600);
+    position: relative;
+}
+
+.NavBarSectionTitle::after {
+    content: '';
+    height: 2pt;
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--c-Gray-600);
+}
+
+.NavBarSection {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    padding-top: 5px;
+    margin-bottom: 20px;
+    z-index: 0;
+}
+
+.NavBarSection::before {
+    content: '';
+    position: absolute;
+    width: 2pt;
+    height: 100%;
+    background-color: var(--c-Gray-600);
+    left: 0.8rem;
+    top: 0;
+    z-index: 0;
+}
+
+.NavBarRow {
+    display: flex;
+    align-items: center;
+    z-index: 1;
+    position: relative;
+    margin-top: 7px;
+}
+
+.NavBarRow:hover {
+
+}
+
+.NavBarIconWrapper {
+    width: 1.4rem;
+    height: 1.4rem;
+    background-color: var(--c-White);
+    border: 2pt solid var(--c-Gray-600);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.NavBarIconWrapper svg {
+    width: 80%;
+    height: 80%;
+}
+
+.NavBarRowTitle {
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 6px;
+}
+
+.NavBar a {
+    color: var(--c-Black);
+    text-decoration: none;
+}
+
+.CompetitionSelect {
+    z-index: 1;
+    position: relative;
+}
