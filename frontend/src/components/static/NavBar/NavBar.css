@@ -5,7 +5,6 @@
         rgba(214,231,240,1),
         rgba(255,255,255,1));
     border-radius: 0 var(--l-Header) 0 0;
-    overflow: hidden;
 }
 
 .NavBarHead {
@@ -122,4 +121,10 @@
 .CompetitionSelect {
     z-index: 1;
     position: relative;
+}
+
+.AppNameCopyright {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
 }

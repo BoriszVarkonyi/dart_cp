@@ -40,26 +40,26 @@ export default function NavBar() {
               </div>
             </Link>
           </div>
-          
+
 
           <div className="CompetitionSelect">
-              <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-                <Select
-                  displayEmpty
-                  labelId="demo-select-small"
-                  id="demo-select-small"
-                  value={10}
-                  sx={{ width: 100 }}
-                >
-                  <MenuItem disabled value="">
-                    <em>Select Competition</em>
-                  </MenuItem>
-                  <MenuItem value={10}>Comp 1</MenuItem>
-                  <MenuItem value={20}>Comp 2</MenuItem>
-                  <MenuItem value={30}>Comp 3</MenuItem>
-                </Select>
-              </FormControl>
-            </div>
+            <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+              <Select
+                displayEmpty
+                labelId="demo-select-small"
+                id="demo-select-small"
+                value={10}
+                sx={{ width: 100 }}
+              >
+                <MenuItem disabled value="">
+                  <em>Select Competition</em>
+                </MenuItem>
+                <MenuItem value={10}>Comp 1</MenuItem>
+                <MenuItem value={20}>Comp 2</MenuItem>
+                <MenuItem value={30}>Comp 3</MenuItem>
+              </Select>
+            </FormControl>
+          </div>
 
           <p className="NavBarSectionTitle">Competition</p>
           <div className="NavBarSection">
@@ -91,6 +91,7 @@ export default function NavBar() {
               </div>
             </Link>
           </div>
+          <p className="AppNameCopyright">d'ARTAGNAN &copy; 2022</p>
         </div>
       </div>
     </>
