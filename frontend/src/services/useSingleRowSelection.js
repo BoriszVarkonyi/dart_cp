@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 export default function useSingleRowSelection() {
   const [isSelected, setIsSelected] = useState(false);
-  const [selectedRowId, setSelectedRowId] = useState();
+  const [selectedRowId, setSelectedRowId] = useState(null);
   const [selectionModel, setSelectionModel] = useState([]);
 
   //Makes only one row selected
