@@ -1,5 +1,6 @@
 .Header {
-    height: 2rem;
+    height: var(--l-Header);
+    margin-bottom: 3pt;
     display: flex;
     justify-content: right;
     align-items: center;
@@ -8,10 +9,20 @@
         var(--c-PrimaryBlue-300) 0%,
 		var(--c-PrimaryMix-300) 50%,
         var(--c-PrimaryGreen-300) 100%);
-    box-shadow: var(--s-Standard);
+}
+
+.Header::after {
+    content: '';
+    width: 100%;
+    height: 3pt;
+    background: linear-gradient(90deg,
+        var(--c-PrimaryBlue-200) 0%,
+        var(--c-PrimaryMix-200) 50%,
+        var(--c-PrimaryGreen-200) 100%);
+    position: absolute;
+    top: 100%;
 }
 
 .UserNameText {
-    font-weight: bold;
     color: var(--c-White);
 }

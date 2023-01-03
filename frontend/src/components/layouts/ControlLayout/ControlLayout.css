@@ -1,4 +1,9 @@
 /* Temporary */
+
+body, #root {
+    background-color: var(--c-white) !important;
+}
+
 body::before {
     content: '';
     position: absolute;
@@ -46,4 +51,7 @@ body::before {
         farthest-corner at top left,
         rgba(214,231,240,1),
         rgba(255,255,255,1));
+    border-radius: 0 0 0 var(--l-Header);
+    border-left: 2pt solid var(--c-Gray-500);
+    border-bottom: 2pt solid var(--c-Gray-500);
 }
