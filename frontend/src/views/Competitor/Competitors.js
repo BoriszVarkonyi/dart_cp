@@ -76,7 +76,7 @@ export default function Competitors() {
       <div className="PageHeader">
         <h2 className="PageTitle">Competitors</h2>
         <div className="PageButtonsWrapper">
-          {!isSelected && <Button variant="contained" size="small">Import XML</Button>}
+          {!isSelected && <Button variant="contained" size="small" onClick={() => navigate("importXML")}>Import XML</Button>}
           {isSelected && (
             <Button variant="contained" size="small" /*onClick={deleteButton}*/>
               Delete

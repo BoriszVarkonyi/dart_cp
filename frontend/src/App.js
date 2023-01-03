@@ -6,20 +6,17 @@ import { TournamentLayout } from "./components/layouts/ControlLayout/TournamentL
 import PanelLayout from "./components/layouts/PanelLayout/PanelLayout";
 import AuthVerify from "./common/AuthVerify";
 
-//Under construction. Will delete.
-
 import Competitions from "./views/Competition/Competitions";
 import Competition from "./views/Competition/Competition";
 import Timetable from "./views/Timetable/Timetable";
 import Competitors from "./views/Competitor/Competitors";
 import AddCompetitor from "./views/Competitor/AddCompetitor";
+import ImportXML from "./views/Competitor/ImportXML";
 import Registration from "./views/Registration/Registration";
 import WeaponControls from "./views/WeaponControl/WeaponControls";
 
-//Removes the tokens on page close
-window.onbeforeunload = function () {
-  // localStorage.removeItem('user');
-};
+//Under construction. Will delete.
+
 
 function App() {
   AuthVerify.refreshTokenTimer();
@@ -39,6 +36,7 @@ function App() {
             <Route path="competitors">
               <Route index element={<Competitors />} />
               <Route path="add" element={<AddCompetitor />} />
+              <Route path="importXML" element={<ImportXML />} />
             </Route>
             <Route path="registration" element={<Registration />} />
             <Route path="weapon_control" element={<WeaponControls />} />
