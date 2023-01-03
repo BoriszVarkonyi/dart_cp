@@ -40,12 +40,14 @@ export default function Tournaments() {
     getData();
   }, []);
 
-  if (!isLoggedIn) {
-    return navigate("/");
-  }
+  // if (!isLoggedIn) {
+  //   return navigate("/");
+  // }
 
   //Button functions
-  const openButton = () => {};
+  const openButton = () => {
+    navigate(`/${selectedRowId}`)
+  };
 
   const modifyButton = () => {
     navigate("modify_tournament", { state: {rowId: selectedRowId }});
@@ -76,7 +78,7 @@ export default function Tournaments() {
           {!isSelected && (
             <Button
               variant="contained"
-              onClick={() => navigate("create_tournament")}
+              onClick={() => navigate("create_tournament", { state: {rowId: selectedRowId }})}
             >
               Create
             </Button>

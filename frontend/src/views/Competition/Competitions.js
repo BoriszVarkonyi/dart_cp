@@ -85,7 +85,7 @@ export default function Competitions() {
             </Button>
           )}
           {!isSelected && (
-            <Button variant="contained" onClick={() => navigate("create")}>
+            <Button variant="contained" onClick={() => navigate("create", { state: {rowId: selectedRowId }})}>
               Create
             </Button>
           )}

@@ -13,6 +13,7 @@ export default function Tournament(props) {
   const navigate = useNavigate();
   const { state } = useLocation();
   const { rowId } = state;
+  console.log(rowId)
 
   const {
     register,
@@ -24,7 +25,7 @@ export default function Tournament(props) {
     if (props.type == "Create") {
       await post("tournaments/", data);
     } else if (props.type == "Modify") {
-      //await update(`tournaments/${rowId}`, data);
+      await update(`tournaments/${rowId}/`, data);
     }
     return navigate(-1);
   };
