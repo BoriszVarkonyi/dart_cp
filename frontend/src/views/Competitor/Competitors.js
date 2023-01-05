@@ -24,8 +24,6 @@ const row = (element) => {
   };
 };
 
-const test = [{ id: 1, classement: "test", points: "sok", nom: "Neve", pre_nom: "nev", nation: "Narnia", club: " night", date_naissance: "pls", sexe: "end", lateralite: "my", licence: "suffer", reg_status: "japp", wc_status: "szabad" }]
-
 const columns = [
   { field: "classement", headerName: "Ranking" },
   { field: "points", headerName: "Points" },
@@ -43,7 +41,7 @@ const columns = [
 
 export default function Competitors() {
   const { isSelected, selectedRowId, selectionModel, handleEvent } = useSingleRowSelection();
-  const [rows, setRows] = useState(test);
+  const [rows, setRows] = useState([]);
   const navigate = useNavigate();
   const { tourId, compId } = useParams();
 
