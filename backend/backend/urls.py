@@ -13,4 +13,5 @@ urlpatterns = [
     path('uploadxml/', views.MyUploadView.as_view()),
     path('stats/fencers/<int:fencer>/', views.FencersCompetitionsView.as_view()),
     path('tournaments/<int:tournament>/competitions/', views.TournamentCompetitionsView.as_view()),
+    path('competitions/<int:competition>/fencers/', views.CompetitionsFencerView.as_view()),
 ]

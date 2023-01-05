@@ -116,3 +116,10 @@ class TournamentCompetitionsView(APIView):
         queryset = CompetitionModel.objects.filter(tournaments=tournament)
         serializer_class = CompetitionSerializer(queryset, context={'request': request}, many=True)
         return Response(serializer_class.data)
+
+class CompetitionsFencerView(APIView):
+    def get(self, request, competition):
+        competition = self.kwargs['competition']
+        queryset = FencerModel.objects.filter(competitions=competition)
+        serializer_class = FencerSerializer(queryset, context={'request': request}, many=True)
+        return Response(serializer_class.data)
