@@ -1,3 +1,5 @@
+import http
+
 from rest_framework import viewsets, permissions
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -50,7 +52,12 @@ class WeaponControlViewSet(viewsets.ModelViewSet):
 #XML beolvasás view
 class MyUploadView(APIView):
 
-    parser_classes = (XMLParser,MultiPartParser,)
+    parser_classes = (XMLParser(recover=True),MultiPartParser,)
+
+
+    def get(self, request):
+
+      return Response(data="FASZ A SZÁDBA")
     def post(self, request):
 
       #File upload and save to disk
