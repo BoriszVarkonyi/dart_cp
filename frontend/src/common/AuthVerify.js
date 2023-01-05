@@ -33,12 +33,9 @@ const refreshTokenTimer = () => {
     const decodedJwt = parseJwt(user.access);
     const expireTime = new Date(decodedJwt.exp * 1000);
     if (expireTime < Date.now()) {
-      console.log("Működik");
       authService.logout();
       return
     }
-    alert("Nem működik :c");
-    console.log(expireTime);
     const timeout = expireTime.getTime() - Date.now() - 60 * 1000;
     setInterval(() => refreshToken(), timeout);
   }

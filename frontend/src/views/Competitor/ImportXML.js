@@ -12,6 +12,7 @@ export default function Import() {
   const selectFile = (event) => {
     const fileType = event.target.files[0].type;
     const file = event.target.files[0];
+
     if (fileType == "text/xml") {
       setHasSelectedFile(true);
       setHasError(false);
@@ -67,9 +68,17 @@ export default function Import() {
 }
 
 async function handleFile(file) {
-  // const formData = new FormData();
-  // formData.append('test', file);
+  const formData = new FormData();
+  formData.append('test', file);
 
-  // const response = await postXML("uploadxml/", formData);
-  // console.log(response)
+   //const response = await postXML("uploadxml/", formData);
+
+  fetch("http://localhost:8082/api/uploadxml/", {
+    method: "POST",
+    body: formData,
+    headers: {
+      'Content-Type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'
+    }
+  })
+
 }

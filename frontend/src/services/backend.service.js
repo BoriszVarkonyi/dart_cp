@@ -7,14 +7,19 @@ const instance = axios.create({
   headers: { Authorization: authHeader() },
 });
 
+const instanceXML = axios.create({
+  baseURL: process.env.REACT_APP_API,
+  timeout: 1000,
+  headers: { Authorization: authHeader(), 'Content-Type': 'application/xml' },
+});
+
 const config = {
   headers: authHeader(),
 };
 
 const configXML = {
   headers: {
-    'Accept': 'application/xml',
-    'Content-Type': 'application/xml'
+    'Content-Type': 'multipart/form-data'
   },
 };
 
@@ -43,10 +48,9 @@ async function post(url, payload) {
 
 async function postXML(url, payload) {
   try {
-    console.log(configXML)
-    const resp = await instance.post(`${url}`, {
+    const resp = await instanceXML.post(`${url}`, {
       ...payload,
-      configXML,
+
     });
     return resp.data;
   } catch (err) {

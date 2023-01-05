@@ -57,6 +57,8 @@ class MyUploadView(APIView):
 
       return Response(data="FASZ A SZÁDBA")
     def post(self, request):
+      print(request.FILES)
+      
 
       #File upload and save to disk
       f = request.FILES['test']

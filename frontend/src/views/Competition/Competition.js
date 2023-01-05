@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import {
   FormControl,
@@ -18,6 +19,7 @@ export default function Competition(props) {
   const navigate = useNavigate();
   const { state } = useLocation();
   const { rowId } = state;
+  let { tournamentId } = useParams();
 
   //react-hook-form
   const {
@@ -28,9 +30,9 @@ export default function Competition(props) {
 
   const onSubmit = async (data) => {
     if (props.type == "Create") {
-      await post("competitions/", data);
+      await post("competitions/", { ...data, tournaments: tournamentId });
     } else if (props.type == "Modify") {
-      await update(`competitions/${rowId}`, data);
+      await update(`competitions/${rowId}`, {...data, tournaments: tournamentId});
     }
   };
 
@@ -58,19 +60,6 @@ export default function Competition(props) {
           noValidate
           onSubmit={handleSubmit(onSubmit)}
         >
-          <TextField
-            error={!!errors.assoc_tournament_id}
-            helperText={errors?.assoc_tournament_id?.message}
-            label="Tempomary type id here"
-            type="number"
-            margin="normal"
-            size="small"
-            variant="filled"
-            {...register("tournaments", {
-              required: "Please enter the competition name!",
-            })}
-          />
-
           <TextField
             error={!!errors.title_long}
             helperText={errors?.title_long?.message}

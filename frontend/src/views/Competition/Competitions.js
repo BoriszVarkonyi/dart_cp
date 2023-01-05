@@ -7,6 +7,19 @@ import { get, remove } from "../../services/backend.service";
 import { useParams } from 'react-router-dom';
 import useSingleRowSelection from "../../services/useSingleRowSelection";
 
+const row = (element) => {
+  return {
+    id: element.id,
+    name: element.title_long,
+    weapon_type: element.weapon_type,
+    is_wheelchair: element.is_wheelchair,
+    sex: element.sex,
+    type: element.type,
+    age_group: element.age_group
+
+  };
+};
+
 const columns = [
   { field: "name", headerName: "NAME", width: 200 },
   { field: "weapon_type", headerName: "WEAPON TYPE", width: 200 },
@@ -16,42 +29,19 @@ const columns = [
   { field: "age_group", headerName: "AGE GROUP", width: 200 },
 ];
 
-//test rows
-const test = [
-  {
-    id: 69,
-    name: "test",
-    weapon_type: "test",
-    is_wheelchair: true,
-    sex: "csakisegy",
-    type: "battleroyal",
-    age_group: "10 évesek",
-  },
-  {
-    id: 67,
-    name: "test1",
-    weapon_type: "test1",
-    is_wheelchair: true,
-    sex: "csakisegy1",
-    type: "battleroyal1",
-    age_group: "10 évesek1",
-  },
-];
-
 export default function Competitions() {
   const navigate = useNavigate();
   const { isSelected, selectedRowId, selectionModel, handleEvent } = useSingleRowSelection();
-  const [rows, setRows] = useState(test);
-  let { tournaemntId, compId } = useParams();
+  const [rows, setRows] = useState([]);
 
-  //Gets the tournaments from api
-  // useEffect(() => {
-  //     async function getFencersData() {
-  //         const data = await get("competitions/");
-  //         setRows(data);
-  //     }
-  //     getFencersData();
-  // }, []);
+  //Gets the competitions from api
+  useEffect(() => {
+      async function getFencersData() {
+          const data = await get("competitions/");
+          console.log(data)
+      }
+      getFencersData();
+  }, []);
 
   const deleteButton = async () => {
     //Deletes the tournament in the database
