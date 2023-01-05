@@ -21,6 +21,7 @@ from rest_framework_xml.parsers import XMLParser
 import xml.etree.ElementTree as ET
 from rest_framework.parsers import MultiPartParser
 from django.forms.models import model_to_dict
+from collections import OrderedDict
 
 class FencerViewSet(viewsets.ModelViewSet):
   queryset = FencerModel.objects.all()
@@ -93,9 +94,20 @@ class MyUploadView(APIView):
         CLASSEMENT = child.get("Classement")
         POINTS = child.get("Points")
 
-        obj = FencerModel(id=ID, nom=NOM, pre_nom=PRENOM, sexe=SEXE, lateralite=LATERALITE, nation=NATION, club=CLUB,
-                          licence=LICENCE, statut=STATUT, date_naissance=DATENAISSANCE, classement=CLASSEMENT,
-                          points=POINTS)
+        obj = FencerModel(
+                id=ID,
+                nom=NOM,
+                pre_nom=PRENOM, 
+                sexe=SEXE,
+                lateralite=LATERALITE,
+                nation=NATION,
+                club=CLUB,
+                licence=LICENCE,
+                statut=STATUT,
+                date_naissance=DATENAISSANCE,
+                classement=CLASSEMENT,
+                points=POINTS
+            )
         dict_obj = model_to_dict(obj)
         myarr.append(dict_obj)
 
@@ -107,7 +119,10 @@ class FencersCompetitionsView(APIView):
     def get(self, request, fencer):
         fencer = self.kwargs['fencer']
         queryset = FencerModel.objects.get(id=fencer) 
-        serializer_class = FencersCompetitionSerializer(queryset, context={'request': request})
+        serializer_class = FencersCompetitionSerializer(
+            queryset, 
+            context={'request': request}
+        )
         return Response(serializer_class.data)
 
 class TournamentCompetitionsView(APIView):
@@ -123,3 +138,27 @@ class CompetitionsFencerView(APIView):
         queryset = FencerModel.objects.filter(competitions=competition)
         serializer_class = FencerSerializer(queryset, context={'request': request}, many=True)
         return Response(serializer_class.data)
+
+# get all fencers with a specific nationality grouped by tournaments
+class TournamentsFencersByNationality(APIView):
+    def get(self, request, nationality):
+        nationality = self.kwargs['nationality']
+        tournaments = TournamentModel.objects.all()
+        tournament_serializer = TournamentSerializer(
+                tournaments,
+                many=True
+        )
+        response = OrderedDict()
+        for tournament in tournament_serializer.data:
+            id = tournament['id']
+            fencers = FencerModel.objects.filter(
+                nation=nationality,
+                competitions__tournaments=id,
+            ).distinct()
+            fencer_serializer = FencerSerializer(
+                fencers,
+                many=True
+            )
+            response[id] = fencer_serializer.data
+
+        return Response(response)
