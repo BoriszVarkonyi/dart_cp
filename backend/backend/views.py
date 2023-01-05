@@ -66,7 +66,7 @@ class MyUploadView(APIView):
 
       #Parse XML file
       myarr = []
-      parserxd = ET.XMLParser(encoding="utf-8")
+      parserxd = ET.XMLParser(encoding='iso-8859-5')
       mytree = ET.parse('yes.xml', parser=parserxd)
       myroot = mytree.getroot()
       tireurs = myroot.find("Tireurs")
