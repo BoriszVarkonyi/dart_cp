@@ -16,7 +16,6 @@ const row = (element) => {
     sex: element.sex,
     type: element.type,
     age_group: element.age_group
-
   };
 };
 
@@ -38,7 +37,8 @@ export default function Competitions() {
   useEffect(() => {
       async function getFencersData() {
           const data = await get("competitions/");
-          console.log(data)
+          const rows = data.map((e)=>row(e))
+          setRows(rows)
       }
       getFencersData();
   }, []);
@@ -65,7 +65,7 @@ export default function Competitions() {
         <h2 className="PageTitle">Competitions</h2>
         <div className="PageButtonsWrapper">
           {isSelected && (
-            <Button variant="contained" /*onClick={deleteButton}*/>
+            <Button variant="contained" onClick={deleteButton}>
               Delete
             </Button>
           )}
