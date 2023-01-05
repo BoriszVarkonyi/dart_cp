@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {useParams} from 'react-router-dom';
 import { Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { get } from "../../services/backend.service";
@@ -44,15 +45,16 @@ export default function Competitors() {
   const { isSelected, selectedRowId, selectionModel, handleEvent } = useSingleRowSelection();
   const [rows, setRows] = useState(test);
   const navigate = useNavigate();
+  const { tourId, compId } = useParams();
 
   //Gets the competitors from api
-  //   useEffect(() => {
-  //     async function getFencersData() {
-  //       const data = await get("fencers/");
-  //       setRows(data);
-  //     }
-  //     getFencersData();
-  //   }, []);
+  useEffect(() => {
+    async function getFencersData() {
+      const data = await get(`competitions/${compId}/fencers/`);
+      setRows(data);
+    }
+    getFencersData();
+  }, []);
 
   //Will be usefull
   //   const deleteButton = async () => {
