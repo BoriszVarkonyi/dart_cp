@@ -52,9 +52,7 @@ class WeaponControlViewSet(viewsets.ModelViewSet):
 #XML beolvasás view
 class MyUploadView(APIView):
 
-    parser_classes = (XMLParser(recover=True),MultiPartParser,)
-
-
+    parser_classes = (XMLParser,MultiPartParser,)
     def get(self, request):
 
       return Response(data="FASZ A SZÁDBA")
@@ -68,7 +66,8 @@ class MyUploadView(APIView):
 
       #Parse XML file
       myarr = []
-      mytree = ET.parse('yes.xml')
+      parserxd = ET.XMLParser(encoding="utf-8")
+      mytree = ET.parse('yes.xml', parser=parserxd)
       myroot = mytree.getroot()
       tireurs = myroot.find("Tireurs")
 
