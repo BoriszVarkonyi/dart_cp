@@ -24,15 +24,15 @@ export default function AddCompetitor() {
     data.competitions = [ compId ];
     data.statut = 'N'; // Default statut for a fencer
     data.barcode = 0;
-    post("fencers/", data);
-    navigate(-1);
+    const resp = await post("fencers/", data);
+
+    if(resp.name && resp.name == "AxiosError")
+      alert(resp.message);
+    else
+      navigate(-1);
   };
 
-  //TODO: ID max length is 24
-  //TODO: nom, pre_nom max length is 72
-  //TODO: licence max length is 12
   //TODO: import nation MenuItem from JSON or something
-  //TODO: club max length is 256
 
   return (
     <div className="Main">
@@ -63,7 +63,8 @@ export default function AddCompetitor() {
             size="small"
             variant="filled"
             {...register("id", {
-              required: "Please enter an ID!",
+              required: { value: true, message: "Please enter an ID!"},
+              maxLength: { value: 24, message: "Field cannot be longer than 24 characters!" },
             })}
           />
           <TextField
@@ -75,7 +76,8 @@ export default function AddCompetitor() {
             size="small"
             variant="filled"
             {...register("pre_nom", {
-              required: "Please enter your first name!",
+              required: { value: true, message: "Please enter your first name!" },
+              maxLength: { value: 72, message: "Field cannot be longer than 72 characters!" },
             })}
           />
           <TextField
@@ -87,7 +89,8 @@ export default function AddCompetitor() {
             size="small"
             variant="filled"
             {...register("nom", {
-              required: "Please enter your last name!",
+              required: { value: true, message: "Please enter your last name!" },
+              maxLength: { value: 72, message: "Field cannot be longer than 72 characters!" },
             })}
           />
 
@@ -148,7 +151,8 @@ export default function AddCompetitor() {
             size="small"
             variant="filled"
             {...register("licence", {
-              required: "Please enter your license!",
+              required: { value: true, message: "Please enter your license!", },
+              maxLength: { value: 12, message: "Field cannot be longer than 12 characters!" },
             })}
           />
 
@@ -156,12 +160,13 @@ export default function AddCompetitor() {
             error={!!errors.points}
             helperText={errors?.points?.message}
             label="Points"
-            type="text"
+            type="number"
             margin="normal"
             size="small"
             variant="filled"
             {...register("points", {
-              required: "Please enter the points!",
+              required: { value: true, message: "Please enter the points!", },
+              maxLength: { value: 11, message: "Field cannot be longer than 11 numbers!" },
             })}
           />
 
@@ -169,12 +174,13 @@ export default function AddCompetitor() {
             error={!!errors.classement}
             helperText={errors?.classement?.message}
             label="Classement"
-            type="text"
+            type="number"
             margin="normal"
             size="small"
             variant="filled"
             {...register("classement", {
-              required: "Please enter the classement!",
+              required: { value: true, message: "Please enter the classement!" },
+              maxLength: { value: 11, message: "Field cannot be longer than 11 numbers!" },
             })}
           />
 
@@ -204,7 +210,8 @@ export default function AddCompetitor() {
                 id="club"
                 defaultValue=""
                 {...register("club", {
-                  required: "Please choose a club!",
+                  required: { value: true, message: "Please choose a club!" },
+                  maxLength: { value: 256, message: "Field cannot be longer than 256 characters!" },
                 })}
               >
               </TextField>
@@ -221,7 +228,8 @@ export default function AddCompetitor() {
               variant="filled"
               autoFocus
               {...register("club", {
-                required: "Please choose a club!",
+                required: { value: true, message: "Please choose a club!" },
+                maxLength: { value: 256, message: "Field cannot be longer than 256 characters!" },
               })}
             />
           )}
