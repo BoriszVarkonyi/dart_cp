@@ -1,4 +1,5 @@
 import axios from "axios";
+import authService from "../services/auth.services";
 
 const parseJwt = (token) => {
   try {
@@ -18,7 +19,10 @@ const refreshToken = () => {
     .post("http://localhost:8082/api/token/refresh/", payload)
     .then((response) => {
       if (response.data.access) {
-        localStorage.setItem("user", JSON.stringify({...authData, access: response.data.access}));
+        localStorage.setItem(
+          "user",
+          JSON.stringify({ ...authData, access: response.data.access })
+        );
       }
     });
 };
@@ -28,13 +32,20 @@ const refreshTokenTimer = () => {
   if (user) {
     const decodedJwt = parseJwt(user.access);
     const expireTime = new Date(decodedJwt.exp * 1000);
+    if (expireTime < Date.now()) {
+      console.log("Működik");
+      authService.logout();
+      return
+    }
+    alert("Nem működik :c");
+    console.log(expireTime);
     const timeout = expireTime.getTime() - Date.now() - 60 * 1000;
     setInterval(() => refreshToken(), timeout);
   }
 };
 
 const AuthVerify = {
-  refreshTokenTimer
+  refreshTokenTimer,
 };
 
 export default AuthVerify;
