@@ -18,6 +18,7 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
 
   const { isLoggedIn } = useSelector((state) => state.auth);
+  console.log(isLoggedIn)
   const { message } = useSelector((state) => state.message);
 
   const dispatch = useDispatch();

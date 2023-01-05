@@ -39,7 +39,10 @@
     grid-template-columns: 1fr;
     position: relative;
     background: var(--c-White);
-    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1),0px 10px 15px -3px rgba(0,0,0,0.1),0px 10px 15px -3px rgba(0,0,0,0.1);
+    box-shadow:
+        0px 10px 15px -3px rgba(0,0,0,0.1),
+        0px 10px 15px -3px rgba(0,0,0,0.1),
+        0px 10px 15px -3px rgba(0,0,0,0.1);
     overflow: hidden;
     border-radius: var(--l-Rounding);
     width: 700px;
@@ -57,6 +60,8 @@
         rgba(214,231,240,1),
         rgba(255,255,255,1));
     border-bottom: var(--l-Border) solid var(--c-PrimaryBlue-100);
+    background-image: radial-gradient(var(--c-Gray-300) 1pt, rgba(255,255,255,1) 1pt);
+    background-size: 10px 10px;
 }
 
 .PageTitle {
@@ -65,6 +70,14 @@
 
 .PanelContentSingle {
     padding: 20px;
+    background-color: var(--c-White);
+    background-image:
+        linear-gradient(var(--c-Gray-200) 2px, transparent 2px),
+        linear-gradient(90deg, var(--c-Gray-200) 2px, transparent 2px),
+        linear-gradient(var(--c-Gray-200) 1px, transparent 1px),
+        linear-gradient(90deg, var(--c-Gray-200) 1px, transparent 1px);
+    background-size: 50px 50px, 50px 50px, 10px 10px, 10px 10px;
+    background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
 }
 
 .PanelContent {

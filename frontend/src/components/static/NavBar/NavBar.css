@@ -1,16 +1,14 @@
 .NavBar {
-	width: 300px;
+	width: 270px;
     background: radial-gradient(
         farthest-corner at top left,
         rgba(214,231,240,1),
         rgba(255,255,255,1));
-    border-radius: 0 2rem 0 0;
-    box-shadow: var(--s-Standard);
-    overflow: hidden;
+    border-radius: 0 var(--l-Header) 0 0;
 }
 
 .NavBarHead {
-    height: 2rem;
+    height: var(--l-Header);
     background: radial-gradient(
         farthest-corner at top left,
         var(--c-PrimaryBlue-100),
@@ -18,6 +16,10 @@
     display: flex;
     align-items: center;
     padding: 0 10px;
+    border-radius: 0 var(--l-Header) 0 0;
+    border-right: 2pt solid var(--c-Gray-500);
+    border-top: 2pt solid var(--c-Gray-500);
+    border-bottom: 2pt solid var(--c-Gray-400);
 }
 
 .AppName {
@@ -32,7 +34,13 @@
 }
 
 .NavBarContent {
-    padding: 40px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.NavBarContent > div {
+    padding: 40px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -119,4 +127,10 @@
 .CompetitionSelect {
     z-index: 1;
     position: relative;
+}
+
+.AppNameCopyright {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
 }

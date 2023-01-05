@@ -1,17 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./NavBar.css";
 import { Button } from "@mui/material";
-import { FormControl, Select, InputLabel, MenuItem } from "@mui/material";
-import { Outlet, useNavigate } from "react-router-dom";
+import { FormControl, TextField, MenuItem } from "@mui/material";
 import { Link } from "react-router-dom";
 import HorseImage from "../../../assets/horse.svg";
 import FlagIcon from "@mui/icons-material/Flag";
-import DateRangeIcon from '@mui/icons-material/DateRange';
-import GroupsIcon from '@mui/icons-material/Groups';
-import HowToRegIcon from '@mui/icons-material/HowToReg';
-import BackpackIcon from '@mui/icons-material/Backpack';
+import DateRangeIcon from "@mui/icons-material/DateRange";
+import GroupsIcon from "@mui/icons-material/Groups";
+import HowToRegIcon from "@mui/icons-material/HowToReg";
+import BackpackIcon from "@mui/icons-material/Backpack";
 
 export default function NavBar() {
+  const [compdId, setCompId] = useState(null);
+  const [hasSelectedComp, setHasSelectedComp] = useState(false);
+
+  const setComp = (id) => {
+    setCompId(id);
+    setHasSelectedComp(true);
+  };
   return (
     <>
       <div className="NavBar">
@@ -20,76 +26,80 @@ export default function NavBar() {
           <p className="AppName">d'ARTAGNAN</p>
         </div>
         <div className="NavBarContent">
-          <p className="NavBarSectionTitle">Tournament</p>
-          <div className="NavBarSection">
-            <Link to="competitions">
-              <div className="NavBarRow">
-                <div className="NavBarIconWrapper">
-                  <FlagIcon />
+          <div>
+            <p className="NavBarSectionTitle">Tournament</p>
+            <div className="NavBarSection">
+              <Link to="competitions">
+                <div className="NavBarRow">
+                  <div className="NavBarIconWrapper">
+                    <FlagIcon />
+                  </div>
+                  <p className="NavBarRowTitle">Competitions</p>
                 </div>
-                <p className="NavBarRowTitle">Competitions</p>
-              </div>
-            </Link>
+              </Link>
 
-            <Link to="timetable">
-              <div className="NavBarRow">
-                <div className="NavBarIconWrapper">
-                  <DateRangeIcon />
+              <Link to="timetable">
+                <div className="NavBarRow">
+                  <div className="NavBarIconWrapper">
+                    <DateRangeIcon />
+                  </div>
+                  <p className="NavBarRowTitle">Timetable</p>
                 </div>
-                <p className="NavBarRowTitle">Timetable</p>
-              </div>
-            </Link>
-          </div>
-          
-
-          <div className="CompetitionSelect">
-              <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-                <Select
-                  displayEmpty
-                  labelId="demo-select-small"
-                  id="demo-select-small"
-                  value={10}
-                  sx={{ width: 100 }}
-                >
-                  <MenuItem disabled value="">
-                    <em>Select Competition</em>
-                  </MenuItem>
-                  <MenuItem value={10}>Comp 1</MenuItem>
-                  <MenuItem value={20}>Comp 2</MenuItem>
-                  <MenuItem value={30}>Comp 3</MenuItem>
-                </Select>
-              </FormControl>
+              </Link>
             </div>
 
-          <p className="NavBarSectionTitle">Competition</p>
-          <div className="NavBarSection">
+            <div className="CompetitionSelect">
+              <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                <TextField
+                  select
+                  label="Select competition"
+                  id="select_comp_id"
+                  defaultValue=""
+                  sx={{ width: 100 }}
+                >
+                  <MenuItem onClick={() => setComp(10)} value={10}>
+                    Comp 1
+                  </MenuItem>
+                  <MenuItem onClick={() => setComp(20)} value={20}>
+                    Comp 2
+                  </MenuItem>
+                  <MenuItem onClick={() => setComp(30)} value={30}>
+                    Comp 3
+                  </MenuItem>
+                </TextField>
+              </FormControl>
+            </div>
+            {hasSelectedComp && (<>
+              <p className="NavBarSectionTitle">Competition</p>
+              <div className="NavBarSection">
+                <Link to={`${compdId}/competitors`}>
+                  <div className="NavBarRow">
+                    <div className="NavBarIconWrapper">
+                      <GroupsIcon />
+                    </div>
+                    <p className="NavBarRowTitle">Competitors</p>
+                  </div>
+                </Link>
 
-            <Link to="competitors">
-              <div className="NavBarRow">
-                <div className="NavBarIconWrapper">
-                  <GroupsIcon />
-                </div>
-                <p className="NavBarRowTitle">Competitors</p>
-              </div>
-            </Link>
+                <Link to={`${compdId}/registration`}>
+                  <div className="NavBarRow">
+                    <div className="NavBarIconWrapper">
+                      <HowToRegIcon />
+                    </div>
+                    <p className="NavBarRowTitle">Registration</p>
+                  </div>
+                </Link>
 
-            <Link to="registration">
-              <div className="NavBarRow">
-                <div className="NavBarIconWrapper">
-                  <HowToRegIcon />
-                </div>
-                <p className="NavBarRowTitle">Registration</p>
+                <Link to={`${compdId}/weapon_control`}>
+                  <div className="NavBarRow">
+                    <div className="NavBarIconWrapper">
+                      <BackpackIcon />
+                    </div>
+                    <p className="NavBarRowTitle">Weapon Control</p>
+                  </div>
+                </Link>
               </div>
-            </Link>
-
-            <Link to="weapon_control">
-              <div className="NavBarRow">
-                <div className="NavBarIconWrapper">
-                  <BackpackIcon />
-                </div>
-                <p className="NavBarRowTitle">Weapon Control</p>
-              </div>
-            </Link>
+            </>)}
           </div>
         </div>
       </div>

@@ -8,13 +8,17 @@ export default function Timetable() {
             <div className="PageHeader">
                 <h2 className="PageTitle">Timetable</h2>
                 <div className="PageButtonsWrapper">
-                    <Button variant="contained">REMOVE WEAPON CONTROL PERIOD</Button>
-                    <Button variant="contained">MODIFY WEAPON CONTROL PERIOD</Button>
-                    <Button variant="contained">ADD WEAPON CONTROL PERIOD</Button>
-                    <Button variant="contained">OPEN BOOKINGS</Button>
+                    <Button variant="contained" size="small">REMOVE WEAPON CONTROL PERIOD</Button>
+                    <Button variant="contained" size="small">MODIFY WEAPON CONTROL PERIOD</Button>
+                    <Button variant="contained" size="small">ADD WEAPON CONTROL PERIOD</Button>
+                    <Button variant="contained" size="small">OPEN BOOKINGS</Button>
                 </div>
-                <div className="PanelContentSingle">
-                    <h3>Ide jön a timetable</h3>
+            </div>
+            <div className="PanelContentSingle">
+                <div className="TableGrid">
+                    <div style={{ height: 300, width: "100%" }}>
+                        <h1>Timetable</h1>
+                    </div>
                 </div>
             </div>
         </div>

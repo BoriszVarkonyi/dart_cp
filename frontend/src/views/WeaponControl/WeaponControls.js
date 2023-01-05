@@ -55,10 +55,10 @@ export default function WeaponControls() {
       <div className="PageHeader">
         <h2 className="PageTitle">Weapon Control</h2>
         <div className="PageButtonsWrapper">
-          <Button variant="contained">Remove</Button>
-          <Button variant="contained">Modify</Button>
-          <Button variant="contained">Add</Button>
-          <Button variant="contained">Read Barcode</Button>
+          <Button variant="contained" size="small">Remove</Button>
+          <Button variant="contained" size="small">Modify</Button>
+          <Button variant="contained" size="small">Add</Button>
+          <Button variant="contained" size="small">Read Barcode</Button>
         </div>
       </div>
       <div className="PanelContentSingle">

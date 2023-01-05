@@ -23,7 +23,7 @@ const row = (element) => {
   };
 };
 
-const test = [{id: 1, classement: "test", points: "sok", nom: "Neve", pre_nom: "nev", nation: "Narnia", club:" night", date_naissance: "pls", sexe: "end", lateralite: "my", licence:"suffer", reg_status:"japp", wc_status:"szabad"}]
+const test = [{ id: 1, classement: "test", points: "sok", nom: "Neve", pre_nom: "nev", nation: "Narnia", club: " night", date_naissance: "pls", sexe: "end", lateralite: "my", licence: "suffer", reg_status: "japp", wc_status: "szabad" }]
 
 const columns = [
   { field: "classement", headerName: "Ranking" },
@@ -76,19 +76,19 @@ export default function Competitors() {
       <div className="PageHeader">
         <h2 className="PageTitle">Competitors</h2>
         <div className="PageButtonsWrapper">
-          {!isSelected && <Button variant="contained">Import XML</Button>}
+          {!isSelected && <Button variant="contained" size="small" onClick={() => navigate("importXML")}>Import XML</Button>}
           {isSelected && (
-            <Button variant="contained" /*onClick={deleteButton}*/>
+            <Button variant="contained" size="small" /*onClick={deleteButton}*/>
               Delete
             </Button>
           )}
           {isSelected && (
-            <Button variant="contained" /*onClick={modifyButton}*/>
+            <Button variant="contained" size="small" /*onClick={modifyButton}*/>
               Modify
             </Button>
           )}
           {!isSelected && (
-            <Button variant="contained" onClick={() => navigate("add")}>
+            <Button variant="contained" size="small" onClick={() => navigate("add")}>
               Create
             </Button>
           )}
