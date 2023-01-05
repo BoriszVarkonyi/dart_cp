@@ -1,7 +1,7 @@
 from .models import FencerModel, TournamentModel, CompetitionModel, WeaponControlModel
 from rest_framework import serializers
 
-class FencerSerializer(serializers.HyperlinkedModelSerializer):
+class FencerSerializer(serializers.ModelSerializer):
     class Meta:
         model = FencerModel
         fields =  [
@@ -22,7 +22,7 @@ class FencerSerializer(serializers.HyperlinkedModelSerializer):
             'registration_status',
         ]
 
-class TournamentSerializer(serializers.HyperlinkedModelSerializer):
+class TournamentSerializer(serializers.ModelSerializer):
     class Meta:
         model = TournamentModel
         fields = [
@@ -32,7 +32,7 @@ class TournamentSerializer(serializers.HyperlinkedModelSerializer):
             'ending_date',
         ]
         
-class CompetitionSerializer(serializers.HyperlinkedModelSerializer):
+class CompetitionSerializer(serializers.ModelSerializer):
     class Meta:
         model = CompetitionModel
         fields = [
@@ -52,7 +52,7 @@ class CompetitionSerializer(serializers.HyperlinkedModelSerializer):
             'end_date',
         ]
 
-class WeaponControlSerializer(serializers.HyperlinkedModelSerializer):
+class WeaponControlSerializer(serializers.ModelSerializer):
     class Meta:
         model = WeaponControlModel
         fields = [
@@ -87,4 +87,11 @@ class WeaponControlSerializer(serializers.HyperlinkedModelSerializer):
             'issue_27',
             'issue_28',
             'notes'
+        ]
+
+class FencersCompetitionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FencerModel
+        fields = [
+            'competitions',    
         ]

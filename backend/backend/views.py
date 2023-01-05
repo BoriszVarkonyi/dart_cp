@@ -93,3 +93,11 @@ class MyUploadView(APIView):
 
       default_storage.delete("yes.xml")
       return Response(data=myarr)
+
+# get competitions of specific fencer
+class FencersCompetitionsView(APIView):
+    def get(self, request, fencer):
+        fencer = self.kwargs['fencer']
+        queryset = FencerModel.objects.get(id=fencer) 
+        serializer_class = FencersCompetitionSerializer(queryset, context={'request': request})
+        return Response(serializer_class.data)
