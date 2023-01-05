@@ -28,8 +28,10 @@ export default function AddCompetitor() {
 
     if(resp.name && resp.name == "AxiosError")
       alert(resp.message);
-    else
+    else {
+      alert("Successfully added fencer!");
       navigate(-1);
+    }
   };
 
   //TODO: import nation MenuItem from JSON or something
