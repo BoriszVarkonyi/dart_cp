@@ -4,7 +4,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { get, remove } from "../../services/backend.service";
-import {useParams} from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import useSingleRowSelection from "../../services/useSingleRowSelection";
 
 const columns = [
@@ -80,12 +80,12 @@ export default function Competitions() {
             </Button>
           )}
           {isSelected && (
-            <Button variant="contained" onClick={() => navigate("modify", { state: {rowId: selectedRowId }})}>
+            <Button variant="contained" onClick={() => navigate("modify", { state: { rowId: selectedRowId } })}>
               Modify
             </Button>
           )}
           {!isSelected && (
-            <Button variant="contained" onClick={() => navigate("create", { state: {rowId: selectedRowId }})}>
+            <Button variant="contained" onClick={() => navigate("create", { state: { rowId: selectedRowId } })}>
               Create
             </Button>
           )}
@@ -93,7 +93,7 @@ export default function Competitions() {
       </div>
       <div className="PanelContentSingle">
         <div className="TableGrid">
-          <div style={{ height: 300, width: "100%" }}>
+          <div style={{ height: 300, width: "100%", bgcolor: '#fff' }}>
             <DataGrid
               checkboxSelection={true}
               selectionModel={selectionModel}

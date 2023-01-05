@@ -26,79 +26,81 @@ export default function NavBar() {
           <p className="AppName">d'ARTAGNAN</p>
         </div>
         <div className="NavBarContent">
-          <p className="NavBarSectionTitle">Tournament</p>
-          <div className="NavBarSection">
-            <Link to="competitions">
-              <div className="NavBarRow">
-                <div className="NavBarIconWrapper">
-                  <FlagIcon />
-                </div>
-                <p className="NavBarRowTitle">Competitions</p>
-              </div>
-            </Link>
-
-            <Link to="timetable">
-              <div className="NavBarRow">
-                <div className="NavBarIconWrapper">
-                  <DateRangeIcon />
-                </div>
-                <p className="NavBarRowTitle">Timetable</p>
-              </div>
-            </Link>
-          </div>
-
-          <div className="CompetitionSelect">
-            <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-              <TextField
-                select
-                label="Select competition"
-                id="select_comp_id"
-                defaultValue=""
-                sx={{ width: 100 }}
-              >
-                <MenuItem onClick={() => setComp(10)} value={10}>
-                  Comp 1
-                </MenuItem>
-                <MenuItem onClick={() => setComp(20)} value={20}>
-                  Comp 2
-                </MenuItem>
-                <MenuItem onClick={() => setComp(30)} value={30}>
-                  Comp 3
-                </MenuItem>
-              </TextField>
-            </FormControl>
-          </div>
-          {hasSelectedComp && (<>
-            <p className="NavBarSectionTitle">Competition</p>
+          <div>
+            <p className="NavBarSectionTitle">Tournament</p>
             <div className="NavBarSection">
-              <Link to={`${compdId}/competitors`}>
+              <Link to="competitions">
                 <div className="NavBarRow">
                   <div className="NavBarIconWrapper">
-                    <GroupsIcon />
+                    <FlagIcon />
                   </div>
-                  <p className="NavBarRowTitle">Competitors</p>
+                  <p className="NavBarRowTitle">Competitions</p>
                 </div>
               </Link>
 
-              <Link to={`${compdId}/registration`}>
+              <Link to="timetable">
                 <div className="NavBarRow">
                   <div className="NavBarIconWrapper">
-                    <HowToRegIcon />
+                    <DateRangeIcon />
                   </div>
-                  <p className="NavBarRowTitle">Registration</p>
-                </div>
-              </Link>
-
-              <Link to={`${compdId}/weapon_control`}>
-                <div className="NavBarRow">
-                  <div className="NavBarIconWrapper">
-                    <BackpackIcon />
-                  </div>
-                  <p className="NavBarRowTitle">Weapon Control</p>
+                  <p className="NavBarRowTitle">Timetable</p>
                 </div>
               </Link>
             </div>
-          </>)}
+
+            <div className="CompetitionSelect">
+              <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                <TextField
+                  select
+                  label="Select competition"
+                  id="select_comp_id"
+                  defaultValue=""
+                  sx={{ width: 100 }}
+                >
+                  <MenuItem onClick={() => setComp(10)} value={10}>
+                    Comp 1
+                  </MenuItem>
+                  <MenuItem onClick={() => setComp(20)} value={20}>
+                    Comp 2
+                  </MenuItem>
+                  <MenuItem onClick={() => setComp(30)} value={30}>
+                    Comp 3
+                  </MenuItem>
+                </TextField>
+              </FormControl>
+            </div>
+            {hasSelectedComp && (<>
+              <p className="NavBarSectionTitle">Competition</p>
+              <div className="NavBarSection">
+                <Link to={`${compdId}/competitors`}>
+                  <div className="NavBarRow">
+                    <div className="NavBarIconWrapper">
+                      <GroupsIcon />
+                    </div>
+                    <p className="NavBarRowTitle">Competitors</p>
+                  </div>
+                </Link>
+
+                <Link to={`${compdId}/registration`}>
+                  <div className="NavBarRow">
+                    <div className="NavBarIconWrapper">
+                      <HowToRegIcon />
+                    </div>
+                    <p className="NavBarRowTitle">Registration</p>
+                  </div>
+                </Link>
+
+                <Link to={`${compdId}/weapon_control`}>
+                  <div className="NavBarRow">
+                    <div className="NavBarIconWrapper">
+                      <BackpackIcon />
+                    </div>
+                    <p className="NavBarRowTitle">Weapon Control</p>
+                  </div>
+                </Link>
+              </div>
+            </>)}
+          </div>
         </div>
       </div>
     </>
