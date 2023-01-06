@@ -13,7 +13,6 @@ export default function Tournament(props) {
   const navigate = useNavigate();
   const { state } = useLocation();
   const { rowId } = state;
-  console.log(rowId)
 
   const {
     register,

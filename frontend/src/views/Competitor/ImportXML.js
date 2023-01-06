@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { DataGrid } from "@mui/x-data-grid";
+import { post } from "./../../services/backend.service";
+import { useParams } from "react-router-dom";
 
 const row = (element) => {
   return {
@@ -26,23 +28,12 @@ export default function Import() {
   const [hasSelectedFile, setHasSelectedFile] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [rows, setRows] = useState([]);
+  const [fencerArray, setFencerArray] = useState([]);
+  const { tournamentId, compId } = useParams();
 
   function generateDataGrid(arrayOfFencers) {
     const rows = arrayOfFencers.map((e) => row(e));
     setRows(rows);
-  }
-
-  //Helper functions
-  async function handleFile(file) {
-    const formData = new FormData();
-    formData.append("test", file);
-
-    fetch("http://localhost:8082/api/uploadxml/", {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => response.json())
-      .then((data) => generateDataGrid(data));
   }
 
   const selectFile = (event) => {
@@ -57,7 +48,34 @@ export default function Import() {
       setHasSelectedFile(false);
       setHasError(true);
       event.target.value = null; //Deletes the uploaded file from the input
+      setFencerArray([]);
     }
+  };
+
+  //Helper functions
+  async function handleFile(file) {
+    const formData = new FormData();
+    formData.append("test", file);
+
+    fetch("http://localhost:8082/api/uploadxml/", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        generateDataGrid(data);
+        setFencerArray(data);
+      });
+  }
+
+  const updateFencer = (fencer) =>{
+    return {...fencer, competitions: compId}
+  }
+
+  const importFencers = async () =>{
+    const tempArray = fencerArray.map((e)=>updateFencer(e))
+    setFencerArray(tempArray)
+    await post("fencers/", fencerArray)
   };
 
   return (
@@ -74,7 +92,7 @@ export default function Import() {
           </Button>
           {hasError && <p>Wrong file format!</p>}
           {hasSelectedFile && (
-            <Button variant="contained" size="small">
+            <Button variant="contained" size="small" onClick={importFencers}>
               Import
             </Button>
           )}
@@ -89,12 +107,10 @@ export default function Import() {
           )}
           {hasSelectedFile && (
             <>
-          <div style={{ height: 300, width: "100%" }}>
-            <DataGrid
-              rows={rows}
-              columns={columns}
-            />
-          </div>
+              <h3>Preview:</h3>
+              <div style={{ height: 300, width: "100%" }}>
+                <DataGrid rows={rows} columns={columns} />
+              </div>
             </>
           )}
         </div>

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import {useParams} from 'react-router-dom';
+import { useParams } from "react-router-dom";
 import { Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { get } from "../../services/backend.service";
 import { useNavigate } from "react-router-dom";
-import useSingleRowSelection from "../../services/useSingleRowSelection";
+import useDataGridHelper from "../../services/useDataGridHelper";
 
 const row = (element) => {
   return {
@@ -40,8 +40,15 @@ const columns = [
 ];
 
 export default function Competitors() {
-  const { isSelected, selectedRowId, selectionModel, handleEvent } = useSingleRowSelection();
-  const [rows, setRows] = useState([]);
+  const {
+    selectionModel,
+    selectedRowId,
+    isSelected,
+    rows,
+    setRows,
+    handleEvent,
+    deleteFunction,
+  } = useDataGridHelper();
   const navigate = useNavigate();
   const { tourId, compId } = useParams();
 
@@ -76,7 +83,15 @@ export default function Competitors() {
       <div className="PageHeader">
         <h2 className="PageTitle">Competitors</h2>
         <div className="PageButtonsWrapper">
-          {!isSelected && <Button variant="contained" size="small" onClick={() => navigate("importXML")}>Import XML</Button>}
+          {!isSelected && (
+            <Button
+              variant="contained"
+              size="small"
+              onClick={() => navigate("importXML")}
+            >
+              Import XML
+            </Button>
+          )}
           {isSelected && (
             <Button variant="contained" size="small" /*onClick={deleteButton}*/>
               Delete
@@ -88,7 +103,11 @@ export default function Competitors() {
             </Button>
           )}
           {!isSelected && (
-            <Button variant="contained" size="small" onClick={() => navigate("add")}>
+            <Button
+              variant="contained"
+              size="small"
+              onClick={() => navigate("add")}
+            >
               Create
             </Button>
           )}

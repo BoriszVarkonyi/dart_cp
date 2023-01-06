@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import { Button } from "@mui/material";
+import { Button, Modal } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { get, remove } from "../../services/backend.service";
 import { useSelector } from "react-redux";
-import useSingleRowSelection from "../../services/useSingleRowSelection";
+import useDataGridHelper from "../../services/useDataGridHelper";
+import ModalComp from "../../components/static/Modal/ModalComp";
 
 const row = (element) => {
   return {
@@ -24,9 +25,17 @@ const columns = [
 
 export default function Tournaments() {
   //Makes only one row selected
-  const { isSelected, selectedRowId, selectionModel, handleEvent } = useSingleRowSelection();
+  const {
+    selectionModel,
+    selectedRowId,
+    isSelected,
+    rows,
+    setRows,
+    handleEvent,
+    deleteFunction,
+    openModalFunctiom,
+  } = useDataGridHelper();
   const { isLoggedIn } = useSelector((state) => state.auth);
-  const [rows, setRows] = useState([]);
 
   const navigate = useNavigate();
 
@@ -44,75 +53,73 @@ export default function Tournaments() {
   //   return navigate("/");
   // }
 
+  const deleteRow = () => {
+    deleteFunction(`tournaments/${selectedRowId}/`);
+  };
+
   //Button functions
   const openButton = () => {
-    navigate(`/${selectedRowId}`)
+    navigate(`/${selectedRowId}`);
   };
 
   const modifyButton = () => {
-    navigate("modify_tournament", { state: {rowId: selectedRowId }});
-  };
-
-  const deleteButton = async () => {
-    //Deletes the tournament in the database
-    await remove(`tournaments/${selectedRowId}/`);
-
-    //Deletes the row in the data grid
-    setRows((prevRows) => {
-      const rowToDeleteIndex = prevRows.findIndex(
-        (row) => row.id == selectedRowId
-      );
-      return [
-        ...rows.slice(0, rowToDeleteIndex),
-        ...rows.slice(rowToDeleteIndex + 1),
-      ];
-    });
+    navigate("modify_tournament", { state: { rowId: selectedRowId } });
   };
 
   return (
-    <div className="Panel">
-      <div className="PageHeader">
-        <h2 className="PageTitle">Your tournament</h2>
-        <div className="PageButtonsWrapper">
-          {/*Conditonal rendering by isSelected state*/}
-          {!isSelected && (
-            <Button
-              variant="contained"
-              onClick={() => navigate("create_tournament", { state: {rowId: selectedRowId }})}
-            >
-              Create
-            </Button>
-          )}
-          {isSelected && (
-            <Button variant="contained" onClick={deleteButton}>
-              Delete
-            </Button>
-          )}
-          {isSelected && (
-            <Button variant="contained" onClick={modifyButton}>
-              Modify
-            </Button>
-          )}
-          {isSelected && (
-            <Button variant="contained" onClick={openButton}>
-              Open
-            </Button>
-          )}
+    <>
+      <div className="Panel">
+        <div className="PageHeader">
+          <h2 className="PageTitle">Your tournament</h2>
+          <div className="PageButtonsWrapper">
+            {/*Conditonal rendering by isSelected state*/}
+            {!isSelected && (
+              <Button
+                variant="contained"
+                onClick={() =>
+                  navigate("create_tournament", {
+                    state: { rowId: selectedRowId },
+                  })
+                }
+              >
+                Create
+              </Button>
+            )}
+            {isSelected && (
+              <Button
+                variant="contained"
+                onClick={openModalFunctiom}
+              >
+                Delete
+              </Button>
+            )}
+            {isSelected && (
+              <Button variant="contained" onClick={modifyButton}>
+                Modify
+              </Button>
+            )}
+            {isSelected && (
+              <Button variant="contained" onClick={openButton}>
+                Open
+              </Button>
+            )}
+          </div>
         </div>
-      </div>
-      <div className="PanelContentSingle">
-        <div className="TableGrid">
-          <div style={{ height: 300, width: "100%" }}>
-            <DataGrid
-              checkboxSelection={true}
-              selectionModel={selectionModel}
-              onSelectionModelChange={handleEvent}
-              rows={rows}
-              columns={columns}
-            />
+        <div className="PanelContentSingle">
+          <div className="TableGrid">
+            <div style={{ height: 300, width: "100%" }}>
+              <DataGrid
+                checkboxSelection={true}
+                selectionModel={selectionModel}
+                onSelectionModelChange={handleEvent}
+                rows={rows}
+                columns={columns}
+              />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <ModalComp title="Are you sure?" text="Are you sure you want to delete this tournament?" confirmButtonText="DELETE" actionOnConfirm={deleteRow} />}
+    </>
   );
 }

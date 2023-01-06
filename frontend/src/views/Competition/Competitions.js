@@ -4,8 +4,9 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { get, remove } from "../../services/backend.service";
-import { useParams } from 'react-router-dom';
-import useSingleRowSelection from "../../services/useSingleRowSelection";
+import { useParams } from "react-router-dom";
+import useDataGridHelper from "../../services/useDataGridHelper";
+import ModalComp from "../../components/static/Modal/ModalComp";
 
 const row = (element) => {
   return {
@@ -15,7 +16,7 @@ const row = (element) => {
     is_wheelchair: element.is_wheelchair,
     sex: element.sex,
     type: element.type,
-    age_group: element.age_group
+    age_group: element.age_group,
   };
 };
 
@@ -30,53 +31,62 @@ const columns = [
 
 export default function Competitions() {
   const navigate = useNavigate();
-  const { isSelected, selectedRowId, selectionModel, handleEvent } = useSingleRowSelection();
-  const [rows, setRows] = useState([]);
+  const {
+    selectionModel,
+    selectedRowId,
+    isSelected,
+    rows,
+    setRows,
+    handleEvent,
+    deleteFunction,
+    openModalFunctiom
+  } = useDataGridHelper();
   const { tournamentId } = useParams();
 
-  //Gets the competitions from api
   useEffect(() => {
-      async function getFencersData() {
-          const data = await get(`tournaments/${tournamentId}/competitions/`);
-          const rows = data.map((e)=>row(e))
-          setRows(rows)
-      }
-      getFencersData();
+    async function getData() {
+      const data = await get(`tournaments/${tournamentId}/competitions/`);
+      const rows = data.map((e) => row(e));
+      setRows(rows);
+    }
+    getData();
   }, []);
 
-  const deleteButton = async () => {
-    //Deletes the tournament in the database
-    await remove(`competitions/${selectedRowId}/`);
-
-    //Deletes the row in the data grid
-    setRows((prevRows) => {
-      const rowToDeleteIndex = prevRows.findIndex(
-        (row) => row.id == selectedRowId
-      );
-      return [
-        ...rows.slice(0, rowToDeleteIndex),
-        ...rows.slice(rowToDeleteIndex + 1),
-      ];
-    });
-  };
+  const deleteRow = () =>{
+    deleteFunction(`competitions/${selectedRowId}/`)
+  }
 
   return (
+    <>
     <div className="Main">
       <div className="PageHeader">
         <h2 className="PageTitle">Competitions</h2>
         <div className="PageButtonsWrapper">
           {isSelected && (
-            <Button variant="contained" onClick={deleteButton}>
+            <Button
+              variant="contained"
+              onClick={openModalFunctiom}
+            >
               Delete
             </Button>
           )}
           {isSelected && (
-            <Button variant="contained" onClick={() => navigate("modify", { state: { rowId: selectedRowId } })}>
+            <Button
+              variant="contained"
+              onClick={() =>
+                navigate("modify", { state: { rowId: selectedRowId } })
+              }
+            >
               Modify
             </Button>
           )}
           {!isSelected && (
-            <Button variant="contained" onClick={() => navigate("create", { state: { rowId: selectedRowId } })}>
+            <Button
+              variant="contained"
+              onClick={() =>
+                navigate("create", { state: { rowId: selectedRowId } })
+              }
+            >
               Create
             </Button>
           )}
@@ -84,7 +94,7 @@ export default function Competitions() {
       </div>
       <div className="PanelContentSingle">
         <div className="TableGrid">
-          <div style={{ height: 300, width: "100%", bgcolor: '#fff' }}>
+          <div style={{ height: 300, width: "100%", bgcolor: "#fff" }}>
             <DataGrid
               checkboxSelection={true}
               selectionModel={selectionModel}
@@ -96,5 +106,7 @@ export default function Competitions() {
         </div>
       </div>
     </div>
+    <ModalComp title="Are you sure?" text="Are you sure you want to delete this competition?" confirmButtonText="DELETE" actionOnConfirm={deleteRow} />
+    </>
   );
 }
