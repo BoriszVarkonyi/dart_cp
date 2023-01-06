@@ -32,11 +32,12 @@ export default function Competitions() {
   const navigate = useNavigate();
   const { isSelected, selectedRowId, selectionModel, handleEvent } = useSingleRowSelection();
   const [rows, setRows] = useState([]);
+  const { tournamentId } = useParams();
 
   //Gets the competitions from api
   useEffect(() => {
       async function getFencersData() {
-          const data = await get("competitions/");
+          const data = await get(`tournaments/${tournamentId}/competitions/`);
           const rows = data.map((e)=>row(e))
           setRows(rows)
       }

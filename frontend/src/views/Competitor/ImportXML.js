@@ -1,7 +1,24 @@
 import React, { useState } from "react";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { postXML } from "../../services/backend.service";
+
+const row = (element) => {
+  return {
+    id: element.id,
+    ranking: element.points,
+    fencerName: element.pre_nom + ' ' + element.nom,
+    fencerNat: element.nation,
+    fencerClub: element.club
+  };
+};
+
+//Sets the columns
+const columns = [
+  { field: "ranking", headerName: "RANKING", width: 200 },
+  { field: "fencerName", headerName: "NAME", width: 200 },
+  { field: "fencerNat", headerName: "NATIONALITY", width: 200 },
+  { field: "fencerClub", headerName: "CLUB", width: 200 }
+];
 
 
 export default function Import() {
@@ -24,8 +41,6 @@ export default function Import() {
     }
   };
 
-  const onSubmit = (data) => {};
-
   return (
     <div className="Main">
       <div className="PageHeader">
@@ -34,19 +49,11 @@ export default function Import() {
           <Button variant="contained" size="small" onClick={() => navigate(-1)}>
             Go back
           </Button>
-          <label htmlFor="file_upload">
-            <input
-              id="file_upload"
-              name="file_upload"
-              style={{ display: "none" }}
-              type="file"
-              onChange={selectFile}
-            />
-            <Button variant="contained" size="small" component="span">
-              Choose Files
-            </Button>
-            {hasError && <p>Wrong file format!</p>}
-          </label>
+          <Button variant="contained" component="label" size="small">
+            Upload File
+            <input type="file" hidden onChange={selectFile} />
+          </Button>
+          {hasError && <p>Wrong file format!</p>}
           {hasSelectedFile && (
             <Button variant="contained" size="small">
               Import
@@ -61,24 +68,30 @@ export default function Import() {
               <h2>File not selected</h2>
             </>
           )}
+          {hasSelectedFile && (
+            <>
+              <h2>File not selected</h2>
+            </>
+          )}
         </div>
       </div>
     </div>
   );
 }
 
+//Helper functions
 async function handleFile(file) {
   const formData = new FormData();
-  formData.append('test', file);
-
-   //const response = await postXML("uploadxml/", formData);
+  formData.append("test", file);
 
   fetch("http://localhost:8082/api/uploadxml/", {
     method: "POST",
     body: formData,
-    headers: {
-      'Content-Type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'
-    }
   })
+    .then((response) => response.json())
+    .then((data) => generateDataGrid(data));
+}
 
+function generateDataGrid(arrayOfFencers) {
+  arrayOfFencers.map((e) => console.log(e));
 }

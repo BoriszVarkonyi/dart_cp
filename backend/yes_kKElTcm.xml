@@ -1,0 +1,608 @@
+<BaseCompetitionIndividuelle xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Championnat="FIE" ID="112" Arme="E" Sexe="M" Domaine="I" Federation="HUN" Categorie="S" TitreLong="WESTEND Grand Prix" Annee="2021/2022" Date="04.03.2022" DateFichierXML="01.03.2022 14:43">
+  <Tireurs>
+    <Tireur ID="32353" Nom="AL ZAROONI" Prenom="Khalifa" Sexe="M" Lateralite="D" Nation="UAE" Licence="09111996001" Statut="N" DateNaissance="09.11.1996" Classement="354" Points="1.500"/>
+    <Tireur ID="20867" Nom="ALEXANIN" Prenom="Dmitriy" Sexe="M" Lateralite="G" Nation="KAZ" Licence="18121991001" Statut="N" DateNaissance="18.12.1991" Classement="51" Points="36.000"/>
+    <Tireur ID="30942" Nom="ALHUSSAIN" Prenom="Ahmad Abbas I." Sexe="M" Lateralite="D" Nation="KSA" Licence="01101996000" Statut="N" DateNaissance="01.10.1996" Classement="445" Points="0.500"/>
+    <Tireur ID="10813" Nom="ALIMZHANOV" Prenom="Elmir" Sexe="M" Lateralite="D" Nation="KAZ" Licence="05101986001" Statut="N" DateNaissance="05.10.1986" Classement="22" Points="65.000"/>
+    <Tireur ID="25897" Nom="ALIYEV" Prenom="Kanan" Sexe="M" Lateralite="G" Nation="AZE" Licence="10101993000" Statut="N" DateNaissance="10.10.1993" Classement="314" Points="2.375"/>
+    <Tireur ID="32821" Nom="ALLEGRE" Prenom="Paul" Sexe="M" Lateralite="D" Nation="FRA" Licence="02061996003" Statut="N" DateNaissance="02.06.1996" Classement="113" Points="13.000"/>
+    <Tireur ID="42587" Nom="ANARKULOV" Prenom="Ilkhamzhan" Sexe="M" Lateralite="D" Nation="KAZ" Licence="04042000002" Statut="N" DateNaissance="04.04.2000" Classement="602" Points="0.000"/>
+    <Tireur ID="36648" Nom="ANDRASFI" Prenom="Tibor" Sexe="M" Lateralite="D" Nation="HUN" Licence="10121999000" Statut="N" DateNaissance="10.12.1999" Classement="46" Points="37.250"/>
+    <Tireur ID="39179" Nom="ANDREWS" Prenom="Benjamin" Sexe="M" Lateralite="G" Nation="GBR" Licence="02072001000" Statut="N" DateNaissance="02.07.2001" Classement="481" Points="0.250"/>
+    <Tireur ID="26906" Nom="ANTKIEWICZ" Prenom="Mateusz" Sexe="M" Lateralite="D" Nation="POL" Licence="02111993001" Statut="N" DateNaissance="02.11.1993" Classement="137" Points="10.500"/>
+    <Tireur ID="45841" Nom="ARONOWITSCH" Prenom="Zeev" Sexe="M" Lateralite="D" Nation="SWE" Licence="23072002001" Statut="N" DateNaissance="23.07.2002" Classement="9999" Points="0"/>
+    <Tireur ID="43432" Nom="ASAMI" Prenom="Seiya" Sexe="M" Lateralite="D" Nation="JPN" Licence="28102002002" Statut="N" DateNaissance="28.10.2002" Classement="328" Points="2.000"/>
+    <Tireur ID="52717" Nom="BACIU" Prenom="Stefan" Sexe="M" Lateralite="D" Nation="ROU" Licence="17012004000" Statut="N" DateNaissance="17.01.2004" Classement="9999" Points="0"/>
+    <Tireur ID="34059" Nom="BAJIC" Prenom="Djordje" Sexe="M" Lateralite="D" Nation="SRB" Licence="22061990008" Statut="N" DateNaissance="22.06.1990" Classement="583" Points="0.000"/>
+    <Tireur ID="33863" Nom="BAKOS" Prenom="Balint" Sexe="M" Lateralite="G" Nation="HUN" Licence="28041997000" Statut="N" DateNaissance="28.04.1997" Classement="133" Points="11.250"/>
+    <Tireur ID="35828" Nom="BALCAR" Prenom="Josef" Sexe="M" Lateralite="D" Nation="CZE" Licence="31101998001" Statut="N" DateNaissance="31.10.1998" Classement="492" Points="0.250"/>
+    <Tireur ID="40160" Nom="BALMORI" Prenom="Diego" Sexe="M" Lateralite="D" Nation="ESP" Licence="20021999001" Statut="N" DateNaissance="20.02.1999" Classement="9999" Points="0"/>
+    <Tireur ID="30080" Nom="BANYAI" Prenom="Zsombor" Sexe="M" Lateralite="G" Nation="HUN" Licence="09121996000" Statut="N" DateNaissance="09.12.1996" Classement="104" Points="14.500"/>
+    <Tireur ID="17748" Nom="BARDENET" Prenom="Alexandre" Sexe="M" Lateralite="D" Nation="FRA" Licence="26051990000" Statut="N" DateNaissance="26.05.1990" Classement="11" Points="102.000"/>
+    <Tireur ID="30924" Nom="BARGUES" Prenom="Manuel" Sexe="M" Lateralite="D" Nation="ESP" Licence="23021995003" Statut="N" DateNaissance="23.02.1995" Classement="102" Points="15.000"/>
+    <Tireur ID="49824" Nom="BARTKO" Prenom="Levente" Sexe="M" Lateralite="D" Nation="HUN" Licence="26112002001" Statut="N" DateNaissance="26.11.2002" Classement="452" Points="0.375"/>
+    <Tireur ID="19223" Nom="BAY COLOMBANO" Prenom="Emmanuel" Sexe="M" Lateralite="D" Nation="ARG" Licence="05061985001" Statut="N" DateNaissance="05.06.1985" Classement="9999" Points="0"/>
+    <Tireur ID="27862" Nom="BELLMANN" Prenom="Lukas" Sexe="M" Lateralite="D" Nation="GER" Licence="14011995002" Statut="N" DateNaissance="14.01.1995" Classement="96" Points="16.500"/>
+    <Tireur ID="32488" Nom="BENREGUIA" Prenom="Menouar" Sexe="M" Lateralite="D" Nation="ALG" Licence="25051996002" Statut="N" DateNaissance="25.05.1996" Classement="213" Points="6.000"/>
+    <Tireur ID="2224" Nom="BERAN" Prenom="Jiri" Sexe="M" Lateralite="D" Nation="CZE" Licence="18011982001" Statut="N" DateNaissance="18.01.1982" Classement="48" Points="36.750"/>
+    <Tireur ID="43326" Nom="BERKTOLD" Prenom="Samuel" Sexe="M" Lateralite="D" Nation="AUT" Licence="05062001002" Statut="N" DateNaissance="05.06.2001" Classement="433" Points="0.500"/>
+    <Tireur ID="42962" Nom="BERNARD" Prenom="Florian" Sexe="M" Lateralite="D" Nation="BEL" Licence="25011991001" Statut="N" DateNaissance="25.01.1991" Classement="728" Points="0.000"/>
+    <Tireur ID="26050" Nom="BERTA" Prenom="Daniel" Sexe="M" Lateralite="G" Nation="HUN" Licence="30031994002" Statut="N" DateNaissance="30.03.1994" Classement="45" Points="37.750"/>
+    <Tireur ID="7227" Nom="BESKIN" Prenom="Grigori" Sexe="M" Lateralite="D" Nation="ISR" Licence="21061987000" Statut="N" DateNaissance="21.06.1987" Classement="64" Points="25.000"/>
+    <Tireur ID="31940" Nom="BIABIANY" Prenom="Mathias" Sexe="M" Lateralite="G" Nation="FRA" Licence="30111994001" Statut="N" DateNaissance="30.11.1994" Classement="120" Points="12.500"/>
+    <Tireur ID="32745" Nom="BIELEC" Prenom="Maciej" Sexe="M" Lateralite="D" Nation="POL" Licence="17091997001" Statut="N" DateNaissance="17.09.1997" Classement="308" Points="2.625"/>
+    <Tireur ID="43327" Nom="BIRO " Prenom="Alexander" Sexe="M" Lateralite="D" Nation="AUT" Licence="19112001002" Statut="N" DateNaissance="19.11.2001" Classement="355" Points="1.500"/>
+    <Tireur ID="29012" Nom="BLAIS-BELANGER" Prenom="Marc-Antoine" Sexe="M" Lateralite="G" Nation="CAN" Licence="20021995003" Statut="N" DateNaissance="20.02.1995" Classement="101" Points="15.750"/>
+    <Tireur ID="39071" Nom="BOBROV" Prenom="Ilian" Sexe="M" Lateralite="D" Nation="EST" Licence="07112000000" Statut="N" DateNaissance="07.11.2000" Classement="239" Points="4.250"/>
+    <Tireur ID="22540" Nom="BODOCZI" Prenom="Nikolaus" Sexe="M" Lateralite="D" Nation="GER" Licence="27081993001" Statut="N" DateNaissance="27.08.1993" Classement="141" Points="9.750"/>
+    <Tireur ID="37249" Nom="BOLANOS" Prenom="Tiago" Sexe="M" Lateralite="D" Nation="POR" Licence="18061999002" Statut="N" DateNaissance="18.06.1999" Classement="764" Points="0.000"/>
+    <Tireur ID="26550" Nom="BOLBOCEANU" Prenom="Tatian" Sexe="M" Lateralite="G" Nation="ROU" Licence="15121993000" Statut="N" DateNaissance="15.12.1993" Classement="9999" Points="0"/>
+    <Tireur ID="36876" Nom="BONFERRONI" Prenom="Gabriel" Sexe="M" Lateralite="D" Nation="SUI" Licence="07011999002" Statut="N" DateNaissance="07.01.1999" Classement="233" Points="4.500"/>
+    <Tireur ID="42201" Nom="BONGARD" Prenom="Louis" Sexe="M" Lateralite="D" Nation="GER" Licence="26112000002" Statut="N" DateNaissance="26.11.2000" Classement="650" Points="0.000"/>
+    <Tireur ID="19856" Nom="BOREL" Prenom="Yannick" Sexe="M" Lateralite="D" Nation="FRA" Licence="05111988002" Statut="N" DateNaissance="05.11.1988" Classement="6" Points="141.000"/>
+    <Tireur ID="35187" Nom="BRAUN" Prenom="Rico" Sexe="M" Lateralite="D" Nation="GER" Licence="29091997003" Statut="N" DateNaissance="29.09.1997" Classement="268" Points="3.250"/>
+    <Tireur ID="32708" Nom="BRINKMANN" Prenom="Marco" Sexe="M" Lateralite="G" Nation="GER" Licence="12041997003" Statut="N" DateNaissance="12.04.1997" Classement="147" Points="9.250"/>
+    <Tireur ID="23698" Nom="BRUNOLD" Prenom="Bruce" Sexe="M" Lateralite="G" Nation="SUI" Licence="12101992003" Statut="N" DateNaissance="12.10.1992" Classement="250" Points="3.750"/>
+    <Tireur ID="32296" Nom="BUTA" Prenom="Levente" Sexe="M" Lateralite="G" Nation="HUN" Licence="11041996000" Statut="N" DateNaissance="11.04.1996" Classement="9999" Points="0"/>
+    <Tireur ID="40009" Nom="BUZZACCHINO" Prenom="Gianpaolo" Sexe="M" Lateralite="G" Nation="ITA" Licence="29111999002" Statut="N" DateNaissance="29.11.1999" Classement="157" Points="8.500"/>
+    <Tireur ID="47476" Nom="CACERES CASTELLANOS" Prenom="Mario Estiben" Sexe="M" Lateralite="D" Nation="COL" Licence="07081995004" Statut="N" DateNaissance="07.08.1995" Classement="594" Points="0.000"/>
+    <Tireur ID="40928" Nom="CALDERON" Prenom="Diego" Sexe="M" Lateralite="D" Nation="ESP" Licence="14052000002" Statut="N" DateNaissance="14.05.2000" Classement="347" Points="1.500"/>
+    <Tireur ID="34743" Nom="CAMARGO" Prenom="Alexandre" Sexe="M" Lateralite="G" Nation="BRA" Licence="25041999001" Statut="N" DateNaissance="25.04.1999" Classement="93" Points="16.875"/>
+    <Tireur ID="19216" Nom="CAMPOS ZARATE" Prenom="Andres Felipe" Sexe="M" Lateralite="D" Nation="COL" Licence="04091983001" Statut="N" DateNaissance="04.09.1983" Classement="111" Points="13.000"/>
+    <Tireur ID="35617" Nom="CANNONE" Prenom="Romain" Sexe="M" Lateralite="D" Nation="FRA" Licence="12041997006" Statut="N" DateNaissance="12.04.1997" Classement="2" Points="178.000"/>
+    <Tireur ID="2228" Nom="CAPEK" Prenom="Martin" Sexe="M" Lateralite="D" Nation="CZE" Licence="14091983000" Statut="N" DateNaissance="14.09.1983" Classement="225" Points="5.125"/>
+    <Tireur ID="46060" Nom="CHAKAROV" Prenom="Ilia" Sexe="M" Lateralite="D" Nation="BUL" Licence="19071999006" Statut="N" DateNaissance="19.07.1999" Classement="423" Points="0.625"/>
+    <Tireur ID="53453" Nom="CHOONG" Prenom="Joseph" Sexe="M" Lateralite="D" Nation="GBR" Licence="23051995003" Statut="N" DateNaissance="23.05.1995" Classement="336" Points="1.750"/>
+    <Tireur ID="28638" Nom="CIMINI" Prenom="Gabriele" Sexe="M" Lateralite="D" Nation="ITA" Licence="09061994000" Statut="N" DateNaissance="09.06.1994" Classement="20" Points="67.000"/>
+    <Tireur ID="24274" Nom="CIOVICA" Prenom="Lucian" Sexe="M" Lateralite="D" Nation="ROU" Licence="24031993000" Statut="N" DateNaissance="24.03.1993" Classement="690" Points="0.000"/>
+    <Tireur ID="46391" Nom="COHEN" Prenom="Yonatan" Sexe="M" Lateralite="G" Nation="ISR" Licence="05062003000" Statut="N" DateNaissance="05.06.2003" Classement="327" Points="2.000"/>
+    <Tireur ID="41708" Nom="COOPER" Prenom="Matthew" Sexe="M" Lateralite="D" Nation="GBR" Licence="17061998002" Statut="N" DateNaissance="17.06.1998" Classement="370" Points="1.125"/>
+    <Tireur ID="47149" Nom="CRACIUN" Prenom="Razvan" Sexe="M" Lateralite="D" Nation="ROU" Licence="23052001004" Statut="N" DateNaissance="23.05.2001" Classement="9999" Points="0"/>
+    <Tireur ID="36901" Nom="CROOK" Prenom="Lachlan" Sexe="M" Lateralite="D" Nation="AUS" Licence="11031998001" Statut="N" DateNaissance="11.03.1998" Classement="289" Points="3.000"/>
+    <Tireur ID="34428" Nom="CRUZ" Prenom="Joao Rodrigo" Sexe="M" Lateralite="D" Nation="POR" Licence="08061998001" Statut="N" DateNaissance="08.06.1998" Classement="739" Points="0.000"/>
+    <Tireur ID="54728" Nom="CUI" Prenom="Bolang" Sexe="M" Lateralite="D" Nation="CAN" Licence="21112006001" Statut="N" DateNaissance="21.11.2006" Classement="9999" Points="0"/>
+    <Tireur ID="37711" Nom="CUOMO" Prenom="Valerio" Sexe="M" Lateralite="D" Nation="ITA" Licence="18041998003" Statut="N" DateNaissance="18.04.1998" Classement="34" Points="52.000"/>
+    <Tireur ID="18600" Nom="CUPR" Prenom="Michal" Sexe="M" Lateralite="D" Nation="CZE" Licence="23121991000" Statut="N" DateNaissance="23.12.1991" Classement="307" Points="2.750"/>
+    <Tireur ID="30620" Nom="DABIJA" Prenom="Adrian" Sexe="M" Lateralite="D" Nation="ROU" Licence="19021997001" Statut="N" DateNaissance="19.02.1997" Classement="413" Points="0.750"/>
+    <Tireur ID="42009" Nom="DAHLBO" Prenom="Benjamin" Sexe="M" Lateralite="D" Nation="NOR" Licence="25072001001" Statut="N" DateNaissance="25.07.2001" Classement="677" Points="0.000"/>
+    <Tireur ID="43936" Nom="DEGORCE" Prenom="Aurelien" Sexe="M" Lateralite="D" Nation="GBR" Licence="03042000003" Statut="N" DateNaissance="03.04.2000" Classement="604" Points="0.000"/>
+    <Tireur ID="50147" Nom="DEGUCHI" Prenom="Nicolas" Sexe="M" Lateralite="D" Nation="CAN" Licence="28112003003" Statut="N" DateNaissance="28.11.2003" Classement="702" Points="0.000"/>
+    <Tireur ID="42541" Nom="DI VEROLI" Prenom="Davide" Sexe="M" Lateralite="G" Nation="ITA" Licence="18082001002" Statut="N" DateNaissance="18.08.2001" Classement="37" Points="47.000"/>
+    <Tireur ID="35194" Nom="DIKOV" Prenom="Plamen" Sexe="M" Lateralite="D" Nation="BUL" Licence="27101998002" Statut="N" DateNaissance="27.10.1998" Classement="465" Points="0.250"/>
+    <Tireur ID="40212" Nom="DILIBERTO" Prenom="Luca" Sexe="M" Lateralite="G" Nation="ITA" Licence="24121999002" Statut="N" DateNaissance="24.12.1999" Classement="352" Points="1.500"/>
+    <Tireur ID="1886" Nom="DOBREV" Prenom="Deyan" Sexe="M" Lateralite="D" Nation="BUL" Licence="05121975000" Statut="N" DateNaissance="05.12.1975" Classement="580" Points="0.000"/>
+    <Tireur ID="27489" Nom="DORATI AMEGLIO" Prenom="Arturo Isaac" Sexe="M" Lateralite="D" Nation="PAN" Licence="18081986004" Statut="N" DateNaissance="18.08.1986" Classement="183" Points="6.500"/>
+    <Tireur ID="31900" Nom="DUDUC" Prenom="Alex" Sexe="M" Lateralite="D" Nation="SVK" Licence="25081997000" Statut="N" DateNaissance="25.08.1997" Classement="358" Points="1.375"/>
+    <Tireur ID="41705" Nom="EAST" Prenom="William" Sexe="M" Lateralite="D" Nation="GBR" Licence="18011999005" Statut="N" DateNaissance="18.01.1999" Classement="586" Points="0.000"/>
+    <Tireur ID="31226" Nom="EL HAOUARI" Prenom="Abdelkarim" Sexe="M" Lateralite="D" Nation="MAR" Licence="19121993003" Statut="N" DateNaissance="19.12.1993" Classement="115" Points="12.875"/>
+    <Tireur ID="45631" Nom="ELIZARI" Prenom="Inigo" Sexe="M" Lateralite="D" Nation="ESP" Licence="10041999000" Statut="N" DateNaissance="10.04.1999" Classement="9999" Points="0"/>
+    <Tireur ID="24970" Nom="ELKORD" Prenom="Houssam" Sexe="M" Lateralite="G" Nation="MAR" Licence="24021993002" Statut="N" DateNaissance="24.02.1993" Classement="14" Points="87.000"/>
+    <Tireur ID="32464" Nom="ELSAYED" Prenom="Ahmed" Sexe="M" Lateralite="D" Nation="EGY" Licence="13071998002" Statut="N" DateNaissance="13.07.1998" Classement="27" Points="58.750"/>
+    <Tireur ID="46290" Nom="ELSAYED" Prenom="Mohamed" Sexe="M" Lateralite="D" Nation="EGY" Licence="03032003002" Statut="N" DateNaissance="03.03.2003" Classement="15" Points="87.000"/>
+    <Tireur ID="37603" Nom="EWART" Prenom="Stephen" Sexe="M" Lateralite="G" Nation="USA" Licence="23081999003" Statut="N" DateNaissance="23.08.1999" Classement="471" Points="0.250"/>
+    <Tireur ID="22953" Nom="FALEH" Prenom="Amine" Sexe="M" Lateralite="D" Nation="MAR" Licence="28101984003" Statut="N" DateNaissance="28.10.1984" Classement="629" Points="0.000"/>
+    <Tireur ID="53637" Nom="FARKAS " Prenom="Peter" Sexe="M" Lateralite="D" Nation="HUN" Licence="19112003004" Statut="N" DateNaissance="19.11.2003" Classement="706" Points="0.000"/>
+    <Tireur ID="15542" Nom="FAVA" Prenom="Alex" Sexe="M" Lateralite="D" Nation="FRA" Licence="23041989000" Statut="N" DateNaissance="23.04.1989" Classement="47" Points="37.000"/>
+    <Tireur ID="42729" Nom="FAVRE" Prenom="Hadrien" Sexe="M" Lateralite="D" Nation="SUI" Licence="26082001000" Statut="N" DateNaissance="26.08.2001" Classement="175" Points="7.000"/>
+    <Tireur ID="51227" Nom="FAVRE" Prenom="Aurele" Sexe="M" Lateralite="D" Nation="SUI" Licence="05102004000" Statut="N" DateNaissance="05.10.2004" Classement="9999" Points="0"/>
+    <Tireur ID="32734" Nom="FENYVESI" Prenom="Csaba" Sexe="M" Lateralite="D" Nation="HUN" Licence="21101996000" Statut="N" DateNaissance="21.10.1996" Classement="412" Points="0.750"/>
+    <Tireur ID="22435" Nom="FONG" Prenom="Hoi Sun" Sexe="M" Lateralite="D" Nation="HKG" Licence="15011993001" Statut="N" DateNaissance="15.01.1993" Classement="82" Points="20.375"/>
+    <Tireur ID="37285" Nom="FOUGY" Prenom="Nathan" Sexe="M" Lateralite="D" Nation="FRA" Licence="29101996006" Statut="N" DateNaissance="29.10.1996" Classement="171" Points="7.000"/>
+    <Tireur ID="36266" Nom="FOUSTANAKIS" Prenom="Stylianos-Rafail" Sexe="M" Lateralite="D" Nation="GRE" Licence="15121998004" Statut="N" DateNaissance="15.12.1998" Classement="9999" Points="0"/>
+    <Tireur ID="41026" Nom="FRAZAO" Prenom="Filipe" Sexe="M" Lateralite="D" Nation="POR" Licence="31032001000" Statut="N" DateNaissance="31.03.2001" Classement="9999" Points="0"/>
+    <Tireur ID="46746" Nom="FRAZAO" Prenom="Miguel" Sexe="M" Lateralite="G" Nation="POR" Licence="25072002003" Statut="N" DateNaissance="25.07.2002" Classement="531" Points="0.250"/>
+    <Tireur ID="48854" Nom="FURUTA" Prenom="Ikuo" Sexe="M" Lateralite="D" Nation="JPN" Licence="07111997002" Statut="N" DateNaissance="07.11.1997" Classement="234" Points="4.500"/>
+    <Tireur ID="40070" Nom="GAETANI" Prenom="Giulio" Sexe="M" Lateralite="D" Nation="ITA" Licence="24072000002" Statut="N" DateNaissance="24.07.2000" Classement="326" Points="2.000"/>
+    <Tireur ID="45919" Nom="GALABOV" Prenom="Yordan" Sexe="M" Lateralite="D" Nation="BUL" Licence="25112002002" Statut="N" DateNaissance="25.11.2002" Classement="660" Points="0.000"/>
+    <Tireur ID="38938" Nom="GALLY" Prenom="Aymerick" Sexe="M" Lateralite="D" Nation="FRA" Licence="30031997001" Statut="N" DateNaissance="30.03.1997" Classement="26" Points="60.000"/>
+    <Tireur ID="15163" Nom="GAROZZO" Prenom="Enrico" Sexe="M" Lateralite="D" Nation="ITA" Licence="21061989002" Statut="N" DateNaissance="21.06.1989" Classement="23" Points="63.000"/>
+    <Tireur ID="30970" Nom="GASCON" Prenom="Willian" Sexe="M" Lateralite="D" Nation="VEN" Licence="13031995004" Statut="N" DateNaissance="13.03.1995" Classement="368" Points="1.250"/>
+    <Tireur ID="34274" Nom="GAVALDA" Prenom="Eugeni" Sexe="M" Lateralite="D" Nation="ESP" Licence="26071996001" Statut="N" DateNaissance="26.07.1996" Classement="167" Points="7.625"/>
+    <Tireur ID="17091" Nom="GERBOC" Prenom="Jan" Sexe="M" Lateralite="D" Nation="SVK" Licence="23011990001" Statut="N" DateNaissance="23.01.1990" Classement="720" Points="0.000"/>
+    <Tireur ID="28816" Nom="GIANNOTTE" Prenom="Flavio" Sexe="M" Lateralite="D" Nation="LUX" Licence="06051995001" Statut="N" DateNaissance="06.05.1995" Classement="79" Points="20.625"/>
+    <Tireur ID="34260" Nom="GONELL" Prenom="Gerard" Sexe="M" Lateralite="G" Nation="ESP" Licence="21112000000" Statut="N" DateNaissance="21.11.2000" Classement="434" Points="0.500"/>
+    <Tireur ID="21978" Nom="GRASBECK" Prenom="Gunnar" Sexe="M" Lateralite="D" Nation="FIN" Licence="20011993002" Statut="N" DateNaissance="20.01.1993" Classement="688" Points="0.000"/>
+    <Tireur ID="42004" Nom="GROSSE" Prenom="Arthur" Sexe="M" Lateralite="D" Nation="NOR" Licence="18082001001" Statut="N" DateNaissance="18.08.2001" Classement="246" Points="4.000"/>
+    <Tireur ID="41547" Nom="GROVER" Prenom="Elliott" Sexe="M" Lateralite="G" Nation="GBR" Licence="05111994000" Statut="N" DateNaissance="05.11.1994" Classement="416" Points="0.625"/>
+    <Tireur ID="43763" Nom="GULIYEV" Prenom="Barat" Sexe="M" Lateralite="D" Nation="AZE" Licence="30042002000" Statut="N" DateNaissance="30.04.2002" Classement="443" Points="0.500"/>
+    <Tireur ID="26558" Nom="GUNPUT" Prenom="Satya" Sexe="M" Lateralite="D" Nation="MRI" Licence="30101991006" Statut="N" DateNaissance="30.10.1991" Classement="66" Points="23.875"/>
+    <Tireur ID="37605" Nom="GUSMAN" Prenom="Agustin Adolfo" Sexe="M" Lateralite="D" Nation="ARG" Licence="21021998001" Statut="N" DateNaissance="21.02.1998" Classement="274" Points="3.000"/>
+    <Tireur ID="41789" Nom="HABRAN" Prenom="Maxime" Sexe="M" Lateralite="D" Nation="BEL" Licence="04122000003" Statut="N" DateNaissance="04.12.2000" Classement="472" Points="0.250"/>
+    <Tireur ID="48800" Nom="HADDAD" Prenom="Justin" Sexe="M" Lateralite="D" Nation="USA" Licence="16052002001" Statut="N" DateNaissance="16.05.2002" Classement="9999" Points="0"/>
+    <Tireur ID="23320" Nom="HADZIC" Prenom="Alen" Sexe="M" Lateralite="D" Nation="USA" Licence="15111991003" Statut="N" DateNaissance="15.11.1991" Classement="138" Points="10.500"/>
+    <Tireur ID="51411" Nom="HAMILTON-MEIKE" Prenom="Jonathan" Sexe="M" Lateralite="D" Nation="HUN" Licence="04092002005" Statut="N" DateNaissance="04.09.2002" Classement="398" Points="0.750"/>
+    <Tireur ID="22011" Nom="HANINA" Prenom="Saar" Sexe="M" Lateralite="D" Nation="ISR" Licence="29011993000" Statut="N" DateNaissance="29.01.1993" Classement="484" Points="0.250"/>
+    <Tireur ID="18683" Nom="HARPER" Prenom="Ido" Sexe="M" Lateralite="D" Nation="ISR" Licence="12101991000" Statut="N" DateNaissance="12.10.1991" Classement="69" Points="23.000"/>
+    <Tireur ID="48138" Nom="HASANOV" Prenom="Ruslan" Sexe="M" Lateralite="G" Nation="AZE" Licence="26012001003" Statut="N" DateNaissance="26.01.2001" Classement="251" Points="3.750"/>
+    <Tireur ID="6000" Nom="HEINZER" Prenom="Max" Sexe="M" Lateralite="D" Nation="SUI" Licence="07081987001" Statut="N" DateNaissance="07.08.1987" Classement="13" Points="96.000"/>
+    <Tireur ID="15336" Nom="HERZBERG" Prenom="Fabian" Sexe="M" Lateralite="D" Nation="GER" Licence="02021988002" Statut="N" DateNaissance="02.02.1988" Classement="159" Points="8.500"/>
+    <Tireur ID="30882" Nom="HO" Prenom="Wai Hang" Sexe="M" Lateralite="D" Nation="HKG" Licence="07041996001" Statut="N" DateNaissance="07.04.1996" Classement="62" Points="25.375"/>
+    <Tireur ID="51586" Nom="HOAREAU-BERKANI" Prenom="Raphael Jacques" Sexe="M" Lateralite="D" Nation="ALG" Licence="29062002002" Statut="N" DateNaissance="29.06.2002" Classement="9999" Points="0"/>
+    <Tireur ID="37546" Nom="HORVAT" Prenom="Filip" Sexe="M" Lateralite="G" Nation="CRO" Licence="28031995002" Statut="N" DateNaissance="28.03.1995" Classement="719" Points="0.000"/>
+    <Tireur ID="51107" Nom="HOUSIEAUX" Prenom="Marc" Sexe="M" Lateralite="D" Nation="BEL" Licence="08111988009" Statut="N" DateNaissance="08.11.1988" Classement="257" Points="3.500"/>
+    <Tireur ID="29923" Nom="HUSSON" Prenom="Geoffroy" Sexe="M" Lateralite="D" Nation="BEL" Licence="12021993001" Statut="N" DateNaissance="12.02.1993" Classement="220" Points="5.625"/>
+    <Tireur ID="40567" Nom="ISKROV" Prenom="Svetlozar" Sexe="M" Lateralite="D" Nation="BUL" Licence="21071998004" Statut="N" DateNaissance="21.07.1998" Classement="489" Points="0.250"/>
+    <Tireur ID="49742" Nom="IVAKIMOV" Prenom="Vasil" Sexe="M" Lateralite="D" Nation="BUL" Licence="01092004001" Statut="N" DateNaissance="01.09.2004" Classement="9999" Points="0"/>
+    <Tireur ID="40533" Nom="JANG" Prenom="Hyomin" Sexe="M" Lateralite="D" Nation="KOR" Licence="12081996010" Statut="N" DateNaissance="12.08.1996" Classement="331" Points="2.000"/>
+    <Tireur ID="51984" Nom="JAVAKHISHVILI" Prenom="Georgii" Sexe="M" Lateralite="D" Nation="GEO" Licence="05051999004" Statut="N" DateNaissance="05.05.1999" Classement="590" Points="0.000"/>
+    <Tireur ID="46250" Nom="JENSEN" Prenom="August Lindstroem" Sexe="M" Lateralite="D" Nation="DEN" Licence="11022001003" Statut="N" DateNaissance="11.02.2001" Classement="483" Points="0.250"/>
+    <Tireur ID="22557" Nom="JERENT" Prenom="Daniel" Sexe="M" Lateralite="D" Nation="FRA" Licence="04061991001" Statut="N" DateNaissance="04.06.1991" Classement="103" Points="14.750"/>
+    <Tireur ID="36603" Nom="JOHANIDES" Prenom="Lukas Jakub" Sexe="M" Lateralite="D" Nation="SVK" Licence="21091999001" Statut="N" DateNaissance="21.09.1999" Classement="376" Points="1.000"/>
+    <Tireur ID="30743" Nom="JOHNSTON" Prenom="Calum" Sexe="M" Lateralite="G" Nation="GBR" Licence="13011992003" Statut="N" DateNaissance="13.01.1992" Classement="294" Points="3.000"/>
+    <Tireur ID="14714" Nom="JORGENSEN" Prenom="Patrick" Sexe="M" Lateralite="D" Nation="DEN" Licence="31051991001" Statut="N" DateNaissance="31.05.1991" Classement="86" Points="18.000"/>
+    <Tireur ID="21409" Nom="JOSHUA KOH" Prenom="I-Jie" Sexe="M" Lateralite="G" Nation="MAS" Licence="11101990002" Statut="N" DateNaissance="11.10.1990" Classement="181" Points="6.625"/>
+    <Tireur ID="48069" Nom="JOVANOVIC" Prenom="Jovan" Sexe="M" Lateralite="D" Nation="SRB" Licence="16012004000" Statut="N" DateNaissance="16.01.2004" Classement="9999" Points="0"/>
+    <Tireur ID="38099" Nom="JUNG" Prenom="Taeseung" Sexe="M" Lateralite="D" Nation="KOR" Licence="14061993001" Statut="N" DateNaissance="14.06.1993" Classement="9999" Points="0"/>
+    <Tireur ID="35041" Nom="JURKA" Prenom="Jakub" Sexe="M" Lateralite="G" Nation="CZE" Licence="13061999000" Statut="N" DateNaissance="13.06.1999" Classement="38" Points="44.500"/>
+    <Tireur ID="39352" Nom="JUTILA" Prenom="Julius" Sexe="M" Lateralite="G" Nation="FIN" Licence="31072001000" Statut="N" DateNaissance="31.07.2001" Classement="9999" Points="0"/>
+    <Tireur ID="34385" Nom="KANO" Prenom="Koki" Sexe="M" Lateralite="D" Nation="JPN" Licence="19121997001" Statut="N" DateNaissance="19.12.1997" Classement="21" Points="67.000"/>
+    <Tireur ID="50216" Nom="KELLY" Prenom="Christopher" Sexe="M" Lateralite="D" Nation="SWE" Licence="28012003002" Statut="N" DateNaissance="28.01.2003" Classement="414" Points="0.750"/>
+    <Tireur ID="48787" Nom="KEMP" Prenom="Nicolas" Sexe="M" Lateralite="D" Nation="BEL" Licence="11092001004" Statut="N" DateNaissance="11.09.2001" Classement="674" Points="0.000"/>
+    <Tireur ID="45239" Nom="KESZTHELYI" Prenom="Zsombor" Sexe="M" Lateralite="D" Nation="HUN" Licence="10122002000" Statut="N" DateNaissance="10.12.2002" Classement="312" Points="2.375"/>
+    <Tireur ID="38700" Nom="KIM" Prenom="Jaewon" Sexe="M" Lateralite="G" Nation="KOR" Licence="04021998006" Statut="N" DateNaissance="04.02.1998" Classement="365" Points="1.250"/>
+    <Tireur ID="43616" Nom="KIM" Prenom="Myeongki" Sexe="M" Lateralite="D" Nation="KOR" Licence="25071998004" Statut="N" DateNaissance="25.07.1998" Classement="190" Points="6.250"/>
+    <Tireur ID="54639" Nom="KIM" Prenom="Sangjin" Sexe="M" Lateralite="D" Nation="KOR" Licence="24111989004" Statut="N" DateNaissance="24.11.1989" Classement="9999" Points="0"/>
+    <Tireur ID="51790" Nom="KLAUS" Prenom="Robert" Sexe="M" Lateralite="D" Nation="CZE" Licence="03032003006" Statut="N" DateNaissance="03.03.2003" Classement="9999" Points="0"/>
+    <Tireur ID="29797" Nom="KNUDSEN" Prenom="Kenneth" Sexe="M" Lateralite="D" Nation="DEN" Licence="17101997000" Statut="N" DateNaissance="17.10.1997" Classement="240" Points="4.250"/>
+    <Tireur ID="39105" Nom="KOCH" Prenom="Mate Tamas" Sexe="M" Lateralite="D" Nation="HUN" Licence="18071999004" Statut="N" DateNaissance="17.09.1999" Classement="49" Points="36.000"/>
+    <Tireur ID="34396" Nom="KOMATA" Prenom="Akira" Sexe="M" Lateralite="D" Nation="JPN" Licence="31011998001" Statut="N" DateNaissance="31.01.1998" Classement="57" Points="32.750"/>
+    <Tireur ID="34540" Nom="KONGSTAD" Prenom="Conrad Seibaek" Sexe="M" Lateralite="D" Nation="DEN" Licence="11021997005" Statut="N" DateNaissance="11.02.1997" Classement="143" Points="9.500"/>
+    <Tireur ID="49378" Nom="KOVACS" Prenom="Gergely" Sexe="M" Lateralite="G" Nation="HUN" Licence="28042003001" Statut="N" DateNaissance="28.04.2003" Classement="244" Points="4.000"/>
+    <Tireur ID="46354" Nom="KRARIA" Prenom="Mohamed Cherif" Sexe="M" Lateralite="D" Nation="ALG" Licence="07032004000" Statut="N" DateNaissance="07.03.2004" Classement="126" Points="12.000"/>
+    <Tireur ID="35759" Nom="KROHN" Prenom="Otthar Andreas" Sexe="M" Lateralite="D" Nation="NOR" Licence="09021996004" Statut="N" DateNaissance="09.02.1996" Classement="469" Points="0.250"/>
+    <Tireur ID="54188" Nom="KULCSAR" Prenom="Viktor" Sexe="M" Lateralite="D" Nation="HUN" Licence="04062003005" Statut="N" DateNaissance="04.06.2003" Classement="9999" Points="0"/>
+    <Tireur ID="34633" Nom="KULOZIK" Prenom="Julian" Sexe="M" Lateralite="D" Nation="GER" Licence="09091997003" Statut="N" DateNaissance="09.09.1997" Classement="310" Points="2.500"/>
+    <Tireur ID="22285" Nom="KURBANOV" Prenom="Ruslan" Sexe="M" Lateralite="D" Nation="KAZ" Licence="17091991003" Statut="N" DateNaissance="17.09.1991" Classement="16" Points="80.000"/>
+    <Tireur ID="16463" Nom="KWEON" Prenom="Youngjun" Sexe="M" Lateralite="D" Nation="KOR" Licence="29031987004" Statut="N" DateNaissance="29.03.1987" Classement="44" Points="39.500"/>
+    <Tireur ID="20782" Nom="LAI" Prenom="Clarence Ka Tsun" Sexe="M" Lateralite="G" Nation="HKG" Licence="06041991001" Statut="N" DateNaissance="06.04.1991" Classement="164" Points="7.750"/>
+    <Tireur ID="40535" Nom="LEE" Prenom="Seunghyun" Sexe="M" Lateralite="D" Nation="KOR" Licence="26091997009" Statut="N" DateNaissance="26.09.1997" Classement="150" Points="9.000"/>
+    <Tireur ID="45699" Nom="LEE" Prenom="Simon Renjie" Sexe="M" Lateralite="D" Nation="SGP" Licence="27012003003" Statut="N" DateNaissance="27.01.2003" Classement="236" Points="4.500"/>
+    <Tireur ID="12246" Nom="LIMARDO" Prenom="Francisco" Sexe="M" Lateralite="D" Nation="VEN" Licence="27031987001" Statut="N" DateNaissance="27.03.1987" Classement="63" Points="25.000"/>
+    <Tireur ID="28926" Nom="LIMARDO" Prenom="Jesus" Sexe="M" Lateralite="D" Nation="VEN" Licence="29021996001" Statut="N" DateNaissance="29.02.1996" Classement="40" Points="42.500"/>
+    <Tireur ID="10222" Nom="LIMARDO GASCON" Prenom="Ruben" Sexe="M" Lateralite="G" Nation="VEN" Licence="03081985000" Statut="N" DateNaissance="03.08.1985" Classement="7" Points="130.000"/>
+    <Tireur ID="53613" Nom="LIPTAY" Prenom="Adam" Sexe="M" Lateralite="D" Nation="HUN" Licence="19072001004" Statut="N" DateNaissance="19.07.2001" Classement="510" Points="0.250"/>
+    <Tireur ID="30838" Nom="LOPEZ POURTIER" Prenom="Nelson" Sexe="M" Lateralite="D" Nation="FRA" Licence="13051995002" Statut="N" DateNaissance="13.05.1995" Classement="140" Points="10.250"/>
+    <Tireur ID="31494" Nom="LOSEVSKIY" Prenom="Sergey" Sexe="M" Lateralite="D" Nation="RSA" Licence="12061983007" Statut="N" DateNaissance="12.06.1983" Classement="382" Points="1.000"/>
+    <Tireur ID="45133" Nom="LOYOLA" Prenom="Neisser" Sexe="M" Lateralite="D" Nation="BEL" Licence="28071998009" Statut="N" DateNaissance="28.07.1998" Classement="129" Points="12.000"/>
+    <Tireur ID="34663" Nom="LUBIENIECKI" Prenom="Wojciech" Sexe="M" Lateralite="D" Nation="POL" Licence="08121999000" Statut="N" DateNaissance="08.12.1999" Classement="155" Points="8.500"/>
+    <Tireur ID="30971" Nom="LUGO" Prenom="Grabiel" Sexe="M" Lateralite="D" Nation="VEN" Licence="19091996000" Statut="N" DateNaissance="19.09.1996" Classement="97" Points="16.250"/>
+    <Tireur ID="28887" Nom="LUGONES RUGGERI" Prenom="Jesus Andres" Sexe="M" Lateralite="D" Nation="ARG" Licence="26121991004" Statut="N" DateNaissance="26.12.1991" Classement="80" Points="20.500"/>
+    <Tireur ID="37411" Nom="MACSKA" Prenom="Adam" Sexe="M" Lateralite="G" Nation="HUN" Licence="28042000000" Statut="N" DateNaissance="28.04.2000" Classement="9999" Points="0"/>
+    <Tireur ID="32473" Nom="MAHRINGER" Prenom="Josef" Sexe="M" Lateralite="G" Nation="AUT" Licence="02071997001" Statut="N" DateNaissance="02.07.1997" Classement="50" Points="36.000"/>
+    <Tireur ID="28000" Nom="MALCOTTI" Prenom="Lucas" Sexe="M" Lateralite="D" Nation="SUI" Licence="09011995000" Statut="N" DateNaissance="09.01.1995" Classement="92" Points="17.000"/>
+    <Tireur ID="37201" Nom="MARKEVICIUS" Prenom="Povilas" Sexe="M" Lateralite="D" Nation="LTU" Licence="09091988002" Statut="N" DateNaissance="09.09.1998" Classement="574" Points="0.000"/>
+    <Tireur ID="24990" Nom="MARSH" Prenom="Philip" Sexe="M" Lateralite="G" Nation="GBR" Licence="23101994000" Statut="N" DateNaissance="23.10.1994" Classement="148" Points="9.250"/>
+    <Tireur ID="40892" Nom="MASUDA" Prenom="Yohito" Sexe="M" Lateralite="G" Nation="JPN" Licence="26061999002" Statut="N" DateNaissance="26.06.1999" Classement="241" Points="4.250"/>
+    <Tireur ID="46541" Nom="MATSUMOTO" Prenom="Ryu" Sexe="M" Lateralite="D" Nation="JPN" Licence="07062002000" Statut="N" DateNaissance="07.06.2002" Classement="360" Points="1.250"/>
+    <Tireur ID="37032" Nom="MAYNARD" Prenom="Calum" Sexe="M" Lateralite="D" Nation="GBR" Licence="03031993006" Statut="N" DateNaissance="03.03.1993" Classement="455" Points="0.375"/>
+    <Tireur ID="36515" Nom="MCDOWALD" Prenom="Curtis" Sexe="M" Lateralite="D" Nation="USA" Licence="23011996002" Statut="N" DateNaissance="23.01.1996" Classement="31" Points="54.500"/>
+    <Tireur ID="52897" Nom="MERO" Prenom="Leon" Sexe="M" Lateralite="D" Nation="HUN" Licence="02042004004" Statut="N" DateNaissance="02.04.2004" Classement="9999" Points="0"/>
+    <Tireur ID="33651" Nom="METRAILLER" Prenom="Clement" Sexe="M" Lateralite="D" Nation="SUI" Licence="11061997000" Statut="N" DateNaissance="11.06.1997" Classement="262" Points="3.375"/>
+    <Tireur ID="36613" Nom="MICHALAK" Prenom="Damian" Sexe="M" Lateralite="D" Nation="POL" Licence="04041999000" Statut="N" DateNaissance="04.04.1999" Classement="356" Points="1.375"/>
+    <Tireur ID="20488" Nom="MINOBE" Prenom="Kazuyasu" Sexe="M" Lateralite="G" Nation="JPN" Licence="15071987003" Statut="N" DateNaissance="15.07.1987" Classement="9" Points="115.000"/>
+    <Tireur ID="13577" Nom="MITRICA" Prenom="Alin" Sexe="M" Lateralite="D" Nation="ROU" Licence="14111987000" Statut="N" DateNaissance="14.11.1987" Classement="700" Points="0.000"/>
+    <Tireur ID="45366" Nom="MONCADA" Prenom="Alejandro" Sexe="M" Lateralite="D" Nation="VEN" Licence="19012001000" Statut="N" DateNaissance="19.01.2001" Classement="9999" Points="0"/>
+    <Tireur ID="34419" Nom="MURAYAMA" Prenom="Kentaro" Sexe="M" Lateralite="D" Nation="JPN" Licence="11031998000" Statut="N" DateNaissance="11.03.1998" Classement="359" Points="1.375"/>
+    <Tireur ID="34620" Nom="NAGY" Prenom="David" Sexe="M" Lateralite="D" Nation="HUN" Licence="14071999000" Statut="N" DateNaissance="14.07.1999" Classement="184" Points="6.500"/>
+    <Tireur ID="30379" Nom="NAHI" Prenom="Omar" Sexe="M" Lateralite="D" Nation="MAR" Licence="28091993001" Statut="N" DateNaissance="28.09.1993" Classement="75" Points="21.000"/>
+    <Tireur ID="48462" Nom="NAKAJIMA" Prenom="Kou" Sexe="M" Lateralite="D" Nation="JPN" Licence="06102000003" Statut="N" DateNaissance="06.10.2000" Classement="668" Points="0.000"/>
+    <Tireur ID="45630" Nom="NAVARRO" Prenom="Yago" Sexe="M" Lateralite="D" Nation="ESP" Licence="22051999003" Statut="N" DateNaissance="22.05.1999" Classement="9999" Points="0"/>
+    <Tireur ID="28840" Nom="NG" Prenom="Ho Tin" Sexe="M" Lateralite="G" Nation="HKG" Licence="08081996000" Statut="N" DateNaissance="08.08.1996" Classement="153" Points="8.625"/>
+    <Tireur ID="42154" Nom="NGUEFACK " Prenom="Lilian" Sexe="M" Lateralite="D" Nation="FRA" Licence="28071999002" Statut="N" DateNaissance="28.07.1999" Classement="217" Points="5.750"/>
+    <Tireur ID="23747" Nom="NIGGELER" Prenom="Michele" Sexe="M" Lateralite="D" Nation="SUI" Licence="10031992003" Statut="N" DateNaissance="10.03.1992" Classement="121" Points="12.500"/>
+    <Tireur ID="45367" Nom="NOGANOWICZ" Prenom="Karol" Sexe="M" Lateralite="D" Nation="POL" Licence="17102001001" Statut="N" DateNaissance="17.10.2001" Classement="488" Points="0.250"/>
+    <Tireur ID="15780" Nom="NYCZ" Prenom="Mateusz" Sexe="M" Lateralite="D" Nation="POL" Licence="11021989002" Statut="N" DateNaissance="11.02.1989" Classement="222" Points="5.500"/>
+    <Tireur ID="35844" Nom="OPALKA" Prenom="Michal" Sexe="M" Lateralite="D" Nation="POL" Licence="21051997002" Statut="N" DateNaissance="21.05.1997" Classement="509" Points="0.250"/>
+    <Tireur ID="43192" Nom="OPREA" Prenom="Mihail" Sexe="M" Lateralite="D" Nation="ROU" Licence="24031998006" Statut="N" DateNaissance="24.03.1998" Classement="711" Points="0.000"/>
+    <Tireur ID="43815" Nom="OROIAN" Prenom="Alex" Sexe="M" Lateralite="D" Nation="ROU" Licence="09012000003" Statut="N" DateNaissance="09.01.2000" Classement="9999" Points="0"/>
+    <Tireur ID="33675" Nom="OSWALD" Prenom="Charles-Eric" Sexe="M" Lateralite="D" Nation="SUI" Licence="09101996004" Statut="N" DateNaissance="09.10.1996" Classement="320" Points="2.250"/>
+    <Tireur ID="32009" Nom="PAAVOLAINEN" Prenom="Jaakko" Sexe="M" Lateralite="D" Nation="FIN" Licence="23121996000" Statut="N" DateNaissance="23.12.1996" Classement="247" Points="4.000"/>
+    <Tireur ID="38937" Nom="PAAVOLAINEN" Prenom="Vaino" Sexe="M" Lateralite="D" Nation="FIN" Licence="15031999001" Statut="N" DateNaissance="15.03.1999" Classement="9999" Points="0"/>
+    <Tireur ID="54729" Nom="PAN" Prenom="Zhi Yuan" Sexe="M" Lateralite="D" Nation="CAN" Licence="08082005006" Statut="N" DateNaissance="08.08.2005" Classement="9999" Points="0"/>
+    <Tireur ID="39079" Nom="PAOLINI" Prenom="Giacomo" Sexe="M" Lateralite="D" Nation="ITA" Licence="20071998001" Statut="N" DateNaissance="20.07.1998" Classement="134" Points="11.250"/>
+    <Tireur ID="31102" Nom="PARK" Prenom="Sangyoung" Sexe="M" Lateralite="D" Nation="KOR" Licence="16101995003" Statut="N" DateNaissance="16.10.1995" Classement="8" Points="118.000"/>
+    <Tireur ID="43709" Nom="PAVLIK" Prenom="Matyas" Sexe="M" Lateralite="D" Nation="CZE" Licence="13092000003" Statut="N" DateNaissance="13.09.2000" Classement="375" Points="1.000"/>
+    <Tireur ID="46038" Nom="PAVLOV " Prenom="Kiril" Sexe="M" Lateralite="G" Nation="KAZ" Licence="07092001004" Statut="N" DateNaissance="07.09.2001" Classement="332" Points="2.000"/>
+    <Tireur ID="26700" Nom="PEREIRA" Prenom="Yulen" Sexe="M" Lateralite="D" Nation="ESP" Licence="12071995000" Statut="N" DateNaissance="12.07.1995" Classement="35" Points="51.000"/>
+    <Tireur ID="44292" Nom="PEREZ TRIANA" Prenom="Daniel Alfredo " Sexe="M" Lateralite="D" Nation="COL" Licence="22071999003" Statut="N" DateNaissance="22.07.1999" Classement="640" Points="0.000"/>
+    <Tireur ID="39358" Nom="PHILIPPE" Prenom="Arthur" Sexe="M" Lateralite="G" Nation="FRA" Licence="31101999001" Statut="N" DateNaissance="31.10.1999" Classement="165" Points="7.750"/>
+    <Tireur ID="31871" Nom="PIRVULEASA" Prenom="Ovidiu" Sexe="M" Lateralite="D" Nation="ROU" Licence="05091995002" Statut="N" DateNaissance="05.09.1995" Classement="9999" Points="0"/>
+    <Tireur ID="37612" Nom="PISKOVATSKOV" Prenom="Jonathan" Sexe="M" Lateralite="D" Nation="USA" Licence="18112000000" Statut="N" DateNaissance="18.11.2000" Classement="350" Points="1.500"/>
+    <Tireur ID="14506" Nom="PITRA" Prenom="Pavel" Sexe="M" Lateralite="D" Nation="CZE" Licence="25061988002" Statut="N" DateNaissance="25.06.1988" Classement="333" Points="2.000"/>
+    <Tireur ID="49337" Nom="PLANOJEVIC" Prenom="Jakov" Sexe="M" Lateralite="D" Nation="SRB" Licence="26042004001" Statut="N" DateNaissance="26.04.2004" Classement="9999" Points="0"/>
+    <Tireur ID="39069" Nom="PONCIN" Prenom="Nicolas" Sexe="M" Lateralite="D" Nation="BEL" Licence="28121998004" Statut="N" DateNaissance="28.12.1998" Classement="323" Points="2.125"/>
+    <Tireur ID="46135" Nom="POPA" Prenom="Daniel" Sexe="M" Lateralite="D" Nation="ROU" Licence="11032002001" Statut="N" DateNaissance="11.03.2002" Classement="9999" Points="0"/>
+    <Tireur ID="9367" Nom="PRIINITS" Prenom="Sten" Sexe="M" Lateralite="D" Nation="EST" Licence="10111987000" Statut="N" DateNaissance="10.11.1987" Classement="65" Points="24.000"/>
+    <Tireur ID="48115" Nom="PRINZ" Prenom="Niklas" Sexe="M" Lateralite="D" Nation="LUX" Licence="01032001002" Statut="N" DateNaissance="01.03.2001" Classement="435" Points="0.500"/>
+    <Tireur ID="35790" Nom="PUERTO" Prenom="Andres" Sexe="M" Lateralite="D" Nation="ESP" Licence="06071995003" Statut="N" DateNaissance="06.07.1995" Classement="694" Points="0.000"/>
+    <Tireur ID="36104" Nom="RAMIREZ" Prenom="Yeisser" Sexe="M" Lateralite="D" Nation="USA" Licence="05111986003" Statut="N" DateNaissance="05.11.1986" Classement="61" Points="27.000"/>
+    <Tireur ID="4202" Nom="REDLI" Prenom="Andras" Sexe="M" Lateralite="D" Nation="HUN" Licence="21101983000" Statut="N" DateNaissance="21.10.1983" Classement="42" Points="40.000"/>
+    <Tireur ID="12532" Nom="REIN" Prenom="Stephan" Sexe="M" Lateralite="G" Nation="GER" Licence="19101988000" Statut="N" DateNaissance="19.10.1988" Classement="74" Points="21.250"/>
+    <Tireur ID="43258" Nom="REZAEI" Prenom="Mohammad " Sexe="M" Lateralite="G" Nation="IRI" Licence="06052001002" Statut="N" DateNaissance="06.05.2001" Classement="9999" Points="0"/>
+    <Tireur ID="46480" Nom="REZNIKOVICH" Prenom="Leonid" Sexe="M" Lateralite="D" Nation="MLT" Licence="15041968000" Statut="N" DateNaissance="15.04.1968" Classement="582" Points="0.000"/>
+    <Tireur ID="31008" Nom="ROA" Prenom="Hernando" Sexe="M" Lateralite="D" Nation="COL" Licence="30081995002" Statut="N" DateNaissance="30.08.1995" Classement="265" Points="3.250"/>
+    <Tireur ID="21745" Nom="ROD" Prenom="Max" Sexe="M" Lateralite="G" Nation="POR" Licence="01061993000" Statut="N" DateNaissance="31.07.1993" Classement="227" Points="4.875"/>
+    <Tireur ID="13937" Nom="RODRIGUEZ" Prenom="Jaime" Sexe="M" Lateralite="D" Nation="COL" Licence="12121986002" Statut="N" DateNaissance="10.12.1986" Classement="608" Points="0.000"/>
+    <Tireur ID="21208" Nom="RODRIGUEZ" Prenom="John Edison" Sexe="M" Lateralite="G" Nation="COL" Licence="24011991000" Statut="N" DateNaissance="24.01.1991" Classement="56" Points="33.000"/>
+    <Tireur ID="32931" Nom="ROGER" Prenom="Zacharie Herve" Sexe="M" Lateralite="D" Nation="MAR" Licence="09091995001" Statut="N" DateNaissance="09.09.1995" Classement="479" Points="0.250"/>
+    <Tireur ID="30169" Nom="ROMERO" Prenom="Juan Pedro" Sexe="M" Lateralite="D" Nation="ESP" Licence="12061992002" Statut="N" DateNaissance="12.06.1992" Classement="306" Points="2.750"/>
+    <Tireur ID="54724" Nom="RONG" Prenom="Yao" Sexe="M" Lateralite="G" Nation="CAN" Licence="30012004005" Statut="N" DateNaissance="30.01.2004" Classement="9999" Points="0"/>
+    <Tireur ID="45663" Nom="ROUBAILO" Prenom="Niels" Sexe="M" Lateralite="D" Nation="NED" Licence="04112003001" Statut="N" DateNaissance="04.11.2003" Classement="665" Points="0.000"/>
+    <Tireur ID="35830" Nom="ROUDBAR" Prenom="Samuel" Sexe="M" Lateralite="G" Nation="BEL" Licence="13011998001" Statut="N" DateNaissance="13.01.1998" Classement="9999" Points="0"/>
+    <Tireur ID="27058" Nom="RUBES" Prenom="Martin" Sexe="M" Lateralite="D" Nation="CZE" Licence="16091996000" Statut="N" DateNaissance="16.09.1996" Classement="100" Points="16.000"/>
+    <Tireur ID="40523" Nom="RUSSELL" Prenom="James" Sexe="M" Lateralite="D" Nation="GBR" Licence="30031999007" Statut="N" DateNaissance="30.03.1999" Classement="496" Points="0.250"/>
+    <Tireur ID="32263" Nom="RUSSO" Prenom="Andrea" Sexe="M" Lateralite="D" Nation="ITA" Licence="09031994002" Statut="N" DateNaissance="09.03.1994" Classement="691" Points="0.000"/>
+    <Tireur ID="46401" Nom="SAFAROV" Prenom="Farrukh" Sexe="M" Lateralite="D" Nation="AZE" Licence="09012001003" Statut="N" DateNaissance="09.01.2001" Classement="374" Points="1.000"/>
+    <Tireur ID="46274" Nom="SALZER" Prenom="Matej" Sexe="M" Lateralite="D" Nation="CZE" Licence="29072001003" Statut="N" DateNaissance="29.07.2001" Classement="9999" Points="0"/>
+    <Tireur ID="26319" Nom="SANCHEZ-LETHEM" Prenom="Paul James" Sexe="M" Lateralite="D" Nation="GBR" Licence="01071994000" Statut="N" DateNaissance="01.07.1994" Classement="216" Points="5.750"/>
+    <Tireur ID="24055" Nom="SANTARELLI" Prenom="Andrea" Sexe="M" Lateralite="D" Nation="ITA" Licence="03061993001" Statut="N" DateNaissance="03.06.1993" Classement="5" Points="147.000"/>
+    <Tireur ID="30257" Nom="SANTRAC" Prenom="Danilo" Sexe="M" Lateralite="D" Nation="SRB" Licence="06061996001" Statut="N" DateNaissance="06.06.1996" Classement="576" Points="0.000"/>
+    <Tireur ID="37024" Nom="SARRIO" Prenom="Raul" Sexe="M" Lateralite="D" Nation="ESP" Licence="11091993006" Statut="N" DateNaissance="11.09.1993" Classement="407" Points="0.750"/>
+    <Tireur ID="40852" Nom="SAVIN" Prenom="Alexandr" Sexe="M" Lateralite="D" Nation="KAZ" Licence="28122000001" Statut="N" DateNaissance="28.12.2000" Classement="598" Points="0.000"/>
+    <Tireur ID="5707" Nom="SBARCIA" Prenom="Alin" Sexe="M" Lateralite="D" Nation="ROU" Licence="27011984006" Statut="N" DateNaissance="27.01.1984" Classement="575" Points="0.000"/>
+    <Tireur ID="24074" Nom="SCHMIDT" Prenom="Richard" Sexe="M" Lateralite="G" Nation="GER" Licence="10071992000" Statut="N" DateNaissance="10.07.1992" Classement="112" Points="13.000"/>
+    <Tireur ID="31949" Nom="SCHMIER" Prenom="Robert" Sexe="M" Lateralite="D" Nation="GER" Licence="10021994007" Statut="N" DateNaissance="11.02.1994" Classement="480" Points="0.250"/>
+    <Tireur ID="48645" Nom="SCHUHMANN" Prenom="Jan" Sexe="M" Lateralite="D" Nation="AUT" Licence="05072001004" Statut="N" DateNaissance="05.07.2001" Classement="614" Points="0.000"/>
+    <Tireur ID="38218" Nom="SCHUMACHER" Prenom="Cooper" Sexe="M" Lateralite="G" Nation="USA" Licence="30091994005" Statut="N" DateNaissance="30.09.1994" Classement="409" Points="0.750"/>
+    <Tireur ID="41025" Nom="SERNADAS" Prenom="Tomas" Sexe="M" Lateralite="D" Nation="POR" Licence="28012001001" Statut="N" DateNaissance="28.01.2001" Classement="530" Points="0.250"/>
+    <Tireur ID="37142" Nom="SERTAY" Prenom="Yerlik" Sexe="M" Lateralite="D" Nation="KAZ" Licence="19091998003" Statut="N" DateNaissance="19.09.1998" Classement="231" Points="4.750"/>
+    <Tireur ID="31032" Nom="SHARLAIMOV" Prenom="Vadim" Sexe="M" Lateralite="D" Nation="KAZ" Licence="09121996001" Statut="N" DateNaissance="09.12.1996" Classement="52" Points="35.000"/>
+    <Tireur ID="45110" Nom="SHEPHERD" Prenom="Billy" Sexe="M" Lateralite="D" Nation="GBR" Licence="04082000002" Statut="N" DateNaissance="04.08.2000" Classement="500" Points="0.250"/>
+    <Tireur ID="43142" Nom="SHEUM" Prenom="Bron" Sexe="M" Lateralite="D" Nation="SGP" Licence="18092000003" Statut="N" DateNaissance="18.09.2000" Classement="9999" Points="0"/>
+    <Tireur ID="30081" Nom="SIKLOSI" Prenom="Gergely" Sexe="M" Lateralite="D" Nation="HUN" Licence="04091997000" Statut="N" DateNaissance="04.09.1997" Classement="3" Points="170.000"/>
+    <Tireur ID="54334" Nom="SILVERS" Prenom="Noah" Sexe="M" Lateralite="D" Nation="USA" Licence="15012004004" Statut="N" DateNaissance="15.01.2004" Classement="9999" Points="0"/>
+    <Tireur ID="37623" Nom="SINGH" Prenom="Udaivir" Sexe="M" Lateralite="D" Nation="IND" Licence="16011995009" Statut="N" DateNaissance="16.01.1995" Classement="243" Points="4.000"/>
+    <Tireur ID="49018" Nom="SITO" Prenom="Jian Tong" Sexe="M" Lateralite="D" Nation="SGP" Licence="09082003000" Statut="N" DateNaissance="09.08.2003" Classement="9999" Points="0"/>
+    <Tireur ID="5917" Nom="SOBOCAN" Prenom="Rok" Sexe="M" Lateralite="D" Nation="SLO" Licence="13111971000" Statut="N" DateNaissance="13.11.1971" Classement="628" Points="0.000"/>
+    <Tireur ID="39168" Nom="SOLA" Prenom="Jakov" Sexe="M" Lateralite="D" Nation="CRO" Licence="28041999000" Statut="N" DateNaissance="28.04.1999" Classement="669" Points="0.000"/>
+    <Tireur ID="36998" Nom="SON" Prenom="Taejin" Sexe="M" Lateralite="G" Nation="KOR" Licence="16071996001" Statut="N" DateNaissance="16.07.1996" Classement="177" Points="7.000"/>
+    <Tireur ID="26680" Nom="STASZULONEK" Prenom="Aleksander" Sexe="M" Lateralite="D" Nation="POL" Licence="15091993001" Statut="N" DateNaissance="15.09.1993" Classement="235" Points="4.500"/>
+    <Tireur ID="29830" Nom="STYMNE" Prenom="Jakob" Sexe="M" Lateralite="D" Nation="SWE" Licence="25071996000" Statut="N" DateNaissance="25.07.1996" Classement="417" Points="0.625"/>
+    <Tireur ID="38901" Nom="SVENSSON" Prenom="Jonathan" Sexe="M" Lateralite="D" Nation="SWE" Licence="04101999003" Statut="N" DateNaissance="04.10.1999" Classement="218" Points="5.750"/>
+    <Tireur ID="50791" Nom="SZAPARY" Prenom="Tristan" Sexe="M" Lateralite="G" Nation="USA" Licence="18102001005" Statut="N" DateNaissance="18.10.2001" Classement="182" Points="6.500"/>
+    <Tireur ID="12056" Nom="SZENYI" Prenom="Peter" Sexe="M" Lateralite="D" Nation="HUN" Licence="18031987003" Statut="N" DateNaissance="18.03.1987" Classement="418" Points="0.625"/>
+    <Tireur ID="39395" Nom="SZEP" Prenom="Marton" Sexe="M" Lateralite="G" Nation="ROU" Licence="11011998001" Statut="N" DateNaissance="11.01.1998" Classement="9999" Points="0"/>
+    <Tireur ID="21004" Nom="TACCANI" Prenom="Alessandro" Sexe="M" Lateralite="D" Nation="ARG" Licence="12081992002" Statut="N" DateNaissance="12.08.1992" Classement="168" Points="7.500"/>
+    <Tireur ID="4701" Nom="TAGLIARIOL" Prenom="Matteo" Sexe="M" Lateralite="D" Nation="ITA" Licence="07011983002" Statut="N" DateNaissance="07.01.1983" Classement="67" Points="23.000"/>
+    <Tireur ID="33493" Nom="TAURIAINEN" Prenom="Topias" Sexe="M" Lateralite="D" Nation="FIN" Licence="09031999001" Statut="N" DateNaissance="09.03.1999" Classement="258" Points="3.375"/>
+    <Tireur ID="46421" Nom="TAVOR" Prenom="Itamar" Sexe="M" Lateralite="D" Nation="ISR" Licence="02102002000" Statut="N" DateNaissance="02.10.2002" Classement="9999" Points="0"/>
+    <Tireur ID="42606" Nom="TEMIRYAEV" Prenom="Alan" Sexe="M" Lateralite="G" Nation="USA" Licence="12012001002" Statut="N" DateNaissance="12.01.2001" Classement="401" Points="0.750"/>
+    <Tireur ID="48825" Nom="TEZCAN" Prenom="Mehmet" Sexe="M" Lateralite="D" Nation="TUR" Licence="05052000006" Statut="N" DateNaissance="05.05.2000" Classement="9999" Points="0"/>
+    <Tireur ID="19926" Nom="TULEN" Prenom="Tristan" Sexe="M" Lateralite="G" Nation="NED" Licence="22071991000" Statut="N" DateNaissance="22.07.1991" Classement="29" Points="57.000"/>
+    <Tireur ID="31502" Nom="TULEN" Prenom="Rafael" Sexe="M" Lateralite="D" Nation="NED" Licence="01061997000" Statut="N" DateNaissance="01.06.1997" Classement="90" Points="17.500"/>
+    <Tireur ID="34279" Nom="UNTERHAUSER" Prenom="Samuel" Sexe="M" Lateralite="G" Nation="GER" Licence="12071997004" Statut="N" DateNaissance="12.07.1997" Classement="84" Points="18.000"/>
+    <Tireur ID="32285" Nom="VAN NUNEN" Prenom="David" Sexe="M" Lateralite="D" Nation="NED" Licence="17071995003" Statut="N" DateNaissance="17.07.1995" Classement="254" Points="3.625"/>
+    <Tireur ID="32919" Nom="VISMARA" Prenom="Federico" Sexe="M" Lateralite="D" Nation="ITA" Licence="10071997001" Statut="N" DateNaissance="10.07.1997" Classement="17" Points="77.000"/>
+    <Tireur ID="8793" Nom="VON DER OSTEN" Prenom="Frederik" Sexe="M" Lateralite="D" Nation="DEN" Licence="04081993000" Statut="N" DateNaissance="04.08.1993" Classement="95" Points="16.500"/>
+    <Tireur ID="19507" Nom="VUORINEN" Prenom="Niko" Sexe="M" Lateralite="G" Nation="FIN" Licence="08061989003" Statut="N" DateNaissance="08.06.1989" Classement="36" Points="48.000"/>
+    <Tireur ID="45423" Nom="WECKERLE" Prenom="Tobias" Sexe="M" Lateralite="G" Nation="GER" Licence="12012000004" Statut="N" DateNaissance="12.01.2000" Classement="363" Points="1.250"/>
+    <Tireur ID="36910" Nom="WHITE" Prenom="Sean" Sexe="M" Lateralite="D" Nation="USA" Licence="05101996004" Statut="N" DateNaissance="05.10.1996" Classement="406" Points="0.750"/>
+    <Tireur ID="45737" Nom="WICHT" Prenom="Matteo" Sexe="M" Lateralite="D" Nation="SUI" Licence="06022002001" Statut="N" DateNaissance="06.02.2002" Classement="667" Points="0.000"/>
+    <Tireur ID="24408" Nom="YAMADA" Prenom="Masaru" Sexe="M" Lateralite="D" Nation="JPN" Licence="14061994001" Statut="N" DateNaissance="14.06.1994" Classement="4" Points="162.000"/>
+    <Tireur ID="32622" Nom="YOO" Prenom="Justin" Sexe="M" Lateralite="D" Nation="USA" Licence="06051997002" Statut="N" DateNaissance="06.05.1997" Classement="396" Points="0.875"/>
+    <Tireur ID="52408" Nom="YUMINAGA" Prenom="Takayuki" Sexe="M" Lateralite="G" Nation="JPN" Licence="27022005000" Statut="N" DateNaissance="27.02.2005" Classement="589" Points="0.000"/>
+    <Tireur ID="5511" Nom="ZAWROTNIAK" Prenom="Radoslaw" Sexe="M" Lateralite="G" Nation="POL" Licence="02091981000" Statut="N" DateNaissance="02.09.1981" Classement="18" Points="72.000"/>
+    <Tireur ID="54293" Nom="ZEITOUN" Prenom="Nicholas" Sexe="M" Lateralite="D" Nation="AUS" Licence="10081995007" Statut="N" DateNaissance="10.08.1995" Classement="607" Points="0.000"/>
+    <Tireur ID="54730" Nom="ZHANG" Prenom="Nicholas" Sexe="M" Lateralite="D" Nation="CAN" Licence="20062006002" Statut="N" DateNaissance="20.06.2006" Classement="9999" Points="0"/>
+  </Tireurs>
+  <Arbitres>
+    <Arbitre ID="377" Nom="ABDEL FATTAH" Prenom="Hussein" Sexe="M" Nation="EGY" Licence="02061978000" DateNaissance="02.06.1978" Categorie="B"/>
+    <Arbitre ID="51339" Nom="ABDELAZIZ" Prenom="Hisham" Sexe="M" Nation="USA" Licence="27071992007" DateNaissance="27.07.1992" Categorie="B"/>
+    <Arbitre ID="948" Nom="ABU ALI" Prenom="Mohamed" Sexe="M" Nation="KSA" Licence="01101964000" DateNaissance="01.10.1964" Categorie="B"/>
+    <Arbitre ID="32834" Nom="ABUSHKEWA" Prenom="Ehab" Sexe="M" Nation="LBA" Licence="29121989001" DateNaissance="29.12.1989" Categorie="B"/>
+    <Arbitre ID="417" Nom="ACEVEDO" Prenom="Pablo" Sexe="M" Nation="ESP" Licence="01101977000" DateNaissance="01.10.1977" Categorie="B"/>
+    <Arbitre ID="45258" Nom="AFSHAR GHASSEMI " Prenom="Karan" Sexe="M" Nation="IRI" Licence="24121980000" DateNaissance="24.12.1980" Categorie="B"/>
+    <Arbitre ID="47323" Nom="AGGARWAL" Prenom="Rashmi" Sexe="F" Nation="IND" Licence="12091981004" DateNaissance="12.09.1981" Categorie="B"/>
+    <Arbitre ID="38532" Nom="AL BLOOSHI" Prenom="Mousa" Sexe="M" Nation="UAE" Licence="16041989003" DateNaissance="16.04.1989" Categorie="B"/>
+    <Arbitre ID="949" Nom="AL DUHAIM" Prenom="Farid" Sexe="M" Nation="KSA" Licence="05071968001" DateNaissance="05.07.1968" Categorie="B"/>
+    <Arbitre ID="33259" Nom="AL SALMI" Prenom="Adnan Abdulhai H" Sexe="M" Nation="KSA" Licence="25101972001" DateNaissance="25.10.1972" Categorie="B"/>
+    <Arbitre ID="32353" Nom="AL ZAROONI" Prenom="Khalifa" Sexe="M" Nation="UAE" Licence="09111996001" DateNaissance="09.11.1996" Categorie="B"/>
+    <Arbitre ID="768" Nom="AL-NUAIMI" Prenom="Muhannad" Sexe="M" Nation="SWE" Licence="14071963000" DateNaissance="14.07.1963" Categorie="B"/>
+    <Arbitre ID="24202" Nom="ALAA" Prenom="L. Issa" Sexe="M" Nation="IRQ" Licence="31081966000" DateNaissance="31.08.1966" Categorie="B"/>
+    <Arbitre ID="35997" Nom="ALAA EL DIN" Prenom="Youssef" Sexe="M" Nation="EGY" Licence="18101995004" DateNaissance="18.10.1995" Categorie="B"/>
+    <Arbitre ID="16207" Nom="ALEKSANDROV" Prenom="Roman" Sexe="M" Nation="UZB" Licence="30061989000" DateNaissance="30.06.1989" Categorie="B"/>
+    <Arbitre ID="47376" Nom="ALMAAZMI" Prenom="Sultan" Sexe="M" Nation="UAE" Licence="09051997001" DateNaissance="09.05.1997" Categorie="B"/>
+    <Arbitre ID="47343" Nom="ALNEFAIE" Prenom="Fawaz" Sexe="M" Nation="KSA" Licence="24041972000" DateNaissance="24.04.1972" Categorie="B"/>
+    <Arbitre ID="35280" Nom="ALQANNEH" Prenom="Hassan" Sexe="M" Nation="JOR" Licence="29071975002" DateNaissance="29.07.1975" Categorie="B"/>
+    <Arbitre ID="40514" Nom="ALQATTAN" Prenom="Mohammed" Sexe="M" Nation="BRN" Licence="16061993005" DateNaissance="16.06.1993" Categorie="B"/>
+    <Arbitre ID="29131" Nom="ALQUARISHI" Prenom="Hassen Matok" Sexe="M" Nation="KSA" Licence="20051973001" DateNaissance="20.05.1973" Categorie="B"/>
+    <Arbitre ID="33260" Nom="ALSAIF" Prenom="Tawfeeq Abdulaziz M" Sexe="M" Nation="KSA" Licence="06011970000" DateNaissance="06.01.1970" Categorie="B"/>
+    <Arbitre ID="991" Nom="ALSHAMALI" Prenom="Rashed" Sexe="M" Nation="KUW" Licence="15121973003" DateNaissance="15.12.1973" Categorie="B"/>
+    <Arbitre ID="419" Nom="ALVAREZ GIL DE TEJADA" Prenom="Jose Luis" Sexe="M" Nation="ESP" Licence="22011969001" DateNaissance="22.01.1969" Categorie="B"/>
+    <Arbitre ID="20013" Nom="ALY" Prenom="Sherif" Sexe="M" Nation="EGY" Licence="12121981004" DateNaissance="12.12.1981" Categorie="B"/>
+    <Arbitre ID="4760" Nom="AMARI" Prenom="Tetsuya" Sexe="M" Nation="JPN" Licence="25121984000" DateNaissance="25.12.1984" Categorie="B"/>
+    <Arbitre ID="15344" Nom="AMER" Prenom="Tina" Sexe="F" Nation="GER" Licence="26091982001" DateNaissance="26.09.1982" Categorie="B"/>
+    <Arbitre ID="7760" Nom="AMEZ-DROZ" Prenom="Leon" Sexe="M" Nation="SUI" Licence="18031986002" DateNaissance="18.03.1986" Categorie="B"/>
+    <Arbitre ID="7535" Nom="ANDERTON" Prenom="Grant" Sexe="M" Nation="IRL" Licence="17021964000" DateNaissance="17.02.1964" Categorie="B"/>
+    <Arbitre ID="28767" Nom="ANIL" Prenom="Murtaza Berkan" Sexe="M" Nation="TUR" Licence="02091994003" DateNaissance="02.09.1994" Categorie="B"/>
+    <Arbitre ID="20901" Nom="APTSIAURI" Prenom="Tatia" Sexe="F" Nation="GEO" Licence="12071991002" DateNaissance="12.07.1991" Categorie="B"/>
+    <Arbitre ID="7208" Nom="ARENAS GOMEZ" Prenom="Pilar Adriana" Sexe="F" Nation="COL" Licence="08081981000" DateNaissance="08.08.1981" Categorie="B"/>
+    <Arbitre ID="15719" Nom="ARMATA" Prenom="Gaspare" Sexe="M" Nation="ITA" Licence="06091988001" DateNaissance="06.09.1988" Categorie="B"/>
+    <Arbitre ID="16068" Nom="AULAR" Prenom="Aleska" Sexe="F" Nation="VEN" Licence="28051990002" DateNaissance="28.05.1990" Categorie="B"/>
+    <Arbitre ID="21674" Nom="AYANWALE" Prenom="Kola" Sexe="M" Nation="GBR" Licence="25101970001" DateNaissance="25.10.1970" Categorie="B"/>
+    <Arbitre ID="20462" Nom="BADAWI" Prenom="Amgad" Sexe="M" Nation="PUR" Licence="31031967000" DateNaissance="31.03.1967" Categorie="B"/>
+    <Arbitre ID="11129" Nom="BAKER" Prenom="David" Sexe="M" Nation="AUS" Licence="05021987002" DateNaissance="05.02.1987" Categorie="B"/>
+    <Arbitre ID="23369" Nom="BALINT" Prenom="Ester" Sexe="F" Nation="FIN" Licence="11061994001" DateNaissance="11.06.1994" Categorie="B"/>
+    <Arbitre ID="24400" Nom="BALOGH" Prenom="Reka" Sexe="F" Nation="ROU" Licence="20121993001" DateNaissance="20.12.1993" Categorie="B"/>
+    <Arbitre ID="23648" Nom="BARDENHAGEN" Prenom="Tim" Sexe="M" Nation="GER" Licence="27101988002" DateNaissance="27.10.1988" Categorie="B"/>
+    <Arbitre ID="53454" Nom="BARNHART" Prenom="William" Sexe="M" Nation="USA" Licence="15041968001" DateNaissance="15.04.1968" Categorie="B"/>
+    <Arbitre ID="182" Nom="BASTYNS" Prenom="Olivier" Sexe="M" Nation="BEL" Licence="13091971000" DateNaissance="13.09.1971" Categorie="B"/>
+    <Arbitre ID="53451" Nom="BATI" Prenom="Khalid" Sexe="M" Nation="KSA" Licence="05111971000" DateNaissance="05.11.1971" Categorie="B"/>
+    <Arbitre ID="37940" Nom="BEKEFI" Prenom="Daniel" Sexe="M" Nation="HUN" Licence="01011981004" DateNaissance="01.01.1981" Categorie="B"/>
+    <Arbitre ID="14442" Nom="BELAS" Prenom="Karolina" Sexe="F" Nation="SVK" Licence="18051987005" DateNaissance="18.05.1987" Categorie="B"/>
+    <Arbitre ID="18135" Nom="BEN CHAABENE" Prenom="Iheb" Sexe="M" Nation="TUN" Licence="28011987005" DateNaissance="28.01.1987" Categorie="B"/>
+    <Arbitre ID="6793" Nom="BENAVIDES" Prenom="Jose Gregorio" Sexe="M" Nation="VEN" Licence="18081976000" DateNaissance="18.08.1976" Categorie="B"/>
+    <Arbitre ID="30190" Nom="BERTA" Prenom="Gertrud" Sexe="F" Nation="HUN" Licence="07071987003" DateNaissance="07.07.1987" Categorie="B"/>
+    <Arbitre ID="33362" Nom="BERTASO GOLDANI" Prenom="Lucio" Sexe="M" Nation="BRA" Licence="21101977003" DateNaissance="21.10.1977" Categorie="B"/>
+    <Arbitre ID="51423" Nom="BEUGNETTE" Prenom="Matthieu" Sexe="M" Nation="FRA" Licence="15101987004" DateNaissance="15.10.1987" Categorie="B"/>
+    <Arbitre ID="7575" Nom="BLUMOWSKI" Prenom="Ingolf" Sexe="M" Nation="GER" Licence="27071973001" DateNaissance="27.07.1973" Categorie="B"/>
+    <Arbitre ID="10291" Nom="BOCQUET" Prenom="Fabrice" Sexe="M" Nation="FRA" Licence="13101979000" DateNaissance="13.10.1979" Categorie="B"/>
+    <Arbitre ID="13099" Nom="BOROSAK" Prenom="Mirna" Sexe="F" Nation="CRO" Licence="24011980000" DateNaissance="24.01.1980" Categorie="B"/>
+    <Arbitre ID="5260" Nom="BORSODI" Prenom="Andras" Sexe="M" Nation="NOR" Licence="18091967000" DateNaissance="18.09.1967" Categorie="B"/>
+    <Arbitre ID="30513" Nom="BOSSART" Prenom="Michel" Sexe="M" Nation="SUI" Licence="10101972000" DateNaissance="10.10.1972" Categorie="B"/>
+    <Arbitre ID="23571" Nom="BRANDT RASMUSSEN" Prenom="Martin" Sexe="M" Nation="DEN" Licence="09091985007" DateNaissance="09.09.1985" Categorie="B"/>
+    <Arbitre ID="421" Nom="BRAVO" Prenom="Daniel" Sexe="M" Nation="ESP" Licence="21021972002" DateNaissance="21.02.1972" Categorie="B"/>
+    <Arbitre ID="11055" Nom="BRUNO" Prenom="Alexis" Sexe="M" Nation="ITA" Licence="08041983004" DateNaissance="08.04.1983" Categorie="B"/>
+    <Arbitre ID="20534" Nom="BUCHS" Prenom="Daniel" Sexe="M" Nation="SUI" Licence="04081966001" DateNaissance="04.08.1966" Categorie="B"/>
+    <Arbitre ID="44213" Nom="BURIEV " Prenom="Ortik " Sexe="M" Nation="UZB" Licence="28091995002" DateNaissance="28.09.1995" Categorie="B"/>
+    <Arbitre ID="19961" Nom="BURNATSEV" Prenom="Ilya" Sexe="M" Nation="RUS" Licence="26101990000" DateNaissance="26.10.1990" Categorie="B"/>
+    <Arbitre ID="20161" Nom="BYKOV" Prenom="Andrey" Sexe="M" Nation="RUS" Licence="22071964001" DateNaissance="22.07.1964" Categorie="B"/>
+    <Arbitre ID="227" Nom="CANTIN" Prenom="Pascal" Sexe="M" Nation="CAN" Licence="01051978001" DateNaissance="01.05.1978" Categorie="B"/>
+    <Arbitre ID="47576" Nom="CARDENAS" Prenom="Karen" Sexe="F" Nation="PER" Licence="26081985006" DateNaissance="26.08.1985" Categorie="B"/>
+    <Arbitre ID="425" Nom="CASARES" Prenom="Ignacio" Sexe="M" Nation="ESP" Licence="30061977001" DateNaissance="30.06.1977" Categorie="B"/>
+    <Arbitre ID="11736" Nom="CELLER" Prenom="Pavol" Sexe="M" Nation="SVK" Licence="13041989000" DateNaissance="13.04.1989" Categorie="B"/>
+    <Arbitre ID="25787" Nom="CHANG" Prenom="Jason" Sexe="M" Nation="USA" Licence="30071993000" DateNaissance="30.07.1993" Categorie="B"/>
+    <Arbitre ID="11037" Nom="CHANTASUVANNASIN" Prenom="Nunta" Sexe="F" Nation="THA" Licence="26091983008" DateNaissance="26.09.1983" Categorie="B"/>
+    <Arbitre ID="10094" Nom="CHENG CHI-HUNG" Prenom="Gerald" Sexe="M" Nation="HKG" Licence="13031973002" DateNaissance="13.03.1973" Categorie="B"/>
+    <Arbitre ID="2437" Nom="CHICHON" Prenom="Vanesa" Sexe="F" Nation="ESP" Licence="05091985000" DateNaissance="05.09.1985" Categorie="B"/>
+    <Arbitre ID="801" Nom="CHIEI" Prenom="Luca" Sexe="M" Nation="ITA" Licence="25101964000" DateNaissance="25.10.1964" Categorie="B"/>
+    <Arbitre ID="33252" Nom="CHU" Prenom="Ting Fung" Sexe="M" Nation="HKG" Licence="01061988008" DateNaissance="01.06.1988" Categorie="B"/>
+    <Arbitre ID="18816" Nom="CHUA" Prenom="Eugene Wee Hong" Sexe="M" Nation="SGP" Licence="13021988000" DateNaissance="13.02.1988" Categorie="B"/>
+    <Arbitre ID="34142" Nom="CHUMBURIDZE" Prenom="Khatuna" Sexe="F" Nation="GEO" Licence="07081973001" DateNaissance="07.08.1973" Categorie="B"/>
+    <Arbitre ID="13209" Nom="CIVIERO-AIVANO" Prenom="Ambre" Sexe="F" Nation="SUI" Licence="03021987002" DateNaissance="03.02.1987" Categorie="B"/>
+    <Arbitre ID="10829" Nom="COLMAN ORTELLADO" Prenom="Ever Augusto" Sexe="M" Nation="PAR" Licence="08021984002" DateNaissance="08.02.1984" Categorie="B"/>
+    <Arbitre ID="18325" Nom="CORTES" Prenom="Alberto" Sexe="M" Nation="MEX" Licence="16011980000" DateNaissance="16.01.1980" Categorie="B"/>
+    <Arbitre ID="8768" Nom="CREESE" Prenom="Peter" Sexe="M" Nation="AUS" Licence="08091982002" DateNaissance="08.09.1982" Categorie="B"/>
+    <Arbitre ID="13717" Nom="CRUZ" Prenom="Alberto" Sexe="M" Nation="CRC" Licence="29121987001" DateNaissance="29.12.1987" Categorie="B"/>
+    <Arbitre ID="804" Nom="CUBEDDU" Prenom="Carlo" Sexe="M" Nation="ITA" Licence="07031970000" DateNaissance="07.03.1970" Categorie="B"/>
+    <Arbitre ID="46937" Nom="DAL POZZOLO" Prenom="Marco" Sexe="M" Nation="ITA" Licence="15121989006" DateNaissance="15.12.1989" Categorie="B"/>
+    <Arbitre ID="35027" Nom="DE WIT" Prenom="Kevin" Sexe="M" Nation="BEL" Licence="07081987007" DateNaissance="07.08.1987" Categorie="B"/>
+    <Arbitre ID="46700" Nom="DELAP" Prenom="Riley" Sexe="M" Nation="USA" Licence="23051992004" DateNaissance="23.05.1992" Categorie="B"/>
+    <Arbitre ID="1732" Nom="DELATTRE" Prenom="Jeffrey" Sexe="M" Nation="BEL" Licence="26011986000" DateNaissance="26.01.1986" Categorie="B"/>
+    <Arbitre ID="4059" Nom="DELI" Prenom="Dora" Sexe="F" Nation="HUN" Licence="20101982002" DateNaissance="20.10.1982" Categorie="B"/>
+    <Arbitre ID="7707" Nom="DENZER" Prenom="Benjamin" Sexe="M" Nation="GER" Licence="20111981000" DateNaissance="20.11.1981" Categorie="B"/>
+    <Arbitre ID="18694" Nom="DIAZ" Prenom="Angel" Sexe="M" Nation="MEX" Licence="13071969000" DateNaissance="13.07.1969" Categorie="B"/>
+    <Arbitre ID="36618" Nom="DONNELLY" Prenom="Devin" Sexe="M" Nation="USA" Licence="12101979002" DateNaissance="12.10.1979" Categorie="B"/>
+    <Arbitre ID="10318" Nom="DOO" Prenom="Hwa Jung" Sexe="F" Nation="KOR" Licence="06041985001" DateNaissance="06.04.1985" Categorie="B"/>
+    <Arbitre ID="2233" Nom="DOSTAL" Prenom="Jan" Sexe="M" Nation="CZE" Licence="07061981000" DateNaissance="07.06.1981" Categorie="B"/>
+    <Arbitre ID="667" Nom="DOUVIS" Prenom="Andreas" Sexe="M" Nation="GRE" Licence="29051967001" DateNaissance="29.05.1967" Categorie="B"/>
+    <Arbitre ID="782" Nom="DRAI-LAST" Prenom="Shirly" Sexe="F" Nation="ISR" Licence="22081971000" DateNaissance="22.08.1971" Categorie="B"/>
+    <Arbitre ID="35028" Nom="DRESCHER" Prenom="Karen Antonia" Sexe="F" Nation="GER" Licence="11011992008" DateNaissance="11.01.1992" Categorie="B"/>
+    <Arbitre ID="46673" Nom="DRESCHER" Prenom="Tim" Sexe="M" Nation="GER" Licence="07021990006" DateNaissance="07.02.1990" Categorie="B"/>
+    <Arbitre ID="18426" Nom="DUCARME" Prenom="Florence" Sexe="F" Nation="FRA" Licence="06021990001" DateNaissance="06.02.1990" Categorie="B"/>
+    <Arbitre ID="1141" Nom="DUCU" Prenom="Petre" Sexe="M" Nation="ROU" Licence="14061967001" DateNaissance="14.06.1967" Categorie="B"/>
+    <Arbitre ID="11472" Nom="DUL" Prenom="Michal" Sexe="M" Nation="POL" Licence="22091985007" DateNaissance="22.09.1985" Categorie="B"/>
+    <Arbitre ID="24208" Nom="DYAOKOKIN" Prenom="Yevgeniy" Sexe="M" Nation="KAZ" Licence="01011972001" DateNaissance="01.01.1972" Categorie="B"/>
+    <Arbitre ID="20012" Nom="EL NAGGAR" Prenom="Bassel" Sexe="M" Nation="EGY" Licence="22111981001" DateNaissance="22.11.1981" Categorie="B"/>
+    <Arbitre ID="39108" Nom="EMAD" Prenom="Islam" Sexe="M" Nation="EGY" Licence="15031985001" DateNaissance="15.03.1985" Categorie="B"/>
+    <Arbitre ID="10026" Nom="ESTERKIN" Prenom="Violetta" Sexe="F" Nation="ISR" Licence="01011989002" DateNaissance="24.01.1989" Categorie="B"/>
+    <Arbitre ID="21417" Nom="FABRE" Prenom="Michel" Sexe="M" Nation="SUI" Licence="26021962000" DateNaissance="26.02.1962" Categorie="B"/>
+    <Arbitre ID="16269" Nom="FALAH" Prenom="Alaa A." Sexe="M" Nation="IRQ" Licence="07051968000" DateNaissance="07.05.1968" Categorie="A"/>
+    <Arbitre ID="53391" Nom="FARKAS-NEMETH" Prenom="Zoltan" Sexe="M" Nation="HUN" Licence="06061998007" DateNaissance="06.06.1998" Categorie="B"/>
+    <Arbitre ID="16444" Nom="FEOKTISTOV" Prenom="Valerian" Sexe="M" Nation="RUS" Licence="25041980002" DateNaissance="25.04.1980" Categorie="B"/>
+    <Arbitre ID="8025" Nom="FERJANI" Prenom="Mohamed Ayoub" Sexe="M" Nation="TUN" Licence="27071986000" DateNaissance="27.07.1986" Categorie="B"/>
+    <Arbitre ID="19106" Nom="FERREIRA" Prenom="Francisco" Sexe="M" Nation="COL" Licence="06101986006" DateNaissance="06.10.1986" Categorie="B"/>
+    <Arbitre ID="26804" Nom="FISCHER" Prenom="Maike" Sexe="F" Nation="GER" Licence="01021987002" DateNaissance="01.02.1987" Categorie="B"/>
+    <Arbitre ID="5361" Nom="FOGT" Prenom="Przemyslaw" Sexe="M" Nation="POL" Licence="02011980002" DateNaissance="02.01.1980" Categorie="B"/>
+    <Arbitre ID="38110" Nom="FOSTER" Prenom="Andrew" Sexe="M" Nation="USA" Licence="21091990006" DateNaissance="21.09.1990" Categorie="B"/>
+    <Arbitre ID="53392" Nom="FREIMAN" Prenom="Daniel" Sexe="M" Nation="HUN" Licence="23031994009" DateNaissance="23.03.1994" Categorie="B"/>
+    <Arbitre ID="15852" Nom="FREZZA" Prenom="Pietro" Sexe="M" Nation="ITA" Licence="31101989001" DateNaissance="31.10.1989" Categorie="B"/>
+    <Arbitre ID="10594" Nom="FURMAN" Prenom="Ina" Sexe="F" Nation="ISR" Licence="04041983004" DateNaissance="04.04.1983" Categorie="B"/>
+    <Arbitre ID="43810" Nom="GASPER" Prenom="Christian" Sexe="M" Nation="GER" Licence="04051982003" DateNaissance="04.05.1982" Categorie="B"/>
+    <Arbitre ID="436" Nom="GASSET" Prenom="Agusti" Sexe="M" Nation="ESP" Licence="28061972000" DateNaissance="28.06.1972" Categorie="B"/>
+    <Arbitre ID="706" Nom="GATAI" Prenom="Robert" Sexe="M" Nation="HUN" Licence="26051964000" DateNaissance="26.05.1964" Categorie="B"/>
+    <Arbitre ID="7927" Nom="GEROSSIDERIS" Prenom="Efstathios" Sexe="M" Nation="GRE" Licence="14061970000" DateNaissance="14.06.1970" Categorie="B"/>
+    <Arbitre ID="8896" Nom="GHAHVEHCHIAN" Prenom="Mohammad Hassan" Sexe="M" Nation="IRI" Licence="23041981002" DateNaissance="23.04.1981" Categorie="B"/>
+    <Arbitre ID="21115" Nom="GHAZY" Prenom="Tamim" Sexe="M" Nation="EGY" Licence="01011986024" DateNaissance="01.01.1986" Categorie="B"/>
+    <Arbitre ID="5662" Nom="GHEORGHE" Prenom="Marius" Sexe="M" Nation="ROU" Licence="20051974001" DateNaissance="20.05.1974" Categorie="B"/>
+    <Arbitre ID="16368" Nom="GHEORGHE" Prenom="Florin Sebastian" Sexe="M" Nation="ROU" Licence="31011972001" DateNaissance="31.01.1972" Categorie="B"/>
+    <Arbitre ID="2476" Nom="GONZALEZ CARPENA" Prenom="Alfredo" Sexe="M" Nation="ESP" Licence="02081981002" DateNaissance="02.08.1981" Categorie="B"/>
+    <Arbitre ID="9664" Nom="GORAL" Prenom="Tomasz" Sexe="M" Nation="SWE" Licence="13061981000" DateNaissance="13.06.1981" Categorie="B"/>
+    <Arbitre ID="32649" Nom="GRANDON FICA" Prenom="Miguel Angel" Sexe="M" Nation="CHI" Licence="27121993006" DateNaissance="27.12.1993" Categorie="B"/>
+    <Arbitre ID="6393" Nom="GRITSAEV" Prenom="Konstantin" Sexe="M" Nation="PUR" Licence="24011984000" DateNaissance="24.01.1984" Categorie="B"/>
+    <Arbitre ID="53381" Nom="GROPPER" Prenom="Johanna" Sexe="F" Nation="GER" Licence="25071985004" DateNaissance="25.07.1985" Categorie="B"/>
+    <Arbitre ID="1441" Nom="GROUPIERRE" Prenom="Victor Cristian" Sexe="M" Nation="ARG" Licence="24101971000" DateNaissance="24.10.1971" Categorie="B"/>
+    <Arbitre ID="10810" Nom="GRYAZNOV" Prenom="Dmitriy" Sexe="M" Nation="KAZ" Licence="02121985001" DateNaissance="02.12.1985" Categorie="B"/>
+    <Arbitre ID="523" Nom="GUENET" Prenom="Jean-Marc" Sexe="M" Nation="FRA" Licence="20031970000" DateNaissance="20.03.1970" Categorie="B"/>
+    <Arbitre ID="12934" Nom="GURINENKO" Prenom="Bogdan" Sexe="M" Nation="UKR" Licence="13101987002" DateNaissance="13.10.1987" Categorie="B"/>
+    <Arbitre ID="5990" Nom="HABLUTZEL-BURKI" Prenom="Gianna" Sexe="F" Nation="SUI" Licence="22121969000" DateNaissance="22.12.1969" Categorie="B"/>
+    <Arbitre ID="29463" Nom="HADI" Prenom="Islam Bilel" Sexe="M" Nation="ALG" Licence="07081988003" DateNaissance="07.08.1988" Categorie="B"/>
+    <Arbitre ID="51376" Nom="HAENSCHKE" Prenom="Louis Albert" Sexe="M" Nation="GER" Licence="28061994004" DateNaissance="28.06.1994" Categorie="B"/>
+    <Arbitre ID="10938" Nom="HAJJI" Prenom="Samir" Sexe="M" Nation="TUN" Licence="27111968000" DateNaissance="27.11.1968" Categorie="B"/>
+    <Arbitre ID="47254" Nom="HAMANO" Prenom="Tadashi" Sexe="M" Nation="JPN" Licence="25071992002" DateNaissance="25.07.1992" Categorie="B"/>
+    <Arbitre ID="47433" Nom="HASHIM" Prenom="Aya" Sexe="F" Nation="EGY" Licence="26071984006" DateNaissance="26.07.1984" Categorie="B"/>
+    <Arbitre ID="7928" Nom="HATZOPOULOS" Prenom="Eleftherios" Sexe="M" Nation="GRE" Licence="12101972000" DateNaissance="12.10.1972" Categorie="B"/>
+    <Arbitre ID="37009" Nom="HAZELWOOD" Prenom="Daniel" Sexe="M" Nation="GBR" Licence="08011988007" DateNaissance="08.01.1988" Categorie="B"/>
+    <Arbitre ID="2297" Nom="HEJRSKOV" Prenom="Mads-Vetli" Sexe="M" Nation="DEN" Licence="21011971000" DateNaissance="21.01.1971" Categorie="B"/>
+    <Arbitre ID="628" Nom="HENKELMANN" Prenom="Matthias" Sexe="M" Nation="GER" Licence="02101972001" DateNaissance="02.10.1972" Categorie="B"/>
+    <Arbitre ID="19831" Nom="HERNANDEZ ALSTON" Prenom="Carlos Guillermo" Sexe="M" Nation="NCA" Licence="19071978000" DateNaissance="19.07.1978" Categorie="B"/>
+    <Arbitre ID="54078" Nom="HERRERA" Prenom="Emilio" Sexe="M" Nation="ESP" Licence="13021997006" DateNaissance="13.02.1997" Categorie="B"/>
+    <Arbitre ID="1612" Nom="HINTERSEER" Prenom="Tobias" Sexe="M" Nation="AUT" Licence="07091982004" DateNaissance="07.09.1982" Categorie="B"/>
+    <Arbitre ID="25723" Nom="HONG" Prenom="Soon Young" Sexe="M" Nation="KOR" Licence="15021969000" DateNaissance="15.02.1969" Categorie="B"/>
+    <Arbitre ID="23580" Nom="HONTI - KISS" Prenom="Dominika" Sexe="F" Nation="HUN" Licence="13101991003" DateNaissance="13.10.1991" Categorie="B"/>
+    <Arbitre ID="23650" Nom="HORVATH" Prenom="Attila" Sexe="M" Nation="HUN" Licence="27081978001" DateNaissance="27.08.1978" Categorie="B"/>
+    <Arbitre ID="51588" Nom="HOSSAMA" Prenom="Rabab" Sexe="F" Nation="EGY" Licence="20091985001" DateNaissance="20.09.1985" Categorie="B"/>
+    <Arbitre ID="25730" Nom="HUANG" Prenom="Hao Chih" Sexe="M" Nation="TPE" Licence="23061984001" DateNaissance="23.06.1984" Categorie="B"/>
+    <Arbitre ID="1443" Nom="IANNUZZI" Prenom="Yanina" Sexe="F" Nation="ARG" Licence="22071973000" DateNaissance="22.07.1973" Categorie="B"/>
+    <Arbitre ID="25722" Nom="INDRIAWAN" Prenom="Indri" Sexe="M" Nation="INA" Licence="04021972000" DateNaissance="04.02.1972" Categorie="B"/>
+    <Arbitre ID="9605" Nom="IVANKOVIC" Prenom="Michael" Sexe="M" Nation="CAN" Licence="06031986000" DateNaissance="06.03.1986" Categorie="B"/>
+    <Arbitre ID="27702" Nom="JACOBSON" Prenom="Tyler" Sexe="F" Nation="USA" Licence="06031982004" DateNaissance="06.03.1982" Categorie="B"/>
+    <Arbitre ID="51474" Nom="JAHNKE" Prenom="Matthieu" Sexe="M" Nation="FRA" Licence="21101992002" DateNaissance="21.10.1992" Categorie="B"/>
+    <Arbitre ID="5910" Nom="JEZA" Prenom="Jure" Sexe="M" Nation="SLO" Licence="23091982001" DateNaissance="23.09.1982" Categorie="B"/>
+    <Arbitre ID="21853" Nom="JEZA" Prenom="Eva" Sexe="F" Nation="SLO" Licence="24071991004" DateNaissance="24.07.1991" Categorie="B"/>
+    <Arbitre ID="29524" Nom="JUNG" Prenom="Jin Man" Sexe="M" Nation="KOR" Licence="24111974002" DateNaissance="24.11.1974" Categorie="B"/>
+    <Arbitre ID="11537" Nom="JUNSANGSEE" Prenom="Wongsakun" Sexe="M" Nation="THA" Licence="04031988002" DateNaissance="04.03.1988" Categorie="B"/>
+    <Arbitre ID="31001" Nom="JURADO SALAZAR" Prenom="Daniela" Sexe="F" Nation="CRC" Licence="01111996001" DateNaissance="01.11.1996" Categorie="B"/>
+    <Arbitre ID="473" Nom="KAMINSKI" Prenom="Samuil" Sexe="M" Nation="EST" Licence="15101964000" DateNaissance="15.10.1964" Categorie="B"/>
+    <Arbitre ID="45626" Nom="KAMYNINA" Prenom="Anna" Sexe="F" Nation="NZL" Licence="22091977002" DateNaissance="20.09.1977" Categorie="B"/>
+    <Arbitre ID="23112" Nom="KARCHOUD" Prenom="Hichem" Sexe="M" Nation="TUN" Licence="20081967001" DateNaissance="20.08.1967" Categorie="B"/>
+    <Arbitre ID="29006" Nom="KHALED" Prenom="Amr" Sexe="M" Nation="EGY" Licence="19041991009" DateNaissance="19.04.1991" Categorie="B"/>
+    <Arbitre ID="17231" Nom="KHASANOVA" Prenom="Aida" Sexe="F" Nation="UZB" Licence="04081983003" DateNaissance="04.08.1983" Categorie="B"/>
+    <Arbitre ID="2896" Nom="KIAVUE" Prenom="Ella" Sexe="F" Nation="FRA" Licence="01101972000" DateNaissance="01.10.1972" Categorie="B"/>
+    <Arbitre ID="29515" Nom="KIM" Prenom="Min Suk" Sexe="M" Nation="KOR" Licence="15101977000" DateNaissance="15.10.1977" Categorie="B"/>
+    <Arbitre ID="1097" Nom="KISIEL" Prenom="Jaroslaw" Sexe="M" Nation="POL" Licence="22051964000" DateNaissance="22.05.1964" Categorie="B"/>
+    <Arbitre ID="25004" Nom="KNYAZEV" Prenom="Igor" Sexe="M" Nation="UZB" Licence="06091991001" DateNaissance="06.09.1991" Categorie="B"/>
+    <Arbitre ID="25724" Nom="KO" Prenom="Jong Hwan" Sexe="M" Nation="KOR" Licence="01111972001" DateNaissance="01.11.1972" Categorie="B"/>
+    <Arbitre ID="23947" Nom="KOEHLER" Prenom="Kelly" Sexe="F" Nation="USA" Licence="03021977003" DateNaissance="03.02.1977" Categorie="B"/>
+    <Arbitre ID="46685" Nom="KORHONEN" Prenom="Jonni" Sexe="M" Nation="FIN" Licence="24011996004" DateNaissance="24.01.1996" Categorie="B"/>
+    <Arbitre ID="4130" Nom="KOSA" Prenom="Miklos" Sexe="M" Nation="HUN" Licence="18121982000" DateNaissance="18.12.1982" Categorie="B"/>
+    <Arbitre ID="19501" Nom="KOVACEVIC" Prenom="Miljan" Sexe="M" Nation="SRB" Licence="16041990000" DateNaissance="16.04.1990" Categorie="B"/>
+    <Arbitre ID="25818" Nom="KOVALEV" Prenom="Alexey" Sexe="M" Nation="RUS" Licence="06071976004" DateNaissance="06.07.1976" Categorie="B"/>
+    <Arbitre ID="35580" Nom="KOVRIJNYKH" Prenom="Andrei" Sexe="M" Nation="RSA" Licence="09011977000" DateNaissance="09.01.1977" Categorie="B"/>
+    <Arbitre ID="6839" Nom="KOVRLIJA" Prenom="Ana" Sexe="F" Nation="SRB" Licence="08041986000" DateNaissance="08.04.1986" Categorie="B"/>
+    <Arbitre ID="14734" Nom="KRALIK" Prenom="Andrej" Sexe="M" Nation="SVK" Licence="01011991000" DateNaissance="01.01.1991" Categorie="B"/>
+    <Arbitre ID="27714" Nom="KUWAIMIL" Prenom="Abdulla" Sexe="M" Nation="KSA" Licence="01071966000" DateNaissance="01.07.1966" Categorie="B"/>
+    <Arbitre ID="233" Nom="KUZNETSOV" Prenom="Alexey" Sexe="M" Nation="CAN" Licence="02091967000" DateNaissance="02.09.1967" Categorie="B"/>
+    <Arbitre ID="7794" Nom="KYLLIJOKI" Prenom="Velijussi" Sexe="M" Nation="FIN" Licence="12041962001" DateNaissance="12.04.1962" Categorie="B"/>
+    <Arbitre ID="24553" Nom="LAM" Prenom="Chi Ming Andy" Sexe="M" Nation="HKG" Licence="25031985002" DateNaissance="25.03.1985" Categorie="B"/>
+    <Arbitre ID="1229" Nom="LANG" Prenom="Daniel" Sexe="M" Nation="SUI" Licence="08081971000" DateNaissance="08.08.1971" Categorie="B"/>
+    <Arbitre ID="532" Nom="LE NY" Prenom="Fabrice" Sexe="M" Nation="FRA" Licence="03031974001" DateNaissance="03.03.1974" Categorie="B"/>
+    <Arbitre ID="1578" Nom="LEITNER" Prenom="Barbara" Sexe="F" Nation="AUT" Licence="24121982001" DateNaissance="24.12.1982" Categorie="B"/>
+    <Arbitre ID="41719" Nom="LENNON" Prenom="Christopher" Sexe="M" Nation="GBR" Licence="21121991003" DateNaissance="21.12.1991" Categorie="B"/>
+    <Arbitre ID="24607" Nom="LINDE" Prenom="Birgitta" Sexe="F" Nation="SWE" Licence="20111966001" DateNaissance="20.11.1966" Categorie="B"/>
+    <Arbitre ID="690" Nom="LO" Prenom="Moon Tong Ringo" Sexe="M" Nation="HKG" Licence="12031964000" DateNaissance="12.03.1964" Categorie="B"/>
+    <Arbitre ID="40516" Nom="LOMBARD" Prenom="Louise" Sexe="F" Nation="RSA" Licence="21121981001" DateNaissance="21.12.1981" Categorie="B"/>
+    <Arbitre ID="21012" Nom="LORA GRUNWALDT" Prenom="Martin Exequiel" Sexe="M" Nation="ARG" Licence="25031989003" DateNaissance="25.03.1989" Categorie="B"/>
+    <Arbitre ID="177" Nom="LUDWIG" Prenom="Michael" Sexe="M" Nation="AUT" Licence="19121972000" DateNaissance="19.12.1972" Categorie="B"/>
+    <Arbitre ID="10270" Nom="LUK" Prenom="Wai Lung" Sexe="M" Nation="HKG" Licence="22121980000" DateNaissance="22.12.1980" Categorie="B"/>
+    <Arbitre ID="8848" Nom="MACHADO" Prenom="Miguel" Sexe="M" Nation="POR" Licence="29071972000" DateNaissance="29.07.1972" Categorie="B"/>
+    <Arbitre ID="12141" Nom="MADR" Prenom="Vilem" Sexe="M" Nation="CZE" Licence="08031986002" DateNaissance="08.03.1986" Categorie="B"/>
+    <Arbitre ID="25693" Nom="MAFTOUH" Prenom="Rachid" Sexe="M" Nation="MAR" Licence="16101992005" DateNaissance="16.10.1992" Categorie="B"/>
+    <Arbitre ID="537" Nom="MAGE" Prenom="Pascal" Sexe="M" Nation="FRA" Licence="27051973000" DateNaissance="27.05.1973" Categorie="B"/>
+    <Arbitre ID="842" Nom="MAGHAYREH" Prenom="Eyyad" Sexe="M" Nation="JOR" Licence="18081970000" DateNaissance="18.08.1970" Categorie="B"/>
+    <Arbitre ID="10129" Nom="MAHON" Prenom="Mary Ellen" Sexe="F" Nation="USA" Licence="21081970000" DateNaissance="21.08.1970" Categorie="B"/>
+    <Arbitre ID="13256" Nom="MAMDOUH ALY" Prenom="Ahmed" Sexe="M" Nation="EGY" Licence="01011988003" DateNaissance="01.01.1988" Categorie="B"/>
+    <Arbitre ID="14625" Nom="MANUCU" Prenom="Eduard" Sexe="M" Nation="ESP" Licence="18091967001" DateNaissance="18.09.1967" Categorie="B"/>
+    <Arbitre ID="20530" Nom="MANZOTTI" Prenom="Matteo" Sexe="M" Nation="ITA" Licence="25071976001" DateNaissance="25.07.1976" Categorie="B"/>
+    <Arbitre ID="25840" Nom="MARKO" Prenom="Olena" Sexe="F" Nation="UKR" Licence="16101977001" DateNaissance="16.10.1977" Categorie="B"/>
+    <Arbitre ID="15166" Nom="MARPEAUX" Prenom="Yann" Sexe="M" Nation="FRA" Licence="28071986002" DateNaissance="28.07.1986" Categorie="B"/>
+    <Arbitre ID="23652" Nom="MARTILOTTI" Prenom="Luigi" Sexe="M" Nation="ITA" Licence="31011982002" DateNaissance="31.01.1982" Categorie="B"/>
+    <Arbitre ID="17008" Nom="MAZUR" Prenom="Yuriy" Sexe="M" Nation="UKR" Licence="20051964000" DateNaissance="20.05.1964" Categorie="B"/>
+    <Arbitre ID="27701" Nom="MEEHAN" Prenom="Justin" Sexe="M" Nation="USA" Licence="02111970001" DateNaissance="02.11.1970" Categorie="B"/>
+    <Arbitre ID="33363" Nom="MELIAN FERNANDEZ" Prenom="Abel Francisco" Sexe="M" Nation="BRA" Licence="01111966001" DateNaissance="01.11.1966" Categorie="B"/>
+    <Arbitre ID="47387" Nom="MIDDELVELD" Prenom="Remco" Sexe="M" Nation="NED" Licence="01071991005" DateNaissance="01.07.1991" Categorie="B"/>
+    <Arbitre ID="2121" Nom="MIJATOVIC" Prenom="Bojan" Sexe="M" Nation="CRO" Licence="08121969000" DateNaissance="08.12.1969" Categorie="B"/>
+    <Arbitre ID="14518" Nom="MILONE" Prenom="Roberto" Sexe="M" Nation="POL" Licence="11021988002" DateNaissance="11.02.1988" Categorie="B"/>
+    <Arbitre ID="51345" Nom="MILONE" Prenom="Dominika" Sexe="F" Nation="POL" Licence="28051992007" DateNaissance="28.05.1992" Categorie="B"/>
+    <Arbitre ID="52551" Nom="MOHAMED" Prenom="Ibraheem" Sexe="M" Nation="EGY" Licence="09081990003" DateNaissance="09.08.1990" Categorie="B"/>
+    <Arbitre ID="5427" Nom="MOJSKI" Prenom="Jaroslaw" Sexe="M" Nation="POL" Licence="09031979001" DateNaissance="09.03.1979" Categorie="B"/>
+    <Arbitre ID="1151" Nom="MOLEA" Prenom="Romica" Sexe="M" Nation="ROU" Licence="13021966000" DateNaissance="13.02.1966" Categorie="B"/>
+    <Arbitre ID="26991" Nom="MOOSUS" Prenom="Martti" Sexe="M" Nation="EST" Licence="05071976000" DateNaissance="05.07.1976" Categorie="B"/>
+    <Arbitre ID="36378" Nom="MORALES" Prenom="Jacobo" Sexe="M" Nation="MEX" Licence="15051990004" DateNaissance="15.05.1992" Categorie="B"/>
+    <Arbitre ID="2362" Nom="MORAN FLORES" Prenom="Marcos Geovanni" Sexe="M" Nation="ESA" Licence="28121976000" DateNaissance="28.12.1976" Categorie="B"/>
+    <Arbitre ID="1104" Nom="MORYS" Prenom="Michal" Sexe="M" Nation="POL" Licence="06101962000" DateNaissance="06.10.1962" Categorie="B"/>
+    <Arbitre ID="15740" Nom="MUENNIX" Prenom="Jens" Sexe="M" Nation="GER" Licence="21091985004" DateNaissance="21.09.1985" Categorie="B"/>
+    <Arbitre ID="21967" Nom="MUSTONEN" Prenom="Verna" Sexe="F" Nation="FIN" Licence="26011994000" DateNaissance="26.01.1994" Categorie="B"/>
+    <Arbitre ID="22501" Nom="MUTSENIK" Prenom="Stanislav" Sexe="M" Nation="EST" Licence="06071992000" DateNaissance="06.07.1992" Categorie="B"/>
+    <Arbitre ID="11513" Nom="NABIL" Prenom="Ahmed" Sexe="M" Nation="EGY" Licence="19011986005" DateNaissance="19.01.1986" Categorie="B"/>
+    <Arbitre ID="14679" Nom="NAGIMOV" Prenom="Rail" Sexe="M" Nation="RUS" Licence="19091970000" DateNaissance="19.09.1970" Categorie="B"/>
+    <Arbitre ID="861" Nom="NAKATA" Prenom="Reiko" Sexe="F" Nation="JPN" Licence="22031965000" DateNaissance="22.03.1965" Categorie="B"/>
+    <Arbitre ID="47321" Nom="NAVENDRAN" Prenom="Lohith" Sexe="M" Nation="IND" Licence="28121990008" DateNaissance="28.12.1990" Categorie="B"/>
+    <Arbitre ID="13984" Nom="NDIAYE" Prenom="Pape Mamadou" Sexe="M" Nation="SEN" Licence="07011972002" DateNaissance="07.01.1972" Categorie="B"/>
+    <Arbitre ID="15979" Nom="OOSTERBOSCH" Prenom="Thibault" Sexe="M" Nation="BEL" Licence="18081989001" DateNaissance="18.08.1989" Categorie="B"/>
+    <Arbitre ID="9496" Nom="OPRZEDEK" Prenom="Maximilian" Sexe="M" Nation="AUT" Licence="19011987007" DateNaissance="19.01.1987" Categorie="B"/>
+    <Arbitre ID="44150" Nom="OREMUSH" Prenom="Geza" Sexe="M" Nation="UKR" Licence="02081993005" DateNaissance="02.08.1993" Categorie="B"/>
+    <Arbitre ID="44185" Nom="ORJUELA MENDOZA" Prenom="Angela Cristina" Sexe="F" Nation="COL" Licence="04121992004" DateNaissance="04.12.1992" Categorie="B"/>
+    <Arbitre ID="2622" Nom="OSTROVSKI" Prenom="Denis" Sexe="M" Nation="EST" Licence="21111979000" DateNaissance="21.11.1979" Categorie="B"/>
+    <Arbitre ID="9337" Nom="PAGHIEV" Prenom="Mihail" Sexe="M" Nation="MDA" Licence="22071965001" DateNaissance="22.07.1965" Categorie="B"/>
+    <Arbitre ID="23653" Nom="PALCINSKAS" Prenom="Mindaugas" Sexe="M" Nation="LTU" Licence="19101974001" DateNaissance="19.10.1974" Categorie="B"/>
+    <Arbitre ID="1234" Nom="PAPP" Prenom="Zsolt" Sexe="M" Nation="SUI" Licence="28101964000" DateNaissance="28.10.1964" Categorie="A"/>
+    <Arbitre ID="5604" Nom="PARRILLA" Prenom="Luisa M." Sexe="F" Nation="PUR" Licence="10021982002" DateNaissance="10.02.1982" Categorie="B"/>
+    <Arbitre ID="15144" Nom="PASCUCCI" Prenom="Martina" Sexe="F" Nation="ITA" Licence="25061990002" DateNaissance="25.06.1990" Categorie="B"/>
+    <Arbitre ID="19178" Nom="PATIAL" Prenom="Deepak Singh" Sexe="M" Nation="IND" Licence="20071982002" DateNaissance="20.07.1982" Categorie="B"/>
+    <Arbitre ID="3317" Nom="PAYNE" Prenom="Nick" Sexe="M" Nation="GBR" Licence="19071971001" DateNaissance="19.07.1971" Categorie="B"/>
+    <Arbitre ID="34141" Nom="PEIKRISHVILI" Prenom="Irine" Sexe="F" Nation="GEO" Licence="01051970001" DateNaissance="01.05.1970" Categorie="B"/>
+    <Arbitre ID="30335" Nom="PETKOVA" Prenom="Lazarina" Sexe="F" Nation="BUL" Licence="11121989002" DateNaissance="11.12.1989" Categorie="B"/>
+    <Arbitre ID="16870" Nom="PEYKARARA" Prenom="Reza" Sexe="M" Nation="IRI" Licence="08071978000" DateNaissance="08.07.1978" Categorie="B"/>
+    <Arbitre ID="5272" Nom="PIASECKI" Prenom="Bartosz" Sexe="M" Nation="NOR" Licence="09121986000" DateNaissance="09.12.1986" Categorie="B"/>
+    <Arbitre ID="551" Nom="PIATKO" Prenom="Andre" Sexe="M" Nation="FRA" Licence="18071963000" DateNaissance="18.07.1963" Categorie="A"/>
+    <Arbitre ID="8845" Nom="PIERUCCI" Prenom="Simona" Sexe="F" Nation="ITA" Licence="29101972001" DateNaissance="29.10.1972" Categorie="B"/>
+    <Arbitre ID="47356" Nom="PIPART" Prenom="Adeline" Sexe="F" Nation="FRA" Licence="17031989007" DateNaissance="17.03.1989" Categorie="B"/>
+    <Arbitre ID="5223" Nom="PLANTINGA" Prenom="Teun" Sexe="M" Nation="NED" Licence="14051974000" DateNaissance="14.05.1974" Categorie="B"/>
+    <Arbitre ID="30118" Nom="POTAPENKO" Prenom="Denis" Sexe="M" Nation="UKR" Licence="05011995002" DateNaissance="05.01.1995" Categorie="B"/>
+    <Arbitre ID="758" Nom="POURSALMAN" Prenom="Alireza" Sexe="M" Nation="IRI" Licence="20081975000" DateNaissance="20.08.1975" Categorie="B"/>
+    <Arbitre ID="30133" Nom="PRIETO ORJUELA" Prenom="Fabian Andres" Sexe="M" Nation="COL" Licence="05021984006" DateNaissance="05.02.1984" Categorie="B"/>
+    <Arbitre ID="17555" Nom="PROCOPIO" Prenom="Gaia" Sexe="F" Nation="ITA" Licence="21041986004" DateNaissance="21.04.1986" Categorie="B"/>
+    <Arbitre ID="36523" Nom="PRUGINIC" Prenom="Dimitar" Sexe="M" Nation="FIN" Licence="29041970001" DateNaissance="29.04.1970" Categorie="B"/>
+    <Arbitre ID="29417" Nom="RAJIV" Prenom="Kumar" Sexe="M" Nation="IND" Licence="04071979003" DateNaissance="04.07.1979" Categorie="B"/>
+    <Arbitre ID="28551" Nom="RAMAZZOTTI" Prenom="Anastasia" Sexe="F" Nation="LUX" Licence="07051995000" DateNaissance="07.05.1995" Categorie="B"/>
+    <Arbitre ID="2107" Nom="RAMIREZ ABADIA" Prenom="Histor Giovanny" Sexe="M" Nation="COL" Licence="08101968000" DateNaissance="08.10.1968" Categorie="B"/>
+    <Arbitre ID="44191" Nom="RAMIREZ SALAZAR" Prenom="Natalia Jimena " Sexe="F" Nation="COL" Licence="25021991006" DateNaissance="25.02.1991" Categorie="B"/>
+    <Arbitre ID="2544" Nom="REJAS DEL CAMPO" Prenom="Pablo" Sexe="M" Nation="ESP" Licence="14051983000" DateNaissance="14.05.1983" Categorie="B"/>
+    <Arbitre ID="1595" Nom="REUMUELLER" Prenom="Martina" Sexe="F" Nation="AUT" Licence="20091980000" DateNaissance="20.09.1980" Categorie="B"/>
+    <Arbitre ID="22954" Nom="RIAD" Prenom="Nabil" Sexe="M" Nation="MAR" Licence="10121987005" DateNaissance="10.12.1987" Categorie="B"/>
+    <Arbitre ID="1032" Nom="RIOS RIVERA" Prenom="Juan Carlos" Sexe="M" Nation="MEX" Licence="22031962000" DateNaissance="22.03.1962" Categorie="A"/>
+    <Arbitre ID="21973" Nom="RODRIGUES" Prenom="Ana Clara Franke" Sexe="F" Nation="BRA" Licence="13121983002" DateNaissance="13.12.1983" Categorie="B"/>
+    <Arbitre ID="35029" Nom="ROGUSHKIN" Prenom="Maxim" Sexe="M" Nation="RUS" Licence="05031991004" DateNaissance="05.03.1991" Categorie="B"/>
+    <Arbitre ID="23948" Nom="ROSS" Prenom="Michael" Sexe="M" Nation="USA" Licence="21021984006" DateNaissance="21.02.1984" Categorie="B"/>
+    <Arbitre ID="608" Nom="SAKHVADZE" Prenom="David" Sexe="M" Nation="GEO" Licence="02121969000" DateNaissance="02.12.1968" Categorie="B"/>
+    <Arbitre ID="18487" Nom="SAMEH" Prenom="Abd Allah" Sexe="M" Nation="EGY" Licence="18081988005" DateNaissance="18.08.1988" Categorie="B"/>
+    <Arbitre ID="53389" Nom="SAN JOSE" Prenom="Julien" Sexe="M" Nation="FRA" Licence="19041980003" DateNaissance="19.04.1980" Categorie="B"/>
+    <Arbitre ID="4854" Nom="SASADA" Prenom="Ken-Ichi" Sexe="M" Nation="JPN" Licence="12101979001" DateNaissance="12.10.1979" Categorie="B"/>
+    <Arbitre ID="38007" Nom="SATO" Prenom="Kimiyoshi" Sexe="M" Nation="JPN" Licence="26021972001" DateNaissance="26.02.1972" Categorie="B"/>
+    <Arbitre ID="44502" Nom="SATO" Prenom="Hideaki" Sexe="M" Nation="JPN" Licence="24061978000" DateNaissance="24.06.1978" Categorie="B"/>
+    <Arbitre ID="18432" Nom="SAUCEDO" Prenom="Felipe Guillermo" Sexe="M" Nation="ARG" Licence="18041988003" DateNaissance="18.04.1988" Categorie="B"/>
+    <Arbitre ID="558" Nom="SAULNIER" Prenom="Thierry" Sexe="M" Nation="FRA" Licence="18101962000" DateNaissance="18.10.1962" Categorie="B"/>
+    <Arbitre ID="24068" Nom="SAVOLAINEN" Prenom="Katri" Sexe="F" Nation="FIN" Licence="05031970000" DateNaissance="05.03.1970" Categorie="B"/>
+    <Arbitre ID="46674" Nom="SCHALLENKAMMER" Prenom="Lisa" Sexe="F" Nation="GER" Licence="28021992004" DateNaissance="28.02.1992" Categorie="B"/>
+    <Arbitre ID="21906" Nom="SCHNEIDER" Prenom="Arno Perillier" Sexe="M" Nation="BRA" Licence="12111976000" DateNaissance="12.11.1976" Categorie="B"/>
+    <Arbitre ID="7592" Nom="SERRA" Prenom="Gyorgy Bela" Sexe="M" Nation="HUN" Licence="08051981004" DateNaissance="08.05.1981" Categorie="B"/>
+    <Arbitre ID="33250" Nom="SHACKLETON" Prenom="Nicola" Sexe="F" Nation="NZL" Licence="20091967000" DateNaissance="20.09.1967" Categorie="B"/>
+    <Arbitre ID="843" Nom="SHEHADEH" Prenom="Ali" Sexe="M" Nation="JOR" Licence="25121968001" DateNaissance="25.12.1968" Categorie="B"/>
+    <Arbitre ID="24753" Nom="SPEAKMAN" Prenom="Adrian" Sexe="M" Nation="GBR" Licence="22011986010" DateNaissance="22.01.1986" Categorie="B"/>
+    <Arbitre ID="17792" Nom="SRNA" Prenom="Jan" Sexe="M" Nation="CZE" Licence="21051990001" DateNaissance="21.05.1990" Categorie="B"/>
+    <Arbitre ID="6084" Nom="STAEHLI-DEGEN" Prenom="Catherine" Sexe="F" Nation="SUI" Licence="10041965001" DateNaissance="10.04.1965" Categorie="B"/>
+    <Arbitre ID="42136" Nom="STEACY" Prenom="Sarah" Sexe="F" Nation="IRL" Licence="03061985001" DateNaissance="03.06.1985" Categorie="B"/>
+    <Arbitre ID="2265" Nom="STEFFLOVA" Prenom="Tereza" Sexe="F" Nation="CZE" Licence="18071983001" DateNaissance="18.07.1983" Categorie="B"/>
+    <Arbitre ID="2574" Nom="STEINBERG" Prenom="Maria" Sexe="F" Nation="ESP" Licence="10011980002" DateNaissance="10.01.1980" Categorie="B"/>
+    <Arbitre ID="6862" Nom="STOSIC" Prenom="Vukasin" Sexe="M" Nation="SRB" Licence="14061983000" DateNaissance="14.06.1983" Categorie="B"/>
+    <Arbitre ID="939" Nom="SUH" Prenom="Sangwon" Sexe="M" Nation="KOR" Licence="19071967000" DateNaissance="19.07.1967" Categorie="B"/>
+    <Arbitre ID="25721" Nom="SUKMAWAN" Prenom="Andi" Sexe="M" Nation="INA" Licence="04031974005" DateNaissance="04.03.1974" Categorie="B"/>
+    <Arbitre ID="25638" Nom="SURDIN" Prenom="Yuriy" Sexe="M" Nation="UKR" Licence="18021962000" DateNaissance="18.02.1962" Categorie="B"/>
+    <Arbitre ID="744" Nom="SUWARTO" Prenom="Edi" Sexe="M" Nation="INA" Licence="29101970000" DateNaissance="29.10.1970" Categorie="B"/>
+    <Arbitre ID="30210" Nom="SZCZESNIAK" Prenom="Piotr" Sexe="M" Nation="POL" Licence="03021984007" DateNaissance="03.02.1984" Categorie="B"/>
+    <Arbitre ID="25637" Nom="SZEWCZYK" Prenom="Bialecka Justyna" Sexe="F" Nation="POL" Licence="06041979001" DateNaissance="06.04.1979" Categorie="B"/>
+    <Arbitre ID="29009" Nom="TABATA" Prenom="Yasuaki" Sexe="M" Nation="JPN" Licence="01091969000" DateNaissance="01.09.1969" Categorie="B"/>
+    <Arbitre ID="17274" Nom="TALLROTH-KOCK" Prenom="Lena" Sexe="F" Nation="FIN" Licence="24031964001" DateNaissance="24.03.1964" Categorie="B"/>
+    <Arbitre ID="35032" Nom="TAMAS" Prenom="Henriette" Sexe="F" Nation="HUN" Licence="16091975002" DateNaissance="16.09.1975" Categorie="B"/>
+    <Arbitre ID="351" Nom="TANDRON LAM" Prenom="Alain" Sexe="M" Nation="MEX" Licence="23021972000" DateNaissance="23.02.1972" Categorie="B"/>
+    <Arbitre ID="36164" Nom="TENBERGEN" Prenom="Paul" Sexe="M" Nation="GER" Licence="21081997002" DateNaissance="21.08.1997" Categorie="B"/>
+    <Arbitre ID="10916" Nom="TILENSHIYEV" Prenom="Yeraly" Sexe="M" Nation="KAZ" Licence="05021985001" DateNaissance="05.02.1985" Categorie="B"/>
+    <Arbitre ID="8249" Nom="TOLASOVA" Prenom="Diana" Sexe="F" Nation="RUS" Licence="05061981002" DateNaissance="05.06.1981" Categorie="B"/>
+    <Arbitre ID="33779" Nom="TOTH" Prenom="Janka" Sexe="F" Nation="HUN" Licence="19101998000" DateNaissance="19.10.1998" Categorie="B"/>
+    <Arbitre ID="52252" Nom="TURDIKULOVA" Prenom="Dilorom" Sexe="F" Nation="UZB" Licence="21101986003" DateNaissance="21.10.1986" Categorie="B"/>
+    <Arbitre ID="2105" Nom="VALENCIA MORA" Prenom="Carlos" Sexe="M" Nation="COL" Licence="03061981000" DateNaissance="03.06.1981" Categorie="B"/>
+    <Arbitre ID="22500" Nom="VALIULIN" Prenom="Dmitri" Sexe="M" Nation="EST" Licence="22111991003" DateNaissance="22.11.1991" Categorie="B"/>
+    <Arbitre ID="8903" Nom="VALIYEV" Prenom="Fikrat" Sexe="M" Nation="AZE" Licence="23051972000" DateNaissance="23.05.1972" Categorie="B"/>
+    <Arbitre ID="7731" Nom="VALLEJO" Prenom="Guillermo" Sexe="M" Nation="ESP" Licence="21051983001" DateNaissance="21.05.1983" Categorie="B"/>
+    <Arbitre ID="46752" Nom="VANDENBERK" Prenom="Florian" Sexe="M" Nation="BEL" Licence="28041991005" DateNaissance="28.04.1991" Categorie="B"/>
+    <Arbitre ID="4244" Nom="VARGA" Prenom="Katalin" Sexe="F" Nation="HUN" Licence="01071980000" DateNaissance="01.07.1980" Categorie="B"/>
+    <Arbitre ID="470" Nom="VAZQUEZ" Prenom="Daniel" Sexe="M" Nation="ESP" Licence="17111976001" DateNaissance="17.11.1976" Categorie="B"/>
+    <Arbitre ID="2106" Nom="VELASCO PARRA" Prenom="Luis Fernando" Sexe="M" Nation="COL" Licence="04011969000" DateNaissance="04.01.1969" Categorie="B"/>
+    <Arbitre ID="839" Nom="VISCARDI" Prenom="Alberto" Sexe="M" Nation="ITA" Licence="02031971000" DateNaissance="02.03.1971" Categorie="B"/>
+    <Arbitre ID="38639" Nom="VOGT" Prenom="Suzanne" Sexe="F" Nation="CAN" Licence="30041978001" DateNaissance="30.04.1967" Categorie="B"/>
+    <Arbitre ID="29420" Nom="WAMBECK" Prenom="Andrea Eva" Sexe="F" Nation="MAS" Licence="17091984000" DateNaissance="17.09.1984" Categorie="B"/>
+    <Arbitre ID="28696" Nom="WEIDENHAMMER" Prenom="Noel" Sexe="M" Nation="GER" Licence="22121986006" DateNaissance="22.12.1986" Categorie="B"/>
+    <Arbitre ID="5503" Nom="WITKOWSKI" Prenom="Andrzej" Sexe="M" Nation="POL" Licence="29081979000" DateNaissance="29.08.1979" Categorie="B"/>
+    <Arbitre ID="16734" Nom="YAHYA" Prenom="Qasim Abdulla" Sexe="M" Nation="QAT" Licence="18081984002" DateNaissance="18.08.1984" Categorie="B"/>
+    <Arbitre ID="33125" Nom="YAM" Prenom="Chun Ming" Sexe="M" Nation="HKG" Licence="10061991005" DateNaissance="10.06.1991" Categorie="B"/>
+    <Arbitre ID="46699" Nom="ZELJKOVIC" Prenom="Jelena" Sexe="F" Nation="USA" Licence="04111977002" DateNaissance="04.11.1977" Categorie="B"/>
+    <Arbitre ID="23114" Nom="ZERABIB" Prenom="Khadidja" Sexe="F" Nation="ALG" Licence="12041994000" DateNaissance="12.04.1994" Categorie="B"/>
+    <Arbitre ID="24207" Nom="ZEYAD" Prenom="Hasan Jasim" Sexe="M" Nation="IRQ" Licence="13121976002" DateNaissance="13.12.1976" Categorie="B"/>
+    <Arbitre ID="19252" Nom="ZHENG" Prenom="Kang Zhao" Sexe="M" Nation="HKG" Licence="17071964000" DateNaissance="17.07.1964" Categorie="B"/>
+    <Arbitre ID="28127" Nom="ZHOLUDEVA" Prenom="Alina" Sexe="F" Nation="BLR" Licence="27091994006" DateNaissance="27.09.1994" Categorie="B"/>
+    <Arbitre ID="23690" Nom="ZHURAVLEVA" Prenom="Natalia" Sexe="F" Nation="RUS" Licence="22011969003" DateNaissance="22.01.1969" Categorie="B"/>
+    <Arbitre ID="2137" Nom="ZMAIC" Prenom="Martina" Sexe="F" Nation="CRO" Licence="01041978000" DateNaissance="01.04.1978" Categorie="B"/>
+    <Arbitre ID="16909" Nom="ZUGASTI" Prenom="Alvaro" Sexe="M" Nation="ESP" Licence="30091965001" DateNaissance="30.09.1965" Categorie="B"/>
+  </Arbitres>
+</BaseCompetitionIndividuelle>
