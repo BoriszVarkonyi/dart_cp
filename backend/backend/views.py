@@ -23,7 +23,13 @@ from rest_framework.parsers import MultiPartParser
 from django.forms.models import model_to_dict
 from collections import OrderedDict
 
-class FencerViewSet(viewsets.ModelViewSet):
+class FencerModelMixin(object):
+  def get_serializer(self, *args, **kwargs):
+    if isinstance(kwargs.get('data', {}), list):
+      kwargs['many'] = True
+    return super(FencerModelMixin, self).get_serializer(*args, **kwargs)
+
+class FencerViewSet(FencerModelMixin, viewsets.ModelViewSet):
   queryset = FencerModel.objects.all()
   serializer_class = FencerSerializer
   permission_classes = [permissions.IsAuthenticatedOrReadOnly]
