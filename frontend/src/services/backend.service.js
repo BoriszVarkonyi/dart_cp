@@ -1,5 +1,6 @@
 import axios from "axios";
 import authHeader from "./auth-header";
+import { DataGrid } from "@mui/x-data-grid";
 
 const instance = axios.create({
   baseURL: process.env.REACT_APP_API,

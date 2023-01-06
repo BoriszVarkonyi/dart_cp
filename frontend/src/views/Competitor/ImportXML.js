@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { DataGrid } from "@mui/x-data-grid";
 
 const row = (element) => {
   return {
     id: element.id,
     ranking: element.points,
-    fencerName: element.pre_nom + ' ' + element.nom,
+    fencerName: element.pre_nom + " " + element.nom,
     fencerNat: element.nation,
-    fencerClub: element.club
+    fencerClub: element.club,
   };
 };
 
@@ -17,14 +18,32 @@ const columns = [
   { field: "ranking", headerName: "RANKING", width: 200 },
   { field: "fencerName", headerName: "NAME", width: 200 },
   { field: "fencerNat", headerName: "NATIONALITY", width: 200 },
-  { field: "fencerClub", headerName: "CLUB", width: 200 }
+  { field: "fencerClub", headerName: "CLUB", width: 200 },
 ];
-
 
 export default function Import() {
   const navigate = useNavigate();
   const [hasSelectedFile, setHasSelectedFile] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const [rows, setRows] = useState([]);
+
+  function generateDataGrid(arrayOfFencers) {
+    const rows = arrayOfFencers.map((e) => row(e));
+    setRows(rows);
+  }
+
+  //Helper functions
+  async function handleFile(file) {
+    const formData = new FormData();
+    formData.append("test", file);
+
+    fetch("http://localhost:8082/api/uploadxml/", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => generateDataGrid(data));
+  }
 
   const selectFile = (event) => {
     const fileType = event.target.files[0].type;
@@ -70,28 +89,16 @@ export default function Import() {
           )}
           {hasSelectedFile && (
             <>
-              <h2>File not selected</h2>
+          <div style={{ height: 300, width: "100%" }}>
+            <DataGrid
+              rows={rows}
+              columns={columns}
+            />
+          </div>
             </>
           )}
         </div>
       </div>
     </div>
   );
-}
-
-//Helper functions
-async function handleFile(file) {
-  const formData = new FormData();
-  formData.append("test", file);
-
-  fetch("http://localhost:8082/api/uploadxml/", {
-    method: "POST",
-    body: formData,
-  })
-    .then((response) => response.json())
-    .then((data) => generateDataGrid(data));
-}
-
-function generateDataGrid(arrayOfFencers) {
-  arrayOfFencers.map((e) => console.log(e));
 }
