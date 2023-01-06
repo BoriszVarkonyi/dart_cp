@@ -5,13 +5,29 @@ import { FormControl, MenuItem, TextField, Button } from "@mui/material";
 import { Box } from "@mui/system";
 import { useForm } from "react-hook-form";
 import { post } from "../../services/backend.service";
+import countries from "../../components/static/countries.json";
 
 import {useParams} from 'react-router-dom';
 
 export default function AddCompetitor() {
   const [isOther, setIsOther] = useState(false);
+  const [menuItems, setMenuItems] = useState([]);
   const navigate = useNavigate();
   let { tourId, compId } = useParams();
+
+  const generateMenuItem = (country) => {
+    return ( 
+        <MenuItem key={country.short} value={country.short}>{country.long}</MenuItem>
+    )
+  };
+
+  useEffect(() => {
+    function setMenuItemsFromJson() {
+        const menuItems = countries.countries.map(c => generateMenuItem(c));
+        setMenuItems(menuItems);
+    }
+    setMenuItemsFromJson();
+  }, []);
 
   //react-hook-form
   const {
@@ -33,8 +49,6 @@ export default function AddCompetitor() {
       navigate(-1);
     }
   };
-
-  //TODO: import nation MenuItem from JSON or something
 
   return (
     <div className="Main">
@@ -198,9 +212,7 @@ export default function AddCompetitor() {
                 required: "Please choose a nationality!",
               })}
             >
-              <MenuItem value="HUN">Hungary</MenuItem>
-              <MenuItem value="ALB">Albania</MenuItem>
-              <MenuItem value="Other">Other</MenuItem>
+              {menuItems}
             </TextField>
           </FormControl>
 
