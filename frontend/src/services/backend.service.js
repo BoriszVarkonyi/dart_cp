@@ -25,6 +25,7 @@ async function get(url) {
 }
 
 async function post(url, payload) {
+  console.log(config)
   try {
     const resp = await instance.post(`${url}`, {
       ...payload,

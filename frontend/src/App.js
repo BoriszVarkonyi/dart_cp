@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 import LoginLayout from "./components/layouts/LoginLayout/LoginLayout";
 import { TournamentLayout } from "./components/layouts/ControlLayout/TournamentLayout";
 import PanelLayout from "./components/layouts/PanelLayout/PanelLayout";
-import AuthVerify from "./common/AuthVerify";
+import useTokenService from "./common/AuthVerify";
 
 import Competitions from "./views/Competition/Competitions";
 import Competition from "./views/Competition/Competition";
@@ -19,7 +19,7 @@ import WeaponControls from "./views/WeaponControl/WeaponControls";
 
 
 function App() {
-  AuthVerify.refreshTokenTimer();
+  const idk = useTokenService()
   return (
     <>
       <Routes>
