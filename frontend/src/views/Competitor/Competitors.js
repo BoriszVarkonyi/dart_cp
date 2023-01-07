@@ -5,6 +5,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { get } from "../../services/backend.service";
 import { useNavigate } from "react-router-dom";
 import useDataGridHelper from "../../services/useDataGridHelper";
+import ModalComp from "../../components/static/Modal/ModalComp";
 
 const row = (element) => {
   return {
@@ -48,6 +49,7 @@ export default function Competitors() {
     setRows,
     handleEvent,
     deleteFunction,
+    openModalFunctiom
   } = useDataGridHelper();
   const navigate = useNavigate();
   const { tourId, compId } = useParams();
@@ -61,24 +63,13 @@ export default function Competitors() {
     getFencersData();
   }, []);
 
-  //Will be usefull
-  //   const deleteButton = async () => {
-  //     //Deletes the tournament in the database
-  //     await remove(`tournaments/${selectedRowId}/`);
 
-  //     //Deletes the row in the data grid
-  //     setRows((prevRows) => {
-  //       const rowToDeleteIndex = prevRows.findIndex(
-  //         (row) => row.id == selectedRowId
-  //       );
-  //       return [
-  //         ...rows.slice(0, rowToDeleteIndex),
-  //         ...rows.slice(rowToDeleteIndex + 1),
-  //       ];
-  //     });
-  //   };
+  const deleteRow = () =>{
+    deleteFunction(`fencers/${selectedRowId}/`)
+  }
 
   return (
+    <>
     <div className="Main">
       <div className="PageHeader">
         <h2 className="PageTitle">Competitors</h2>
@@ -93,12 +84,18 @@ export default function Competitors() {
             </Button>
           )}
           {isSelected && (
-            <Button variant="contained" size="small" /*onClick={deleteButton}*/>
+            <Button variant="contained" size="small" onClick={openModalFunctiom}>
               Delete
             </Button>
           )}
           {isSelected && (
-            <Button variant="contained" size="small" /*onClick={modifyButton}*/>
+            <Button
+              variant="contained"
+              size="small"
+              onClick={() =>
+                navigate("modify", { state: { rowId: selectedRowId } })
+              }
+            >
               Modify
             </Button>
           )}
@@ -106,7 +103,9 @@ export default function Competitors() {
             <Button
               variant="contained"
               size="small"
-              onClick={() => navigate("add")}
+              onClick={() =>
+                navigate("add", { state: { rowId: selectedRowId } })
+              }
             >
               Create
             </Button>
@@ -127,5 +126,7 @@ export default function Competitors() {
         </div>
       </div>
     </div>
+    <ModalComp title="Are you sure?" text="Are you sure you want to delete this competitior?" confirmButtonText="DELETE" actionOnConfirm={deleteRow} />
+    </>
   );
 }

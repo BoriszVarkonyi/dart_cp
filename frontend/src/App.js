@@ -10,16 +10,15 @@ import Competitions from "./views/Competition/Competitions";
 import Competition from "./views/Competition/Competition";
 import Timetable from "./views/Timetable/Timetable";
 import Competitors from "./views/Competitor/Competitors";
-import AddCompetitor from "./views/Competitor/AddCompetitor";
+import Competitor from "./views/Competitor/Competitor";
 import ImportXML from "./views/Competitor/ImportXML";
 import Registration from "./views/Registration/Registration";
 import WeaponControls from "./views/WeaponControl/WeaponControls";
 
 //Under construction. Will delete.
 
-
 function App() {
-  const idk = useTokenService()
+  const idk = useTokenService();
   return (
     <>
       <Routes>
@@ -35,7 +34,8 @@ function App() {
           <Route path=":compId">
             <Route path="competitors">
               <Route index element={<Competitors />} />
-              <Route path="add" element={<AddCompetitor />} />
+              <Route path="add" element={<Competitor type="Add" />} />
+              <Route path="modify" element={<Competitor type="Modify" />} />
               <Route path="importXML" element={<ImportXML />} />
             </Route>
             <Route path="registration" element={<Registration />} />

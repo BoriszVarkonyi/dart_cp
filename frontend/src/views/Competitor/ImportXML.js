@@ -69,13 +69,52 @@ export default function Import() {
   }
 
   const updateFencer = (fencer) =>{
-    return {...fencer, competitions: compId}
+    return {...fencer, competitions: [compId]}
   }
+
+const testArray =     [{
+  "id": "123456",
+  "competitions": [
+      1
+  ],
+  "nom": "Zalán",
+  "pre_nom": "Tóth",
+  "sexe": "M",
+  "lateralite": "D",
+  "nation": "HUN",
+  "club": "Honved",
+  "licence": "1234Honved",
+  "statut": "A",
+  "date_naissance": "2003-07-27",
+  "classement": 1,
+  "points": 420,
+  "barcode": 0,
+  "registration_status": false
+},
+{
+  "id": "123457",
+  "competitions": [
+      1
+  ],
+  "nom": "Zalán",
+  "pre_nom": "Tóth",
+  "sexe": "M",
+  "lateralite": "D",
+  "nation": "HUN",
+  "club": "Honved",
+  "licence": "1234Honved",
+  "statut": "A",
+  "date_naissance": "2003-07-27",
+  "classement": 1,
+  "points": 420,
+  "barcode": 0,
+  "registration_status": false
+}]
 
   const importFencers = async () =>{
     const tempArray = fencerArray.map((e)=>updateFencer(e))
     setFencerArray(tempArray)
-    await post("fencers/", fencerArray)
+    //await post("fencers/", testArray)
   };
 
   return (
@@ -108,7 +147,7 @@ export default function Import() {
           {hasSelectedFile && (
             <>
               <h3>Preview:</h3>
-              <div style={{ height: 300, width: "100%" }}>
+              <div style={{ height: 600, width: "100%" }}>
                 <DataGrid rows={rows} columns={columns} />
               </div>
             </>
