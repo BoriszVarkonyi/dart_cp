@@ -3,9 +3,13 @@ import { DataGrid } from "@mui/x-data-grid";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import useDataGridHelper from "../../services/useDataGridHelper";
+import { useParams } from "react-router-dom";
+import { get } from "../../services/backend.service";
 
 const row = (element) => {
   return {
+    id: element.id,
     barCode: element.barcode,
     wcName: element.pre_nom + " " + element.nom,
     wcNat: element.nation,
@@ -28,37 +32,53 @@ const columns = [
 ];
 
 export default function WeaponControls() {
-  const [isSelected, setIsSelected] = useState(false);
-  const [selectedRowId, setSelectedRowId] = useState();
-  const { isLoggedIn } = useSelector((state) => state.auth);
-  const [rows, setRows] = useState([]);
-  const [selectionModel, setSelectionModel] = useState([]);
+  const {
+    selectionModel,
+    selectedRowId,
+    isSelected,
+    rows,
+    setRows,
+    handleEvent,
+    deleteFunction,
+    openModalFunctiom,
+  } = useDataGridHelper();
+  const { tourId, compId } = useParams();
+  const navigate = useNavigate()
 
-  //Makes only one row selected
-  const handleEvent = (params) => {
-    if (params.length > 1) {
-      const selectionSet = new Set(selectionModel);
-      const result = params.filter((s) => !selectionSet.has(s));
-      setSelectionModel(result);
-    } else {
-      setSelectionModel(params);
-    }
-  };
 
+  //Gets the competitors from api
   useEffect(() => {
-    selectionModel.length == 1 ? setIsSelected(true) : setIsSelected(false); //Sets the isSelected state
-    setSelectedRowId(selectionModel[0]); //Updates selectedRowId
-  }, [selectionModel]);
+    async function getFencersData() {
+      const data = await get(`competitions/${compId}/fencers/`);
+      const rows = data.map((e) => row(e));
+      setRows(rows);
+    }
+    getFencersData();
+  }, []);
 
   return (
     <div className="Main">
       <div className="PageHeader">
         <h2 className="PageTitle">Weapon Control</h2>
         <div className="PageButtonsWrapper">
-          <Button variant="contained" size="small">Remove</Button>
-          <Button variant="contained" size="small">Modify</Button>
-          <Button variant="contained" size="small">Add</Button>
-          <Button variant="contained" size="small">Read Barcode</Button>
+          {isSelected && (
+            <Button variant="contained" size="small">
+              Remove weapon control
+            </Button>
+          )}
+          {isSelected && (
+            <Button variant="contained" size="small" onClick={()=> navigate("modify")}>
+              Modify weapon control
+            </Button>
+          )}
+          {isSelected && (
+            <Button variant="contained" size="small" onClick={()=> navigate("add")}>
+              Add weapon control
+            </Button>
+          )}
+          <Button variant="contained" size="small">
+            Read Barcode
+          </Button>
         </div>
       </div>
       <div className="PanelContentSingle">

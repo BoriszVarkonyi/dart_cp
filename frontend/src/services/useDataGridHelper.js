@@ -9,10 +9,12 @@ export default function useDataGridHelper() {
   const [selectedRowId, setSelectedRowId] = useState(null);
   const [selectionModel, setSelectionModel] = useState([]);
   const [rows, setRows] = useState([]);
+
   const dispatch = useDispatch();
 
   //Makes only one row selected
   const handleEvent = (params) => {
+    console.log(params)
     if (params.length > 1) {
       const selectionSet = new Set(selectionModel);
       const result = params.filter((s) => !selectionSet.has(s));

@@ -1,13 +1,8 @@
-import React, {useState } from "react";
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
-import {
-  FormControl,
-  MenuItem,
-  TextField,
-  Button,
-} from "@mui/material";
+import { FormControl, MenuItem, TextField, Button } from "@mui/material";
 import { Box } from "@mui/system";
 import { useForm } from "react-hook-form";
 import { post, update } from "../../services/backend.service";
@@ -29,10 +24,13 @@ export default function Competition(props) {
   const onSubmit = async (data) => {
     if (props.type == "Create") {
       await post("competitions/", { ...data, tournaments: tournamentId });
-      navigate(-1)
+      navigate(-1);
     } else if (props.type == "Modify") {
-      await update(`competitions/${rowId}/`, {...data, tournaments: tournamentId});
-      navigate(-1)
+      await update(`competitions/${rowId}/`, {
+        ...data,
+        tournaments: tournamentId,
+      });
+      navigate(-1);
     }
   };
 
@@ -70,6 +68,10 @@ export default function Competition(props) {
             variant="filled"
             {...register("title_long", {
               required: "Please enter the competition name!",
+              maxLength: {
+                value: 72,
+                message: `Field cannot be longer than 72 characters!`,
+              },
             })}
           />
 
@@ -150,6 +152,10 @@ export default function Competition(props) {
                 defaultValue=""
                 {...register("age_group", {
                   required: "Please choose an age gorup!",
+                  maxLength: {
+                    value: 64,
+                    message: `Field cannot be longer than 64 characters!`,
+                  },
                 })}
               >
                 <MenuItem value="cadet">Cadet</MenuItem>
@@ -174,6 +180,10 @@ export default function Competition(props) {
               autoFocus
               {...register("age_group", {
                 required: "Please choose an age gorup!",
+                maxLength: {
+                  value: 64,
+                  message: `Field cannot be longer than 64 characters!`,
+                },
               })}
             />
           )}
@@ -202,7 +212,13 @@ export default function Competition(props) {
             margin="normal"
             size="small"
             variant="filled"
-            {...register("address", { required: "Please enter an address!" })}
+            {...register("address", {
+              required: "Please enter an address!",
+              maxLength: {
+                value: 128,
+                message: `Field cannot be longer than 128 characters!`,
+              },
+            })}
           />
 
           <TextField
@@ -238,6 +254,10 @@ export default function Competition(props) {
             sx={{ width: 220 }}
             {...register("start_date", {
               required: "Please choose a starting date!",
+              maxLength: {
+                value: 31,
+                message: `Field cannot be longer than 31 characters!`,
+              },
             })}
           />
           <TextField

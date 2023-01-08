@@ -114,7 +114,7 @@ const testArray =     [{
   const importFencers = async () =>{
     const tempArray = fencerArray.map((e)=>updateFencer(e))
     setFencerArray(tempArray)
-    //await post("fencers/", testArray)
+    await post("fencers/", [testArray])
   };
 
   return (

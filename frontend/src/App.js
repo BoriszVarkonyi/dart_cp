@@ -14,6 +14,7 @@ import Competitor from "./views/Competitor/Competitor";
 import ImportXML from "./views/Competitor/ImportXML";
 import Registration from "./views/Registration/Registration";
 import WeaponControls from "./views/WeaponControl/WeaponControls";
+import WeaponControl from "./views/WeaponControl/WeaponControl";
 
 //Under construction. Will delete.
 
@@ -39,7 +40,11 @@ function App() {
               <Route path="importXML" element={<ImportXML />} />
             </Route>
             <Route path="registration" element={<Registration />} />
-            <Route path="weapon_control" element={<WeaponControls />} />
+            <Route path="weapon_control">
+              <Route index element={<WeaponControls />} />
+              <Route path="add" element={<WeaponControl type="Add" />} />
+              <Route path="modify" element={<WeaponControl type="Modify" />} />
+            </Route>
           </Route>
         </Route>
 

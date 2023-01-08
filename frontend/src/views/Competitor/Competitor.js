@@ -49,11 +49,6 @@ export default function Competitor(props) {
         barcode: 0,
       });
       navigate(-1);
-
-      if (resp.name && resp.name == "AxiosError") alert(resp.message);
-      else {
-        alert("Successfully added fencer!");
-      }
     } else if (props.type == "Modify") {
       await update(`fencers/${rowId}/`, {
         ...data,

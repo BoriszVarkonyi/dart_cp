@@ -42,6 +42,7 @@ const parseJwt = (token) => {
 
 //Helper Function
 const refreshToken = () => {
+  console.log("???")
   const authData = JSON.parse(localStorage.getItem("user"));
   const payload = {
     refresh: authData.refresh,
