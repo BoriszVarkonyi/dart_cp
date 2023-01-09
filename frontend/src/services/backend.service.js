@@ -2,18 +2,17 @@ import axios from "axios";
 import authHeader from "./auth-header";
 import { DataGrid } from "@mui/x-data-grid";
 
-
 const instance = axios.create({
   baseURL: process.env.REACT_APP_API,
   timeout: 1000,
   headers: {
-    Authorization: authHeader(), 
-    'Content-Type': 'application/json',
+    Authorization: authHeader(),
+    "Content-Type": "application/json",
   },
 });
 
-const config = {
-  headers: authHeader(),
+const config2 = {
+  headers: { Authorization: authHeader() },
 };
 
 async function get(url) {
@@ -28,11 +27,10 @@ async function get(url) {
 }
 
 async function post(url, payload) {
-  let test = authHeader()
-  let config2 = {
-    headers: test,
+  const config2 = {
+    headers: { Authorization: authHeader() },
   };
-  console.log("Ezzel a tokennel postol")
+  console.log("Ezzel postolok:")
   console.log(config.headers)
   try {
     const resp = await instance.post(`${url}`, {
@@ -48,13 +46,13 @@ async function post(url, payload) {
 // TODO: refactor this when we will have time.
 async function postBulk(url, payload) {
   const config = {
-    method: 'post',
+    method: "post",
     url: process.env.REACT_APP_API + url,
-    headers: { 
-      'Authorization': authHeader(),
-      'Content-Type': 'application/json',
+    headers: {
+      Authorization: authHeader(),
+      "Content-Type": "application/json",
     },
-    data : payload
+    data: payload,
   };
   const resp = await axios(config);
   return resp;
