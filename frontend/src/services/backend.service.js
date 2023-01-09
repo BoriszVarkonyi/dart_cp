@@ -11,7 +11,7 @@ const instance = axios.create({
   },
 });
 
-const config2 = {
+const config = {
   headers: { Authorization: authHeader() },
 };
 
