@@ -52,6 +52,19 @@ export default function ModalComp(props) {
             </Button>
           </div>
         )}
+
+        {props.type == "Print" && (
+          <div>
+            <TextField label="Margin top" type="number" size="small" variant="filled" />
+            <TextField label="Margin left" type="number" size="small" variant="filled" />
+            <TextField label="Margin right" type="number" size="small" variant="filled" />
+            <TextField label="Margin bottom" type="number" size="small" variant="filled" />
+            <TextField label="No. of rows" type="number" size="small" variant="filled" />
+            <TextField label="Space between rows" type="number" size="small" variant="filled" />
+            <TextField label="No. of colums" type="number" size="small" variant="filled" />
+            <TextField label="Space between columns" type="number" size="small" variant="filled" />
+          </div>
+        )}
       </Box>
     </Modal>
   );

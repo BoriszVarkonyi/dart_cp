@@ -13,6 +13,7 @@ import Competitors from "./views/Competitor/Competitors";
 import Competitor from "./views/Competitor/Competitor";
 import ImportXML from "./views/Competitor/ImportXML";
 import Registration from "./views/Registration/Registration";
+import PrintBarcodes from "./views/Registration/PrintBarcodes";
 import WeaponControls from "./views/WeaponControl/WeaponControls";
 import WeaponControl from "./views/WeaponControl/WeaponControl";
 
@@ -39,7 +40,10 @@ function App() {
               <Route path="modify" element={<Competitor type="Modify" />} />
               <Route path="importXML" element={<ImportXML />} />
             </Route>
-            <Route path="registration" element={<Registration />} />
+            <Route path="registration">
+              <Route index element={<Registration />} />
+              <Route path="print" element={<PrintBarcodes />} />
+            </Route>
             <Route path="weapon_control">
               <Route index element={<WeaponControls />} />
               <Route path="add" element={<WeaponControl type="Add" />} />

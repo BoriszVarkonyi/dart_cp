@@ -70,14 +70,14 @@ const modalContent = {
             <div className="PageHeader">
                 <h2 className="PageTitle">Registration</h2>
                 <div className="PageButtonsWrapper">
-                    <Button variant="contained" size="small" onClick={openModalFunctiom}>Print Barcodes</Button>
+                    <Button variant="contained" size="small" onClick={()=> navigate("print")}>Print Barcodes</Button>
                     {isSelected && rows.filter(f => f.id == selectedRowId)[0].registration_status && (
                         <Button variant="contained" size="small" onClick={registerOut}>Register out</Button>
                     )}
                     {isSelected && !rows.filter(f => f.id == selectedRowId)[0].registration_status && (
                         <Button variant="contained" size="small" onClick={registerIn}>Register in</Button>
                     )}
-                    <Button variant="contained" size="small">Assign Barcode</Button>
+                    <Button variant="contained" size="small" onClick={openModalFunctiom}>Assign Barcode</Button>
                 </div>
             </div>
             <div className="PageContent">
