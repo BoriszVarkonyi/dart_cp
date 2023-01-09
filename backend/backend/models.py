@@ -15,7 +15,7 @@ class CompetitionModel(models.Model):
     age_group = models.CharField(max_length=64)
     host_country = models.CharField(max_length=3, choices=NATION_CHOICE)
     address = models.CharField(max_length=128)
-    entry_fee = models.IntegerField()
+    entry_fee = models.FloatField()
     currency = models.CharField(max_length=32) #coice for money
     start_date = models.DateField()
     end_date = models.DateField()
@@ -33,7 +33,7 @@ class FencerModel(models.Model):
     statut = models.CharField(max_length=1)
     date_naissance = models.DateField()
     classement = models.IntegerField()
-    points = models.IntegerField()
+    points = models.FloatField()
     barcode = models.IntegerField(default='00000000')
     registration_status = models.BooleanField(default=False)
 
