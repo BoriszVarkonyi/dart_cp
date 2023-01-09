@@ -11,15 +11,10 @@ const instance = axios.create({
   },
 });
 
-const config = {
-  headers: { Authorization: authHeader() },
-};
-
 async function get(url) {
+  instance.defaults.headers.Authorization = authHeader();
   try {
-    const resp = await instance.get(`${url}`, {
-      config,
-    });
+    const resp = await instance.get(`${url}`);
     return await resp.data;
   } catch (err) {
     return [];
@@ -27,16 +22,9 @@ async function get(url) {
 }
 
 async function post(url, payload) {
-  const config2 = {
-    headers: { Authorization: authHeader() },
-  };
-  console.log("Ezzel postolok:")
-  console.log(config.headers)
+  instance.defaults.headers.Authorization = authHeader();
   try {
-    const resp = await instance.post(`${url}`, {
-      ...payload,
-      config2,
-    });
+    const resp = await instance.post(`${url}`, payload);
     return resp.data;
   } catch (err) {
     return err;
@@ -59,16 +47,13 @@ async function postBulk(url, payload) {
 }
 
 async function remove(url) {
-  const resp = await instance.delete(`${url}`, {
-    config,
-  });
+  instance.defaults.headers.Authorization = authHeader();
+  const resp = await instance.delete(`${url}`);
 }
 
 async function update(url, payload) {
-  const resp = await instance.patch(`${url}`, {
-    ...payload,
-    config,
-  });
+  instance.defaults.headers.Authorization = authHeader();
+  const resp = await instance.patch(`${url}`, payload);
 }
 
 export { get, post, postBulk, remove, update };
