@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 import { TextField } from "@mui/material";
 
 export default function ModalComp(props) {
-  const { deleteFunction } = useDataGridHelper();
   const dispatch = useDispatch();
   const { isOpen } = useSelector((state) => state.modal);
 
@@ -28,7 +27,7 @@ export default function ModalComp(props) {
               <Button
                 variant="contained"
                 onClick={() => {
-                  contentProps.actionOnConfirm();
+                  contentProps.deleteRow();
                   dispatch(closeModal());
                 }}
               >

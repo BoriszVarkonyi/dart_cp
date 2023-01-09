@@ -68,6 +68,12 @@ export default function Competitors() {
     deleteFunction(`fencers/${selectedRowId}/`)
   }
 
+  const modalContent = {
+    text: "Are you sure you want to delete this competitor?", 
+    confirmButtonText: "DELETE",
+    deleteRow
+  }
+
   return (
     <>
       <div className="Main">
@@ -126,7 +132,7 @@ export default function Competitors() {
           </div>
         </div>
       </div>
-      <ModalComp title="Are you sure?" text="Are you sure you want to delete this competitior?" confirmButtonText="DELETE" actionOnConfirm={deleteRow} />
+      <ModalComp type="Alert" title="Are you sure?" content={modalContent} />
     </>
   );
 }

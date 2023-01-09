@@ -39,7 +39,7 @@ export default function Competitions() {
     setRows,
     handleEvent,
     deleteFunction,
-    openModalFunctiom
+    openModalFunctiom,
   } = useDataGridHelper();
   const { tournamentId } = useParams();
 
@@ -53,8 +53,15 @@ export default function Competitions() {
   }, []);
 
   const deleteRow = () => {
-    deleteFunction(`competitions/${selectedRowId}/`)
+    deleteFunction(`competitions/${selectedRowId}/`);
+  };
+
+  const modalContent = {
+    text: "Are you sure you want to delete this competition?", 
+    confirmButtonText: "DELETE",
+    deleteRow
   }
+
 
   return (
     <>
@@ -109,7 +116,7 @@ export default function Competitions() {
           </div>
         </div>
       </div>
-      <ModalComp title="Are you sure?" text="Are you sure you want to delete this competition?" confirmButtonText="DELETE" actionOnConfirm={deleteRow} />
+      <ModalComp type="Alert" title="Are you sure?" content={modalContent} />
     </>
   );
 }

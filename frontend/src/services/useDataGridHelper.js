@@ -28,6 +28,8 @@ export default function useDataGridHelper() {
     setSelectedRowId(selectionModel[0]); //Updates selectedRowId
   }, [selectionModel]);
 
+  //Sets the isOpen value to true in the redux sotre. 
+  //Briefly: Opens the Modal.
   const openModalFunctiom = () => {
     dispatch(openModal());
   };
@@ -49,9 +51,9 @@ export default function useDataGridHelper() {
 
   return {
     isSelected,
-    selectedRowId,
-    selectionModel,
-    rows,
+    selectedRowId, 
+    selectionModel, 
+    rows, 
     setRows,
     handleEvent,
     deleteFunction,

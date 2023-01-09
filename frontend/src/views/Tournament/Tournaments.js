@@ -67,8 +67,9 @@ export default function Tournaments() {
   };
 
   const modalContent = {
-    text: "Are you sure you want to delete this tournament?", confirmButtonText: "DELETE",
-    actionOnConfirm: deleteRow()
+    text: "Are you sure you want to delete this tournament?", 
+    confirmButtonText: "DELETE",
+    deleteRow
   }
 
   return (
@@ -124,7 +125,7 @@ export default function Tournaments() {
           </div>
         </div>
       </div>
-      <ModalComp type="Alert" title="Are you sure?" content={modalContent} />}
+      <ModalComp type="Alert" title="Are you sure?" content={modalContent} />
     </>
   );
 }
