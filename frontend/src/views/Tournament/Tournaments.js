@@ -66,6 +66,11 @@ export default function Tournaments() {
     navigate("modify_tournament", { state: { rowId: selectedRowId } });
   };
 
+  const modalContent = {
+    text: "Are you sure you want to delete this tournament?", confirmButtonText: "DELETE",
+    actionOnConfirm: deleteRow()
+  }
+
   return (
     <>
       <div className="Panel">
@@ -119,7 +124,7 @@ export default function Tournaments() {
           </div>
         </div>
       </div>
-      <ModalComp title="Are you sure?" text="Are you sure you want to delete this tournament?" confirmButtonText="DELETE" actionOnConfirm={deleteRow} />}
+      <ModalComp type="Alert" title="Are you sure?" content={modalContent} />}
     </>
   );
 }
