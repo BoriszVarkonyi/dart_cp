@@ -55,6 +55,42 @@ body::before {
     border-bottom: 2pt solid var(--c-Gray-500);
 }
 
+.PageContentInner {
+    background-color: var(--c-Gray-200);
+    padding: 30px;
+    border-radius: 7pt;
+    border: 2pt solid var(--c-Gray-500);
+}
+
 .TableGrid {
     background-color: white;
+}
+
+.Form {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row !important;
+    justify-content: center;
+    gap: 40px;
+}
+
+.Form > .FormColumn {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 0 1 250px;
+}
+
+.Form > .FormColumn > * {
+    width: 100%;
+    margin-block: 8px;
+}
+
+.FormRow {
+    display: flex;
+    gap: 16px;
+}
+
+.FormRow > * {
+    margin: 0 !important;
 }

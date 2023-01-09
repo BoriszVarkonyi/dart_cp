@@ -67,12 +67,12 @@ export default function WeaponControls() {
             </Button>
           )}
           {isSelected && (
-            <Button variant="contained" size="small" onClick={()=> navigate("modify")}>
+            <Button variant="contained" size="small" onClick={() => navigate("modify")}>
               Modify weapon control
             </Button>
           )}
           {isSelected && (
-            <Button variant="contained" size="small" onClick={()=> navigate("add")}>
+            <Button variant="contained" size="small" onClick={() => navigate("add")}>
               Add weapon control
             </Button>
           )}
@@ -81,7 +81,7 @@ export default function WeaponControls() {
           </Button>
         </div>
       </div>
-      <div className="PanelContentSingle">
+      <div className="PageContent">
         <div className="TableGrid">
           <div style={{ height: 300, width: "100%" }}>
             <DataGrid

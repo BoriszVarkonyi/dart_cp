@@ -14,7 +14,7 @@ export default function Timetable() {
                     <Button variant="contained" size="small">OPEN BOOKINGS</Button>
                 </div>
             </div>
-            <div className="PanelContentSingle">
+            <div className="PageContent">
                 <div className="TableGrid">
                     <div style={{ height: 300, width: "100%" }}>
                         <h1>Timetable</h1>

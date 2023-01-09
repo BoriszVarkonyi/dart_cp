@@ -68,53 +68,53 @@ export default function Import() {
       });
   }
 
-  const updateFencer = (fencer) =>{
-    return {...fencer, competitions: [compId]}
+  const updateFencer = (fencer) => {
+    return { ...fencer, competitions: [compId] }
   }
 
-const testArray = [
-  {
-    "id": "123456",
-    "competitions": [
-      1
-    ],
-    "nom": "Zalán",
-    "pre_nom": "Tóth",
-    "sexe": "M",
-    "lateralite": "D",
-    "nation": "HUN",
-    "club": "Honved",
-    "licence": "1234Honved",
-    "statut": "A",
-    "date_naissance": "2003-07-27",
-    "classement": 1,
-    "points": 420,
-    "barcode": 0,
-    "registration_status": false
-  },
-  {
-    "id": "123457",
-    "competitions": [
-      1
-    ],
-    "nom": "Zalán",
-    "pre_nom": "Tóth",
-    "sexe": "M",
-    "lateralite": "D",
-    "nation": "HUN",
-    "club": "Honved",
-    "licence": "1234Honved",
-    "statut": "A",
-    "date_naissance": "2003-07-27",
-    "classement": 1,
-    "points": 420,
-    "barcode": 0,
-    "registration_status": false
-  }
-];
+  const testArray = [
+    {
+      "id": "123456",
+      "competitions": [
+        1
+      ],
+      "nom": "Zalán",
+      "pre_nom": "Tóth",
+      "sexe": "M",
+      "lateralite": "D",
+      "nation": "HUN",
+      "club": "Honved",
+      "licence": "1234Honved",
+      "statut": "A",
+      "date_naissance": "2003-07-27",
+      "classement": 1,
+      "points": 420,
+      "barcode": 0,
+      "registration_status": false
+    },
+    {
+      "id": "123457",
+      "competitions": [
+        1
+      ],
+      "nom": "Zalán",
+      "pre_nom": "Tóth",
+      "sexe": "M",
+      "lateralite": "D",
+      "nation": "HUN",
+      "club": "Honved",
+      "licence": "1234Honved",
+      "statut": "A",
+      "date_naissance": "2003-07-27",
+      "classement": 1,
+      "points": 420,
+      "barcode": 0,
+      "registration_status": false
+    }
+  ];
 
-  const importFencers = async () =>{
-    const tempArray = fencerArray.map((e)=>updateFencer(e))
+  const importFencers = async () => {
+    const tempArray = fencerArray.map((e) => updateFencer(e))
     setFencerArray(tempArray)
     await postBulk("fencers/", fencerArray)
   };
@@ -139,7 +139,7 @@ const testArray = [
           )}
         </div>
       </div>
-      <div className="PanelContentSingle">
+      <div className="PageContent">
         <div className="TableGrid">
           {!hasSelectedFile && (
             <>
