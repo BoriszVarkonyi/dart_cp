@@ -110,7 +110,7 @@ export default function Tournaments() {
             )}
           </div>
         </div>
-        <div className="PanelContentSingle">
+        <div className="PageContent">
           <div className="TableGrid">
             <div style={{ height: 300, width: "100%" }}>
               <DataGrid

@@ -62,15 +62,16 @@
     border-bottom: var(--l-Border) solid var(--c-PrimaryBlue-100);
     background-image: radial-gradient(var(--c-Gray-300) 1pt, rgba(255,255,255,1) 1pt);
     background-size: 10px 10px;
+    border-bottom: 2pt solid var(--c-Gray-500);
 }
 
 .PageTitle {
     text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
 }
 
-.PanelContentSingle {
-    padding: 20px;
-    background-color: var(--c-White);
+.PageContent {
+    padding: 50px;
+    background-color: var(--c-PrimaryBlue-100);
     background-image:
         linear-gradient(var(--c-Gray-200) 2px, transparent 2px),
         linear-gradient(90deg, var(--c-Gray-200) 2px, transparent 2px),
@@ -78,6 +79,9 @@
         linear-gradient(90deg, var(--c-Gray-200) 1px, transparent 1px);
     background-size: 50px 50px, 50px 50px, 10px 10px, 10px 10px;
     background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .PanelContent {
@@ -98,18 +102,6 @@
     background-color: var(--c-PrimaryBlue-100);
 }
 
-.FormColumn {
-    padding: 0 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.FormColumn > * {
-    margin-block: 8px !important;
-}
-
 .FencersImage {
 
 }
@@ -121,5 +113,4 @@
 
 .PageButtonsWrapper > * {
     margin: 5px 0 10px 5px !important;
-
 }

@@ -52,61 +52,64 @@ export default function Competitions() {
     getData();
   }, []);
 
-  const deleteRow = () =>{
+  const deleteRow = () => {
     deleteFunction(`competitions/${selectedRowId}/`)
   }
 
   return (
     <>
-    <div className="Main">
-      <div className="PageHeader">
-        <h2 className="PageTitle">Competitions</h2>
-        <div className="PageButtonsWrapper">
-          {isSelected && (
-            <Button
-              variant="contained"
-              onClick={openModalFunctiom}
-            >
-              Delete
-            </Button>
-          )}
-          {isSelected && (
-            <Button
-              variant="contained"
-              onClick={() =>
-                navigate("modify", { state: { rowId: selectedRowId } })
-              }
-            >
-              Modify
-            </Button>
-          )}
-          {!isSelected && (
-            <Button
-              variant="contained"
-              onClick={() =>
-                navigate("create", { state: { rowId: selectedRowId } })
-              }
-            >
-              Create
-            </Button>
-          )}
+      <div className="Main">
+        <div className="PageHeader">
+          <h2 className="PageTitle">Competitions</h2>
+          <div className="PageButtonsWrapper">
+            {isSelected && (
+              <Button
+                variant="contained"
+                size="small"
+                onClick={openModalFunctiom}
+              >
+                Delete
+              </Button>
+            )}
+            {isSelected && (
+              <Button
+                variant="contained"
+                size="small"
+                onClick={() =>
+                  navigate("modify", { state: { rowId: selectedRowId } })
+                }
+              >
+                Modify
+              </Button>
+            )}
+            {!isSelected && (
+              <Button
+                variant="contained"
+                size="small"
+                onClick={() =>
+                  navigate("create", { state: { rowId: selectedRowId } })
+                }
+              >
+                Create
+              </Button>
+            )}
+          </div>
         </div>
-      </div>
-      <div className="PanelContentSingle">
-        <div className="TableGrid">
-          <div style={{ height: 300, width: "100%", bgcolor: "#fff" }}>
-            <DataGrid
-              checkboxSelection={true}
-              selectionModel={selectionModel}
-              onSelectionModelChange={handleEvent}
-              rows={rows}
-              columns={columns}
-            />
+        <div className="PageContent">
+          <div className="TableGrid">
+            <div style={{ height: 300, width: "100%", bgcolor: "#fff" }}>
+              <DataGrid
+                checkboxSelection={true}
+                selectionModel={selectionModel}
+                onSelectionModelChange={handleEvent}
+                rows={rows}
+                columns={columns}
+              />
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <ModalComp title="Are you sure?" text="Are you sure you want to delete this competition?" confirmButtonText="DELETE" actionOnConfirm={deleteRow} />
+      <ModalComp title="Are you sure?" text="Are you sure you want to delete this competition?" confirmButtonText="DELETE" actionOnConfirm={deleteRow} />
     </>
   );
 }

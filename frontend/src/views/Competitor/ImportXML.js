@@ -69,7 +69,7 @@ export default function Import() {
   }
 
   const updateFencer = (fencer) => {
-    if(fencer.club == "") { 
+    if (fencer.club == "") {
       fencer.club = fencer.nation;
     }
     fencer.competitions = [compId];
@@ -78,8 +78,8 @@ export default function Import() {
     return fencer;
   }
 
-  const importFencers = async () =>{
-    const tempArray = fencerArray.map((e)=>updateFencer(e))
+  const importFencers = async () => {
+    const tempArray = fencerArray.map((e) => updateFencer(e))
     console.log(tempArray);
     setFencerArray(tempArray);
     await postBulk("fencers/", tempArray);
@@ -105,7 +105,7 @@ export default function Import() {
           )}
         </div>
       </div>
-      <div className="PanelContentSingle">
+      <div className="PageContent">
         <div className="TableGrid">
           {!hasSelectedFile && (
             <>

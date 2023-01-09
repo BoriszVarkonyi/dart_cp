@@ -64,69 +64,69 @@ export default function Competitors() {
   }, []);
 
 
-  const deleteRow = () =>{
+  const deleteRow = () => {
     deleteFunction(`fencers/${selectedRowId}/`)
   }
 
   return (
     <>
-    <div className="Main">
-      <div className="PageHeader">
-        <h2 className="PageTitle">Competitors</h2>
-        <div className="PageButtonsWrapper">
-          {!isSelected && (
-            <Button
-              variant="contained"
-              size="small"
-              onClick={() => navigate("importXML")}
-            >
-              Import XML
-            </Button>
-          )}
-          {isSelected && (
-            <Button variant="contained" size="small" onClick={openModalFunctiom}>
-              Delete
-            </Button>
-          )}
-          {isSelected && (
-            <Button
-              variant="contained"
-              size="small"
-              onClick={() =>
-                navigate("modify", { state: { rowId: selectedRowId } })
-              }
-            >
-              Modify
-            </Button>
-          )}
-          {!isSelected && (
-            <Button
-              variant="contained"
-              size="small"
-              onClick={() =>
-                navigate("add", { state: { rowId: selectedRowId } })
-              }
-            >
-              Create
-            </Button>
-          )}
+      <div className="Main">
+        <div className="PageHeader">
+          <h2 className="PageTitle">Competitors</h2>
+          <div className="PageButtonsWrapper">
+            {!isSelected && (
+              <Button
+                variant="contained"
+                size="small"
+                onClick={() => navigate("importXML")}
+              >
+                Import XML
+              </Button>
+            )}
+            {isSelected && (
+              <Button variant="contained" size="small" onClick={openModalFunctiom}>
+                Delete
+              </Button>
+            )}
+            {isSelected && (
+              <Button
+                variant="contained"
+                size="small"
+                onClick={() =>
+                  navigate("modify", { state: { rowId: selectedRowId } })
+                }
+              >
+                Modify
+              </Button>
+            )}
+            {!isSelected && (
+              <Button
+                variant="contained"
+                size="small"
+                onClick={() =>
+                  navigate("add", { state: { rowId: selectedRowId } })
+                }
+              >
+                Create
+              </Button>
+            )}
+          </div>
         </div>
-      </div>
-      <div className="PanelContentSingle">
-        <div className="TableGrid">
-          <div style={{ height: 300, width: "100%" }}>
-            <DataGrid
-              checkboxSelection={true}
-              selectionModel={selectionModel}
-              onSelectionModelChange={handleEvent}
-              rows={rows}
-              columns={columns}
-            />
+        <div className="PageContent">
+          <div className="TableGrid">
+            <div style={{ height: 300, width: "100%" }}>
+              <DataGrid
+                checkboxSelection={true}
+                selectionModel={selectionModel}
+                onSelectionModelChange={handleEvent}
+                rows={rows}
+                columns={columns}
+              />
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <ModalComp title="Are you sure?" text="Are you sure you want to delete this competitior?" confirmButtonText="DELETE" actionOnConfirm={deleteRow} />
+      <ModalComp title="Are you sure?" text="Are you sure you want to delete this competitior?" confirmButtonText="DELETE" actionOnConfirm={deleteRow} />
     </>
   );
 }

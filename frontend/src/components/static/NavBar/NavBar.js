@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {useParams} from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import styles from "./NavBar.css";
 import { Button } from "@mui/material";
 import { FormControl, TextField, MenuItem } from "@mui/material";
@@ -35,7 +35,7 @@ export default function NavBar() {
   useEffect(() => {
     async function getData() {
       const data = await get(`tournaments/${tournamentId}/competitions/`);
-      const menuItems = data.map((e)=>setMenuItem(e))
+      const menuItems = data.map((e) => setMenuItem(e))
       setMenuItems(menuItems)
     }
     getData();
@@ -72,13 +72,13 @@ export default function NavBar() {
             </div>
 
             <div className="CompetitionSelect">
-              <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+              <FormControl sx={{ m: 1, width: 200 }} size="small">
                 <TextField
                   select
                   label="Select competition"
                   id="select_comp_id"
                   defaultValue=""
-                  sx={{ width: 100 }}
+                  sx={{ width: 200 }}
                 >
                   {menuItems}
                 </TextField>

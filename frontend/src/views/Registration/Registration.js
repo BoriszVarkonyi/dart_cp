@@ -13,7 +13,7 @@ export default function Registration() {
                     <Button variant="contained" size="small">Assign Barcode</Button>
                 </div>
             </div>
-            <div className="PanelContentSingle">
+            <div className="PageContent">
                 <div className="TableGrid">
 
                 </div>
