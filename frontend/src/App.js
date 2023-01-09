@@ -19,7 +19,7 @@ import WeaponControl from "./views/WeaponControl/WeaponControl";
 //Under construction. Will delete.
 
 function App() {
-  const idk = useTokenService();
+  const tokenHandler = useTokenService();
   return (
     <>
       <Routes>

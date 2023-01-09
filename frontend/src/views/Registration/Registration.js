@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@mui/material";
-<<<<<<< HEAD
-import ModalComp from "../../components/static/Modal/ModalComp";
-import { useDispatch } from "react-redux";
-import useDataGridHelper from "../../services/useDataGridHelper";
-=======
 import { useParams } from "react-router-dom";
 import { DataGrid } from "@mui/x-data-grid";
 import { get, update } from "../../services/backend.service";
@@ -20,7 +15,6 @@ const columns = [
     { field: "sexe", headerName: "Sex" },
     { field: "registration_status", headerName: "Status"}
 ];
->>>>>>> e2e5b428a9dbe61ad22708e6099405ec01115dc3
 
 export default function Registration() {
     const {
@@ -31,17 +25,6 @@ export default function Registration() {
         setRows,
         handleEvent,
         deleteFunction,
-<<<<<<< HEAD
-        openModalFunctiom,
-      } = useDataGridHelper();
-    const dispatch = useDispatch();
-    const { isOpen } = useSelector((state) => state.modal);
-
-    const modalContent = {
-
-    }
-
-=======
         openModalFunctiom
     } = useDataGridHelper();
     const navigate = useNavigate();
@@ -77,26 +60,24 @@ export default function Registration() {
             updateRows();
         }
     }
->>>>>>> e2e5b428a9dbe61ad22708e6099405ec01115dc3
+
+const modalContent = {
+
+}
+
     return (
         <>
         <div className="Main">
             <div className="PageHeader">
                 <h2 className="PageTitle">Registration</h2>
                 <div className="PageButtonsWrapper">
-<<<<<<< HEAD
                     <Button variant="contained" size="small" onClick={openModalFunctiom}>Print Barcodes</Button>
-                    <Button variant="contained" size="small">Register out</Button>
-                    <Button variant="contained" size="small">Register in</Button>
-=======
-                    <Button variant="contained" size="small">Print Barcodes</Button>
                     {isSelected && rows.filter(f => f.id == selectedRowId)[0].registration_status && (
                         <Button variant="contained" size="small" onClick={registerOut}>Register out</Button>
                     )}
                     {isSelected && !rows.filter(f => f.id == selectedRowId)[0].registration_status && (
                         <Button variant="contained" size="small" onClick={registerIn}>Register in</Button>
                     )}
->>>>>>> e2e5b428a9dbe61ad22708e6099405ec01115dc3
                     <Button variant="contained" size="small">Assign Barcode</Button>
                 </div>
             </div>

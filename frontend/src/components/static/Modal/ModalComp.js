@@ -10,7 +10,7 @@ export default function ModalComp(props) {
   const dispatch = useDispatch();
   const { isOpen } = useSelector((state) => state.modal);
 
-  const contentProps = props.content
+  const contentProps = props.content;
   return (
     <Modal open={isOpen}>
       <Box>
@@ -47,6 +47,9 @@ export default function ModalComp(props) {
           <div className="Barcode">
             <div>Ide jön a kép</div>
             <TextField label="Code" type="text" size="small" variant="filled" />
+            <Button variant="contained" onClick={() => dispatch(closeModal())}>
+              Cancel
+            </Button>
           </div>
         )}
       </Box>
