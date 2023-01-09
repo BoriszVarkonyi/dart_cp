@@ -17,9 +17,7 @@ export default function Header() {
     <div className="Header">
       {/* Temporary design! */}
       <p className="UserNameText">[[[USERNAME]]]]</p>
-      <p>&#9776;</p>
       <p className="RoleText">Organiser</p>
-      <p>&#10072;</p>
       <Button onClick={logout}>Log out</Button>
     </div>
   );

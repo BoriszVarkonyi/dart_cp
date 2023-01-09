@@ -65,6 +65,7 @@ export default function Competitions() {
             {isSelected && (
               <Button
                 variant="contained"
+                size="small"
                 onClick={openModalFunctiom}
               >
                 Delete
@@ -73,6 +74,7 @@ export default function Competitions() {
             {isSelected && (
               <Button
                 variant="contained"
+                size="small"
                 onClick={() =>
                   navigate("modify", { state: { rowId: selectedRowId } })
                 }
@@ -83,6 +85,7 @@ export default function Competitions() {
             {!isSelected && (
               <Button
                 variant="contained"
+                size="small"
                 onClick={() =>
                   navigate("create", { state: { rowId: selectedRowId } })
                 }
