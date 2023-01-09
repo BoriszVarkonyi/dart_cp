@@ -29,8 +29,7 @@ export default function Registration() {
     } = useDataGridHelper();
     const navigate = useNavigate();
     const { tourId, compId } = useParams();
-
-
+    
     useEffect(() => {
         async function getFencersData() {
             const data = await get(`competitions/${compId}/fencers/`);
