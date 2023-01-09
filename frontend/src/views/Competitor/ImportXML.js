@@ -68,55 +68,21 @@ export default function Import() {
       });
   }
 
-  const updateFencer = (fencer) =>{
-    return {...fencer, competitions: [compId]}
+  const updateFencer = (fencer) => {
+    if(fencer.club == "") { 
+      fencer.club = fencer.nation;
+    }
+    fencer.competitions = [compId];
+    // dd-MM-yyyy to yyyy-MM-dd (https://www.facebook.com/groups/1084081591969203)
+    fencer.date_naissance = fencer.date_naissance.split('.').reverse().join('-');
+    return fencer;
   }
-
-const testArray = [
-  {
-    "id": "123456",
-    "competitions": [
-      1
-    ],
-    "nom": "Zalán",
-    "pre_nom": "Tóth",
-    "sexe": "M",
-    "lateralite": "D",
-    "nation": "HUN",
-    "club": "Honved",
-    "licence": "1234Honved",
-    "statut": "A",
-    "date_naissance": "2003-07-27",
-    "classement": 1,
-    "points": 420,
-    "barcode": 0,
-    "registration_status": false
-  },
-  {
-    "id": "123457",
-    "competitions": [
-      1
-    ],
-    "nom": "Zalán",
-    "pre_nom": "Tóth",
-    "sexe": "M",
-    "lateralite": "D",
-    "nation": "HUN",
-    "club": "Honved",
-    "licence": "1234Honved",
-    "statut": "A",
-    "date_naissance": "2003-07-27",
-    "classement": 1,
-    "points": 420,
-    "barcode": 0,
-    "registration_status": false
-  }
-];
 
   const importFencers = async () =>{
     const tempArray = fencerArray.map((e)=>updateFencer(e))
-    setFencerArray(tempArray)
-    await postBulk("fencers/", fencerArray)
+    console.log(tempArray);
+    setFencerArray(tempArray);
+    await postBulk("fencers/", tempArray);
   };
 
   return (
