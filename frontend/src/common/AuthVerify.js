@@ -14,6 +14,8 @@ export default function useTokenService() {
     //If theres is no user it doesn't do anything
     if (user) {
       const decodedJwt = parseJwt(user.access);
+      console.log("Jelenlegi token:")
+      console.log(user.access)
       const expireTime = new Date(decodedJwt.exp * 1000);
       if (expireTime < Date.now()) {
         authService.logout();
@@ -42,7 +44,7 @@ const parseJwt = (token) => {
 
 //Helper Function
 const refreshToken = () => {
-  console.log("???")
+  console.log('Most kérek újat!')
   const authData = JSON.parse(localStorage.getItem("user"));
   const payload = {
     refresh: authData.refresh,
@@ -51,6 +53,8 @@ const refreshToken = () => {
   const apiResponse = axios
     .post("http://localhost:8082/api/token/refresh/", payload)
     .then((response) => {
+      console.log("Kapott toke (in response):")
+      console.log(response.data.access)
       if (response.data.access) {
         localStorage.setItem(
           "user",

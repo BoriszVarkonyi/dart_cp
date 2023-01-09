@@ -12,7 +12,6 @@ const config = {
   headers: authHeader(),
 };
 
-
 async function get(url) {
   try {
     const resp = await instance.get(`${url}`, {
@@ -25,10 +24,16 @@ async function get(url) {
 }
 
 async function post(url, payload) {
+  let test = authHeader()
+  let config2 = {
+    headers: test,
+  };
+  console.log("Ezzel a tokennel postol")
+  console.log(config.headers)
   try {
     const resp = await instance.post(`${url}`, {
       ...payload,
-      config,
+      config2,
     });
     return resp.data;
   } catch (err) {

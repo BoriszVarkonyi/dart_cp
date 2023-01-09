@@ -14,7 +14,6 @@ export default function useDataGridHelper() {
 
   //Makes only one row selected
   const handleEvent = (params) => {
-    console.log(params)
     if (params.length > 1) {
       const selectionSet = new Set(selectionModel);
       const result = params.filter((s) => !selectionSet.has(s));
