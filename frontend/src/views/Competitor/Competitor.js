@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useSearchParams } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { FormControl, MenuItem, TextField, Button } from "@mui/material";
+import { FormControl, MenuItem, TextField, Button, Alert } from "@mui/material";
 import { Box } from "@mui/system";
 import { useForm } from "react-hook-form";
 import { post, update } from "../../services/backend.service";
@@ -12,6 +12,7 @@ import { useParams } from "react-router-dom";
 export default function Competitor(props) {
   const [isOther, setIsOther] = useState(false);
   const [menuItems, setMenuItems] = useState([]);
+  const [ success, setSuccess ] = useState(0);
   const navigate = useNavigate();
   const { state } = useLocation();
   const { rowId } = state;
@@ -48,7 +49,12 @@ export default function Competitor(props) {
         statut: "N",
         barcode: 0,
       });
-      navigate(-1);
+      console.log(resp);
+      if(resp.name && resp.name == "AxiosError") {
+        setSuccess(-1);
+      } else {
+        navigate(-1);
+      }
     } else if (props.type == "Modify") {
       await update(`fencers/${rowId}/`, {
         ...data,
@@ -62,6 +68,7 @@ export default function Competitor(props) {
 
   const text = `${props.type} competitiors`;
   return (
+
     <div className="Main">
       <div className="PageHeader">
         <h2 className="PageTitle">{text}</h2>
@@ -75,7 +82,13 @@ export default function Competitor(props) {
         </div>
       </div>
       <div className="Panel">
-        <Box
+        {success == -1 ? 
+          <Alert variant="filled" severity="error">
+            Something went wrong. Please try later!
+          </Alert>
+          : <></>
+        }
+          <Box
           component="form"
           display="flex"
           flexDirection="column"
