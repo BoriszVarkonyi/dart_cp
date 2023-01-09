@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { DataGrid } from "@mui/x-data-grid";
-import { post } from "./../../services/backend.service";
+import { post, postBulk } from "./../../services/backend.service";
 import { useParams } from "react-router-dom";
 
 const row = (element) => {
@@ -72,49 +72,51 @@ export default function Import() {
     return {...fencer, competitions: [compId]}
   }
 
-const testArray =     [{
-  "id": "123456",
-  "competitions": [
+const testArray = [
+  {
+    "id": "123456",
+    "competitions": [
       1
-  ],
-  "nom": "Zalán",
-  "pre_nom": "Tóth",
-  "sexe": "M",
-  "lateralite": "D",
-  "nation": "HUN",
-  "club": "Honved",
-  "licence": "1234Honved",
-  "statut": "A",
-  "date_naissance": "2003-07-27",
-  "classement": 1,
-  "points": 420,
-  "barcode": 0,
-  "registration_status": false
-},
-{
-  "id": "123457",
-  "competitions": [
+    ],
+    "nom": "Zalán",
+    "pre_nom": "Tóth",
+    "sexe": "M",
+    "lateralite": "D",
+    "nation": "HUN",
+    "club": "Honved",
+    "licence": "1234Honved",
+    "statut": "A",
+    "date_naissance": "2003-07-27",
+    "classement": 1,
+    "points": 420,
+    "barcode": 0,
+    "registration_status": false
+  },
+  {
+    "id": "123457",
+    "competitions": [
       1
-  ],
-  "nom": "Zalán",
-  "pre_nom": "Tóth",
-  "sexe": "M",
-  "lateralite": "D",
-  "nation": "HUN",
-  "club": "Honved",
-  "licence": "1234Honved",
-  "statut": "A",
-  "date_naissance": "2003-07-27",
-  "classement": 1,
-  "points": 420,
-  "barcode": 0,
-  "registration_status": false
-}]
+    ],
+    "nom": "Zalán",
+    "pre_nom": "Tóth",
+    "sexe": "M",
+    "lateralite": "D",
+    "nation": "HUN",
+    "club": "Honved",
+    "licence": "1234Honved",
+    "statut": "A",
+    "date_naissance": "2003-07-27",
+    "classement": 1,
+    "points": 420,
+    "barcode": 0,
+    "registration_status": false
+  }
+];
 
   const importFencers = async () =>{
     const tempArray = fencerArray.map((e)=>updateFencer(e))
     setFencerArray(tempArray)
-    await post("fencers/", [testArray])
+    await postBulk("fencers/", testArray)
   };
 
   return (
