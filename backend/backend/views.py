@@ -22,6 +22,7 @@ import xml.etree.ElementTree as ET
 from rest_framework.parsers import MultiPartParser
 from django.forms.models import model_to_dict
 from collections import OrderedDict
+from backend.issues import *
 
 class FencerModelMixin(object):
   def get_serializer(self, *args, **kwargs):
@@ -167,4 +168,38 @@ class TournamentsFencersByNationality(APIView):
             )
             response[id] = fencer_serializer.data
 
+        return Response(response)
+
+class WeaponControlFencersIssues(APIView):
+    def get(self, request, competition, fencer):
+
+        competition = self.kwargs['competition']
+        fencer = self.kwargs['fencer']
+
+        queryset = WeaponControlModel.objects.filter(
+                competitions = competition,
+                fencers = fencer,
+            )
+        if queryset.exists():
+            wc_serializer = WeaponControlIssuesSerializer(
+                queryset,
+                many=True,
+            )
+            response = OrderedDict()
+            response['exists'] = True
+            for field_name in issues_list.keys():
+                hr_name = issues_list[field_name]
+                response[hr_name] = wc_serializer.data[0][field_name]
+
+            response['notes'] = wc_serializer.data[0]['notes']
+
+        else:
+            response = OrderedDict()
+            response['exists'] = False
+            for field_name in issues_list.keys():
+                hr_name = issues_list[field_name]
+                response[hr_name] = 0
+
+            response['notes'] = ""
+                
         return Response(response)

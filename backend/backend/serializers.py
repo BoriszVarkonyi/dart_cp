@@ -95,3 +95,11 @@ class FencersCompetitionSerializer(serializers.ModelSerializer):
         fields = [
             'competitions',    
         ]
+
+class WeaponControlIssuesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = WeaponControlModel
+        exclude = (
+            'competitions',
+            'fencers',
+        )

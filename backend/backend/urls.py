@@ -21,4 +21,8 @@ urlpatterns = [
         'stats/tournaments/<str:nationality>/',
         views.TournamentsFencersByNationality.as_view()
     ),
+    path(
+        'stats/weaponcontrols/issues/<str:competition>/<str:fencer>/',
+        views.WeaponControlFencersIssues.as_view()
+    ),
 ]
