@@ -13,7 +13,7 @@ const columns = [
     { field: "nation", headerName: "Nationality" },
     { field: "date_naissance", headerName: "Date of Birth" },
     { field: "sexe", headerName: "Sex" },
-    { field: "registration_status", headerName: "Status"}
+    { field: "in_competition", headerName: "Status"}
 ];
 
 export default function Registration() {
@@ -32,30 +32,43 @@ export default function Registration() {
     
     useEffect(() => {
         async function getFencersData() {
-            const data = await get(`competitions/${compId}/fencers/`);
-            setRows(data);
+            const data = await get(`fencers/`);
+            setRows(fencerInCompetition(data));
         }
         getFencersData();
     }, []);
 
+    // For some reason I cannot use Array.includes()
+    function fencerInCompetition(fencers) {
+        return fencers.map(f => 
+            f.competitions.filter(c => c == compId).length == 0
+                ? { ...f, in_competition: false}
+                : { ...f, in_competition: true }
+        );
+    }
+
     function updateRows() {
         setRows((prevRows) => {
             return prevRows.map(f => 
-                f.id == selectedRowId ? { ...f, registration_status: !f.registration_status } : f
+                f.id == selectedRowId ? { ...f, in_competition: !f.in_competition } : f
             );
         });
     }
 
     async function registerIn() {
         if(isSelected) {
-            await update(`fencers/${selectedRowId}/`, { registration_status: true });
+            const selectedFencer = rows.filter(f => f.id == selectedRowId)[0];
+            selectedFencer.competitions = [...selectedFencer.competitions, parseInt(compId) ];
+            await update(`fencers/${selectedRowId}/`, { competitions: selectedFencer.competitions });
             updateRows();
         }
     }
 
     async function registerOut() {
         if(isSelected) {
-            await update(`fencers/${selectedRowId}/`, { registration_status: false });
+            const selectedFencer = rows.filter(f => f.id == selectedRowId)[0];
+            selectedFencer.competitions = selectedFencer.competitions.filter(c => c != parseInt(compId));
+            await update(`fencers/${selectedRowId}/`, { competitions: selectedFencer.competitions });
             updateRows();
         }
     }
@@ -71,10 +84,13 @@ const modalContent = {
                 <h2 className="PageTitle">Registration</h2>
                 <div className="PageButtonsWrapper">
                     <Button variant="contained" size="small" onClick={()=> navigate("print")}>Print Barcodes</Button>
-                    {isSelected && rows.filter(f => f.id == selectedRowId)[0].registration_status && (
-                        <Button variant="contained" size="small" onClick={registerOut}>Register out</Button>
+                    {isSelected && rows.filter(f => f.id == selectedRowId)[0].in_competition && (
+                        <>
+                            <Button variant="contained" size="small">Print Code</Button>
+                            <Button variant="contained" size="small" onClick={registerOut}>Register out</Button>
+                        </>
                     )}
-                    {isSelected && !rows.filter(f => f.id == selectedRowId)[0].registration_status && (
+                    {isSelected && !rows.filter(f => f.id == selectedRowId)[0].in_competition && (
                         <Button variant="contained" size="small" onClick={registerIn}>Register in</Button>
                     )}
                     <Button variant="contained" size="small" onClick={openModalFunctiom}>Assign Barcode</Button>
@@ -82,7 +98,7 @@ const modalContent = {
             </div>
             <div className="PageContent">
                 <div className="TableGrid">
-                    <div style={{ height: 300, width: "100%"}}>
+                    <div style={{ height: 600, width: "100%"}}>
                     <DataGrid
                         checkboxSelection={true}
                         selectionModel={selectionModel}
