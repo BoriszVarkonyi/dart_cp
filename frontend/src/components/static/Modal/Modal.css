@@ -1,0 +1,50 @@
+.ModalWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Modal {
+    background-color: var(--c-White);
+    border-radius: var(--l-Rounding);
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+    overflow: hidden;
+}
+
+.ModalHeader, .ModalMain, .ModalFooter {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.ModalHeader {
+    background-color: var(--c-PrimaryBlue-500);
+    color: var(--c-White);
+    padding: 18px 40px 18px 18px;
+    position: relative;
+}
+
+.ModalTitle {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.ModalSubtitle {
+    font-size: 18px;
+}
+
+.ModalCloseButton {
+    position: absolute !important;
+    right: 10px;
+    top: 10px;
+}
+
+.ModalFooter {
+    background-color: var(--c-PrimaryBlue-100);
+    color: var(--c-White);
+    padding: 18px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}

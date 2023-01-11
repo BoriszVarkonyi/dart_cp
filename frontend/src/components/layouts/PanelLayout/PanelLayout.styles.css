@@ -70,7 +70,6 @@
 }
 
 .PageContent {
-    padding: 50px;
     background-color: var(--c-PrimaryBlue-100);
     background-image:
         linear-gradient(var(--c-Gray-200) 2px, transparent 2px),
@@ -79,9 +78,17 @@
         linear-gradient(90deg, var(--c-Gray-200) 1px, transparent 1px);
     background-size: 50px 50px, 50px 50px, 10px 10px, 10px 10px;
     background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    overflow-y: auto;
+    position: relative;
+}
+
+.PageContent::after {
+    content: "Temporary design!";
+    color: red;
+    font-weight: bold;
+    position: absolute;
+    top: 8px;
+    left: 8px;
 }
 
 .PanelContent {

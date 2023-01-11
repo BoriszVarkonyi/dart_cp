@@ -1,10 +1,12 @@
 import React from "react";
-import { Button, Modal, Box, Typography } from "@mui/material";
+import "./Modal.css";
+import { Button, Modal, Box, Typography, IconButton } from "@mui/material";
 import { closeModal } from "../../../slices/modalSlice";
 import { useDispatch } from "react-redux";
 import useDataGridHelper from "../../../services/useDataGridHelper";
 import { useSelector } from "react-redux";
 import { TextField } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close"
 
 export default function ModalComp(props) {
   const dispatch = useDispatch();
@@ -12,34 +14,39 @@ export default function ModalComp(props) {
 
   const contentProps = props.content;
   return (
-    <Modal open={isOpen}>
-      <Box>
-        <Typography id="modal-modal-title" variant="h6" component="h2">
-          {props.title}
-        </Typography>
-
+    <Modal open={isOpen} className="ModalWrapper">
+      <Box className="Modal">
+        <div className="ModalHeader">
+          <p className="ModalTitle">
+            {/*{props.title} */}
+            {contentProps.text}
+          </p>
+          <p className="ModalSubtitle">
+            You cannot undo this action!
+          </p>
+          <IconButton
+            className="ModalCloseButton"
+            onClick={() => dispatch(closeModal())}>
+            <CloseIcon />
+          </IconButton>
+        </div>
         {props.type == "Alert" && (
-          <div className="Alert">
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              {contentProps.text}
-            </Typography>
-            <div className="Buttons">
-              <Button
-                variant="contained"
-                onClick={() => {
-                  contentProps.deleteRow();
-                  dispatch(closeModal());
-                }}
-              >
-                {contentProps.confirmButtonText}
-              </Button>
-              <Button
-                variant="contained"
-                onClick={() => dispatch(closeModal())}
-              >
-                Cancel
-              </Button>
-            </div>
+          <div className="ModalFooter">
+            <Button
+              variant="outlined"
+              onClick={() => dispatch(closeModal())}
+            >
+              Cancel
+            </Button>
+            <Button
+              variant="contained"
+              onClick={() => {
+                contentProps.deleteRow();
+                dispatch(closeModal());
+              }}
+            >
+              {contentProps.confirmButtonText}
+            </Button>
           </div>
         )}
 
