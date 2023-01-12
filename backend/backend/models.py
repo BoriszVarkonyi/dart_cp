@@ -74,3 +74,7 @@ class WeaponControlModel(models.Model):
 
     notes = models.TextField(default="")
 
+class RegistrationModel(models.Model):
+    fencers = models.ForeignKey(FencerModel, on_delete=models.CASCADE)
+    competitions = models.ForeignKey(CompetitionModel, on_delete=models.CASCADE)
+    registered = models.BooleanField(default=False)

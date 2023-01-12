@@ -1,26 +1,23 @@
 import http
-
-from rest_framework import viewsets, permissions
-from rest_framework.decorators import action
-from rest_framework.response import Response
-from django.shortcuts import get_object_or_404
 from .models import * 
 from .serializers import *
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
+from django.core import serializers
+from django.forms.models import model_to_dict
+from django.shortcuts import get_object_or_404
+from rest_framework import viewsets, permissions
+from rest_framework.decorators import action
+from rest_framework.response import Response
 from rest_framework import viewsets, permissions, status
 from rest_framework.viewsets import ViewSet
-from .models import *
-from .serializers import *
-from django.core import serializers
 from rest_framework.exceptions import ParseError
 from rest_framework.parsers import FileUploadParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_xml.parsers import XMLParser
-import xml.etree.ElementTree as ET
 from rest_framework.parsers import MultiPartParser
-from django.forms.models import model_to_dict
+import xml.etree.ElementTree as ET
 from collections import OrderedDict
 from backend.issues import *
 
@@ -56,6 +53,12 @@ class WeaponControlViewSet(viewsets.ModelViewSet):
   queryset = WeaponControlModel.objects.all()
   serializer_class = WeaponControlSerializer
   permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+class RegistrationViewSet(viewsets.ModelViewSet):
+    queryset = RegistrationModel.objects.all()
+    serializer_class = RegistrationSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
 
 #XML beolvasás view
 class MyUploadView(APIView):
@@ -203,3 +206,42 @@ class WeaponControlFencersIssues(APIView):
             response['notes'] = ""
                 
         return Response(response)
+
+def SetRegistration(competitions, fencers, registration_value):
+    queryset = RegistrationModel.objects.filter(
+        competitions = competitions,
+        fencers = fencers,
+    )
+
+    if queryset.exists():
+        queryset.registered = registration_value
+        serializer = RegistrationSerializer(
+            data = queryset,
+        )
+        if serializer.is_valid():
+            serializer.save()
+            string = "Register updated"
+            return Response(string)
+    else:
+        serializer = RegistrationSerializer(
+            data = {
+                'competitions': competitions,
+                'fencers': fencers,
+                'registered': registration_value,
+                }
+            ) 
+        if serializer.is_valid():
+            serializer.save()
+            string = "register inserted"
+            return Response(string)
+
+    string = "register error"
+    return Response(string)
+
+class RegisterFencerIn(APIView):
+    def post(self, request, competition, fencer):
+        return SetRegistration(competition, fencer, True)
+
+class RegisterFencerOut(APIView):
+    def post(self, request, competition, fencer):
+        return SetRegistration(competition, fencer, False)

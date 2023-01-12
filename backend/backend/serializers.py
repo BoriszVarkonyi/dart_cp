@@ -1,5 +1,6 @@
-from .models import FencerModel, TournamentModel, CompetitionModel, WeaponControlModel
+from .models import FencerModel, TournamentModel, CompetitionModel, WeaponControlModel, RegistrationModel
 from rest_framework import serializers
+from rest_framework.validators import UniqueTogetherValidator
 
 class FencerSerializer(serializers.ModelSerializer):
     class Meta:
@@ -55,6 +56,15 @@ class CompetitionSerializer(serializers.ModelSerializer):
 class WeaponControlSerializer(serializers.ModelSerializer):
     class Meta:
         model = WeaponControlModel
+        validators = [
+            UniqueTogetherValidator(
+                queryset=WeaponControlModel.objects.all(),
+                fields = [
+                    'competitors',
+                    'fencers',
+                ]
+            )
+        ]
         fields = [
             'fencers',
             'competitions',
@@ -102,4 +112,22 @@ class WeaponControlIssuesSerializer(serializers.ModelSerializer):
         exclude = (
             'competitions',
             'fencers',
+        )
+
+class RegistrationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RegistrationModel
+        validators = [
+            UniqueTogetherValidator(
+                queryset=RegistrationModel.objects.all(),
+                fields = [
+                    'competitions',
+                    'fencers',
+                ]
+            )
+        ]
+        fields = (
+            'competitions',
+            'fencers',
+            'registered',
         )
