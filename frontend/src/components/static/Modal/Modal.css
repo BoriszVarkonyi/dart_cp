@@ -13,7 +13,7 @@
     overflow: hidden;
 }
 
-.ModalHeader, .ModalMain, .ModalFooter {
+.ModalHeader, .ModalContent, .ModalFooter {
     width: 100%;
     box-sizing: border-box;
 }
@@ -38,6 +38,23 @@
     position: absolute !important;
     right: 10px;
     top: 10px;
+}
+
+.ModalContent {
+    padding: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ModalContentInner {
+    display: flex;
+    flex-direction: column;
+}
+
+.BarcodeImage {
+    width: 100%;
+    margin-bottom: 40px;
 }
 
 .ModalFooter {

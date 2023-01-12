@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import useDataGridHelper from "../../services/useDataGridHelper";
 import { useParams } from "react-router-dom";
 import { get } from "../../services/backend.service";
+import ModalComp from "../../components/static/Modal";
 
 const row = (element) => {
   return {
@@ -76,7 +77,7 @@ export default function WeaponControls() {
               Add weapon control
             </Button>
           )}
-          <Button variant="contained" size="small">
+          <Button variant="contained" size="small" onClick={openModalFunctiom}>
             Read Barcode
           </Button>
         </div>
@@ -94,6 +95,7 @@ export default function WeaponControls() {
           </div>
         </div>
       </div>
+      <ModalComp type="Barcode" />
     </div>
   );
 }
