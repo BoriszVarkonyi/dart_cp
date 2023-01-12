@@ -56,8 +56,9 @@ export default function Competitions() {
     deleteFunction(`competitions/${selectedRowId}/`);
   };
 
-  const modalContent = {
-    text: "Are you sure you want to delete this competition?", 
+  const modalProps = {
+    title: "Are you sure?",
+    text: "Are you sure you want to delete this tournament?", 
     confirmButtonText: "DELETE",
     deleteRow
   }
@@ -116,7 +117,7 @@ export default function Competitions() {
           </div>
         </div>
       </div>
-      <ModalComp type="Alert" title="Are you sure?" content={modalContent} />
+      <ModalComp type="Alert" modalProps={modalProps} />
     </>
   );
 }

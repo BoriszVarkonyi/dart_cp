@@ -1,25 +1,58 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 import { FormControl, MenuItem, TextField, Button } from "@mui/material";
 import { Box } from "@mui/system";
 import { useForm } from "react-hook-form";
-import { post, update } from "../../services/backend.service";
+import { post, update, get } from "../../services/backend.service";
+
+const setData = (element) => {
+  return {
+    id: element.id,
+    name: element.title_long,
+    weapon_type: element.weapon_type,
+    is_wheelchair: element.is_wheelchair,
+    sex: element.sex,
+    type: element.type,
+    age_group: element.age_group,
+  };
+};
 
 export default function Competition(props) {
   const [isOther, setIsOther] = useState(false);
+  const [modifyData, setModifyData] = useState({});
   const navigate = useNavigate();
   const { state } = useLocation();
   const { rowId } = state;
   let { tournamentId } = useParams();
+  const ref = useRef(null);
 
   //react-hook-form
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      title_long: modifyData.title_long
+    }
+  });
+
+  useEffect(() => {
+    async function getData() {
+      const response = await get(`/competitions/${rowId}`);
+      setModifyData(response);
+    }
+    getData();
+  }, []);
+
+  useEffect(() => {
+    // reset form with user data
+    console.log(modifyData)
+    reset(modifyData);
+}, [modifyData]);
 
   const onSubmit = async (data) => {
     if (props.type == "Create") {
@@ -117,7 +150,6 @@ export default function Competition(props) {
                 select
                 label="Sex"
                 id="sex"
-                defaultValue=""
                 {...register("sex", { required: "Please choose sex!" })}
               >
                 <MenuItem value="M">Male</MenuItem>
@@ -244,10 +276,11 @@ export default function Competition(props) {
                 margin="normal"
                 size="small"
                 variant="filled"
-                {...register("currency", { required: "Please enter a currency!" })}
+                {...register("currency", {
+                  required: "Please enter a currency!",
+                })}
               />
             </div>
-
           </div>
 
           <div className="FormColumn">
@@ -284,7 +317,6 @@ export default function Competition(props) {
               })}
             />
           </div>
-
         </Box>
       </div>
     </div>

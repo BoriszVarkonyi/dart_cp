@@ -13,13 +13,15 @@ export default function ModalComp(props) {
   const dispatch = useDispatch();
   const { isOpen } = useSelector((state) => state.modal);
 
+const modalProps = props.modalProps;
+
   return (
     <Modal open={isOpen} className="ModalWrapper">
       <Box className="Modal">
         <div className="ModalHeader">
           <p className="ModalTitle">
-            {/*{props.title} */}
-            {props.content.text}
+            {modalProps.title}
+            {modalProps.text}
           </p>
           <p className="ModalSubtitle">
             You cannot undo this action!
@@ -41,11 +43,11 @@ export default function ModalComp(props) {
             <Button
               variant="contained"
               onClick={() => {
-                props.content.deleteRow();
+                modalProps.deleteRow();
                 dispatch(closeModal());
               }}
             >
-              {props.content.confirmButtonText}
+              {modalProps.confirmButtonText}
             </Button>
           </div>
         )}

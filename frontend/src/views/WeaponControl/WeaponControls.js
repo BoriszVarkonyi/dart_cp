@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import useDataGridHelper from "../../services/useDataGridHelper";
 import { useParams } from "react-router-dom";
 import { get } from "../../services/backend.service";
-import ModalComp from "../../components/static/Modal";
+import ModalComp from "../../components/static/Modal/ModalComp";
 
 const row = (element) => {
   return {

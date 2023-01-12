@@ -66,12 +66,13 @@ export default function Tournaments() {
     navigate("modify_tournament", { state: { rowId: selectedRowId } });
   };
 
-  const modalContent = {
+  const modalProps = {
+    title: "Are you sure?",
     text: "Are you sure you want to delete this tournament?", 
     confirmButtonText: "DELETE",
     deleteRow
   }
-
+  
   return (
     <>
       <div className="Panel">
@@ -125,7 +126,7 @@ export default function Tournaments() {
           </div>
         </div>
       </div>
-      <ModalComp type="Alert" title="Are you sure?" content={modalContent} />
+      <ModalComp type="Alert" modalProps={modalProps} />
     </>
   );
 }
