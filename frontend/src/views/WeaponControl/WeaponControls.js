@@ -73,12 +73,12 @@ export default function WeaponControls() {
             </Button>
           )}
           {isSelected && (
-            <Button variant="contained" size="small" onClick={() => navigate("modify")}>
+            <Button variant="contained" size="small" onClick={() => navigate("modify", { state: { rowId: selectedRowId } })}>
               Modify weapon control
             </Button>
           )}
           {isSelected && (
-            <Button variant="contained" size="small" onClick={() => navigate("add")}>
+            <Button variant="contained" size="small" onClick={() => navigate("add", { state: { rowId: selectedRowId } })}>
               Add weapon control
             </Button>
           )}

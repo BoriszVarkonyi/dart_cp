@@ -49,7 +49,6 @@ export default function Competitor(props) {
         statut: "N",
         barcode: 0,
       });
-      console.log(resp);
       if (resp.name && resp.name == "AxiosError") {
         setSuccess(-1);
       } else {

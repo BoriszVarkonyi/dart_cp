@@ -50,7 +50,6 @@ export default function Competition(props) {
 
   useEffect(() => {
     // reset form with user data
-    console.log(modifyData)
     reset(modifyData);
 }, [modifyData]);
 
