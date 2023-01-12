@@ -67,8 +67,8 @@ export default function Tournaments() {
   };
 
   const modalProps = {
-    title: "Are you sure?",
-    text: "Are you sure you want to delete this tournament?", 
+    title: "Are you sure you want to delete this tournament?",
+    subtitle: "You can not undo this action!", 
     confirmButtonText: "DELETE",
     deleteRow
   }

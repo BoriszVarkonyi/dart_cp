@@ -13,31 +13,26 @@ export default function ModalComp(props) {
   const dispatch = useDispatch();
   const { isOpen } = useSelector((state) => state.modal);
 
-const modalProps = props.modalProps;
+  const modalProps = props.modalProps;
 
   return (
     <Modal open={isOpen} className="ModalWrapper">
       <Box className="Modal">
         <div className="ModalHeader">
-          <p className="ModalTitle">
-            {modalProps.title}
-            {modalProps.text}
-          </p>
-          <p className="ModalSubtitle">
-            You cannot undo this action!
-          </p>
+          <p className="ModalTitle">{modalProps.title}</p>
+          {modalProps.subtitle != undefined && (
+            <p className="ModalSubtitle">{modalProps.subtitle}</p>
+          )}
           <IconButton
             className="ModalCloseButton"
-            onClick={() => dispatch(closeModal())}>
+            onClick={() => dispatch(closeModal())}
+          >
             <CloseIcon />
           </IconButton>
         </div>
         {props.type == "Alert" && (
           <div className="ModalFooter">
-            <Button
-              variant="outlined"
-              onClick={() => dispatch(closeModal())}
-            >
+            <Button variant="outlined" onClick={() => dispatch(closeModal())}>
               Cancel
             </Button>
             <Button
@@ -56,11 +51,15 @@ const modalProps = props.modalProps;
           <div className="ModalContent">
             <div className="ModalContentInner">
               <img className="BarcodeImage" src={BarcodeImage} />
-              <TextField label="Code" type="text" size="small" variant="filled" />
+              <TextField
+                label="Code"
+                type="text"
+                size="small"
+                variant="filled"
+              />
             </div>
           </div>
         )}
-
 
         {/*props.type == "Print" && (
           <div>

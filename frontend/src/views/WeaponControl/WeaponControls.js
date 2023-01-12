@@ -57,6 +57,11 @@ export default function WeaponControls() {
     getFencersData();
   }, []);
 
+  const modalProps = {
+    title: "Read barcode", 
+    subtitle: undefined
+  }
+
   return (
     <div className="Main">
       <div className="PageHeader">
@@ -95,7 +100,7 @@ export default function WeaponControls() {
           </div>
         </div>
       </div>
-      <ModalComp type="Barcode" />
+      <ModalComp type="Barcode" modalProps={modalProps}/>
     </div>
   );
 }
