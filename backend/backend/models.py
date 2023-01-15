@@ -35,7 +35,6 @@ class FencerModel(models.Model):
     classement = models.IntegerField()
     points = models.FloatField()
     barcode = models.IntegerField(default='00000000')
-    registration_status = models.BooleanField(default=False)
 
 class WeaponControlModel(models.Model):
     fencers = models.ForeignKey(FencerModel, on_delete=models.CASCADE)
@@ -77,4 +76,4 @@ class WeaponControlModel(models.Model):
 class RegistrationModel(models.Model):
     fencers = models.ForeignKey(FencerModel, on_delete=models.CASCADE)
     competitions = models.ForeignKey(CompetitionModel, on_delete=models.CASCADE)
-    registered = models.BooleanField(default=False)
+    registered = models.BooleanField()
