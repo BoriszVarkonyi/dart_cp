@@ -10,12 +10,20 @@ import { post, update, get } from "../../services/backend.service";
 export default function Competition(props) {
   const [isOther, setIsOther] = useState(false);
   const [modifyData, setModifyData] = useState({});
-  const [test, setTest] = useState("");
-  const navigate = useNavigate();
   const { state } = useLocation();
   const { rowId } = state;
   let { tournamentId } = useParams();
+  const navigate = useNavigate();
 
+  //react-hook-form
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm();
+
+  //A state for the controlled inputs.
   const [inputState, setInputState] = useState({
     title_long: "",
     weapon_type: "",
@@ -31,13 +39,6 @@ export default function Competition(props) {
     end_date: "",
   });
 
-  //react-hook-form
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    formState: { errors },
-  } = useForm();
 
   useEffect(() => {
     async function getData() {
@@ -50,14 +51,19 @@ export default function Competition(props) {
   }, []);
 
   useEffect(() => {
+    //Sets the state for the controlled inputs
     setInputState(modifyData);
+
+    //Updates the registered values for the ract-hook-form.
     for (const key in inputState) {
-      setValue(key, inputState[key])
+      setValue(key, inputState[key]);
     }
   }, [modifyData]);
 
   const updateInputState = (prevState, updateObj) => {
+    //Sets the registered value for the react-hook-form.
     setValue(Object.keys(updateObj)[0], updateObj[Object.keys(updateObj)[0]]);
+
     return { ...prevState, ...updateObj };
   };
 
@@ -370,13 +376,11 @@ export default function Competition(props) {
                 maxLength: {
                   value: 31,
                   message: `Field cannot be longer than 31 characters!`,
-                  onChange: (e) =>
-                    setInputState((prevState) =>
-                      updateInputState(prevState, {
-                        start_date: e.target.value,
-                      })
-                    ),
                 },
+                onChange: (e) =>
+                  setInputState((prevState) =>
+                    updateInputState(prevState, { start_date: e.target.value })
+                  ),
               })}
             />
             <TextField

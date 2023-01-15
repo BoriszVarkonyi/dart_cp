@@ -7,6 +7,8 @@ import { get, remove } from "../../services/backend.service";
 import { useParams } from "react-router-dom";
 import useDataGridHelper from "../../services/useDataGridHelper";
 import ModalComp from "../../components/static/Modal/ModalComp";
+import { setCompetitions, deleteCompetition } from "../../slices/compSlice";
+import { useDispatch } from "react-redux";
 
 const row = (element) => {
   return {
@@ -31,6 +33,7 @@ const columns = [
 
 export default function Competitions() {
   const navigate = useNavigate();
+  const dispatch = useDispatch()
   const {
     selectionModel,
     selectedRowId,
@@ -48,12 +51,19 @@ export default function Competitions() {
       const data = await get(`tournaments/${tournamentId}/competitions/`);
       const rows = data.map((e) => row(e));
       setRows(rows);
+
+      //Navbar menuitems works from a redux store state. This sets that state
+      dispatch(setCompetitions(data))
     }
     getData();
   }, []);
 
+
   const deleteRow = () => {
     deleteFunction(`competitions/${selectedRowId}/`);
+    
+    //Navbar menuitems works from a redux store state. This deletes the comp from that state.
+    dispatch(deleteCompetition(selectedRowId))
   };
 
   const modalProps = {

@@ -12,12 +12,14 @@ import HowToRegIcon from "@mui/icons-material/HowToReg";
 import BackpackIcon from "@mui/icons-material/Backpack";
 import FirstPageIcon from "@mui/icons-material/FirstPage";
 import { get } from "../../../services/backend.service";
+import { useSelector } from "react-redux";
 
 export default function NavBar() {
   const [compdId, setCompId] = useState(null);
   const [hasSelectedComp, setHasSelectedComp] = useState(false);
   const [menuItems, setMenuItems] = useState([])
   const { tournamentId } = useParams();
+  const { competitions } = useSelector((state) => state.competitions);
 
   const setComp = (id) => {
     setCompId(id);
@@ -34,13 +36,9 @@ export default function NavBar() {
 
   //Gets the tournaments from api
   useEffect(() => {
-    async function getData() {
-      const data = await get(`tournaments/${tournamentId}/competitions/`);
-      const menuItems = data.map((e) => setMenuItem(e))
-      setMenuItems(menuItems)
-    }
-    getData();
-  }, []);
+     const menuItems = competitions.map((e) => setMenuItem(e))
+     setMenuItems(menuItems)
+  }, [competitions]);
 
   return (
     <div className="NavBar">

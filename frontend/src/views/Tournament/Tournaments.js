@@ -49,9 +49,9 @@ export default function Tournaments() {
     getData();
   }, []);
 
-  // if (!isLoggedIn) {
-  //   return navigate("/");
-  // }
+  if (!isLoggedIn) {
+    return navigate("/");
+  }
 
   const deleteRow = () => {
     deleteFunction(`tournaments/${selectedRowId}/`);

@@ -4,21 +4,58 @@ import { TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { post, update } from "../../services/backend.service";
+import { post, update, get } from "../../services/backend.service";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 export default function Tournament(props) {
   const { isLoggedIn } = useSelector((state) => state.auth);
-  const navigate = useNavigate();
+  const [modifyData, setModifyData] = useState({});
   const { state } = useLocation();
   const { rowId } = state;
+  const navigate = useNavigate();
 
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm();
+
+  //A state for the controlled inputs.
+  const [inputState, setInputState] = useState({
+    id: "",
+    title_long: "",
+    starting_date: "",
+    ending_date: ""
+  });
+
+  const updateInputState = (prevState, updateObj) => {
+    //Sets the registered value for the react-hook-form.
+    setValue(Object.keys(updateObj)[0], updateObj[Object.keys(updateObj)[0]]);
+
+    return { ...prevState, ...updateObj };
+  };
+
+  useEffect(() => {
+    async function getData() {
+      const response = await get(`/tournaments/${rowId}`);
+      setModifyData(response);
+    }
+    if (props.type == "Modify") {
+      getData();
+    }
+  }, []);
+
+  useEffect(() => {
+    //Sets the state for the controlled inputs
+    setInputState(modifyData);
+    //Updates the registered values for the ract-hook-form.
+    for (const key in inputState) {
+      setValue(key, inputState[key]);
+    }
+  }, [modifyData]);
 
   const onSubmitSave = async (data) => {
     if (props.type == "Create") {
@@ -61,7 +98,13 @@ export default function Tournament(props) {
             margin="normal"
             size="small"
             variant="filled"
-            {...register("title_long", { required: "Please enter a name!" })}
+            value={inputState.title_long || ""}
+            {...register("title_long", { required: "Please enter a name!",
+            onChange: (e) =>
+            setInputState((prevState) =>
+              updateInputState(prevState, { title_long: e.target.value })
+            ),
+           })}
           />
         </div>
         <div className="FormColumn">
@@ -71,13 +114,17 @@ export default function Tournament(props) {
             type="date"
             size="small"
             variant="filled"
-            defaultValue="2017-05-24"
+            value={inputState.starting_date || ""}
             sx={{ width: 220 }}
             InputLabelProps={{
               shrink: true,
             }}
             {...register("starting_date", {
               required: "Please enter a start date!",
+              onChange: (e) =>
+              setInputState((prevState) =>
+                updateInputState(prevState, { starting_date: e.target.value })
+              ),
             })}
           />
           <TextField
@@ -86,13 +133,17 @@ export default function Tournament(props) {
             type="date"
             size="small"
             variant="filled"
-            defaultValue="2017-05-24"
+            value={inputState.ending_date || ""}
             sx={{ width: 220 }}
             InputLabelProps={{
               shrink: true,
             }}
             {...register("ending_date", {
               required: "Please enter an end date!",
+              onChange: (e) =>
+              setInputState((prevState) =>
+                updateInputState(prevState, { ending_date: e.target.value })
+              ),
             })}
           />
         </div>
