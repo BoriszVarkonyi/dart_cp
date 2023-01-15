@@ -1,5 +1,10 @@
 .NavBar {
-	width: 270px;
+    width: 270px;
+    position: relative;
+}
+
+.NavBarInner {
+    height: 100%;
     background: radial-gradient(
         farthest-corner at top left,
         rgba(214,231,240,1),
@@ -15,7 +20,8 @@
         var(--c-White));
     display: flex;
     align-items: center;
-    padding: 0 10px;
+    justify-content: center;
+    padding: 0 15px 0 10px;
     border-radius: 0 var(--l-Header) 0 0;
     /*border-right: 2pt solid var(--c-Gray-500);
     border-top: 2pt solid var(--c-Gray-500);*/
@@ -39,12 +45,13 @@
     align-items: center;
 }
 
-.NavBarContent > div {
+.NavBarContentInner {
     padding: 40px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     line-height: 1.1;
+    align-items: center;
 }
 
 .NavBarSectionTitle {
@@ -133,4 +140,48 @@
     position: absolute;
     bottom: 10px;
     left: 10px;
+}
+
+.NavBarButton {
+    position: absolute;
+    left: calc(100% - 11px);
+    top: calc(50% - 20px);
+    height: 40px;
+    width: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--c-Gray-100);
+    border: 2pt solid var(--c-Gray-500);
+    border-radius: 3pt;
+    cursor: pointer;
+}
+
+.NavBarButton svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Closed state */
+
+.NavBar.Closed {
+	width: 60px;
+}
+
+.NavBar.Closed .AppName,
+.NavBar.Closed .NavBarSectionTitle,
+.NavBar.Closed .NavBarRowTitle {
+	display: none;
+}
+
+.NavBar.Closed .NavBarContentInner {
+	padding: 0;
+}
+
+.NavBar.Closed .CompetitionSelect {
+	width: 50px !important;
+}
+
+.NavBar.Closed .NavBarButton svg {
+    transform: translateX(180deg);
 }

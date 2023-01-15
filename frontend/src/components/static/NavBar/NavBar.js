@@ -10,6 +10,7 @@ import DateRangeIcon from "@mui/icons-material/DateRange";
 import GroupsIcon from "@mui/icons-material/Groups";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
 import BackpackIcon from "@mui/icons-material/Backpack";
+import FirstPageIcon from "@mui/icons-material/FirstPage";
 import { get } from "../../../services/backend.service";
 
 export default function NavBar() {
@@ -42,14 +43,14 @@ export default function NavBar() {
   }, []);
 
   return (
-    <>
-      <div className="NavBar">
+    <div className="NavBar">
+      <div className="NavBarInner">
         <div className="NavBarHead">
           <img className="LogoImage" src={HorseImage} />
           <p className="AppName">d'ARTAGNAN</p>
         </div>
         <div className="NavBarContent">
-          <div>
+          <div className="NavBarContentInner">
             <p className="NavBarSectionTitle">Tournament</p>
             <div className="NavBarSection">
               <Link to="competitions">
@@ -120,6 +121,9 @@ export default function NavBar() {
           </div>
         </div>
       </div>
-    </>
+      <button className="NavBarButton">
+        <FirstPageIcon />
+      </button>
+    </div>
   );
 }
