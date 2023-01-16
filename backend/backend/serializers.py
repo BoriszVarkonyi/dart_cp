@@ -58,7 +58,7 @@ class WeaponControlSerializer(serializers.ModelSerializer):
             UniqueTogetherValidator(
                 queryset=WeaponControlModel.objects.all(),
                 fields = [
-                    'competitors',
+                    'competitions',
                     'fencers',
                 ]
             )

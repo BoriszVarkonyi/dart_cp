@@ -204,8 +204,46 @@ class WeaponControlFencersIssues(APIView):
                 response[hr_name] = 0
 
             response['notes'] = ""
-                
+
         return Response(response)
+
+
+    def post(self, request, competition, fencer):
+        data = request.data.copy()
+        queryset = WeaponControlModel.objects.filter(
+                        competitions = competition,
+                        fencers = fencer,
+                )
+        if queryset.exists():
+            serializer = WeaponControlSerializer(
+                            queryset,
+                            data=data,
+                            partial=True,
+                    )
+
+        else:
+            data['fencers'] = fencer
+            data['competitions'] = competition
+            serializer = WeaponControlSerializer(
+                            data=data,
+                    )
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(True)
+
+        return Response(serializer.errors)
+
+
+    def delete(self, request, competition, fencer):
+        queryset = WeaponControlModel.objects.get(
+                        competitions = competition,
+                        fencers = fencer,
+                )
+        queryset.delete()
+
+        return Response(True)
+
 
 def SetRegistration(competitions, fencers, registration_value):
     instance = RegistrationModel.objects.filter(
