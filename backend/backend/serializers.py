@@ -131,3 +131,42 @@ class RegistrationSerializer(serializers.ModelSerializer):
             'fencers',
             'registered',
         )
+
+
+class FencerNationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FencerModel
+        fields = [
+            'nation',    
+        ]
+
+
+class JustIssues(serializers.ModelSerializer):
+    fencer = FencerSerializer(many = True)
+
+    class Meta:
+        model = WeaponControlModel
+        validators = [
+            UniqueTogetherValidator(
+                queryset=WeaponControlModel.objects.all(),
+                fields = [
+                    'competitors',
+                    'fencers',
+                ]
+            )
+        ]
+        fields = [
+            'nation'
+        ]
+
+
+
+
+
+
+
+
+
+
+
+

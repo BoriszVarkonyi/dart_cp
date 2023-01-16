@@ -13,7 +13,7 @@ urlpatterns = [
     path('', include(router.urls)),
     path(
         'uploadxml/',
-        views.MyUploadView.as_view()
+        views.XmlUploadView.as_view()
     ),
     path(
         'tournaments/<int:tournament>/competitions/',
@@ -42,5 +42,9 @@ urlpatterns = [
     path(
         'un-register/<str:competition>/<str:fencer>/',
         views.RegisterFencerOut.as_view(),
+    ),
+    path(
+        'stats/competitions/<str:competitions>/issues',
+        views.CompetitionIssuesByNations.as_view()
     ),
 ]

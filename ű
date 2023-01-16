@@ -21,7 +21,6 @@ from rest_framework.parsers import MultiPartParser
 import xml.etree.ElementTree as ET
 from collections import OrderedDict
 from backend.issues import *
-import random
 
 class FencerModelMixin(object):
   def get_serializer(self, *args, **kwargs):
@@ -63,25 +62,26 @@ class RegistrationViewSet(viewsets.ModelViewSet):
 
 
 #XML beolvasás view
-class XmlUploadView(APIView):
+class MyUploadView(APIView):
 
     parser_classes = (XMLParser,MultiPartParser,)
+    def get(self, request):
+
+      return Response(data="FASZ A SZÁDBA")
     def post(self, request):
       print(request.FILES)
       
 
       #File upload and save to disk
-      f = request.FILES['xmlfile']
+      f = request.FILES['test']
       print(f)
 
-      filename = "file" + str(random.randint(0,100)) + ".xml"
-      path = default_storage.save(filename, ContentFile(f.read()))
+      path = default_storage.save('yes.xml', ContentFile(f.read()))
 
       #Parse XML file
       myarr = []
       parserxd = ET.XMLParser(encoding='iso-8859-5')
-
-      mytree = ET.parse(filename, parser=parserxd)
+      mytree = ET.parse('yes.xml', parser=parserxd)
       myroot = mytree.getroot()
       tireurs = myroot.find("Tireurs")
 
@@ -122,7 +122,7 @@ class XmlUploadView(APIView):
         dict_obj = model_to_dict(obj)
         myarr.append(dict_obj)
 
-      default_storage.delete(filename)
+      default_storage.delete("yes.xml")
       return Response(data=myarr)
 
 # get competitions of specific fencer
@@ -252,8 +252,15 @@ class CompetitionIssuesByNations(APIView):
 
     def get(self, request, competitions):
 
+        competition = self.kwargs["competitions"]
+        queryset = WeaponControlModel.objects.filter(competitions = competitions)
+        serializer = WeaponControlSerializer(queryset, many=True)
 
-        return Response(data="Still under dev")
+        querysetNations = FencerModel.objects.filter(competitions = competitions)
+        nationserializer = FencerNationSerializer(querysetNations, many=True) 
+        
+        return Response(data=nationserializer.data)
+
 
 
 
