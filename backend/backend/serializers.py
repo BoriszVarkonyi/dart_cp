@@ -19,8 +19,6 @@ class FencerSerializer(serializers.ModelSerializer):
             'date_naissance',
             'classement',
             'points',
-            'barcode',
-            'registration_status',
         ]
 
 class TournamentSerializer(serializers.ModelSerializer):

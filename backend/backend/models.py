@@ -1,5 +1,6 @@
 from django.db import models
 from backend.choices import *
+
 class TournamentModel(models.Model):
     title_long = models.CharField(max_length=12)
     starting_date = models.DateField()
@@ -34,7 +35,6 @@ class FencerModel(models.Model):
     date_naissance = models.DateField()
     classement = models.IntegerField()
     points = models.FloatField()
-    barcode = models.IntegerField(default='00000000')
 
 class WeaponControlModel(models.Model):
     fencers = models.ForeignKey(FencerModel, on_delete=models.CASCADE)
