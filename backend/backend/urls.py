@@ -43,8 +43,4 @@ urlpatterns = [
         'un-register/<str:competition>/<str:fencer>/',
         views.RegisterFencerOut.as_view(),
     ),
-    path(
-        'stats/competitions/<str:competitions>/issues',
-        views.CompetitionIssuesByNations.as_view()
-    ),
 ]

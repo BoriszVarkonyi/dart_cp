@@ -246,16 +246,3 @@ class RegisterFencerOut(APIView):
         fencer = self.kwargs[ 'fencer' ]
         return SetRegistration(competition, fencer, False)
 
-<<<<<<< HEAD
-class CompetitionIssuesByNations(APIView):
-
-
-    def get(self, request, competitions):
-
-
-        return Response(data="Still under dev")
-
-
-
-=======
->>>>>>> 528ae269e91e8fe67355ae62763de5b8520f90e1
