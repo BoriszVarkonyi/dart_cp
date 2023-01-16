@@ -216,7 +216,7 @@ class WeaponControlFencersIssues(APIView):
                 )
         if queryset.exists():
             serializer = WeaponControlSerializer(
-                            queryset,
+                            queryset.first(),
                             data=data,
                             partial=True,
                     )
