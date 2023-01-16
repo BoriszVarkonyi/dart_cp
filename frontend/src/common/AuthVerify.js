@@ -24,7 +24,7 @@ export default function useTokenService() {
 
       const interval = setInterval(() => {
         refreshToken();
-      }, 20000);
+      }, timeout);
 
       return () => clearInterval(interval);
     }

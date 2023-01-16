@@ -68,6 +68,7 @@ export default function Competition(props) {
   };
 
   const onSubmit = async (data) => {
+    console.log("????")
     if (props.type == "Create") {
       await post("competitions/", { ...data, tournaments: tournamentId });
       navigate(-1);
