@@ -27,15 +27,29 @@ export default function WeaponControl(props) {
       <tr key={rowKey}>
         <td>{key}</td>
         <td>
-          <TextField type="number" size="small" {...register(`${key}`)} />
+          <TextField
+            type="number"
+            size="small"
+            {...register(`issue_${rowKey + 1}`)}
+          />
         </td>
       </tr>
     );
   };
 
   const onSubmit = async (data) => {
+    for (const key of Object.keys(data)) {
+      if (data[key] == "") {
+        if (key != "notes") {
+          data[key] = 0;
+        }
+      } else {
+        data[key] = parseInt(data[key]);
+      }
+    }
+
+    console.log(data);
     const response = await post(`stats/weaponcontrols/issues/${compId}/${fencerId}/`);
-    console.log(response)
   };
 
   //Gets the issues from api

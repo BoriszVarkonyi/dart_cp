@@ -59,7 +59,7 @@ export default function Tournaments() {
 
   //Button functions
   const openButton = () => {
-    navigate(`/${selectedRowId}`);
+    navigate(`/${selectedRowId}/competitions`);
   };
 
   const modifyButton = () => {

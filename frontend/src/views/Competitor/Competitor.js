@@ -46,8 +46,7 @@ export default function Competitor(props) {
       const resp = await post("fencers/", {
         ...data,
         competitions: [compId],
-        statut: "N",
-        barcode: 0,
+        statut: "N"
       });
       if (resp.name && resp.name == "AxiosError") {
         setSuccess(-1);
@@ -59,7 +58,6 @@ export default function Competitor(props) {
         ...data,
         competitions: [compId],
         statut: "N",
-        barcode: 0,
       });
       navigate(-1);
     }
