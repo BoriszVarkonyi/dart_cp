@@ -61,7 +61,6 @@ class RegistrationViewSet(viewsets.ModelViewSet):
     serializer_class = RegistrationSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
-
 #XML beolvasás view
 class XmlUploadView(APIView):
 
@@ -209,44 +208,45 @@ class WeaponControlFencersIssues(APIView):
         return Response(response)
 
 def SetRegistration(competitions, fencers, registration_value):
-    queryset = RegistrationModel.objects.filter(
+    instance = RegistrationModel.objects.filter(
         competitions = competitions,
         fencers = fencers,
     )
+    data={
+        'fencers':fencers,
+        'competitions':competitions,
+        'registered':registration_value,
+    }
 
-    if queryset.exists():
-        queryset.registered = registration_value
+    if instance.exists():
         serializer = RegistrationSerializer(
-            data = queryset,
+            instance.first(),
+            data = data
         )
-        if serializer.is_valid():
-            serializer.save()
-            string = "Register updated"
-            return Response(string)
     else:
         serializer = RegistrationSerializer(
-            data = {
-                'competitions': competitions,
-                'fencers': fencers,
-                'registered': registration_value,
-                }
-            ) 
-        if serializer.is_valid():
-            serializer.save()
-            string = "register inserted"
-            return Response(string)
+            data=data
+        )
 
-    string = "register error"
-    return Response(string)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(True)
+
+    return Response(serializer.errors)
 
 class RegisterFencerIn(APIView):
     def post(self, request, competition, fencer):
+        competition = self.kwargs[ 'competition' ]
+        fencer = self.kwargs[ 'fencer' ]
         return SetRegistration(competition, fencer, True)
 
 class RegisterFencerOut(APIView):
     def post(self, request, competition, fencer):
+        competition = self.kwargs[ 'competition' ]
+        fencer = self.kwargs[ 'fencer' ]
         return SetRegistration(competition, fencer, False)
 
+<<<<<<< HEAD
 class CompetitionIssuesByNations(APIView):
 
 
@@ -257,3 +257,5 @@ class CompetitionIssuesByNations(APIView):
 
 
 
+=======
+>>>>>>> 528ae269e91e8fe67355ae62763de5b8520f90e1

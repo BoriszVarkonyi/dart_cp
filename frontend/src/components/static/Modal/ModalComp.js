@@ -6,61 +6,62 @@ import { useDispatch } from "react-redux";
 import useDataGridHelper from "../../../services/useDataGridHelper";
 import { useSelector } from "react-redux";
 import { TextField } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close"
+import CloseIcon from "@mui/icons-material/Close";
+import BarcodeImage from "../../../assets/barcode-read.svg";
 
 export default function ModalComp(props) {
   const dispatch = useDispatch();
   const { isOpen } = useSelector((state) => state.modal);
 
-  const contentProps = props.content;
+  const modalProps = props.modalProps;
+
   return (
     <Modal open={isOpen} className="ModalWrapper">
       <Box className="Modal">
         <div className="ModalHeader">
-          <p className="ModalTitle">
-            {/*{props.title} */}
-            {contentProps.text}
-          </p>
-          <p className="ModalSubtitle">
-            You cannot undo this action!
-          </p>
+          <p className="ModalTitle">{modalProps.title}</p>
+          {modalProps.subtitle != undefined && (
+            <p className="ModalSubtitle">{modalProps.subtitle}</p>
+          )}
           <IconButton
             className="ModalCloseButton"
-            onClick={() => dispatch(closeModal())}>
+            onClick={() => dispatch(closeModal())}
+          >
             <CloseIcon />
           </IconButton>
         </div>
         {props.type == "Alert" && (
           <div className="ModalFooter">
-            <Button
-              variant="outlined"
-              onClick={() => dispatch(closeModal())}
-            >
+            <Button variant="outlined" onClick={() => dispatch(closeModal())}>
               Cancel
             </Button>
             <Button
               variant="contained"
               onClick={() => {
-                contentProps.deleteRow();
+                modalProps.deleteRow();
                 dispatch(closeModal());
               }}
             >
-              {contentProps.confirmButtonText}
+              {modalProps.confirmButtonText}
             </Button>
           </div>
         )}
 
         {props.type == "Barcode" && (
-          <div className="Barcode">
-            <div>Ide jön a kép</div>
-            <TextField label="Code" type="text" size="small" variant="filled" />
-            <Button variant="contained" onClick={() => dispatch(closeModal())}>
-              Cancel
-            </Button>
+          <div className="ModalContent">
+            <div className="ModalContentInner">
+              <img className="BarcodeImage" src={BarcodeImage} />
+              <TextField
+                label="Code"
+                type="text"
+                size="small"
+                variant="filled"
+              />
+            </div>
           </div>
         )}
 
-        {props.type == "Print" && (
+        {/*props.type == "Print" && (
           <div>
             <TextField label="Margin top" type="number" size="small" variant="filled" />
             <TextField label="Margin left" type="number" size="small" variant="filled" />
@@ -71,7 +72,7 @@ export default function ModalComp(props) {
             <TextField label="No. of colums" type="number" size="small" variant="filled" />
             <TextField label="Space between columns" type="number" size="small" variant="filled" />
           </div>
-        )}
+        )*/}
       </Box>
     </Modal>
   );

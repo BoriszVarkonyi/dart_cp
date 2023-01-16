@@ -49,9 +49,9 @@ export default function Tournaments() {
     getData();
   }, []);
 
-  // if (!isLoggedIn) {
-  //   return navigate("/");
-  // }
+  if (!isLoggedIn) {
+    return navigate("/");
+  }
 
   const deleteRow = () => {
     deleteFunction(`tournaments/${selectedRowId}/`);
@@ -66,12 +66,13 @@ export default function Tournaments() {
     navigate("modify_tournament", { state: { rowId: selectedRowId } });
   };
 
-  const modalContent = {
-    text: "Are you sure you want to delete this tournament?", 
+  const modalProps = {
+    title: "Are you sure you want to delete this tournament?",
+    subtitle: "You can not undo this action!", 
     confirmButtonText: "DELETE",
     deleteRow
   }
-
+  
   return (
     <>
       <div className="Panel">
@@ -125,7 +126,7 @@ export default function Tournaments() {
           </div>
         </div>
       </div>
-      <ModalComp type="Alert" title="Are you sure?" content={modalContent} />
+      <ModalComp type="Alert" modalProps={modalProps} />
     </>
   );
 }

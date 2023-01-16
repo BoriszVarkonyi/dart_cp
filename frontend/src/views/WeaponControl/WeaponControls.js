@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import useDataGridHelper from "../../services/useDataGridHelper";
 import { useParams } from "react-router-dom";
 import { get } from "../../services/backend.service";
+import ModalComp from "../../components/static/Modal/ModalComp";
 
 const row = (element) => {
   return {
@@ -56,6 +57,11 @@ export default function WeaponControls() {
     getFencersData();
   }, []);
 
+  const modalProps = {
+    title: "Read barcode", 
+    subtitle: undefined
+  }
+
   return (
     <div className="Main">
       <div className="PageHeader">
@@ -67,16 +73,16 @@ export default function WeaponControls() {
             </Button>
           )}
           {isSelected && (
-            <Button variant="contained" size="small" onClick={() => navigate("modify")}>
+            <Button variant="contained" size="small" onClick={() => navigate("modify", { state: { rowId: selectedRowId } })}>
               Modify weapon control
             </Button>
           )}
           {isSelected && (
-            <Button variant="contained" size="small" onClick={() => navigate("add")}>
+            <Button variant="contained" size="small" onClick={() => navigate("add", { state: { rowId: selectedRowId } })}>
               Add weapon control
             </Button>
           )}
-          <Button variant="contained" size="small">
+          <Button variant="contained" size="small" onClick={openModalFunctiom}>
             Read Barcode
           </Button>
         </div>
@@ -94,6 +100,7 @@ export default function WeaponControls() {
           </div>
         </div>
       </div>
+      <ModalComp type="Barcode" modalProps={modalProps}/>
     </div>
   );
 }
