@@ -58,7 +58,7 @@ export default function WeaponControls() {
   }, []);
 
   const modalProps = {
-    title: "Read barcode", 
+    title: "Read barcode",
     subtitle: undefined
   }
 
@@ -100,7 +100,7 @@ export default function WeaponControls() {
           </div>
         </div>
       </div>
-      <ModalComp type="Barcode" modalProps={modalProps}/>
+      <ModalComp type="Barcode" modalProps={modalProps} />
     </div>
   );
 }

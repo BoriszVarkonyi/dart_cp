@@ -70,7 +70,7 @@ export default function Competitors() {
 
   const modalProps = {
     title: "Are you sure you want to delete this competitior?",
-    subtitle: "You can not undo this action!", 
+    subtitle: "You can not undo this action!",
     confirmButtonText: "DELETE",
     deleteRow
   }

@@ -61,14 +61,14 @@ export default function Competitions() {
 
   const deleteRow = () => {
     deleteFunction(`competitions/${selectedRowId}/`);
-    
+
     //Navbar menuitems works from a redux store state. This deletes the comp from that state.
     dispatch(deleteCompetition(selectedRowId))
   };
 
   const modalProps = {
     title: "Are you sure you want to delete this competition?",
-    subtitle: "You can not undo this action!", 
+    subtitle: "You can not undo this action!",
     confirmButtonText: "DELETE",
     deleteRow
   }

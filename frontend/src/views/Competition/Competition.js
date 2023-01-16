@@ -87,10 +87,17 @@ export default function Competition(props) {
       <div className="PageHeader">
         <h2 className="PageTitle"> {text}</h2>
         <div className="PageButtonsWrapper">
-          <Button variant="contained" onClick={() => navigate(-1)}>
+          <Button
+            variant="contained"
+            size="small"
+            onClick={() => navigate(-1)}>
             CANCEL
           </Button>
-          <Button form="create-form" variant="contained" type="submit">
+          <Button
+            form="create-form"
+            variant="contained"
+            size="small"
+            ype="submit">
             {text}
           </Button>
         </div>

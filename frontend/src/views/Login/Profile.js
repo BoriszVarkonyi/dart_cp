@@ -16,7 +16,7 @@ const Profile = () => {
     navigate("/panel")
   }
 
-  const test2 = () =>{
+  const test2 = () => {
     AuthService.logout();
   }
 

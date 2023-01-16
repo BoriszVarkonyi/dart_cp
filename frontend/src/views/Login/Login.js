@@ -1,10 +1,10 @@
-import React, { useState  } from "react";
+import React, { useState } from "react";
 import { Button, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import { useForm } from "react-hook-form";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {login} from "../../slices/auth"
+import { login } from "../../slices/auth"
 import { clearMessage } from "../../slices/message";
 
 export default function Login() {
@@ -92,9 +92,9 @@ export default function Login() {
         </Button>
       </Box>
       {message && (
-          <div>
-            {message}
-          </div>
+        <div>
+          {message}
+        </div>
       )}
     </div>
   );
