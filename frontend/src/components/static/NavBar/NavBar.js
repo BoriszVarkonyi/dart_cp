@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 import styles from "./NavBar.css";
 import { Button } from "@mui/material";
 import { FormControl, TextField, MenuItem } from "@mui/material";
@@ -17,7 +17,7 @@ import { useSelector } from "react-redux";
 export default function NavBar() {
   const [compdId, setCompId] = useState(null);
   const [hasSelectedComp, setHasSelectedComp] = useState(false);
-  const [menuItems, setMenuItems] = useState([])
+  const [menuItems, setMenuItems] = useState([]);
   const { tournamentId } = useParams();
   const { competitions } = useSelector((state) => state.competitions);
 
@@ -34,10 +34,20 @@ export default function NavBar() {
     );
   };
 
-  //Gets the tournaments from api
+  //Loades the competitions at the first render.
   useEffect(() => {
-     const menuItems = competitions.map((e) => setMenuItem(e))
-     setMenuItems(menuItems)
+    async function getData() {
+      const data = await get(`tournaments/${tournamentId}/competitions/`);
+      const menuItems = data.map((e) => setMenuItem(e));
+      setMenuItems(menuItems);
+    }
+    getData()
+  }, []);
+
+  //Makes the selection responsive. Competitions is a redux store state.
+  useEffect(() => {
+    const menuItems = competitions.map((e) => setMenuItem(e));
+    setMenuItems(menuItems);
   }, [competitions]);
 
   return (
