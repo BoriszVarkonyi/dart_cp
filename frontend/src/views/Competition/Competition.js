@@ -98,7 +98,7 @@ export default function Competition(props) {
             form="create-form"
             variant="contained"
             size="small"
-            ype="submit">
+            type="submit">
             {text}
           </Button>
         </div>

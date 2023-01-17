@@ -13,7 +13,7 @@ export default function WeaponControl(props) {
   const navigate = useNavigate();
   const { tourId, compId } = useParams();
   const { state } = useLocation();
-  const { fencerId } = state;
+  const { rowId } = state;
 
   //react-hook-form
   const {
@@ -44,19 +44,23 @@ export default function WeaponControl(props) {
           data[key] = 0;
         }
       } else {
-        data[key] = parseInt(data[key]);
+        if (key != "notes") {
+          data[key] = parseInt(data[key]);
+        }
       }
     }
 
-    console.log(data);
-    const response = await post(`stats/weaponcontrols/issues/${compId}/${fencerId}/`);
+    const response = await post(
+      `stats/weaponcontrols/issues/${compId}/${rowId}/`
+    );
+    console.log(response);
   };
 
   //Gets the issues from api
   useEffect(() => {
     async function getData() {
       const data = await get(
-        `stats/weaponcontrols/issues/${compId}/${fencerId}/`
+        `stats/weaponcontrols/issues/${compId}/${rowId}/`
       );
       let testArray = [];
 

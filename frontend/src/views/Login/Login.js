@@ -44,10 +44,6 @@ export default function Login() {
       });
   };
 
-  if (isLoggedIn) {
-    return <Navigate to="/panel" />;
-  }
-
   //validate rules for the email input
   const emailRules = {
     required: "Please enter your email address!",

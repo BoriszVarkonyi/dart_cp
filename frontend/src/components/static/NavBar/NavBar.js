@@ -13,6 +13,7 @@ import BackpackIcon from "@mui/icons-material/Backpack";
 import FirstPageIcon from "@mui/icons-material/FirstPage";
 import { get } from "../../../services/backend.service";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function NavBar() {
   const [compdId, setCompId] = useState(null);
@@ -20,17 +21,25 @@ export default function NavBar() {
   const [menuItems, setMenuItems] = useState([]);
   const { tournamentId } = useParams();
   const { competitions } = useSelector((state) => state.competitions);
+  const navigate = useNavigate();
 
   const setComp = (id) => {
     setCompId(id);
     setHasSelectedComp(true);
+    // navigate(`/${id}/competitions`)
+    // const menuItems = competitions.map((e) => setMenuItem(e));
+    // setMenuItems(menuItems);
   };
 
   const setMenuItem = (data) => {
     return (
-      <MenuItem key={data.id} onClick={() => setComp(data.id)} value={data.id}>
-        {data.title_long}
-      </MenuItem>
+        <MenuItem
+          key={data.id}
+          onClick={() => setComp(data.id)}
+          value={data.id}
+        >
+          {data.title_long}
+        </MenuItem>
     );
   };
 
@@ -41,7 +50,7 @@ export default function NavBar() {
       const menuItems = data.map((e) => setMenuItem(e));
       setMenuItems(menuItems);
     }
-    getData()
+    getData();
   }, []);
 
   //Makes the selection responsive. Competitions is a redux store state.
