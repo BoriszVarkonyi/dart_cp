@@ -13,9 +13,11 @@ export default function useTokenService() {
     const user = JSON.parse(localStorage.getItem("user"));
     //If theres is no user it doesn't do anything
     if (user) {
+      console.log("??")
       const decodedJwt = parseJwt(user.access);
       const expireTime = new Date(decodedJwt.exp * 1000);
       if (expireTime < Date.now()) {
+        console.log("torlom")
         authService.logout();
         navigate("/")
         return;
