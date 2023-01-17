@@ -1,32 +1,32 @@
 .Header {
-    height: var(--l-Header);
-    margin-bottom: 3pt;
-    display: flex;
-    justify-content: right;
-    align-items: center;
-    gap: 8px;
+	height: var(--l-Header);
+	margin-bottom: 3pt;
+	display: flex;
+	justify-content: right;
+	align-items: center;
+	gap: 8px;
 	width: 100%;
-    background: linear-gradient(90deg,
-        var(--c-PrimaryBlue-300) 0%,
+	background: linear-gradient(90deg,
+		var(--c-PrimaryBlue-300) 0%,
 		var(--c-PrimaryMix-300) 50%,
-        var(--c-PrimaryGreen-300) 100%);
-    color: var(--c-White);
+		var(--c-PrimaryGreen-300) 100%);
+	color: var(--c-White);
 }
 
 .Header::after {
-    content: '';
-    width: 100%;
-    height: 3pt;
-    background: linear-gradient(90deg,
-        var(--c-PrimaryBlue-200) 0%,
-        var(--c-PrimaryMix-200) 50%,
-        var(--c-PrimaryGreen-200) 100%);
-    position: absolute;
-    top: 100%;
+	content: '';
+	width: 100%;
+	height: 3pt;
+	background: linear-gradient(90deg,
+		var(--c-PrimaryBlue-200) 0%,
+		var(--c-PrimaryMix-200) 50%,
+		var(--c-PrimaryGreen-200) 100%);
+	position: absolute;
+	top: 100%;
 }
 
 .UserNameText {
-    font-weight: bold;
+	font-weight: bold;
 }
 
 .RoleText {

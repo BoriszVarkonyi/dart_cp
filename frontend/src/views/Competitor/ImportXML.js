@@ -115,9 +115,10 @@ export default function Import() {
           {hasSelectedFile && (
             <>
               <h3>Preview:</h3>
-              <div style={{ height: 600, width: "100%" }}>
-                <DataGrid rows={rows} columns={columns} />
-              </div>
+              <DataGrid
+                rows={rows}
+                columns={columns}
+                style={{ height: "100%", width: "100%" }} />
             </>
           )}
         </div>

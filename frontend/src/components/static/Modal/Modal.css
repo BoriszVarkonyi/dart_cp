@@ -1,68 +1,68 @@
 .ModalWrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .Modal {
-    background-color: var(--c-White);
-    border-radius: var(--l-Rounding);
-    display: flex;
-    flex-direction: column;
-    width: 450px;
-    overflow: hidden;
+	background-color: var(--c-White);
+	border-radius: var(--l-Rounding);
+	display: flex;
+	flex-direction: column;
+	width: 450px;
+	overflow: hidden;
 }
 
 .ModalHeader, .ModalContent, .ModalFooter {
-    width: 100%;
-    box-sizing: border-box;
+	width: 100%;
+	box-sizing: border-box;
 }
 
 .ModalHeader {
-    background-color: var(--c-PrimaryBlue-500);
-    color: var(--c-White);
-    padding: 18px 40px 18px 18px;
-    position: relative;
+	background-color: var(--c-PrimaryBlue-500);
+	color: var(--c-White);
+	padding: 18px 40px 18px 18px;
+	position: relative;
 }
 
 .ModalTitle {
-    font-weight: bold;
-    font-size: 20px;
+	font-weight: bold;
+	font-size: 20px;
 }
 
 .ModalSubtitle {
-    font-size: 18px;
+	font-size: 18px;
 }
 
 .ModalCloseButton {
-    position: absolute !important;
-    right: 10px;
-    top: 10px;
+	position: absolute !important;
+	right: 10px;
+	top: 10px;
 }
 
 .ModalContent {
-    padding: 18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--c-Gray100);
+	padding: 18px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--c-Gray100);
 }
 
 .ModalContentInner {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 .BarcodeImage {
-    width: 100%;
-    margin-bottom: 40px;
+	width: 100%;
+	margin-bottom: 40px;
 }
 
 .ModalFooter {
-    background-color: var(--c-PrimaryBlue-100);
-    color: var(--c-White);
-    padding: 18px;
-    display: flex;
-    justify-content: flex-end;
-    gap: 12px;
+	background-color: var(--c-PrimaryBlue-100);
+	color: var(--c-White);
+	padding: 18px;
+	display: flex;
+	justify-content: flex-end;
+	gap: 12px;
 }

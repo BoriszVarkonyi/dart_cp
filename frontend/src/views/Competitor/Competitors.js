@@ -121,15 +121,14 @@ export default function Competitors() {
         </div>
         <div className="PageContent">
           <div className="TableGrid">
-            <div style={{ height: 300, width: "100%" }}>
-              <DataGrid
-                checkboxSelection={true}
-                selectionModel={selectionModel}
-                onSelectionModelChange={handleEvent}
-                rows={rows}
-                columns={columns}
-              />
-            </div>
+            <DataGrid
+              style={{ height: "100%", width: "100%" }}
+              checkboxSelection={true}
+              selectionModel={selectionModel}
+              onSelectionModelChange={handleEvent}
+              rows={rows}
+              columns={columns}
+            />
           </div>
         </div>
       </div>

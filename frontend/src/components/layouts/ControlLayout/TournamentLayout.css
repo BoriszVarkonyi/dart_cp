@@ -1,20 +1,20 @@
 /* Temporary */
 body, #root {
-    background-color: var(--c-white) !important;
+	background-color: var(--c-white) !important;
 }
 
 body::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    width: 400px;
-    height: 50px;
-    background: var(--c-PrimaryBlue-300);
+	content: '';
+	position: absolute;
+	left: 0;
+	width: 400px;
+	height: 50px;
+	background: var(--c-PrimaryBlue-300);
 }
 /* Temporary */
 
 #root {
-    display: grid;
+	display: grid;
 	grid-template-columns: auto 1fr;
 	grid-template-rows: auto 1fr;
 	overflow: hidden;
@@ -23,76 +23,100 @@ body::before {
 }
 
 .Header {
-    grid-area: 1 / 2 / 2 / 3;
-    position: relative;
-    z-index: 2;
+	grid-area: 1 / 2 / 2 / 3;
+	position: relative;
+	z-index: 2;
 }
 
 .NavBar {
 	grid-area: 1 / 1 / 3 / 2;
-    position: relative;
-    z-index: 3;
+	position: relative;
+	z-index: 3;
 }
 
 .Main {
-    grid-area: 2 / 2 / 3 / 3;
-    position: relative;
-    z-index: 1;
+	grid-area: 2 / 2 / 3 / 3;
+	position: relative;
+	z-index: 1;
 }
 
 .Main {
 	display: grid;
-    grid-template-rows: auto 1fr;
-    grid-template-columns: 1fr;
+	grid-template-rows: auto 1fr;
+	grid-template-columns: 1fr;
 	overflow: hidden;
 	width: 100%;
-    background: radial-gradient(
-        farthest-corner at top left,
-        rgba(214,231,240,1),
-        rgba(255,255,255,1));
-    border-radius: 0 0 0 var(--l-Header);
-    border-left: 2pt solid var(--c-Gray-500);
-    border-bottom: 2pt solid var(--c-Gray-500);
+	background: radial-gradient(
+		farthest-corner at top left,
+		rgba(214,231,240,1),
+		rgba(255,255,255,1));
+	border-radius: 0 0 0 var(--l-Header);
+	border-left: 2pt solid var(--c-Gray-500);
+	border-bottom: 2pt solid var(--c-Gray-500);
+}
+
+.Main {
+	display: grid;
+	grid-template-rows: auto 1fr;
+	grid-template-columns: 1fr;
+	overflow: hidden;
+	width: 100%;
+	background: radial-gradient(
+		farthest-corner at top left,
+		rgba(214,231,240,1),
+		rgba(255,255,255,1));
+	border-radius: 0 0 0 var(--l-Header);
+	border-left: 2pt solid var(--c-Gray-500);
+	border-bottom: 2pt solid var(--c-Gray-500);
+}
+
+.PageContent.WithSideBar {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: 1fr;
 }
 
 .PageContentInner {
-    background-color: var(--c-Gray-200);
-    padding: 30px;
-    border-radius: 7pt;
-    border: 2pt solid var(--c-Gray-500);
+	background-color: var(--c-Gray-200);
+	padding: 30px;
+	border-radius: 7pt;
+	border: 2pt solid var(--c-Gray-500);
 }
 
 .TableGrid {
-    background-color: white;
-    width: 100%;
+	background-color: white;
+	width: 100%;
     height: 100%;
+    max-width: 1500px;
+    box-sizing: border-box;
 }
 
 .Form {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row !important;
-    justify-content: center;
-    gap: 40px;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row !important;
+	justify-content: center;
+	gap: 40px;
 }
 
 .Form > .FormColumn {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    flex: 0 1 250px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	flex: 0 1 250px;
 }
 
 .Form > .FormColumn > * {
-    width: 100%;
-    margin-block: 8px;
+	width: 100%;
+	margin-block: 8px;
 }
 
 .FormRow {
-    display: flex;
-    gap: 16px;
+	display: flex;
+	gap: 16px;
 }
 
 .FormRow > * {
-    margin: 0 !important;
+	margin: 0 !important;
 }
+

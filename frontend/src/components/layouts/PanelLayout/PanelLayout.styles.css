@@ -1,15 +1,15 @@
 #root {
-    animation: gradient 5s ease infinite;
-    background: var(--c-PrimaryBlue-400);
-    /*
-    background:
-        radial-gradient(
-        farthest-corner at top left,
-        var(--c-PrimaryBlue-400) 0%,
-        var(--c-PrimaryMix-400) 50%,
-        var(--c-PrimaryGreen-400) 100%);
-    background-size: 200% 200%;
-    */
+	animation: gradient 5s ease infinite;
+	background: var(--c-PrimaryBlue-400);
+	/*
+	background:
+		radial-gradient(
+		farthest-corner at top left,
+		var(--c-PrimaryBlue-400) 0%,
+		var(--c-PrimaryMix-400) 50%,
+		var(--c-PrimaryGreen-400) 100%);
+	background-size: 200% 200%;
+	*/
 }
 
 @keyframes gradient {
@@ -25,89 +25,93 @@
 }
 
 .PanelLayout {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .Panel {
-    display: grid;
-    grid-template-rows: auto 1fr;
-    grid-template-columns: 1fr;
-    position: relative;
-    background: var(--c-White);
-    box-shadow:
-        0px 10px 15px -3px rgba(0,0,0,0.1),
-        0px 10px 15px -3px rgba(0,0,0,0.1),
-        0px 10px 15px -3px rgba(0,0,0,0.1);
-    overflow: hidden;
-    border-radius: var(--l-Rounding);
-    width: 700px;
+	display: grid;
+	grid-template-rows: auto 1fr;
+	grid-template-columns: 1fr;
+	position: relative;
+	background: var(--c-White);
+	box-shadow:
+		0px 10px 15px -3px rgba(0,0,0,0.1),
+		0px 10px 15px -3px rgba(0,0,0,0.1),
+		0px 10px 15px -3px rgba(0,0,0,0.1);
+	overflow: hidden;
+	border-radius: var(--l-Rounding);
+	width: 700px;
 }
 
 .PageHeader {
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-template-rows: 1fr;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background: radial-gradient(
-        farthest-corner at top left,
-        rgba(214,231,240,1),
-        rgba(255,255,255,1));
-    border-bottom: var(--l-Border) solid var(--c-PrimaryBlue-100);
-    background-image: radial-gradient(var(--c-Gray-300) 1pt, rgba(255,255,255,1) 1pt);
-    background-size: 10px 10px;
-    border-bottom: 2pt solid var(--c-Gray-500);
+	display: grid;
+	grid-template-columns: auto auto;
+	grid-template-rows: 1fr;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px;
+	background: radial-gradient(
+		farthest-corner at top left,
+		rgba(214,231,240,1),
+		rgba(255,255,255,1));
+	border-bottom: var(--l-Border) solid var(--c-PrimaryBlue-100);
+	background-image: radial-gradient(var(--c-Gray-300) 1pt, rgba(255,255,255,1) 1pt);
+	background-size: 10px 10px;
+	border-bottom: 2pt solid var(--c-Gray-500);
 }
 
 .PageTitle {
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+	text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
 }
 
 .PageContent {
-    background-color: var(--c-PrimaryBlue-100);
-    background-image:
-        linear-gradient(var(--c-Gray-200) 2px, transparent 2px),
-        linear-gradient(90deg, var(--c-Gray-200) 2px, transparent 2px),
-        linear-gradient(var(--c-Gray-200) 1px, transparent 1px),
-        linear-gradient(90deg, var(--c-Gray-200) 1px, transparent 1px);
-    background-size: 50px 50px, 50px 50px, 10px 10px, 10px 10px;
-    background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
-    overflow-y: auto;
-    position: relative;
+	/*background-color: var(--c-PrimaryBlue-100);*/
+	background-image:
+		linear-gradient(var(--c-Gray-200) 2px, transparent 2px),
+		linear-gradient(90deg, var(--c-Gray-200) 2px, transparent 2px),
+		linear-gradient(var(--c-Gray-200) 1px, transparent 1px),
+		linear-gradient(90deg, var(--c-Gray-200) 1px, transparent 1px);
+	background-size: 50px 50px, 50px 50px, 10px 10px, 10px 10px;
+	background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+	overflow-y: auto;
+	position: relative;
+	padding: calc(3vw + 2vmin);
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 /*
 .PageContent::after {
-    content: "Temporary design!";
-    color: red;
-    font-weight: bold;
-    position: absolute;
-    top: 8px;
-    left: 8px;
+	content: "Temporary design!";
+	color: red;
+	font-weight: bold;
+	position: absolute;
+	top: 8px;
+	left: 8px;
 }
 */
 
 .PanelContent {
-    padding: 20px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
-    position: relative;
+	padding: 20px;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr;
+	position: relative;
 }
 
 .PanelContent::after {
-    content: '';
-    width: var(--l-Border);
-    height: 100%;
-    position: absolute;
-    left: 50%;
-    top: 0;
-    background-color: var(--c-PrimaryBlue-100);
+	content: '';
+	width: var(--l-Border);
+	height: 100%;
+	position: absolute;
+	left: 50%;
+	top: 0;
+	background-color: var(--c-PrimaryBlue-100);
 }
 
 .FencersImage {
@@ -115,10 +119,10 @@
 }
 
 .PageButtonsWrapper {
-    display: flex;
-    align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 .PageButtonsWrapper > * {
-    margin: 5px 0 10px 5px !important;
+	margin: 5px 0 10px 5px !important;
 }
