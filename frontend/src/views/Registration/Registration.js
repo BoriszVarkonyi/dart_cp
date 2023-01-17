@@ -44,7 +44,7 @@ export default function Registration() {
     function fencerInCompetition(fencers, registartions) {
         return fencers.map(f => {
             const registrationArray = registartions.filter(r => f.id == r.fencers);
-            if(registrationArray.length == 1) {
+            if (registrationArray.length == 1) {
                 return { ...f, registered: registrationArray[0].registered };
             } else {
                 return { ...f, registered: false };
@@ -103,15 +103,14 @@ export default function Registration() {
                 </div>
                 <div className="PageContent">
                     <div className="TableGrid">
-                        <div style={{ height: 600, width: "100%" }}>
-                            <DataGrid
-                                checkboxSelection={true}
-                                selectionModel={selectionModel}
-                                onSelectionModelChange={handleEvent}
-                                rows={rows}
-                                columns={columns}
-                            />
-                        </div>
+                        <DataGrid
+                            style={{ height: "100%", width: "100%" }}
+                            checkboxSelection={true}
+                            selectionModel={selectionModel}
+                            onSelectionModelChange={handleEvent}
+                            rows={rows}
+                            columns={columns}
+                        />
                     </div>
                 </div>
             </div>
