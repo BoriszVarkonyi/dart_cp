@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { DataGrid } from "@mui/x-data-grid";
-import { get, update } from "../../services/backend.service";
+import { get, post } from "../../services/backend.service";
 import { useNavigate } from "react-router-dom";
 import useDataGridHelper from "../../services/useDataGridHelper";
 
@@ -12,7 +12,7 @@ const columns = [
     { field: "nation", headerName: "Nationality" },
     { field: "date_naissance", headerName: "Date of Birth" },
     { field: "sexe", headerName: "Sex" },
-    { field: "in_competition", headerName: "Status" }
+    { field: "registered", headerName: "Status" }
 ];
 
 export default function Registration() {
@@ -30,26 +30,32 @@ export default function Registration() {
     const { tourId, compId } = useParams();
 
     useEffect(() => {
+        async function getRegistrationData() {
+            return await get(`competitions/${compId}/registrations/`);
+        }
         async function getFencersData() {
-            const data = await get(`fencers/`);
-            setRows(fencerInCompetition(data));
+            const fencersData = await get(`competitions/${compId}/fencers/`);
+            const registrationData = await getRegistrationData();
+            setRows(fencerInCompetition(fencersData, registrationData));
         }
         getFencersData();
     }, []);
 
-    // For some reason I cannot use Array.includes()
-    function fencerInCompetition(fencers) {
-        return fencers.map(f =>
-            f.competitions.filter(c => c == compId).length == 0
-                ? { ...f, in_competition: false }
-                : { ...f, in_competition: true }
-        );
+    function fencerInCompetition(fencers, registartions) {
+        return fencers.map(f => {
+            const registrationArray = registartions.filter(r => f.id == r.fencers);
+            if(registrationArray.length == 1) {
+                return { ...f, registered: registrationArray[0].registered };
+            } else {
+                return { ...f, registered: false };
+            }
+        });
     }
 
     function updateRows() {
         setRows((prevRows) => {
             return prevRows.map(f =>
-                f.id == selectedRowId ? { ...f, in_competition: !f.in_competition } : f
+                f.id == selectedRowId ? { ...f, registered: !f.registered } : f
             );
         });
     }
@@ -58,7 +64,7 @@ export default function Registration() {
         if (isSelected) {
             const selectedFencer = rows.filter(f => f.id == selectedRowId)[0];
             selectedFencer.competitions = [...selectedFencer.competitions, parseInt(compId)];
-            await update(`fencers/${selectedRowId}/`, { competitions: selectedFencer.competitions });
+            await post(`in-register/${compId}/${selectedRowId}/`);
             updateRows();
         }
     }
@@ -67,7 +73,7 @@ export default function Registration() {
         if (isSelected) {
             const selectedFencer = rows.filter(f => f.id == selectedRowId)[0];
             selectedFencer.competitions = selectedFencer.competitions.filter(c => c != parseInt(compId));
-            await update(`fencers/${selectedRowId}/`, { competitions: selectedFencer.competitions });
+            await post(`un-register/${compId}/${selectedRowId}/`);
             updateRows();
         }
     }
@@ -83,13 +89,13 @@ export default function Registration() {
                     <h2 className="PageTitle">Registration</h2>
                     <div className="PageButtonsWrapper">
                         <Button variant="contained" size="small" onClick={() => navigate("print")}>Print Barcodes</Button>
-                        {isSelected && rows.filter(f => f.id == selectedRowId)[0].in_competition && (
+                        {isSelected && rows.filter(f => f.id == selectedRowId)[0].registered && (
                             <>
                                 <Button variant="contained" size="small">Print Code</Button>
                                 <Button variant="contained" size="small" onClick={registerOut}>Register out</Button>
                             </>
                         )}
-                        {isSelected && !rows.filter(f => f.id == selectedRowId)[0].in_competition && (
+                        {isSelected && !rows.filter(f => f.id == selectedRowId)[0].registered && (
                             <Button variant="contained" size="small" onClick={registerIn}>Register in</Button>
                         )}
                         <Button variant="contained" size="small">Print Barcode</Button>

@@ -91,24 +91,26 @@ export default function WeaponControl(props) {
           </Button>
         </div>
       </div>
-      <div className="Panel">
-        <Box
-          component="form"
-          id="issue-form"
-          noValidate
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          <table>
-            <thead>
-              <tr>
-                <td>ISSUES</td>
-                <td>QUANTITY</td>
-              </tr>
-            </thead>
-            <tbody>{issues}</tbody>
-          </table>
-          <textarea {...register(`notes`)}></textarea>
-        </Box>
+      <div className="PageContent">
+        <div className="PageContentInner">
+          <Box
+            component="form"
+            id="issue-form"
+            noValidate
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            <table>
+              <thead>
+                <tr>
+                  <td>ISSUES</td>
+                  <td>QUANTITY</td>
+                </tr>
+              </thead>
+              <tbody>{issues}</tbody>
+            </table>
+            <textarea {...register(`notes`)}></textarea>
+          </Box>
+        </div>
       </div>
     </div>
   );

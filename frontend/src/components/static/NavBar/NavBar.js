@@ -90,13 +90,16 @@ export default function NavBar() {
             </div>
 
             <div className="CompetitionSelect">
-              <FormControl sx={{ m: 1, width: 200 }} size="small">
+              <FormControl sx={{ m: 0, width: 200 }} size="small">
                 <TextField
                   select
                   label="Select competition"
                   id="select_comp_id"
                   defaultValue=""
-                  sx={{ width: 200 }}
+                  sx={{
+                    width: 200,
+
+                  }}
                 >
                   {menuItems}
                 </TextField>

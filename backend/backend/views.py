@@ -284,3 +284,8 @@ class RegisterFencerOut(APIView):
         fencer = self.kwargs[ 'fencer' ]
         return SetRegistration(competition, fencer, False)
 
+class GetRegistrationsForCompetition(APIView):
+    def get(self, request, competition):
+        queryset = RegistrationModel.objects.filter(competitions = competition)
+        serializer_class = RegistrationSerializer(queryset, context={'request': request}, many=True)
+        return Response(serializer_class.data)
