@@ -87,7 +87,7 @@ export default function WeaponControl(props) {
           </Button>
         </div>
       </div>
-      <div className="PageContent">
+      <div className="PageContent WithSideBar">
         <div className="PageContentInner">
           <Box
             component="form"
@@ -104,8 +104,16 @@ export default function WeaponControl(props) {
               </thead>
               <tbody>{issues}</tbody>
             </table>
-            <textarea {...register(`notes`)}></textarea>
           </Box>
+        </div>
+        <div className="SideBar">
+          <TextField
+            id="outlined-textarea"
+            label="Notes"
+            placeholder="Type in the additional notes here"
+            multiline
+          />
+          <textarea {...register(`notes`)}></textarea>
         </div>
       </div>
     </div>
