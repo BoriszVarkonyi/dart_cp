@@ -16,3 +16,7 @@ class CompetitionAdmin(admin.ModelAdmin):
 @admin.register(WeaponControlModel)
 class WeaponControlAdmin(admin.ModelAdmin):
   pass
+
+@admin.register(RegistrationModel)
+class RegistrationAdmin(admin.ModelAdmin):
+  pass
