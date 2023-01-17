@@ -45,10 +45,13 @@ export default function Competitions() {
     openModalFunctiom,
   } = useDataGridHelper();
   const { tournamentId } = useParams();
+  console.log(tournamentId)
 
   useEffect(() => {
     async function getData() {
       const data = await get(`tournaments/${tournamentId}/competitions/`);
+      console.log("comp")
+      console.log(data)
       const rows = data.map((e) => row(e));
       setRows(rows);
 
