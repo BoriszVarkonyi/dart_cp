@@ -24,6 +24,10 @@ urlpatterns = [
         views.CompetitionsFencerView.as_view()
     ),
     path(
+        'competitions/<int:competition>/registrations/',
+        views.GetRegistrationsForCompetition.as_view()
+    ),
+    path(
         'stats/fencers/<str:fencer>/',
         views.FencersCompetitionsView.as_view()
     ),
