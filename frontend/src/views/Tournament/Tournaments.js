@@ -113,9 +113,9 @@ export default function Tournaments() {
           </div>
         </div>
         <div className="PageContent">
-          <div className="TableGrid">
+          <div className="TableGrid" >
             <DataGrid
-              style={{ height: "100%", width: "100%" }}
+              style={{ height: 300, width: "100%" }}
               checkboxSelection={true}
               selectionModel={selectionModel}
               onSelectionModelChange={handleEvent}

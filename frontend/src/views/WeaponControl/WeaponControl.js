@@ -50,6 +50,7 @@ export default function WeaponControl(props) {
       }
     }
 
+    console.log(data)
     const response = await post(
       `stats/weaponcontrols/issues/${compId}/${rowId}/`
     );
@@ -62,6 +63,7 @@ export default function WeaponControl(props) {
       const data = await get(
         `stats/weaponcontrols/issues/${compId}/${rowId}/`
       );
+      console.log(data)
       let testArray = [];
 
       let rowKey = 0;

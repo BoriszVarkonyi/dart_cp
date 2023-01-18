@@ -7,6 +7,7 @@ import useDataGridHelper from "../../services/useDataGridHelper";
 import { useParams } from "react-router-dom";
 import { get } from "../../services/backend.service";
 import ModalComp from "../../components/static/Modal/ModalComp";
+import { useLocation } from "react-router-dom";
 
 const row = (element) => {
   return {
@@ -45,15 +46,21 @@ export default function WeaponControls() {
   } = useDataGridHelper();
   const { tourId, compId } = useParams();
   const navigate = useNavigate()
+  const location = useLocation();
 
+  async function getFencersData() {
+    const data = await get(`competitions/${compId}/fencers/`);
+    const rows = data.map((e) => row(e));
+    setRows(rows);
+  }
+
+//Updates the data on route change. For example when another comp is selected.
+  useEffect(() => {
+    getFencersData();
+  }, [location]);
 
   //Gets the competitors from api
   useEffect(() => {
-    async function getFencersData() {
-      const data = await get(`competitions/${compId}/fencers/`);
-      const rows = data.map((e) => row(e));
-      setRows(rows);
-    }
     getFencersData();
   }, []);
 

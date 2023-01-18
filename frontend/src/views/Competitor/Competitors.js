@@ -6,6 +6,7 @@ import { get } from "../../services/backend.service";
 import { useNavigate } from "react-router-dom";
 import useDataGridHelper from "../../services/useDataGridHelper";
 import ModalComp from "../../components/static/Modal/ModalComp";
+import { useLocation } from "react-router-dom";
 
 const row = (element) => {
   return {
@@ -49,31 +50,37 @@ export default function Competitors() {
     setRows,
     handleEvent,
     deleteFunction,
-    openModalFunctiom
+    openModalFunctiom,
   } = useDataGridHelper();
   const navigate = useNavigate();
   const { tourId, compId } = useParams();
+  const location = useLocation();
+
+  async function getFencersData() {
+    const data = await get(`competitions/${compId}/fencers/`);
+    setRows(data);
+  }
+
+  //Updates the data on route change. For example when another comp is selected.
+  useEffect(() => {
+    getFencersData();
+  }, [location]);
 
   //Gets the competitors from api
   useEffect(() => {
-    async function getFencersData() {
-      const data = await get(`competitions/${compId}/fencers/`);
-      setRows(data);
-    }
     getFencersData();
   }, []);
 
-
   const deleteRow = () => {
-    deleteFunction(`fencers/${selectedRowId}/`)
-  }
+    deleteFunction(`fencers/${selectedRowId}/`);
+  };
 
   const modalProps = {
     title: "Are you sure you want to delete this competitior?",
     subtitle: "You can not undo this action!",
     confirmButtonText: "DELETE",
-    deleteRow
-  }
+    deleteRow,
+  };
 
   return (
     <>
@@ -91,7 +98,11 @@ export default function Competitors() {
               </Button>
             )}
             {isSelected && (
-              <Button variant="contained" size="small" onClick={openModalFunctiom}>
+              <Button
+                variant="contained"
+                size="small"
+                onClick={openModalFunctiom}
+              >
                 Delete
               </Button>
             )}
