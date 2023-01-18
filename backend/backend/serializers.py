@@ -4,7 +4,7 @@ from rest_framework.validators import UniqueTogetherValidator
 
 class FencerSerializer(serializers.ModelSerializer):
     class Meta:
-        model = FencerModel
+        depth = 1
         fields =  [
             'id', 
             'competitions',
@@ -53,6 +53,7 @@ class CompetitionSerializer(serializers.ModelSerializer):
 
 class WeaponControlSerializer(serializers.ModelSerializer):
     class Meta:
+        depth = 1
         model = WeaponControlModel
         validators = [
             UniqueTogetherValidator(
@@ -133,6 +134,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
 class FencerNationSerializer(serializers.ModelSerializer):
     class Meta:
+        depth = 1;
         model = FencerModel
         fields = [
             'nation',    

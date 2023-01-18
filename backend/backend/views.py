@@ -22,6 +22,8 @@ import xml.etree.ElementTree as ET
 from collections import OrderedDict
 from backend.issues import *
 import random
+from itertools import groupby
+import json
 
 class FencerModelMixin(object):
   def get_serializer(self, *args, **kwargs):
@@ -298,3 +300,23 @@ class RegisterFencerList(APIView):
                 many = True,
         )
         return Response(serializer.data)
+class CompetitionIssuesByNations(APIView):
+    def get(self, request, competition):
+
+        competition = self.kwargs['competition']
+
+        queryset = WeaponControlModel.objects.filter(competitions = competition).annotate(co = Count(id)).order_by('fencers__nation')
+        serializer = WeaponControlSerializer(queryset, many=True)
+
+        an_iterator = groupby(serializer.data, lambda x : x['fencers']['nation'])
+
+        orderedFencers = {} 
+
+        for key, group in an_iterator:
+            key_and_group = {key : list(group)}
+            print(key_and_group)
+            orderedFencers.update(key_and_group) 
+
+        #print(serializer)
+
+        return Response(data=orderedFencers)
