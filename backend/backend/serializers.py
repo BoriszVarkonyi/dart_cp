@@ -53,6 +53,7 @@ class CompetitionSerializer(serializers.ModelSerializer):
 
 class WeaponControlSerializer(serializers.ModelSerializer):
     class Meta:
+        depth = 1
         model = WeaponControlModel
         validators = [
             UniqueTogetherValidator(
@@ -133,6 +134,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
 class FencerNationSerializer(serializers.ModelSerializer):
     class Meta:
+        depth = 1;
         model = FencerModel
         fields = [
             'nation',    
