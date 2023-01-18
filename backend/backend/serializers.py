@@ -5,7 +5,6 @@ from rest_framework.validators import UniqueTogetherValidator
 class FencerSerializer(serializers.ModelSerializer):
     class Meta:
         model = FencerModel
-        depth = 1
         fields =  [
             'id', 
             'competitions',
