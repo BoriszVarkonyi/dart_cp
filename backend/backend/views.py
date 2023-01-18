@@ -289,3 +289,12 @@ class GetRegistrationsForCompetition(APIView):
         queryset = RegistrationModel.objects.filter(competitions = competition)
         serializer_class = RegistrationSerializer(queryset, context={'request': request}, many=True)
         return Response(serializer_class.data)
+
+class RegisterFencerList(APIView):
+    def get(self, request, competition):
+        queryset = RegistrationModel.objects.filter(competitions = competition)
+        serializer = RegistrationSerializer(
+                queryset,
+                many = True,
+        )
+        return Response(serializer.data)
