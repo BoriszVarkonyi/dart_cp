@@ -50,7 +50,7 @@ export default function WeaponControl(props) {
       }
     }
 
-    console.log(data)
+    console.log(data);
     const response = await post(
       `stats/weaponcontrols/issues/${compId}/${rowId}/`
     );
@@ -60,10 +60,7 @@ export default function WeaponControl(props) {
   //Gets the issues from api
   useEffect(() => {
     async function getData() {
-      const data = await get(
-        `stats/weaponcontrols/issues/${compId}/${rowId}/`
-      );
-      console.log(data)
+      const data = await get(`stats/weaponcontrols/issues/${compId}/${rowId}/`);
       let testArray = [];
 
       let rowKey = 0;
@@ -94,13 +91,13 @@ export default function WeaponControl(props) {
         </div>
       </div>
       <div className="PageContent WithSideBar">
-        <div className="PageContentInner">
-          <Box
-            component="form"
-            id="issue-form"
-            noValidate
-            onSubmit={handleSubmit(onSubmit)}
-          >
+        <Box
+          component="form"
+          id="issue-form"
+          noValidate
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <div className="PageContentInner">
             <table>
               <thead>
                 <tr>
@@ -110,17 +107,17 @@ export default function WeaponControl(props) {
               </thead>
               <tbody>{issues}</tbody>
             </table>
-          </Box>
-        </div>
-        <div className="SideBar">
-          <TextField
-            id="outlined-textarea"
-            label="Notes"
-            placeholder="Type in the additional notes here"
-            multiline
-          />
-          <textarea {...register(`notes`)}></textarea>
-        </div>
+          </div>
+          <div className="SideBar">
+            <TextField
+              id="outlined-textarea"
+              label="Notes"
+              placeholder="Type in the additional notes here"
+              multiline
+              {...register(`notes`)}
+            />
+          </div>
+        </Box>
       </div>
     </div>
   );

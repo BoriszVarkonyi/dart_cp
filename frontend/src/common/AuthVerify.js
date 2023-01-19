@@ -18,6 +18,7 @@ export default function useTokenService() {
       if (expireTime < Date.now()) {
         authService.logout();
         navigate("/")
+        window.location.reload()
         return;
       }
       const timeout = expireTime.getTime() - Date.now() - 60 * 1000;

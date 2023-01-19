@@ -26,8 +26,10 @@ export default function NavBar() {
   const setComp = (id) => {
     setCompId(id);
     setHasSelectedComp(true);
-    const pathName = window.location.pathname.split("/")[3];
-    navigate(`/${tournamentId}/${id}/${pathName}`);
+    const pathName = window.location.pathname.split("/");
+    if(!pathName.includes("competitions") && !pathName.includes("timetable")){
+      navigate(`/${tournamentId}/${id}/${pathName[3]}`);
+    }
   };
 
   const setMenuItem = (data) => {
