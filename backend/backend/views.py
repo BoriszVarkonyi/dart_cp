@@ -1,5 +1,7 @@
 import http
 from django.db.models import Count
+
+from dartagnan.settings import SECRET_KEY
 from .models import * 
 from .serializers import *
 from django.core.files.storage import default_storage
@@ -24,6 +26,8 @@ from backend.issues import *
 import random
 from itertools import groupby
 import json
+from Crypto.Cipher import AES
+from Crypto.Random import get_random_bytes
 
 class FencerModelMixin(object):
   def get_serializer(self, *args, **kwargs):
@@ -300,6 +304,7 @@ class RegisterFencerList(APIView):
                 many = True,
         )
         return Response(serializer.data)
+
 class CompetitionIssuesByNations(APIView):
     def get(self, request, competition):
 
@@ -320,3 +325,15 @@ class CompetitionIssuesByNations(APIView):
         #print(serializer)
 
         return Response(data=orderedFencers)
+
+
+# FIXME: encrypt data can only be bytes not string,
+# or if its bytes it cannot encode it in utf8
+#class GetHash(APIView): 
+#    def get(self, request, competition, fencer):
+#        data = { 'competition': competition, 'fencer': fencer }
+#        data_string = b"fasz"#json.dumps(data)
+#        key = b"asdasdasdasdasdf"#SECRET_KEY
+#        cipher = AES.new(key, AES.MODE_EAX)
+#        ciphertext, tag = cipher.encrypt_and_digest(data_string)
+#        return  Response(ciphertext)
