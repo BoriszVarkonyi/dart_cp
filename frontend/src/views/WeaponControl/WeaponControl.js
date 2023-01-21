@@ -50,9 +50,12 @@ export default function WeaponControl(props) {
       }
     }
 
-    console.log(data);
+    data = { ...data, competitions: [parseInt(compId)], fencers: parseInt(rowId) };
+
+    console.log(data)
     const response = await post(
-      `stats/weaponcontrols/issues/${compId}/${rowId}/`
+      `stats/weaponcontrols/issues/${compId}/${rowId}/`,
+      data
     );
     console.log(response);
   };

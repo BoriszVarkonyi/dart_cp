@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { FormControl, MenuItem, TextField, Button, Alert } from "@mui/material";
 import { Box } from "@mui/system";
 import { useForm } from "react-hook-form";
-import { post, update } from "../../services/backend.service";
+import { post, update, get } from "../../services/backend.service";
 import countries from "../../components/static/countries.json";
 
 import { useParams } from "react-router-dom";
@@ -12,11 +12,41 @@ import { useParams } from "react-router-dom";
 export default function Competitor(props) {
   const [isOther, setIsOther] = useState(false);
   const [menuItems, setMenuItems] = useState([]);
+  const [modifyData, setModifyData] = useState({});
   const [success, setSuccess] = useState(0);
   const navigate = useNavigate();
   const { state } = useLocation();
   const { rowId } = state;
   let { tourId, compId } = useParams();
+
+  //A state for the controlled inputs.
+  const [inputState, setInputState] = useState({
+    pre_nom: "",
+    nom: "",
+    sexe: "",
+    date_naissance: "",
+    lateralite: "",
+    licence: "",
+    points: "",
+    classement: "",
+    nation: "",
+    club: "",
+  });
+
+  //react-hook-form
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm();
+
+  const updateInputState = (prevState, updateObj) => {
+    //Sets the registered value for the react-hook-form.
+    setValue(Object.keys(updateObj)[0], updateObj[Object.keys(updateObj)[0]]);
+
+    return { ...prevState, ...updateObj };
+  };
 
   const generateMenuItem = (country) => {
     return (
@@ -32,21 +62,31 @@ export default function Competitor(props) {
       setMenuItems(menuItems);
     }
     setMenuItemsFromJson();
+    async function getData() {
+      const response = await get(`/fencers/${rowId}`);
+      setModifyData(response);
+    }
+    if (props.type == "Modify") {
+      getData();
+    }
   }, []);
 
-  //react-hook-form
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  useEffect(() => {
+    //Sets the state for the controlled inputs
+    setInputState(modifyData);
+
+    //Updates the registered values for the ract-hook-form.
+    for (const key in inputState) {
+      setValue(key, inputState[key]);
+    }
+  }, [modifyData]);
 
   const onSubmit = async (data) => {
     if (props.type == "Add") {
       const resp = await post("fencers/", {
         ...data,
         competitions: [compId],
-        statut: "N"
+        statut: "N",
       });
       if (resp.name && resp.name == "AxiosError") {
         setSuccess(-1);
@@ -65,7 +105,6 @@ export default function Competitor(props) {
 
   const text = `${props.type} competitiors`;
   return (
-
     <div className="Main">
       <div className="PageHeader">
         <h2 className="PageTitle">{text}</h2>
@@ -79,12 +118,13 @@ export default function Competitor(props) {
         </div>
       </div>
       <div className="PageContent">
-        {success == -1 ?
+        {success == -1 ? (
           <Alert variant="filled" severity="error">
             Something went wrong. Please try later!
           </Alert>
-          : <></>
-        }
+        ) : (
+          <></>
+        )}
         <Box
           className="PageContentInner Form"
           component="form"
@@ -121,6 +161,7 @@ export default function Competitor(props) {
               margin="normal"
               size="small"
               variant="filled"
+              value={inputState.pre_nom || ""}
               {...register("pre_nom", {
                 required: {
                   value: true,
@@ -130,6 +171,10 @@ export default function Competitor(props) {
                   value: 72,
                   message: "Field cannot be longer than 72 characters!",
                 },
+                onChange: (e) =>
+                  setInputState((prevState) =>
+                    updateInputState(prevState, { pre_nom: e.target.value })
+                  ),
               })}
             />
             <TextField
@@ -140,6 +185,7 @@ export default function Competitor(props) {
               margin="normal"
               size="small"
               variant="filled"
+              value={inputState.nom || ""}
               {...register("nom", {
                 required: {
                   value: true,
@@ -149,6 +195,10 @@ export default function Competitor(props) {
                   value: 72,
                   message: "Field cannot be longer than 72 characters!",
                 },
+                onChange: (e) =>
+                  setInputState((prevState) =>
+                    updateInputState(prevState, { nom: e.target.value })
+                  ),
               })}
             />
 
@@ -159,8 +209,14 @@ export default function Competitor(props) {
                 select
                 label="Sex"
                 id="sex"
-                defaultValue=""
-                {...register("sexe", { required: "Please choose sex!" })}
+                value={inputState.sexe || ""}
+                {...register("sexe", {
+                  required: "Please choose sex!",
+                  onChange: (e) =>
+                    setInputState((prevState) =>
+                      updateInputState(prevState, { sexe: e.target.value })
+                    ),
+                })}
               >
                 <MenuItem value="M">Male</MenuItem>
                 <MenuItem value="F">Female</MenuItem>
@@ -176,10 +232,16 @@ export default function Competitor(props) {
               type="date"
               size="small"
               variant="filled"
-              defaultValue="2017-05-24"
+              value={inputState.date_naissance || ''}
               sx={{ width: 220 }}
               {...register("date_naissance", {
                 required: "Please enter your date of birth!",
+                onChange: (e) =>
+                  setInputState((prevState) =>
+                    updateInputState(prevState, {
+                      date_naissance: e.target.value,
+                    })
+                  ),
               })}
             />
 
@@ -190,9 +252,15 @@ export default function Competitor(props) {
                 select
                 label="Laterality"
                 id="laterality"
-                defaultValue=""
+                value={inputState.lateralite || ""}
                 {...register("lateralite", {
                   required: "Please select laterality!",
+                  onChange: (e) =>
+                    setInputState((prevState) =>
+                      updateInputState(prevState, {
+                        lateralite: e.target.value,
+                      })
+                    ),
                 })}
               >
                 <MenuItem value="G">Left</MenuItem>
@@ -209,12 +277,22 @@ export default function Competitor(props) {
               margin="normal"
               size="small"
               variant="filled"
+              value={inputState.licence || ""}
               {...register("licence", {
-                required: { value: true, message: "Please enter your license!" },
+                required: {
+                  value: true,
+                  message: "Please enter your license!",
+                },
                 maxLength: {
                   value: 12,
                   message: "Field cannot be longer than 12 characters!",
                 },
+                onChange: (e) =>
+                  setInputState((prevState) =>
+                    updateInputState(prevState, {
+                      licence: e.target.value,
+                    })
+                  ),
               })}
             />
 
@@ -226,12 +304,19 @@ export default function Competitor(props) {
               margin="normal"
               size="small"
               variant="filled"
+              value={inputState.points || ""}
               {...register("points", {
                 required: { value: true, message: "Please enter the points!" },
                 maxLength: {
                   value: 11,
                   message: "Field cannot be longer than 11 numbers!",
                 },
+                onChange: (e) =>
+                  setInputState((prevState) =>
+                    updateInputState(prevState, {
+                      points: e.target.value,
+                    })
+                  ),
               })}
             />
 
@@ -243,6 +328,7 @@ export default function Competitor(props) {
               margin="normal"
               size="small"
               variant="filled"
+              value={inputState.classement || ""}
               {...register("classement", {
                 required: {
                   value: true,
@@ -252,6 +338,12 @@ export default function Competitor(props) {
                   value: 11,
                   message: "Field cannot be longer than 11 numbers!",
                 },
+                onChange: (e) =>
+                  setInputState((prevState) =>
+                    updateInputState(prevState, {
+                      classement: e.target.value,
+                    })
+                  ),
               })}
             />
           </div>
@@ -263,9 +355,15 @@ export default function Competitor(props) {
                 select
                 label="Nationality"
                 id="nationality"
-                defaultValue=""
+                value={inputState.nation || ""}
                 {...register("nation", {
                   required: "Please choose a nationality!",
+                  onChange: (e) =>
+                    setInputState((prevState) =>
+                      updateInputState(prevState, {
+                        nation: e.target.value,
+                      })
+                    ),
                 })}
               >
                 {menuItems}
@@ -278,13 +376,19 @@ export default function Competitor(props) {
                 helperText={errors?.club?.message}
                 label="Club"
                 id="club"
-                defaultValue=""
+                value={inputState.club || ""}
                 {...register("club", {
                   required: { value: true, message: "Please choose a club!" },
                   maxLength: {
                     value: 256,
                     message: "Field cannot be longer than 256 characters!",
                   },
+                  onChange: (e) =>
+                    setInputState((prevState) =>
+                      updateInputState(prevState, {
+                        club: e.target.value,
+                      })
+                    ),
                 })}
               ></TextField>
             )}
@@ -299,12 +403,19 @@ export default function Competitor(props) {
                 size="small"
                 variant="filled"
                 autoFocus
+                value={inputState.club || ""}
                 {...register("club", {
                   required: { value: true, message: "Please choose a club!" },
                   maxLength: {
                     value: 256,
                     message: "Field cannot be longer than 256 characters!",
                   },
+                  onChange: (e) =>
+                    setInputState((prevState) =>
+                      updateInputState(prevState, {
+                        club: e.target.value,
+                      })
+                    ),
                 })}
               />
             )}

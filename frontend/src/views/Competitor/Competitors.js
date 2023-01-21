@@ -55,7 +55,7 @@ export default function Competitors() {
   const navigate = useNavigate();
   const { tourId, compId } = useParams();
   const location = useLocation();
-
+  
   async function getFencersData() {
     const data = await get(`competitions/${compId}/fencers/`);
     setRows(data);

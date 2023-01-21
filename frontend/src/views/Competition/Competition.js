@@ -20,6 +20,7 @@ export default function Competition(props) {
     register,
     handleSubmit,
     setValue,
+    getValues,
     formState: { errors },
   } = useForm();
 
@@ -385,6 +386,7 @@ export default function Competition(props) {
                   value: 31,
                   message: `Field cannot be longer than 31 characters!`,
                 },
+                validate: value => value < getValues("end_date") || "Please enter a valid time interval!",
                 onChange: (e) =>
                   setInputState((prevState) =>
                     updateInputState(prevState, { start_date: e.target.value })

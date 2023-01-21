@@ -55,7 +55,7 @@ export default function Import() {
   //Helper functions
   async function handleFile(file) {
     const formData = new FormData();
-    formData.append("test", file);
+    formData.append("xmlfile", file);
 
     fetch("http://localhost:8082/api/uploadxml/", {
       method: "POST",

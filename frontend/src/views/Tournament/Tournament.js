@@ -20,6 +20,7 @@ export default function Tournament(props) {
     register,
     handleSubmit,
     setValue,
+    getValues,
     formState: { errors },
   } = useForm();
 
@@ -27,8 +28,8 @@ export default function Tournament(props) {
   const [inputState, setInputState] = useState({
     id: "",
     title_long: "",
-    starting_date: "",
-    ending_date: ""
+    starting_date: undefined,
+    ending_date: undefined,
   });
 
   const updateInputState = (prevState, updateObj) => {
@@ -58,17 +59,17 @@ export default function Tournament(props) {
   }, [modifyData]);
 
   const onSubmitSave = async (data) => {
-    if (props.type == "Create") {
-      await post("tournaments/", data);
-    } else if (props.type == "Modify") {
-      await update(`tournaments/${rowId}/`, data);
-    }
-    return navigate(-1);
+    // if (props.type == "Create") {
+    //   await post("tournaments/", data);
+    // } else if (props.type == "Modify") {
+    //   await update(`tournaments/${rowId}/`, data);
+    // }
+    // return navigate(-1);
   };
 
   const onSubmitSaveOpen = async (data) => {
-    //const resp = await post("tournaments/", data);
-    //return navigate(`/competition/${resp.id}`)
+    const resp = await post("tournaments/", data);
+    return navigate(`/${resp.id}/competitions`);
   };
 
   const text = `${props.type} tournament`;
@@ -99,16 +100,19 @@ export default function Tournament(props) {
             size="small"
             variant="filled"
             value={inputState.title_long || ""}
-            {...register("title_long", { required: "Please enter a name!",
-            onChange: (e) =>
-            setInputState((prevState) =>
-              updateInputState(prevState, { title_long: e.target.value })
-            ),
-           })}
+            {...register("title_long", {
+              required: "Please enter a name!",
+              onChange: (e) =>
+                setInputState((prevState) =>
+                  updateInputState(prevState, { title_long: e.target.value })
+                ),
+            })}
           />
         </div>
         <div className="FormColumn">
           <TextField
+            error={!!errors.starting_date}
+            helperText={errors?.starting_date?.message}
             id="date"
             label="Starting Date"
             type="date"
@@ -121,13 +125,16 @@ export default function Tournament(props) {
             }}
             {...register("starting_date", {
               required: "Please enter a start date!",
+              validate: value => value < getValues("ending_date") || "Please enter a valid time interval!",
               onChange: (e) =>
-              setInputState((prevState) =>
-                updateInputState(prevState, { starting_date: e.target.value })
-              ),
+                setInputState((prevState) =>
+                  updateInputState(prevState, { starting_date: e.target.value })
+                ),
             })}
           />
           <TextField
+            error={!!errors.ending_date}
+            helperText={errors?.ending_date?.message}
             id="date"
             label="Ending Date"
             type="date"
@@ -141,9 +148,9 @@ export default function Tournament(props) {
             {...register("ending_date", {
               required: "Please enter an end date!",
               onChange: (e) =>
-              setInputState((prevState) =>
-                updateInputState(prevState, { ending_date: e.target.value })
-              ),
+                setInputState((prevState) =>
+                  updateInputState(prevState, { ending_date: e.target.value })
+                ),
             })}
           />
         </div>
