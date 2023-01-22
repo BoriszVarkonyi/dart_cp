@@ -53,7 +53,9 @@ class CompetitionSerializer(serializers.ModelSerializer):
 
 class WeaponControlSerializer(serializers.ModelSerializer):
     class Meta:
-        depth = 1
+        # BORISZ: ha átírod depth 1-re nem működik a weapon control post and get
+        # csinálj másikat ha nagyon kell a cucc
+        depth = 0
         model = WeaponControlModel
         validators = [
             UniqueTogetherValidator(

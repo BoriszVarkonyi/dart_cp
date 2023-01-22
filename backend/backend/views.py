@@ -2,7 +2,7 @@ import http
 from django.db.models import Count
 
 from dartagnan.settings import SECRET_KEY
-from .models import * 
+from .models import *
 from .serializers import *
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
@@ -228,8 +228,8 @@ class WeaponControlFencersIssues(APIView):
                     )
 
         else:
-            data['fencers'] = fencer
-            data['competitions'] = competition
+            data['competitions'] = [ competition ]
+            data['fencers'] = [ fencer ]
             serializer = WeaponControlSerializer(
                             data=data,
                     )
@@ -329,11 +329,12 @@ class CompetitionIssuesByNations(APIView):
 
 # FIXME: encrypt data can only be bytes not string,
 # or if its bytes it cannot encode it in utf8
-#class GetHash(APIView): 
+#class GetHash(APIView):
 #    def get(self, request, competition, fencer):
 #        data = { 'competition': competition, 'fencer': fencer }
-#        data_string = b"fasz"#json.dumps(data)
-#        key = b"asdasdasdasdasdf"#SECRET_KEY
+#        data_string = "asdasd"
+#        data_bytes = b"asdasd"
+#        key = b"aaaaaaaaaaaaaaaa"
 #        cipher = AES.new(key, AES.MODE_EAX)
-#        ciphertext, tag = cipher.encrypt_and_digest(data_string)
+#        ciphertext, tag = cipher.encrypt_and_digest(data_bytes)
 #        return  Response(ciphertext)

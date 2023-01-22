@@ -55,7 +55,7 @@ urlpatterns = [
         'stats/competitions/<str:competition>/issues/',
         views.CompetitionIssuesByNations.as_view(),
     ),
-    #path( FIXME
+    #path(
     #    'gethash/<str:competition>/<str:fencer>/',
     #    views.GetHash.as_view(),
     #),
