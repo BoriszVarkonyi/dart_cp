@@ -228,8 +228,8 @@ class WeaponControlFencersIssues(APIView):
                     )
 
         else:
-            data['competitions'] = [ competition ]
-            data['fencers'] = [ fencer ]
+            data['competitions'] = competition
+            data['fencers'] = fencer
             serializer = WeaponControlSerializer(
                             data=data,
                     )
