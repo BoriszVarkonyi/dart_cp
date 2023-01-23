@@ -59,12 +59,12 @@ export default function Tournament(props) {
   }, [modifyData]);
 
   const onSubmitSave = async (data) => {
-    // if (props.type == "Create") {
-    //   await post("tournaments/", data);
-    // } else if (props.type == "Modify") {
-    //   await update(`tournaments/${rowId}/`, data);
-    // }
-    // return navigate(-1);
+    if (props.type == "Create") {
+      await post("tournaments/", data);
+    } else if (props.type == "Modify") {
+      await update(`tournaments/${rowId}/`, data);
+    }
+    return navigate(-1);
   };
 
   const onSubmitSaveOpen = async (data) => {

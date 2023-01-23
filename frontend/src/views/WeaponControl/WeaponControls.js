@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import useDataGridHelper from "../../services/useDataGridHelper";
 import { useParams } from "react-router-dom";
-import { get } from "../../services/backend.service";
+import { get, remove } from "../../services/backend.service";
 import ModalComp from "../../components/static/Modal/ModalComp";
 import { useLocation } from "react-router-dom";
 
@@ -40,10 +40,13 @@ export default function WeaponControls() {
     isSelected,
     rows,
     setRows,
+    setIsSelected,
+    setSelectionModel,
     handleEvent,
-    deleteFunction,
     openModalFunctiom,
   } = useDataGridHelper();
+  const [modalProps, setModalProps] = useState({})
+  const [modalType, setModalType] = useState("")
   const { tourId, compId } = useParams();
   const navigate = useNavigate()
   const location = useLocation();
@@ -64,9 +67,30 @@ export default function WeaponControls() {
     getFencersData();
   }, []);
 
-  const modalProps = {
-    title: "Read barcode",
-    subtitle: undefined
+  const deleteRow = async() => {
+    await remove(`stats/weaponcontrols/issues/${compId}/${selectedRowId}/`);
+    setIsSelected(false)
+    setSelectionModel([])
+  };
+
+  const deleteWc = () =>{
+    setModalType("Alert")
+    setModalProps({
+      title: "Are you sure you want to delete this competitiors weapon control?",
+      subtitle: "You can not undo this action!",
+      confirmButtonText: "DELETE",
+      deleteRow,
+    })
+    openModalFunctiom()
+  }
+
+  const openBarcode = () =>{
+    setModalType("Barcode")
+    setModalProps({
+      title: "Read barcode",
+      subtitle: undefined
+    })
+    openModalFunctiom()
   }
 
   return (
@@ -75,7 +99,7 @@ export default function WeaponControls() {
         <h2 className="PageTitle">Weapon Control</h2>
         <div className="PageButtonsWrapper">
           {isSelected && (
-            <Button variant="contained" size="small">
+            <Button variant="contained" size="small" onClick={deleteWc}>
               Remove weapon control
             </Button>
           )}
@@ -89,7 +113,7 @@ export default function WeaponControls() {
               Add weapon control
             </Button>
           )}
-          <Button variant="contained" size="small" onClick={openModalFunctiom}>
+          <Button variant="contained" size="small" onClick={openBarcode}>
             Read Barcode
           </Button>
         </div>
@@ -106,7 +130,7 @@ export default function WeaponControls() {
           />
         </div>
       </div>
-      <ModalComp type="Barcode" modalProps={modalProps} />
+      <ModalComp type={modalType} modalProps={modalProps} />
     </div>
   );
 }

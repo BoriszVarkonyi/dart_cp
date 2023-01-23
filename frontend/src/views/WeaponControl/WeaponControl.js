@@ -4,12 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import { get, post } from "../../services/backend.service";
+import { get, post, update } from "../../services/backend.service";
 import { TextField, Box } from "@mui/material";
 import { useForm } from "react-hook-form";
 
 export default function WeaponControl(props) {
   const [issues, setIssues] = useState([]);
+  const [notes, setNotes] = useState("")
   const navigate = useNavigate();
   const { tourId, compId } = useParams();
   const { state } = useLocation();
@@ -30,6 +31,7 @@ export default function WeaponControl(props) {
           <TextField
             type="number"
             size="small"
+            defaultValue={keyValue}
             {...register(`issue_${rowKey + 1}`)}
           />
         </td>
@@ -50,27 +52,36 @@ export default function WeaponControl(props) {
       }
     }
 
-    data = { ...data, competitions: [parseInt(compId)], fencers: parseInt(rowId) };
-
-    console.log(data)
-    const response = await post(
-      `stats/weaponcontrols/issues/${compId}/${rowId}/`,
-      data
-    );
-    console.log(response);
+    if ((props.type == "Add")) {
+      await post(`stats/weaponcontrols/issues/${compId}/${rowId}/`, data);
+    }
+    if ((props.type == "Modify")) {
+      await update(`stats/weaponcontrols/issues/${compId}/${rowId}/`, data);
+    }
+    navigate(-1)
   };
 
   //Gets the issues from api
   useEffect(() => {
     async function getData() {
       const data = await get(`stats/weaponcontrols/issues/${compId}/${rowId}/`);
+
       let testArray = [];
 
       let rowKey = 0;
       for (const key of Object.keys(data)) {
+        if(key =="notes"){
+          setNotes(data[key])
+        }
         if (key != "exists" && key != "notes") {
-          const row = generateTR(key, data[key], rowKey);
-          testArray.push(row);
+          if (props.type == "Modify") {
+            const row = generateTR(key, data[key], rowKey);
+            testArray.push(row);
+          }
+          if (props.type == "Add") {
+            const row = generateTR(key, undefined, rowKey);
+            testArray.push(row);
+          }
           rowKey++;
         }
       }
@@ -117,7 +128,11 @@ export default function WeaponControl(props) {
               label="Notes"
               placeholder="Type in the additional notes here"
               multiline
-              {...register(`notes`)}
+              value={notes}
+              {...register(`notes`,{
+                onChange: (e)=> setNotes(e.target.value)
+              }
+              )}
             />
           </div>
         </Box>
