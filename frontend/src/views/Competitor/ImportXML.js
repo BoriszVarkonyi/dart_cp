@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button } from "@mui/material";
+import { Button, Alert } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { DataGrid } from "@mui/x-data-grid";
 import { post, postBulk } from "./../../services/backend.service";
@@ -27,6 +27,7 @@ export default function Import() {
   const navigate = useNavigate();
   const [hasSelectedFile, setHasSelectedFile] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const [hasImportError, setHasImportError] = useState(false);
   const [rows, setRows] = useState([]);
   const [fencerArray, setFencerArray] = useState([]);
   const { tournamentId, compId } = useParams();
@@ -82,7 +83,9 @@ export default function Import() {
     const tempArray = fencerArray.map((e) => updateFencer(e))
     console.log(tempArray);
     setFencerArray(tempArray);
-    await postBulk("fencers/", tempArray);
+    const resp = await postBulk("fencers/", tempArray);
+    if(resp.name && resp.name === "AxiosError") 
+        setHasImportError(true);
   };
 
   return (
@@ -97,21 +100,21 @@ export default function Import() {
             Upload File
             <input type="file" hidden onChange={selectFile} />
           </Button>
-          {hasError && <p>Wrong file format!</p>}
+          {hasError && 
+            <Alert severity="error">Wrong file format!</Alert>}
           {hasSelectedFile && (
             <Button variant="contained" size="small" onClick={importFencers}>
               Import
             </Button>
           )}
         </div>
+        {hasImportError && 
+            <Alert severity="error">A server error has occured while importing!</Alert>}
       </div>
       <div className="PageContent">
         <div className="TableGrid">
-          {!hasSelectedFile && (
-            <>
-              <h2>File not selected</h2>
-            </>
-          )}
+          {!hasSelectedFile &&
+              <Alert severity="info">File not selected</Alert>}
           {hasSelectedFile && (
             <>
               <h3>Preview:</h3>
