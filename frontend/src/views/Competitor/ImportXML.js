@@ -23,11 +23,13 @@ const columns = [
   { field: "fencerClub", headerName: "CLUB", width: 200 },
 ];
 
+
+
 export default function Import() {
   const navigate = useNavigate();
   const [hasSelectedFile, setHasSelectedFile] = useState(false);
   const [hasError, setHasError] = useState(false);
-  const [hasImportError, setHasImportError] = useState(false);
+  const [importStatus, setImportStatus] = useState(null);
   const [rows, setRows] = useState([]);
   const [fencerArray, setFencerArray] = useState([]);
   const { tournamentId, compId } = useParams();
@@ -85,7 +87,9 @@ export default function Import() {
     setFencerArray(tempArray);
     const resp = await postBulk("fencers/", tempArray);
     if(resp.name && resp.name === "AxiosError") 
-        setHasImportError(true);
+        setImportStatus(false);
+    else
+        setImportStatus(true);
   };
 
   return (
@@ -108,7 +112,9 @@ export default function Import() {
             </Button>
           )}
         </div>
-        {hasImportError && 
+        {importStatus === true &&
+            <Alert severity="success">Imported successfully!</Alert>}
+        {importStatus === false && 
             <Alert severity="error">A server error has occured while importing!</Alert>}
       </div>
       <div className="PageContent">
