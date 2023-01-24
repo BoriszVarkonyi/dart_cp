@@ -142,7 +142,52 @@ class FencerNationSerializer(serializers.ModelSerializer):
             'nation',    
         ]
 
-
+class WeaponControlNationSerializer(serializers.ModelSerializer):
+    class Meta:
+        depth = 1
+        model = WeaponControlModel
+        validators = [
+            UniqueTogetherValidator(
+                queryset=WeaponControlModel.objects.all(),
+                fields = [
+                    'competitions',
+                    'fencers',
+                ]
+            )
+        ]
+        fields = [
+            'fencers',
+            'competitions',
+            'issue_1',
+            'issue_2',
+            'issue_3',
+            'issue_4',
+            'issue_5',
+            'issue_6',
+            'issue_7',
+            'issue_8',
+            'issue_9',
+            'issue_10',
+            'issue_11',
+            'issue_12',
+            'issue_13',
+            'issue_14',
+            'issue_15',
+            'issue_16',
+            'issue_17',
+            'issue_18',
+            'issue_19',
+            'issue_20',
+            'issue_21',
+            'issue_22',
+            'issue_23',
+            'issue_24',
+            'issue_25',
+            'issue_26',
+            'issue_27',
+            'issue_28',
+            'notes'
+        ]
 
 
 

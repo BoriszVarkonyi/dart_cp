@@ -311,7 +311,7 @@ class CompetitionIssuesByNations(APIView):
         competition = self.kwargs['competition']
 
         queryset = WeaponControlModel.objects.filter(competitions = competition).annotate(co = Count(id)).order_by('fencers__nation')
-        serializer = WeaponControlSerializer(queryset, many=True)
+        serializer = WeaponControlNationSerializer(queryset, many=True)
 
         an_iterator = groupby(serializer.data, lambda x : x['fencers']['nation'])
 

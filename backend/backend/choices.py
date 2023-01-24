@@ -219,7 +219,7 @@ NATION_CHOICE = [
     ("VIN",	"Saint Vincent and the Grenadines"),
     ("YEM",	"Yemen"),
     ("ZAM", "Zambia"),
-    ("ZIM",	"Zimbabwe"),
+    ("ZIM",	"Zimbabwe")
 ]
 COMPETITION_TYPE_CHOICE = [
     ("I", "Individual"),
