@@ -6,13 +6,14 @@ import { FormControl, MenuItem, TextField, Button } from "@mui/material";
 import { Box } from "@mui/system";
 import { useForm } from "react-hook-form";
 import { post, update, get } from "../../services/backend.service";
-import countries from "../../components/static/countries.json"
+import countries from "../../components/static/countries.json";
+import currencies from "../../components/static/currencies.json";
 
 export default function Competition(props) {
   const [isOther, setIsOther] = useState(false);
   const [modifyData, setModifyData] = useState({});
-  const [menuItems, setMenuItems] = useState([]);
-  const [currencies, setCurrencies] = useState([]);
+  const [countriesMenuItems, setCountriesMenuItems] = useState([]);
+  const [currenciesMenuItems, setCurreniesMenuItems] = useState([]);
   const { state } = useLocation();
   const { rowId } = state;
   let { tournamentId } = useParams();
@@ -43,19 +44,22 @@ export default function Competition(props) {
     end_date: "",
   });
 
-  const generateMenuItem = (country) => {
+  const generateMenuItem = (value) => {
     return (
-      <MenuItem key={country.short} value={country.short}>
-        {country.long}
+      <MenuItem key={value.short} value={value.short}>
+        {value.long}
       </MenuItem>
     );
   };
 
-
   useEffect(() => {
     function setMenuItemsFromJson() {
-      const menuItems = countries.countries.map((c) => generateMenuItem(c));
-      setMenuItems(menuItems);
+      const countriesMenuItems = countries.countries.map((c) =>
+        generateMenuItem(c)
+      );
+      setCountriesMenuItems(countriesMenuItems);
+      const currenciesMenuItems = currencies.currencies.map((c) => generateMenuItem(c));
+      setCurreniesMenuItems(currenciesMenuItems);
     }
     setMenuItemsFromJson();
 
@@ -105,17 +109,15 @@ export default function Competition(props) {
       <div className="PageHeader">
         <h2 className="PageTitle"> {text}</h2>
         <div className="PageButtonsWrapper">
-          <Button
-            variant="contained"
-            size="small"
-            onClick={() => navigate(-1)}>
+          <Button variant="contained" size="small" onClick={() => navigate(-1)}>
             CANCEL
           </Button>
           <Button
             form="create-form"
             variant="contained"
             size="small"
-            type="submit">
+            type="submit"
+          >
             {text}
           </Button>
         </div>
@@ -321,7 +323,7 @@ export default function Competition(props) {
                     ),
                 })}
               >
-                {menuItems}
+                {countriesMenuItems}
               </TextField>
             </FormControl>
 
@@ -368,11 +370,13 @@ export default function Competition(props) {
               <TextField
                 error={!!errors.currency}
                 helperText={errors?.currency?.message}
-                label="Currency"
-                type="text"
                 margin="normal"
                 size="small"
                 variant="filled"
+                select
+                label="Currency"
+                id="hostCountry"
+                defaultValue=""
                 value={inputState.currency || ""}
                 {...register("currency", {
                   required: "Please enter a currency!",
@@ -381,7 +385,9 @@ export default function Competition(props) {
                       updateInputState(prevState, { currency: e.target.value })
                     ),
                 })}
-              />
+              >
+                {currenciesMenuItems}
+              </TextField>
             </div>
           </div>
 
@@ -402,7 +408,9 @@ export default function Competition(props) {
                   value: 31,
                   message: `Field cannot be longer than 31 characters!`,
                 },
-                validate: value => value < getValues("end_date") || "Please enter a valid time interval!",
+                validate: (value) =>
+                  value < getValues("end_date") ||
+                  "Please enter a valid time interval!",
                 onChange: (e) =>
                   setInputState((prevState) =>
                     updateInputState(prevState, { start_date: e.target.value })
