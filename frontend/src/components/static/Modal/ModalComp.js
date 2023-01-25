@@ -30,7 +30,7 @@ export default function ModalComp(props) {
             <CloseIcon />
           </IconButton>
         </div>
-        {props.type == "Alert" && (
+        {modalProps.type == "Alert" && (
           <div className="ModalFooter">
             <Button variant="outlined" onClick={() => dispatch(closeModal())}>
               Cancel
@@ -47,7 +47,7 @@ export default function ModalComp(props) {
           </div>
         )}
 
-        {props.type == "Barcode" && (
+        {modalProps.type == "Barcode" && (
           <div className="ModalContent">
             <div className="ModalContentInner">
               <img className="BarcodeImage" src={BarcodeImage} />
@@ -57,6 +57,14 @@ export default function ModalComp(props) {
                 size="small"
                 variant="filled"
               />
+            </div>
+          </div>
+        )}
+
+        {modalProps.type == "Succes" && (
+          <div className="ModalContent">
+            <div className="ModalContentInner">
+              <p>{modalProps.text}</p>
             </div>
           </div>
         )}

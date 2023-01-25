@@ -46,7 +46,6 @@ export default function WeaponControls() {
     openModalFunctiom,
   } = useDataGridHelper();
   const [modalProps, setModalProps] = useState({});
-  const [modalType, setModalType] = useState("");
   const { tourId, compId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
@@ -69,8 +68,8 @@ export default function WeaponControls() {
   };
 
   const deleteWc = () => {
-    setModalType("Alert");
     setModalProps({
+      type: "Alert",
       title:
         "Are you sure you want to delete this competitiors weapon control?",
       subtitle: "You can not undo this action!",
@@ -81,8 +80,8 @@ export default function WeaponControls() {
   };
 
   const openBarcode = () => {
-    setModalType("Barcode");
     setModalProps({
+      type: "Barcode",
       title: "Read barcode",
       subtitle: undefined,
     });
@@ -138,7 +137,7 @@ export default function WeaponControls() {
           />
         </div>
       </div>
-      <ModalComp type={modalType} modalProps={modalProps} />
+      <ModalComp modalProps={modalProps} />
     </div>
   );
 }

@@ -10,7 +10,7 @@ import { useForm } from "react-hook-form";
 
 export default function WeaponControl(props) {
   const [issues, setIssues] = useState([]);
-  const [notes, setNotes] = useState("")
+  const [notes, setNotes] = useState("");
   const navigate = useNavigate();
   const { tourId, compId } = useParams();
   const { state } = useLocation();
@@ -32,7 +32,10 @@ export default function WeaponControl(props) {
             type="number"
             size="small"
             defaultValue={keyValue}
-            {...register(`issue_${rowKey + 1}`)}
+            {...register(`issue_${rowKey + 1}`, {
+              max: 9,
+              min: 0
+            })}
           />
         </td>
       </tr>
@@ -51,14 +54,15 @@ export default function WeaponControl(props) {
         }
       }
     }
+    data["notes"] = notes;
 
-    if ((props.type == "Add")) {
+    if (props.type == "Add") {
       await post(`stats/weaponcontrols/issues/${compId}/${rowId}/`, data);
     }
-    if ((props.type == "Modify")) {
-      await post(`stats/weaponcontrols/issues/${compId}/${rowId}/`, data);
+    if (props.type == "Modify") {
+      await update(`stats/weaponcontrols/issues/${compId}/${rowId}/`, data);
     }
-    navigate(-1)
+    navigate(-1);
   };
 
   //Gets the issues from api
@@ -70,8 +74,8 @@ export default function WeaponControl(props) {
 
       let rowKey = 0;
       for (const key of Object.keys(data)) {
-        if(key =="notes"){
-          setNotes(data[key])
+        if (key == "notes") {
+          setNotes(data[key]);
         }
         if (key != "exists" && key != "notes") {
           if (props.type == "Modify") {
@@ -129,10 +133,9 @@ export default function WeaponControl(props) {
               placeholder="Type in the additional notes here"
               multiline
               value={notes}
-              {...register(`notes`,{
-                onChange: (e)=> setNotes(e.target.value)
-              }
-              )}
+              {...register(`notes`, {
+                onChange: (e) => setNotes(e.target.value),
+              })}
             />
           </div>
         </Box>

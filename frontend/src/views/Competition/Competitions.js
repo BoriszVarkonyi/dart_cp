@@ -67,6 +67,7 @@ export default function Competitions() {
   };
 
   const modalProps = {
+    type: "Alert",
     title: "Are you sure you want to delete this competition?",
     subtitle: "You can not undo this action!",
     confirmButtonText: "DELETE",
@@ -126,7 +127,7 @@ export default function Competitions() {
           </div>
         </div>
       </div>
-      <ModalComp type="Alert" modalProps={modalProps} />
+      <ModalComp modalProps={modalProps} />
     </>
   );
 }

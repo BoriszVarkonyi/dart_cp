@@ -14,9 +14,9 @@ export default function Competitor(props) {
   const [menuItems, setMenuItems] = useState([]);
   const [modifyData, setModifyData] = useState({});
   const [success, setSuccess] = useState(0);
-  const navigate = useNavigate();
   const { state } = useLocation();
   const { rowId } = state;
+  const navigate = useNavigate();
   let { tourId, compId } = useParams();
 
   //A state for the controlled inputs.

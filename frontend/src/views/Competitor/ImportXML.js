@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import { Button, Alert } from "@mui/material";
+import { Button, Alert, Modal } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { DataGrid } from "@mui/x-data-grid";
 import { post, postBulk } from "./../../services/backend.service";
 import { useParams } from "react-router-dom";
 import { parseFencers } from "../../services/xml.service";
-
+import ModalComp from "../../components/static/Modal/ModalComp";
+import useDataGridHelper from "../../services/useDataGridHelper";
+import { useDispatch } from "react-redux";
+import { closeModal } from "../../slices/modalSlice";
 
 const row = (element) => {
   return {
@@ -25,16 +28,22 @@ const columns = [
   { field: "fencerClub", headerName: "CLUB", width: 200 },
 ];
 
-
-
 export default function Import() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [hasSelectedFile, setHasSelectedFile] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [importStatus, setImportStatus] = useState(null);
   const [rows, setRows] = useState([]);
   const [fencerArray, setFencerArray] = useState([]);
   const { tournamentId, compId } = useParams();
+  const { openModalFunctiom } = useDataGridHelper();
+
+  const modalProps = {
+    type: "Succes",
+    title: "Succes!",
+    text: "Competitors have been imported succesfuly! \n Hold on! Let me redirect you;)",
+  };
 
   function generateDataGrid(arrayOfFencers) {
     const rows = arrayOfFencers.map((e) => row(e));
@@ -83,19 +92,28 @@ export default function Import() {
     }
     fencer.competitions = [compId];
     // dd-MM-yyyy to yyyy-MM-dd (https://www.facebook.com/groups/1084081591969203)
-    fencer.date_naissance = fencer.date_naissance.split('.').reverse().join('-');
+    fencer.date_naissance = fencer.date_naissance
+      .split(".")
+      .reverse()
+      .join("-");
     return fencer;
-  }
+  };
 
   const importFencers = async () => {
-    const tempArray = fencerArray.map((e) => updateFencer(e))
-    console.log(tempArray);
+    const tempArray = fencerArray.map((e) => updateFencer(e));
     setFencerArray(tempArray);
     const resp = await postBulk("fencers/", tempArray);
-    if(resp.name && resp.name === "AxiosError") 
-        setImportStatus(false);
-    else
-        setImportStatus(true);
+    if (resp.name && resp.name === "AxiosError") {
+      setImportStatus(false);
+    } else {
+      setImportStatus(true);
+    }
+
+    openModalFunctiom();
+    setTimeout(() => {
+      dispatch(closeModal())
+      navigate(-1)
+    }, 3000)
   };
 
   return (
@@ -110,34 +128,38 @@ export default function Import() {
             Upload File
             <input type="file" hidden onChange={selectFile} />
           </Button>
-          {hasError && 
-            <Alert severity="error">Wrong file format!</Alert>}
+          {hasError && <Alert severity="error">Wrong file format!</Alert>}
           {hasSelectedFile && (
             <Button variant="contained" size="small" onClick={importFencers}>
               Import
             </Button>
           )}
         </div>
-        {importStatus === true &&
-            <Alert severity="success">Imported successfully!</Alert>}
-        {importStatus === false && 
-            <Alert severity="error">A server error has occured while importing!</Alert>}
+        {importStatus === true && (
+          <Alert severity="success">Imported successfully!</Alert>
+        )}
+        {importStatus === false && (
+          <Alert severity="error">
+            A server error has occured while importing!
+          </Alert>
+        )}
       </div>
       <div className="PageContent">
         <div className="TableGrid">
-          {!hasSelectedFile &&
-              <Alert severity="info">File not selected</Alert>}
+          {!hasSelectedFile && <Alert severity="info">File not selected</Alert>}
           {hasSelectedFile && (
             <>
               <h3>Preview:</h3>
               <DataGrid
                 rows={rows}
                 columns={columns}
-                style={{ height: "100%", width: "100%" }} />
+                style={{ height: "100%", width: "100%" }}
+              />
             </>
           )}
         </div>
       </div>
+      <ModalComp modalProps={modalProps} />
     </div>
   );
 }
