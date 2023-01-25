@@ -65,7 +65,7 @@ NATION_CHOICE = [
     ("CUB",	"Cuba"),
     ("CYP",	"Cyprus"),
     ("CZE",	"Czechia"),
-    ("DEN",	"Denmark	"),
+    ("DEN",	"Denmark"),
     ("DJI",	"Djibouti"),
     ("DMA",	"Dominica"),
     ("DOM",	"Dominican Republic"),

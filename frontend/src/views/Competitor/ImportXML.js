@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { DataGrid } from "@mui/x-data-grid";
 import { post, postBulk } from "./../../services/backend.service";
 import { useParams } from "react-router-dom";
+import { parseFencers } from "../../services/xml.service";
+
 
 const row = (element) => {
   return {
@@ -57,6 +59,9 @@ export default function Import() {
 
   //Helper functions
   async function handleFile(file) {
+    parseFencers(file, generateDataGrid, setFencerArray);
+
+    /*
     const formData = new FormData();
     formData.append("xmlfile", file);
 
@@ -69,6 +74,7 @@ export default function Import() {
         generateDataGrid(data);
         setFencerArray(data);
       });
+    */
   }
 
   const updateFencer = (fencer) => {
