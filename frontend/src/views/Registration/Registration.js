@@ -41,14 +41,11 @@ export default function Registration() {
     return await get(`competitions/${compId}/registrations/`);
   }
 
-  //Updates the data on route change. For example when another comp is selected.
+  //Gets the data from api. Updates the data on route change. For example when another comp is selected.
   useEffect(() => {
     getFencersData();
   }, [location]);
 
-  useEffect(() => {
-    getFencersData();
-  }, []);
 
   function fencerInCompetition(fencers, registartions) {
     return fencers.map((f) => {

@@ -61,15 +61,10 @@ export default function Competitors() {
     setRows(data);
   }
 
-  //Updates the data on route change. For example when another comp is selected.
+  //Gets the competitors from api. Also updates the data on route change. For example when another comp is selected.
   useEffect(() => {
     getFencersData();
   }, [location]);
-
-  //Gets the competitors from api
-  useEffect(() => {
-    getFencersData();
-  }, []);
 
   const deleteRow = () => {
     deleteFunction(`fencers/${selectedRowId}/`);

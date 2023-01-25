@@ -45,10 +45,10 @@ export default function WeaponControls() {
     handleEvent,
     openModalFunctiom,
   } = useDataGridHelper();
-  const [modalProps, setModalProps] = useState({})
-  const [modalType, setModalType] = useState("")
+  const [modalProps, setModalProps] = useState({});
+  const [modalType, setModalType] = useState("");
   const { tourId, compId } = useParams();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const location = useLocation();
 
   async function getFencersData() {
@@ -57,41 +57,37 @@ export default function WeaponControls() {
     setRows(rows);
   }
 
-//Updates the data on route change. For example when another comp is selected.
+  //Gets the data from api. Also updates the data on route change. For example when another comp is selected.
   useEffect(() => {
     getFencersData();
   }, [location]);
 
-  //Gets the competitors from api
-  useEffect(() => {
-    getFencersData();
-  }, []);
-
-  const deleteRow = async() => {
+  const deleteRow = async () => {
     await remove(`stats/weaponcontrols/issues/${compId}/${selectedRowId}/`);
-    setIsSelected(false)
-    setSelectionModel([])
+    setIsSelected(false);
+    setSelectionModel([]);
   };
 
-  const deleteWc = () =>{
-    setModalType("Alert")
+  const deleteWc = () => {
+    setModalType("Alert");
     setModalProps({
-      title: "Are you sure you want to delete this competitiors weapon control?",
+      title:
+        "Are you sure you want to delete this competitiors weapon control?",
       subtitle: "You can not undo this action!",
       confirmButtonText: "DELETE",
       deleteRow,
-    })
-    openModalFunctiom()
-  }
+    });
+    openModalFunctiom();
+  };
 
-  const openBarcode = () =>{
-    setModalType("Barcode")
+  const openBarcode = () => {
+    setModalType("Barcode");
     setModalProps({
       title: "Read barcode",
-      subtitle: undefined
-    })
-    openModalFunctiom()
-  }
+      subtitle: undefined,
+    });
+    openModalFunctiom();
+  };
 
   return (
     <div className="Main">
@@ -104,12 +100,24 @@ export default function WeaponControls() {
             </Button>
           )}
           {isSelected && (
-            <Button variant="contained" size="small" onClick={() => navigate("modify", { state: { rowId: selectedRowId } })}>
+            <Button
+              variant="contained"
+              size="small"
+              onClick={() =>
+                navigate("modify", { state: { rowId: selectedRowId } })
+              }
+            >
               Modify weapon control
             </Button>
           )}
           {isSelected && (
-            <Button variant="contained" size="small" onClick={() => navigate("add", { state: { rowId: selectedRowId } })}>
+            <Button
+              variant="contained"
+              size="small"
+              onClick={() =>
+                navigate("add", { state: { rowId: selectedRowId } })
+              }
+            >
               Add weapon control
             </Button>
           )}

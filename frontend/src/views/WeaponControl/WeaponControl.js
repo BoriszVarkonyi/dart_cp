@@ -56,7 +56,7 @@ export default function WeaponControl(props) {
       await post(`stats/weaponcontrols/issues/${compId}/${rowId}/`, data);
     }
     if ((props.type == "Modify")) {
-      await update(`stats/weaponcontrols/issues/${compId}/${rowId}/`, data);
+      await post(`stats/weaponcontrols/issues/${compId}/${rowId}/`, data);
     }
     navigate(-1)
   };
