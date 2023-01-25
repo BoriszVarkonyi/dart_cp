@@ -59,4 +59,8 @@ urlpatterns = [
     #    'gethash/<str:competition>/<str:fencer>/',
     #    views.GetHash.as_view(),
     #),
+    path(
+        'customtoken',
+        views.CustomTokenObtainPairView.as_view()
+    ),
 ]

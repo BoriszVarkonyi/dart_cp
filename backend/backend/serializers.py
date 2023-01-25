@@ -1,6 +1,7 @@
 from .models import FencerModel, TournamentModel, CompetitionModel, WeaponControlModel, RegistrationModel
 from rest_framework import serializers
 from rest_framework.validators import UniqueTogetherValidator
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 class FencerSerializer(serializers.ModelSerializer):
     class Meta:
@@ -190,8 +191,9 @@ class WeaponControlNationSerializer(serializers.ModelSerializer):
         ]
 
 
-
-
-
-
-
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+        token['name'] = user.username
+        return token
