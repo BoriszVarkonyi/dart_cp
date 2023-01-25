@@ -6,10 +6,20 @@ import { FormControl, MenuItem, TextField, Button } from "@mui/material";
 import { Box } from "@mui/system";
 import { useForm } from "react-hook-form";
 import { post, update, get } from "../../services/backend.service";
+import countries from "../../components/static/countries.json";
+
+const generateMenuItem = (country) => {
+    return (
+        <MenuItem key={country.short} value={country.short}>
+            {country.long}
+        </MenuItem>
+    );
+};
 
 export default function Competition(props) {
   const [isOther, setIsOther] = useState(false);
   const [modifyData, setModifyData] = useState({});
+  const [menuItems, setMenuItems] = useState([]);
   const { state } = useLocation();
   const { rowId } = state;
   let { tournamentId } = useParams();
@@ -42,6 +52,11 @@ export default function Competition(props) {
 
 
   useEffect(() => {
+    function setMenuItemsFromJson() {
+        const menuItems = countries.countries.map((c) => generateMenuItem(c));
+        setMenuItems(menuItems);
+    }
+    setMenuItemsFromJson();
     async function getData() {
       const response = await get(`/competitions/${rowId}`);
       setModifyData(response);
@@ -305,7 +320,7 @@ export default function Competition(props) {
                     ),
                 })}
               >
-                <MenuItem value="ALA">Biztos hogy nem írom ki</MenuItem>
+                {menuItems}
               </TextField>
             </FormControl>
 
