@@ -28,6 +28,7 @@ from itertools import groupby
 import json
 from Crypto.Cipher import AES
 from Crypto.Random import get_random_bytes
+from rest_framework_simplejwt.views import TokenObtainPairView
 
 class FencerModelMixin(object):
   def get_serializer(self, *args, **kwargs):
@@ -342,3 +343,7 @@ class CompetitionIssuesByNations(APIView):
 #        cipher = AES.new(key, AES.MODE_EAX)
 #        ciphertext, tag = cipher.encrypt_and_digest(data_bytes)
 #        return  Response(ciphertext)
+
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer
