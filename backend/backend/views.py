@@ -216,23 +216,11 @@ class WeaponControlFencersIssues(APIView):
 
     def post(self, request, competition, fencer):
         data = request.data.copy()
-        queryset = WeaponControlModel.objects.filter(
-                        competitions = competition,
-                        fencers = fencer,
+        data['competitions'] = competition
+        data['fencers'] = fencer
+        serializer = WeaponControlSerializer(
+                        data=data,
                 )
-        if queryset.exists():
-            serializer = WeaponControlSerializer(
-                            queryset.first(),
-                            data=data,
-                            partial=True,
-                    )
-
-        else:
-            data['competitions'] = competition
-            data['fencers'] = fencer
-            serializer = WeaponControlSerializer(
-                            data=data,
-                    )
 
         if serializer.is_valid():
             serializer.save()
@@ -240,6 +228,22 @@ class WeaponControlFencersIssues(APIView):
 
         return Response(serializer.errors)
 
+    def patch(self, request, competition, fencer):
+        data = request.data
+        queryset = WeaponControlModel.objects.get(
+                        competitions = competition,
+                        fencers = fencer,
+                )
+        serializer = WeaponControlSerializer(
+                        queryset,
+                        data=data,
+                        partial=True,
+                )
+        if serializer.is_valid():
+            serializer.save()
+            return Response(True)
+
+        return Response(serializer.errors)
 
     def delete(self, request, competition, fencer):
         queryset = WeaponControlModel.objects.get(
