@@ -182,9 +182,9 @@ export default function Competition(props) {
                 select
                 label="Wheelchair"
                 id="wheelchair"
-                value={inputState.is_wheelchair || false}
+                value={inputState.is_wheelchair || false }
                 {...register("isWheel", {
-                  required: "Ide mit kéne írni?:c",
+                  required: "Please choose wheelchair!",
                   onChange: (e) =>
                     setInputState((prevState) =>
                       updateInputState(prevState, {
@@ -193,8 +193,8 @@ export default function Competition(props) {
                     ),
                 })}
               >
-                <MenuItem value={false}>No</MenuItem>
-                <MenuItem value={true}>Yes</MenuItem>
+                <MenuItem value="false">No</MenuItem>
+                <MenuItem value="true">Yes</MenuItem>
               </TextField>
             </FormControl>
 
