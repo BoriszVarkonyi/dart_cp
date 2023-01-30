@@ -58,7 +58,9 @@ export default function Competition(props) {
         generateMenuItem(c)
       );
       setCountriesMenuItems(countriesMenuItems);
-      const currenciesMenuItems = currencies.currencies.map((c) => generateMenuItem(c));
+      const currenciesMenuItems = currencies.currencies.map((c) =>
+        generateMenuItem(c)
+      );
       setCurreniesMenuItems(currenciesMenuItems);
     }
     setMenuItemsFromJson();
@@ -117,6 +119,7 @@ export default function Competition(props) {
             variant="contained"
             size="small"
             type="submit"
+            onClick={() => console.log(errors)}
           >
             {text}
           </Button>
@@ -182,7 +185,7 @@ export default function Competition(props) {
                 select
                 label="Wheelchair"
                 id="wheelchair"
-                value={inputState.is_wheelchair || false }
+                value={inputState.is_wheelchair || false}
                 {...register("isWheel", {
                   required: "Please choose wheelchair!",
                   onChange: (e) =>
@@ -360,7 +363,18 @@ export default function Competition(props) {
                 variant="filled"
                 value={inputState.entry_fee || ""}
                 {...register("entry_fee", {
-                  required: "Please enter a fee!",
+                  required: {
+                    value: true,
+                    message: "Please enter a fee!",
+                  },
+                  pattern: {
+                    value: /^\d+$/,
+                    message: "Please enter only numbers!",
+                  },
+                  min: {
+                    value: 0,
+                    message: "Entry fee should be positive number or zero!"
+                  },
                   onChange: (e) =>
                     setInputState((prevState) =>
                       updateInputState(prevState, { entry_fee: e.target.value })

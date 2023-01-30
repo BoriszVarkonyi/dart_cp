@@ -48,9 +48,9 @@ export default function Login() {
   const emailRules = {
     required: "Please enter your email address!",
     pattern: {
-      //value:
+      // value:
       // /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-      //message: "Please enter a valid email address!",
+      // message: "Please enter a valid email address!",
     },
   };
 

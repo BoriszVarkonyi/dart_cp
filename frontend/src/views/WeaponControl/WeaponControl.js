@@ -29,12 +29,19 @@ export default function WeaponControl(props) {
         <td>{key}</td>
         <td>
           <TextField
+            error={!!errors[`issue_${rowKey + 1}`]}
             type="number"
             size="small"
             defaultValue={keyValue}
             {...register(`issue_${rowKey + 1}`, {
-              max: 9,
-              min: 0
+              max: {
+                value: 9,
+                message: "Please enter a number below nine!",
+              },
+              min: {
+                value: 0,
+                message: "Please enter a number above zero!",
+              }
             })}
           />
         </td>
@@ -103,7 +110,12 @@ export default function WeaponControl(props) {
           <Button variant="contained" onClick={() => navigate(-1)}>
             Cancel
           </Button>
-          <Button variant="contained" type="submit" form="issue-form">
+          <Button
+            variant="contained"
+            type="submit"
+            form="issue-form"
+            onClick={() => console.log(errors["issue_2"])}
+          >
             Save weapon control
           </Button>
         </div>

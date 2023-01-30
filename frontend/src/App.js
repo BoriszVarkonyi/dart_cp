@@ -1,10 +1,10 @@
-import { Route, Routes, useNavigate } from "react-router-dom";
-import { Outlet } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import LoginLayout from "./components/layouts/LoginLayout/LoginLayout";
 import { TournamentLayout } from "./components/layouts/ControlLayout/TournamentLayout";
 import PanelLayout from "./components/layouts/PanelLayout/PanelLayout";
 import useTokenService from "./common/AuthVerify";
+import useBasicServices from "./services/basic.service"
 
 import Competitions from "./views/Competition/Competitions";
 import Competition from "./views/Competition/Competition";
@@ -20,6 +20,8 @@ import WeaponControl from "./views/WeaponControl/WeaponControl";
 
 function App() {
   const tokenHandler = useTokenService();
+  //const basicServices = useBasicServices()
+
   return (
     <>
       <Routes>

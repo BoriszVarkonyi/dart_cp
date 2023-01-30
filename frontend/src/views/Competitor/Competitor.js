@@ -287,6 +287,10 @@ export default function Competitor(props) {
                   value: 12,
                   message: "Field cannot be longer than 12 characters!",
                 },
+                min: {
+                  value: 0,
+                  message: "License should not be negative!"
+                },
                 onChange: (e) =>
                   setInputState((prevState) =>
                     updateInputState(prevState, {
@@ -310,6 +314,10 @@ export default function Competitor(props) {
                 maxLength: {
                   value: 11,
                   message: "Field cannot be longer than 11 numbers!",
+                },
+                min: {
+                  value: 0,
+                  message: "Points should be a positive number or zero!"
                 },
                 onChange: (e) =>
                   setInputState((prevState) =>
@@ -337,6 +345,10 @@ export default function Competitor(props) {
                 maxLength: {
                   value: 11,
                   message: "Field cannot be longer than 11 numbers!",
+                },
+                min: {
+                  value: 0,
+                  message: "Classement should not be negative!"
                 },
                 onChange: (e) =>
                   setInputState((prevState) =>
