@@ -55,7 +55,7 @@ class TournamentViewSet(viewsets.ModelViewSet):
   def has_comp(self, request, comp_pk, pk=None):
     get_object_or_404(CompetitionModel,
                       pk=comp_pk,
-                      assoc_tournament_id=self.get_object())
+                      tournaments_id=self.get_object())
     return Response({'detail': 'Found.'}, status=200)
 
 class WeaponControlViewSet(viewsets.ModelViewSet):
