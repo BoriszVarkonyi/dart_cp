@@ -7,14 +7,17 @@ import { useEffect } from "react";
 import { get, post, update } from "../../services/backend.service";
 import { TextField, Box } from "@mui/material";
 import { useForm } from "react-hook-form";
+import useBasicServices from "../../services/basic.service";
 
 export default function WeaponControl(props) {
   const [issues, setIssues] = useState([]);
+  const [issueValues, setIssueValues] = useState({});
   const [notes, setNotes] = useState("");
   const navigate = useNavigate();
   const { tourId, compId } = useParams();
   const { state } = useLocation();
   const { rowId } = state;
+  const basicServices = useBasicServices();
 
   //react-hook-form
   const {
@@ -80,6 +83,7 @@ export default function WeaponControl(props) {
       let testArray = [];
 
       let rowKey = 0;
+      //Creates the issue rows
       for (const key of Object.keys(data)) {
         if (key == "notes") {
           setNotes(data[key]);
@@ -96,7 +100,10 @@ export default function WeaponControl(props) {
           rowKey++;
         }
       }
+
+
       setIssues(testArray);
+
     }
     getData();
   }, []);

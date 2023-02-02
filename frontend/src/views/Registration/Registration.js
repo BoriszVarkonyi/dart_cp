@@ -6,6 +6,7 @@ import { get, post } from "../../services/backend.service";
 import { useNavigate } from "react-router-dom";
 import useDataGridHelper from "../../services/useDataGridHelper";
 import { useLocation } from "react-router-dom";
+import useBasicServices from "../../services/basic.service";
 
 const columns = [
   { field: "nom", headerName: "First Name" },
@@ -30,6 +31,7 @@ export default function Registration() {
   const navigate = useNavigate();
   const location = useLocation();
   const { tourId, compId } = useParams();
+  const basicServices = useBasicServices();
 
   async function getFencersData() {
     const fencersData = await get(`competitions/${compId}/fencers/`);

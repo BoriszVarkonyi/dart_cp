@@ -9,6 +9,7 @@ import useDataGridHelper from "../../services/useDataGridHelper";
 import ModalComp from "../../components/static/Modal/ModalComp";
 import { setCompetitions, deleteCompetition } from "../../slices/compSlice";
 import { useDispatch } from "react-redux";
+import useBasicServices from "../../services/basic.service"
 
 const row = (element) => {
   return {
@@ -34,6 +35,7 @@ const columns = [
 export default function Competitions() {
   const navigate = useNavigate();
   const dispatch = useDispatch()
+  const basicServices = useBasicServices();
   const {
     selectionModel,
     selectedRowId,

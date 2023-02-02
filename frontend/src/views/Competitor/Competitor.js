@@ -6,10 +6,12 @@ import { Box } from "@mui/system";
 import { useForm } from "react-hook-form";
 import { post, update, get } from "../../services/backend.service";
 import countries from "../../components/static/countries.json";
+import useBasicServices from "../../services/basic.service";
 
 import { useParams } from "react-router-dom";
 
 export default function Competitor(props) {
+  const basicServices = useBasicServices();
   const [isOther, setIsOther] = useState(false);
   const [menuItems, setMenuItems] = useState([]);
   const [modifyData, setModifyData] = useState({});

@@ -9,6 +9,7 @@ import ModalComp from "../../components/static/Modal/ModalComp";
 import useDataGridHelper from "../../services/useDataGridHelper";
 import { useDispatch } from "react-redux";
 import { closeModal } from "../../slices/modalSlice";
+import useBasicServices from "../../services/basic.service"
 
 const row = (element) => {
   return {
@@ -38,6 +39,7 @@ export default function Import() {
   const [fencerArray, setFencerArray] = useState([]);
   const { tournamentId, compId } = useParams();
   const { openModalFunctiom } = useDataGridHelper();
+  const basicServices = useBasicServices();
 
   const modalProps = {
     type: "Succes",

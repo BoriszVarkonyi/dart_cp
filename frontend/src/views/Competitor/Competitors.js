@@ -5,6 +5,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { get } from "../../services/backend.service";
 import { useNavigate } from "react-router-dom";
 import useDataGridHelper from "../../services/useDataGridHelper";
+import useBasicServices from "../../services/basic.service";
 import ModalComp from "../../components/static/Modal/ModalComp";
 import { useLocation } from "react-router-dom";
 
@@ -55,6 +56,7 @@ export default function Competitors() {
   const navigate = useNavigate();
   const { tourId, compId } = useParams();
   const location = useLocation();
+  const basicServices = useBasicServices();
   
   async function getFencersData() {
     const data = await get(`competitions/${compId}/fencers/`);

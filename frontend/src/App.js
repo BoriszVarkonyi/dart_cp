@@ -4,7 +4,6 @@ import LoginLayout from "./components/layouts/LoginLayout/LoginLayout";
 import { TournamentLayout } from "./components/layouts/ControlLayout/TournamentLayout";
 import PanelLayout from "./components/layouts/PanelLayout/PanelLayout";
 import useTokenService from "./common/AuthVerify";
-import useBasicServices from "./services/basic.service"
 
 import Competitions from "./views/Competition/Competitions";
 import Competition from "./views/Competition/Competition";
@@ -20,7 +19,6 @@ import WeaponControl from "./views/WeaponControl/WeaponControl";
 
 function App() {
   const tokenHandler = useTokenService();
-  //const basicServices = useBasicServices()
 
   return (
     <>
@@ -54,6 +52,15 @@ function App() {
 
         {/* Its just a test path*/}
         <Route path="test" element={<WeaponControls />} />
+        <Route
+          path="not_found"
+          element={
+            <h1>
+              NINCS MEG NINCS MEG NINCS MEGNINCS MEGNINCS MEGNINCS MEGNINCS
+              MEGNINCS MEGNINCS MEGNINCS MEGNINCS MEGNINCS MEGNINCS MEG
+            </h1>
+          }
+        />
         <Route
           path="*"
           element={

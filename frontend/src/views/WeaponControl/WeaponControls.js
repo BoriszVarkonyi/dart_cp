@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 import { get, remove } from "../../services/backend.service";
 import ModalComp from "../../components/static/Modal/ModalComp";
 import { useLocation } from "react-router-dom";
+import useBasicServices from "../../services/basic.service";
 
 const row = (element) => {
   return {
@@ -49,6 +50,7 @@ export default function WeaponControls() {
   const { tourId, compId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
+  const basicServices = useBasicServices();
 
   async function getFencersData() {
     const data = await get(`competitions/${compId}/fencers/`);
