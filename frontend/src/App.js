@@ -14,6 +14,7 @@ import ImportXML from "./views/Competitor/ImportXML";
 import Registration from "./views/Registration/Registration";
 import WeaponControls from "./views/WeaponControl/WeaponControls";
 import WeaponControl from "./views/WeaponControl/WeaponControl";
+import NotFound from "./components/static/Not_Found/Not_found";
 
 //Under construction. Will delete.
 
@@ -52,15 +53,7 @@ function App() {
 
         {/* Its just a test path*/}
         <Route path="test" element={<WeaponControls />} />
-        <Route
-          path="not_found"
-          element={
-            <h1>
-              NINCS MEG NINCS MEG NINCS MEGNINCS MEGNINCS MEGNINCS MEGNINCS
-              MEGNINCS MEGNINCS MEGNINCS MEGNINCS MEGNINCS MEGNINCS MEG
-            </h1>
-          }
-        />
+        <Route path="not_found" element={<NotFound />} />
         <Route
           path="*"
           element={
