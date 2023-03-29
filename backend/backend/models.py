@@ -71,7 +71,7 @@ class WeaponControlModel(models.Model):
     issue_28 = models.SmallIntegerField(null=True, verbose_name="Other items",default=0)
     #end issues
 
-    notes = models.TextField(default="")
+    notes = models.TextField(default="", null=True)
 
 class RegistrationModel(models.Model):
     fencers = models.ForeignKey(FencerModel, on_delete=models.CASCADE)

@@ -1,5 +1,4 @@
-import { Route, Routes, useNavigate } from "react-router-dom";
-import { Outlet } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import LoginLayout from "./components/layouts/LoginLayout/LoginLayout";
 import { TournamentLayout } from "./components/layouts/ControlLayout/TournamentLayout";
@@ -15,11 +14,13 @@ import ImportXML from "./views/Competitor/ImportXML";
 import Registration from "./views/Registration/Registration";
 import WeaponControls from "./views/WeaponControl/WeaponControls";
 import WeaponControl from "./views/WeaponControl/WeaponControl";
+import NotFound from "./components/static/Not_Found/Not_found";
 
 //Under construction. Will delete.
 
 function App() {
   const tokenHandler = useTokenService();
+
   return (
     <>
       <Routes>
@@ -52,6 +53,7 @@ function App() {
 
         {/* Its just a test path*/}
         <Route path="test" element={<WeaponControls />} />
+        <Route path="not_found" element={<NotFound />} />
         <Route
           path="*"
           element={

@@ -5,8 +5,10 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import useDataGridHelper from "../../services/useDataGridHelper";
 import { useParams } from "react-router-dom";
-import { get } from "../../services/backend.service";
+import { get, remove } from "../../services/backend.service";
 import ModalComp from "../../components/static/Modal/ModalComp";
+import { useLocation } from "react-router-dom";
+import useBasicServices from "../../services/basic.service";
 
 const row = (element) => {
   return {
@@ -39,28 +41,54 @@ export default function WeaponControls() {
     isSelected,
     rows,
     setRows,
+    setIsSelected,
+    setSelectionModel,
     handleEvent,
-    deleteFunction,
     openModalFunctiom,
   } = useDataGridHelper();
+  const [modalProps, setModalProps] = useState({});
   const { tourId, compId } = useParams();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const location = useLocation();
+  const basicServices = useBasicServices();
 
-
-  //Gets the competitors from api
-  useEffect(() => {
-    async function getFencersData() {
-      const data = await get(`competitions/${compId}/fencers/`);
-      const rows = data.map((e) => row(e));
-      setRows(rows);
-    }
-    getFencersData();
-  }, []);
-
-  const modalProps = {
-    title: "Read barcode",
-    subtitle: undefined
+  async function getFencersData() {
+    const data = await get(`competitions/${compId}/fencers/`);
+    const rows = data.map((e) => row(e));
+    setRows(rows);
   }
+
+  //Gets the data from api. Also updates the data on route change. For example when another comp is selected.
+  useEffect(() => {
+    getFencersData();
+  }, [location]);
+
+  const deleteRow = async () => {
+    await remove(`stats/weaponcontrols/issues/${compId}/${selectedRowId}/`);
+    setIsSelected(false);
+    setSelectionModel([]);
+  };
+
+  const deleteWc = () => {
+    setModalProps({
+      type: "Alert",
+      title:
+        "Are you sure you want to delete this competitiors weapon control?",
+      subtitle: "You can not undo this action!",
+      confirmButtonText: "DELETE",
+      deleteRow,
+    });
+    openModalFunctiom();
+  };
+
+  const openBarcode = () => {
+    setModalProps({
+      type: "Barcode",
+      title: "Read barcode",
+      subtitle: undefined,
+    });
+    openModalFunctiom();
+  };
 
   return (
     <div className="Main">
@@ -68,21 +96,33 @@ export default function WeaponControls() {
         <h2 className="PageTitle">Weapon Control</h2>
         <div className="PageButtonsWrapper">
           {isSelected && (
-            <Button variant="contained" size="small">
+            <Button variant="contained" size="small" onClick={deleteWc}>
               Remove weapon control
             </Button>
           )}
           {isSelected && (
-            <Button variant="contained" size="small" onClick={() => navigate("modify", { state: { rowId: selectedRowId } })}>
+            <Button
+              variant="contained"
+              size="small"
+              onClick={() =>
+                navigate("modify", { state: { rowId: selectedRowId } })
+              }
+            >
               Modify weapon control
             </Button>
           )}
           {isSelected && (
-            <Button variant="contained" size="small" onClick={() => navigate("add", { state: { rowId: selectedRowId } })}>
+            <Button
+              variant="contained"
+              size="small"
+              onClick={() =>
+                navigate("add", { state: { rowId: selectedRowId } })
+              }
+            >
               Add weapon control
             </Button>
           )}
-          <Button variant="contained" size="small" onClick={openModalFunctiom}>
+          <Button variant="contained" size="small" onClick={openBarcode}>
             Read Barcode
           </Button>
         </div>
@@ -99,7 +139,7 @@ export default function WeaponControls() {
           />
         </div>
       </div>
-      <ModalComp type="Barcode" modalProps={modalProps} />
+      <ModalComp modalProps={modalProps} />
     </div>
   );
 }

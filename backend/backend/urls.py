@@ -47,4 +47,20 @@ urlpatterns = [
         'un-register/<str:competition>/<str:fencer>/',
         views.RegisterFencerOut.as_view(),
     ),
+    path(
+        'registration/<str:competition>/',
+        views.RegisterFencerList.as_view(),
+    ),
+    path(
+        'stats/competitions/<str:competition>/issues/',
+        views.CompetitionIssuesByNations.as_view(),
+    ),
+    #path(
+    #    'gethash/<str:competition>/<str:fencer>/',
+    #    views.GetHash.as_view(),
+    #),
+    path(
+        'customtoken',
+        views.CustomTokenObtainPairView.as_view()
+    ),
 ]

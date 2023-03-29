@@ -42,8 +42,12 @@ async function postBulk(url, payload) {
     },
     data: payload,
   };
-  const resp = await axios(config);
-  return resp;
+  try {
+    const resp = await axios(config);
+    return resp.data;
+  } catch (err) {
+    return err;
+  }
 }
 
 async function remove(url) {

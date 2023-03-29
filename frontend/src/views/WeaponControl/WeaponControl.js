@@ -4,16 +4,20 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import { get, post } from "../../services/backend.service";
+import { get, post, update } from "../../services/backend.service";
 import { TextField, Box } from "@mui/material";
 import { useForm } from "react-hook-form";
+import useBasicServices from "../../services/basic.service";
 
 export default function WeaponControl(props) {
   const [issues, setIssues] = useState([]);
+  const [issueValues, setIssueValues] = useState({});
+  const [notes, setNotes] = useState("");
   const navigate = useNavigate();
   const { tourId, compId } = useParams();
   const { state } = useLocation();
   const { rowId } = state;
+  const basicServices = useBasicServices();
 
   //react-hook-form
   const {
@@ -28,9 +32,20 @@ export default function WeaponControl(props) {
         <td>{key}</td>
         <td>
           <TextField
+            error={!!errors[`issue_${rowKey + 1}`]}
             type="number"
             size="small"
-            {...register(`issue_${rowKey + 1}`)}
+            defaultValue={keyValue}
+            {...register(`issue_${rowKey + 1}`, {
+              max: {
+                value: 9,
+                message: "Please enter a number below nine!",
+              },
+              min: {
+                value: 0,
+                message: "Please enter a number above zero!",
+              }
+            })}
           />
         </td>
       </tr>
@@ -49,30 +64,46 @@ export default function WeaponControl(props) {
         }
       }
     }
+    data["notes"] = notes;
 
-    const response = await post(
-      `stats/weaponcontrols/issues/${compId}/${rowId}/`
-    );
-    console.log(response);
+    if (props.type == "Add") {
+      await post(`stats/weaponcontrols/issues/${compId}/${rowId}/`, data);
+    }
+    if (props.type == "Modify") {
+      await update(`stats/weaponcontrols/issues/${compId}/${rowId}/`, data);
+    }
+    navigate(-1);
   };
 
   //Gets the issues from api
   useEffect(() => {
     async function getData() {
-      const data = await get(
-        `stats/weaponcontrols/issues/${compId}/${rowId}/`
-      );
+      const data = await get(`stats/weaponcontrols/issues/${compId}/${rowId}/`);
+
       let testArray = [];
 
       let rowKey = 0;
+      //Creates the issue rows
       for (const key of Object.keys(data)) {
+        if (key == "notes") {
+          setNotes(data[key]);
+        }
         if (key != "exists" && key != "notes") {
-          const row = generateTR(key, data[key], rowKey);
-          testArray.push(row);
+          if (props.type == "Modify") {
+            const row = generateTR(key, data[key], rowKey);
+            testArray.push(row);
+          }
+          if (props.type == "Add") {
+            const row = generateTR(key, undefined, rowKey);
+            testArray.push(row);
+          }
           rowKey++;
         }
       }
+
+
       setIssues(testArray);
+
     }
     getData();
   }, []);
@@ -86,19 +117,24 @@ export default function WeaponControl(props) {
           <Button variant="contained" onClick={() => navigate(-1)}>
             Cancel
           </Button>
-          <Button variant="contained" type="submit" form="issue-form">
+          <Button
+            variant="contained"
+            type="submit"
+            form="issue-form"
+            onClick={() => console.log(errors["issue_2"])}
+          >
             Save weapon control
           </Button>
         </div>
       </div>
       <div className="PageContent WithSideBar">
-        <div className="PageContentInner">
-          <Box
-            component="form"
-            id="issue-form"
-            noValidate
-            onSubmit={handleSubmit(onSubmit)}
-          >
+        <Box
+          component="form"
+          id="issue-form"
+          noValidate
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <div className="PageContentInner">
             <table>
               <thead>
                 <tr>
@@ -108,17 +144,20 @@ export default function WeaponControl(props) {
               </thead>
               <tbody>{issues}</tbody>
             </table>
-          </Box>
-        </div>
-        <div className="SideBar">
-          <TextField
-            id="outlined-textarea"
-            label="Notes"
-            placeholder="Type in the additional notes here"
-            multiline
-          />
-          <textarea {...register(`notes`)}></textarea>
-        </div>
+          </div>
+          <div className="SideBar">
+            <TextField
+              id="outlined-textarea"
+              label="Notes"
+              placeholder="Type in the additional notes here"
+              multiline
+              value={notes}
+              {...register(`notes`, {
+                onChange: (e) => setNotes(e.target.value),
+              })}
+            />
+          </div>
+        </Box>
       </div>
     </div>
   );

@@ -13,7 +13,7 @@ import BackpackIcon from "@mui/icons-material/Backpack";
 import FirstPageIcon from "@mui/icons-material/FirstPage";
 import { get } from "../../../services/backend.service";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, withRouter  } from "react-router-dom";
 
 export default function NavBar() {
   const [compdId, setCompId] = useState(null);
@@ -26,20 +26,17 @@ export default function NavBar() {
   const setComp = (id) => {
     setCompId(id);
     setHasSelectedComp(true);
-    // navigate(`/${id}/competitions`)
-    // const menuItems = competitions.map((e) => setMenuItem(e));
-    // setMenuItems(menuItems);
+    const pathName = window.location.pathname.split("/");
+    if(!pathName.includes("competitions") && !pathName.includes("timetable")){
+      navigate(`/${tournamentId}/${id}/${pathName[3]}`);
+    }
   };
 
   const setMenuItem = (data) => {
     return (
-        <MenuItem
-          key={data.id}
-          onClick={() => setComp(data.id)}
-          value={data.id}
-        >
-          {data.title_long}
-        </MenuItem>
+      <MenuItem key={data.id} onClick={() => setComp(data.id)} value={data.id}>
+        {data.title_long}
+      </MenuItem>
     );
   };
 
@@ -98,7 +95,6 @@ export default function NavBar() {
                   defaultValue=""
                   sx={{
                     width: 200,
-
                   }}
                 >
                   {menuItems}

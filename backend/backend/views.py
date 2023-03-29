@@ -1,6 +1,8 @@
 import http
 from django.db.models import Count
-from .models import * 
+
+from dartagnan.settings import SECRET_KEY
+from .models import *
 from .serializers import *
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
@@ -22,6 +24,11 @@ import xml.etree.ElementTree as ET
 from collections import OrderedDict
 from backend.issues import *
 import random
+from itertools import groupby
+import json
+from Crypto.Cipher import AES
+from Crypto.Random import get_random_bytes
+from rest_framework_simplejwt.views import TokenObtainPairView
 
 class FencerModelMixin(object):
   def get_serializer(self, *args, **kwargs):
@@ -48,7 +55,7 @@ class TournamentViewSet(viewsets.ModelViewSet):
   def has_comp(self, request, comp_pk, pk=None):
     get_object_or_404(CompetitionModel,
                       pk=comp_pk,
-                      assoc_tournament_id=self.get_object())
+                      tournaments_id=self.get_object())
     return Response({'detail': 'Found.'}, status=200)
 
 class WeaponControlViewSet(viewsets.ModelViewSet):
@@ -210,23 +217,11 @@ class WeaponControlFencersIssues(APIView):
 
     def post(self, request, competition, fencer):
         data = request.data.copy()
-        queryset = WeaponControlModel.objects.filter(
-                        competitions = competition,
-                        fencers = fencer,
+        data['competitions'] = competition
+        data['fencers'] = fencer
+        serializer = WeaponControlSerializer(
+                        data=data,
                 )
-        if queryset.exists():
-            serializer = WeaponControlSerializer(
-                            queryset.first(),
-                            data=data,
-                            partial=True,
-                    )
-
-        else:
-            data['fencers'] = fencer
-            data['competitions'] = competition
-            serializer = WeaponControlSerializer(
-                            data=data,
-                    )
 
         if serializer.is_valid():
             serializer.save()
@@ -234,6 +229,22 @@ class WeaponControlFencersIssues(APIView):
 
         return Response(serializer.errors)
 
+    def patch(self, request, competition, fencer):
+        data = request.data
+        queryset = WeaponControlModel.objects.get(
+                        competitions = competition,
+                        fencers = fencer,
+                )
+        serializer = WeaponControlSerializer(
+                        queryset,
+                        data=data,
+                        partial=True,
+                )
+        if serializer.is_valid():
+            serializer.save()
+            return Response(True)
+
+        return Response(serializer.errors)
 
     def delete(self, request, competition, fencer):
         queryset = WeaponControlModel.objects.get(
@@ -289,3 +300,50 @@ class GetRegistrationsForCompetition(APIView):
         queryset = RegistrationModel.objects.filter(competitions = competition)
         serializer_class = RegistrationSerializer(queryset, context={'request': request}, many=True)
         return Response(serializer_class.data)
+
+class RegisterFencerList(APIView):
+    def get(self, request, competition):
+        queryset = RegistrationModel.objects.filter(competitions = competition)
+        serializer = RegistrationSerializer(
+                queryset,
+                many = True,
+        )
+        return Response(serializer.data)
+
+class CompetitionIssuesByNations(APIView):
+    def get(self, request, competition):
+
+        competition = self.kwargs['competition']
+
+        queryset = WeaponControlModel.objects.filter(competitions = competition).annotate(co = Count(id)).order_by('fencers__nation')
+        serializer = WeaponControlNationSerializer(queryset, many=True)
+
+        an_iterator = groupby(serializer.data, lambda x : x['fencers']['nation'])
+
+        orderedFencers = {} 
+
+        for key, group in an_iterator:
+            key_and_group = {key : list(group)}
+            print(key_and_group)
+            orderedFencers.update(key_and_group) 
+
+        #print(serializer)
+
+        return Response(data=orderedFencers)
+
+
+# FIXME: encrypt data can only be bytes not string,
+# or if its bytes it cannot encode it in utf8
+#class GetHash(APIView):
+#    def get(self, request, competition, fencer):
+#        data = { 'competition': competition, 'fencer': fencer }
+#        data_string = "asdasd"
+#        data_bytes = b"asdasd"
+#        key = b"aaaaaaaaaaaaaaaa"
+#        cipher = AES.new(key, AES.MODE_EAX)
+#        ciphertext, tag = cipher.encrypt_and_digest(data_bytes)
+#        return  Response(ciphertext)
+
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer

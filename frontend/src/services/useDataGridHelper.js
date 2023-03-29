@@ -54,6 +54,8 @@ export default function useDataGridHelper() {
     selectedRowId, 
     selectionModel, 
     rows, 
+    setIsSelected,
+    setSelectionModel,
     setRows,
     handleEvent,
     deleteFunction,

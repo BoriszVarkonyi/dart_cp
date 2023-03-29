@@ -5,6 +5,8 @@ import { DataGrid } from "@mui/x-data-grid";
 import { get, post } from "../../services/backend.service";
 import { useNavigate } from "react-router-dom";
 import useDataGridHelper from "../../services/useDataGridHelper";
+import { useLocation } from "react-router-dom";
+import useBasicServices from "../../services/basic.service";
 
 const columns = [
     { field: "nom", headerName: "First Name" },
@@ -12,7 +14,7 @@ const columns = [
     { field: "nation", headerName: "Nationality" },
     { field: "date_naissance", headerName: "Date of Birth" },
     { field: "sexe", headerName: "Sex" },
-    { field: "registered", headerName: "Status" }
+    { field: "registered", headerName: "Status" },
 ];
 
 export default function Registration() {
@@ -24,26 +26,32 @@ export default function Registration() {
         setRows,
         handleEvent,
         deleteFunction,
-        openModalFunctiom
+        openModalFunctiom,
     } = useDataGridHelper();
     const navigate = useNavigate();
+    const location = useLocation();
     const { tourId, compId } = useParams();
+    const basicServices = useBasicServices();
 
+    async function getFencersData() {
+        const fencersData = await get(`competitions/${compId}/fencers/`);
+        const registrationData = await getRegistrationData();
+        setRows(fencerInCompetition(fencersData, registrationData));
+    }
+
+    async function getRegistrationData() {
+        return await get(`competitions/${compId}/registrations/`);
+    }
+
+    //Gets the data from api. Updates the data on route change. For example when another comp is selected.
     useEffect(() => {
-        async function getRegistrationData() {
-            return await get(`competitions/${compId}/registrations/`);
-        }
-        async function getFencersData() {
-            const fencersData = await get(`competitions/${compId}/fencers/`);
-            const registrationData = await getRegistrationData();
-            setRows(fencerInCompetition(fencersData, registrationData));
-        }
         getFencersData();
-    }, []);
+    }, [location]);
+
 
     function fencerInCompetition(fencers, registartions) {
-        return fencers.map(f => {
-            const registrationArray = registartions.filter(r => f.id == r.fencers);
+        return fencers.map((f) => {
+            const registrationArray = registartions.filter((r) => f.id == r.fencers);
             if (registrationArray.length == 1) {
                 return { ...f, registered: registrationArray[0].registered };
             } else {
@@ -54,7 +62,7 @@ export default function Registration() {
 
     function updateRows() {
         setRows((prevRows) => {
-            return prevRows.map(f =>
+            return prevRows.map((f) =>
                 f.id == selectedRowId ? { ...f, registered: !f.registered } : f
             );
         });
@@ -62,8 +70,11 @@ export default function Registration() {
 
     async function registerIn() {
         if (isSelected) {
-            const selectedFencer = rows.filter(f => f.id == selectedRowId)[0];
-            selectedFencer.competitions = [...selectedFencer.competitions, parseInt(compId)];
+            const selectedFencer = rows.filter((f) => f.id == selectedRowId)[0];
+            selectedFencer.competitions = [
+                ...selectedFencer.competitions,
+                parseInt(compId),
+            ];
             await post(`in-register/${compId}/${selectedRowId}/`);
             updateRows();
         }
@@ -71,16 +82,16 @@ export default function Registration() {
 
     async function registerOut() {
         if (isSelected) {
-            const selectedFencer = rows.filter(f => f.id == selectedRowId)[0];
-            selectedFencer.competitions = selectedFencer.competitions.filter(c => c != parseInt(compId));
+            const selectedFencer = rows.filter((f) => f.id == selectedRowId)[0];
+            selectedFencer.competitions = selectedFencer.competitions.filter(
+                (c) => c != parseInt(compId)
+            );
             await post(`un-register/${compId}/${selectedRowId}/`);
             updateRows();
         }
     }
 
-    const modalContent = {
-
-    }
+    const modalContent = {};
 
     return (
         <>
@@ -88,15 +99,37 @@ export default function Registration() {
                 <div className="PageHeader">
                     <h2 className="PageTitle">Registration</h2>
                     <div className="PageButtonsWrapper">
-                        {isSelected && rows.filter(f => f.id == selectedRowId)[0].registered && (
-                            <>
-                                <Button variant="contained" size="small">Print Code</Button>
-                                <Button variant="contained" size="small" onClick={registerOut}>Register out</Button>
-                            </>
-                        )}
-                        {isSelected && !rows.filter(f => f.id == selectedRowId)[0].registered && (
-                            <Button variant="contained" margin="none" size="small" onClick={registerIn}>Register in</Button>
-                        )}
+                        <Button
+                            variant="contained"
+                            size="small"
+                            onClick={() => navigate("print")}
+                        >
+                            Print Barcodes
+                        </Button>
+                        {isSelected &&
+                            rows.filter((f) => f.id == selectedRowId)[0].registered && (
+                                <>
+                                    <Button variant="contained" size="small">
+                                        Print Code
+                                    </Button>
+                                    <Button
+                                        variant="contained"
+                                        size="small"
+                                        onClick={registerOut}
+                                    >
+                                        Register out
+                                    </Button>
+                                </>
+                            )}
+                        {isSelected &&
+                            !rows.filter((f) => f.id == selectedRowId)[0].registered && (
+                                <Button variant="contained" size="small" onClick={registerIn}>
+                                    Register in
+                                </Button>
+                            )}
+                        <Button variant="contained" size="small">
+                            Print Barcode
+                        </Button>
                     </div>
                 </div>
                 <div className="PageContent">
@@ -113,5 +146,5 @@ export default function Registration() {
                 </div>
             </div>
         </>
-    )
+    );
 }
