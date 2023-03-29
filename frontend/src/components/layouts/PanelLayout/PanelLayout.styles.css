@@ -121,8 +121,9 @@
 .PageButtonsWrapper {
 	display: flex;
 	align-items: center;
+	min-height: 38px;
 }
 
 .PageButtonsWrapper > * {
-	margin: 5px 0 10px 5px !important;
+	margin: 5px 0 5px 10px !important;
 }

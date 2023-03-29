@@ -88,7 +88,6 @@ export default function Registration() {
                 <div className="PageHeader">
                     <h2 className="PageTitle">Registration</h2>
                     <div className="PageButtonsWrapper">
-                        <Button variant="contained" size="small" onClick={() => navigate("print")}>Print Barcodes</Button>
                         {isSelected && rows.filter(f => f.id == selectedRowId)[0].registered && (
                             <>
                                 <Button variant="contained" size="small">Print Code</Button>
@@ -96,9 +95,8 @@ export default function Registration() {
                             </>
                         )}
                         {isSelected && !rows.filter(f => f.id == selectedRowId)[0].registered && (
-                            <Button variant="contained" size="small" onClick={registerIn}>Register in</Button>
+                            <Button variant="contained" margin="none" size="small" onClick={registerIn}>Register in</Button>
                         )}
-                        <Button variant="contained" size="small">Print Barcode</Button>
                     </div>
                 </div>
                 <div className="PageContent">
