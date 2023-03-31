@@ -145,7 +145,7 @@ export default function Tournament(props) {
             type="date"
             size="small"
             variant="filled"
-            value={inputState.ending_date || ''}
+            value={inputState.ending_date}
             sx={{ width: 220 }}
             InputLabelProps={{
               shrink: true,
