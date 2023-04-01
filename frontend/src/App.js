@@ -1,20 +1,21 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes } from 'react-router-dom';
 
-import LoginLayout from "./components/layouts/LoginLayout/LoginLayout";
-import { TournamentLayout } from "./components/layouts/ControlLayout/TournamentLayout";
-import PanelLayout from "./components/layouts/PanelLayout/PanelLayout";
-import useTokenService from "./common/AuthVerify";
+import LoginLayout from './components/layouts/LoginLayout/LoginLayout';
+import { TournamentLayout } from './components/layouts/ControlLayout/TournamentLayout';
+import PanelLayout from './components/layouts/PanelLayout/PanelLayout';
+import useTokenService from './common/AuthVerify';
 
-import Competitions from "./views/Competition/Competitions";
-import Competition from "./views/Competition/Competition";
-import Timetable from "./views/Timetable/Timetable";
-import Competitors from "./views/Competitor/Competitors";
-import Competitor from "./views/Competitor/Competitor";
-import ImportXML from "./views/Competitor/ImportXML";
-import Registration from "./views/Registration/Registration";
-import WeaponControls from "./views/WeaponControl/WeaponControls";
-import WeaponControl from "./views/WeaponControl/WeaponControl";
-import NotFound from "./components/static/Not_Found/Not_found";
+import Competitions from './views/Competition/Competitions';
+import Competition from './views/Competition/Competition';
+import Timetable from './views/Timetable/Timetable';
+import Competitors from './views/Competitor/Competitors';
+import Competitor from './views/Competitor/Competitor';
+import ImportXML from './views/Competitor/ImportXML';
+import Registration from './views/Registration/Registration';
+import PrintBarcode from './views/Registration/PrintBarcode';
+import WeaponControls from './views/WeaponControl/WeaponControls';
+import WeaponControl from './views/WeaponControl/WeaponControl';
+import NotFound from './components/static/Not_Found/Not_found';
 
 //Under construction. Will delete.
 
@@ -42,6 +43,7 @@ function App() {
             </Route>
             <Route path="registration">
               <Route index element={<Registration />} />
+              <Route path=":fencerId/print" element={<PrintBarcode />} />
             </Route>
             <Route path="weapon_control">
               <Route index element={<WeaponControls />} />
