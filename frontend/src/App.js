@@ -61,8 +61,7 @@ function App() {
           element={
             <h1>
               NINCS MEG NINCS MEG NINCS MEGNINCS MEGNINCS MEGNINCS MEGNINCS
-              MEGNINCS MEGNINCS MEGNINCS MEGNINCS MEGNINCS MEGNINCS Mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
-s
+              MEGNINCS MEGNINCS MEGNINCS MEGNINCS MEGNINCS MEGNINCS Mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmms
             </h1>
             
           }
