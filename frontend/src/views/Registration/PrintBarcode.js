@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import ReactToPrint from 'react-to-print';
 import { useParams } from 'react-router-dom';
 import { QRCodeSVG } from 'qrcode.react';
 import { get } from '../../services/backend.service';
@@ -22,10 +23,12 @@ export default function PrintBarcode() {
     getFencerData();
   }, []);
 
+  const cardRef = useRef();
+
   return (
     <>
       <div className="Main">
-        <Card sx={{ maxWidth: 320 }}>
+        <Card sx={{ maxWidth: 320 }} ref={cardRef}>
           <CardMedia sx={{ height: 350 }} title="">
             <QRCodeSVG value="https://youtu.be/dQw4w9WgXcQ" size="320" />
           </CardMedia>
@@ -33,9 +36,22 @@ export default function PrintBarcode() {
             <Typography gutterBottom variant="h3" component="div">
               {fencer.nom} {fencer.pre_nom}
             </Typography>
+            <Typography gutterBottom variant="p" component="div" align="center">
+              {fencer.nation ?? fencer.club}
+            </Typography>
           </CardContent>
           <CardActions>
-            <Button size="small">Print</Button>
+            <ReactToPrint
+              trigger={() => (
+                <Button
+                  size="large"
+                  sx={{ '@media print': { display: 'none' } }}
+                >
+                  Print
+                </Button>
+              )}
+              content={() => cardRef.current}
+            />
           </CardActions>
         </Card>
       </div>
