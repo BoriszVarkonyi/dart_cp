@@ -59,8 +59,10 @@ function App() {
           element={
             <h1>
               NINCS MEG NINCS MEG NINCS MEGNINCS MEGNINCS MEGNINCS MEGNINCS
-              MEGNINCS MEGNINCS MEGNINCS MEGNINCS MEGNINCS MEGNINCS MEG
+              MEGNINCS MEGNINCS MEGNINCS MEGNINCS MEGNINCS MEGNINCS Mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm
+s
             </h1>
+            
           }
         />
       </Routes>

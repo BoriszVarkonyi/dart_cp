@@ -9,7 +9,7 @@ export default function useBasicServices() {
   const navigate = useNavigate();
   
   function getURL() {
-    if (pathname.split("/").length > 3) {
+    if (!isNaN(pathname.split("/")[2])) {
       let tourID = pathname.split("/")[1];
       let compID = pathname.split("/")[2];
       return(`tournaments/${tourID}/hascomp/${compID}/`);

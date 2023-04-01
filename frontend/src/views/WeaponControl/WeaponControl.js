@@ -26,6 +26,7 @@ export default function WeaponControl(props) {
     formState: { errors },
   } = useForm();
 
+  //Generates the issues. It uses an API.
   const generateTR = (key, keyValue, rowKey) => {
     return (
       <tr key={rowKey}>
@@ -44,7 +45,7 @@ export default function WeaponControl(props) {
               min: {
                 value: 0,
                 message: "Please enter a number above zero!",
-              }
+              },
             })}
           />
         </td>
@@ -55,6 +56,7 @@ export default function WeaponControl(props) {
   const onSubmit = async (data) => {
     for (const key of Object.keys(data)) {
       if (data[key] == "") {
+        //If the data value is empty
         if (key != "notes") {
           data[key] = 0;
         }
@@ -64,7 +66,8 @@ export default function WeaponControl(props) {
         }
       }
     }
-    data["notes"] = notes;
+
+    data["notes"] == "" ? (data["notes"] = null) : (data["notes"] = notes);
 
     if (props.type == "Add") {
       await post(`stats/weaponcontrols/issues/${compId}/${rowId}/`, data);
@@ -75,35 +78,33 @@ export default function WeaponControl(props) {
     navigate(-1);
   };
 
-  //Gets the issues from api
+  //Gets the issue datas from api
   useEffect(() => {
     async function getData() {
       const data = await get(`stats/weaponcontrols/issues/${compId}/${rowId}/`);
 
-      let testArray = [];
+      let inputArray = [];
 
       let rowKey = 0;
       //Creates the issue rows
       for (const key of Object.keys(data)) {
         if (key == "notes") {
-          setNotes(data[key]);
+          data[key] == null ? setNotes("") : setNotes(data[key]);
         }
         if (key != "exists" && key != "notes") {
           if (props.type == "Modify") {
             const row = generateTR(key, data[key], rowKey);
-            testArray.push(row);
+            inputArray.push(row);
           }
           if (props.type == "Add") {
             const row = generateTR(key, undefined, rowKey);
-            testArray.push(row);
+            inputArray.push(row);
           }
           rowKey++;
         }
       }
 
-
-      setIssues(testArray);
-
+      setIssues(inputArray);
     }
     getData();
   }, []);
@@ -121,7 +122,6 @@ export default function WeaponControl(props) {
             variant="contained"
             type="submit"
             form="issue-form"
-            onClick={() => console.log(errors["issue_2"])}
           >
             Save weapon control
           </Button>
