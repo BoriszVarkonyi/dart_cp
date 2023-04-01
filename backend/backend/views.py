@@ -330,16 +330,18 @@ class CompetitionIssuesByNations(APIView):
 
         return Response(data=orderedFencers)
 
+
 # TODO GetHash:
 # [x] Get competition id and fencer id
 # [x] Check ids if they exist
 # [x] Make data into hashable format
 # [x] Hash data into ciphertext and tag
-# [ ] Make json object wiht ciphertext and tag
-# [ ] Return ciphertext
+# [x] Make json object wiht ciphertext and tag
+# [x] Return the made object
 
 class GetHash(APIView):
     def get(self, request, competition, fencer):
+
         # Get compid & fencerid
         comp_id = competition
         fencer_id = fencer
@@ -348,7 +350,7 @@ class GetHash(APIView):
         get_object_or_404(FencerModel, id=fencer_id, competitions=comp_id)
 
         # Convert to json_string then to bytes
-        tohash_obj = { 'competitions': comp_id, 'fencer': fencer_id }
+        tohash_obj = { 'competition': comp_id, 'fencer': fencer_id }
         tohash_string = json.dumps(tohash_obj)
         tohash_bytes = str.encode(tohash_string)
 
@@ -357,48 +359,53 @@ class GetHash(APIView):
         ciphertext, tag = cipher.encrypt_and_digest(tohash_bytes)
 
         # Make the object
-       
+        return_json_string = {
+                              'ciphertext': ciphertext.decode('latin-1'),
+                              'tag': tag.decode('latin-1')
+                             }
 
         # Return ciphertext
-        return Response(tohash_string)
-
-
-
-                # data = { 'competition': competition, 'fencer': fencer }
-                # data_string = json.dumps(data)
-                # key = SECRET_KEY
-                # cipher = AES.new(str.encode(key), AES.MODE_EAX)
-                # ciphertext, tag = cipher.encrypt_and_digest(str.encode(data_string))
-                # encrypted_string = ciphertext.decode('latin-1')
-                # tag_string = tag.decode('latin-1')
-                # return_data = { 'ciphertext': encrypted_string, 'tag': tag_string }
+        return Response(return_json_string)
 
 
 # TODO VerifyHash:
-# [ ] get ciphertext from POST
-# [ ] get tag from RegistrationModel
-# [ ] make cipher
-# [ ] verify the tag
-# [ ] Respond with object or false
+# [ ] Get tag from post
+# [ ] verify tag with Secret key cipher
+# [ ] Decode ciphertext into fencer - compt object
+# [ ] Check if the fencer - comp relationship exists
+# [ ] Return the fencer - comp object
+
 class VerifyHash(APIView):
     def post(self, request):
-        tag = self.kwargs['tag']
+
+        # get data from post
+        post_data = request.data.copy()
+
+        # Get tag from post
+        tag = post_data['tag']
+        # Verify tag
+        cipher = AES.new(str.encode(SECRET_KEY), AES.MODE_EAX)
         try:
             cipher.verify(tag)
         except ValueError:
-            return Response(False)
-        cipher = AES.new(str.encode(SECRET_KEY), AES.MODE_EAX)
+            return Response(0)
+
+        # get ciphertext and decrypt
+        ciphertext = post_data['ciphertext']
+        data_bytes = cipher.decrypt(str.encode(ciphertext))
+
+        # Get the json object from bytes
+        data_string = data_bytes.decode('latin-1')
+        data_json = json.loads(data_string)
 
 
-        ciphertext = self.kwargs['ciphertext']
-            data_bytes = cipher.decrypt(str.encode(ciphertext))
+        # Check for relationship
+        fencer = data_json['fencer']
+        competition = data_json['competition']
+        get_object_or_404(FencerModel, id=fencer , competitions=competition)
 
-            # Get the json object from bytes
-            data_json = data_bytes.decode('latin-1')
-
-            get_object_or_404(FencerModel, id=data_json['competition'], competitions_json=comp_id)
-
-            return Response(True)
+        # return json_string
+        return Response(data_string)
 
 
 class CustomTokenObtainPairView(TokenObtainPairView):
