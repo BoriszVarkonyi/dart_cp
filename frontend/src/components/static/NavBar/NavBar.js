@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import styles from "./NavBar.css";
-import { Button } from "@mui/material";
-import { FormControl, TextField, MenuItem } from "@mui/material";
-import { Link } from "react-router-dom";
-import HorseImage from "../../../assets/horse.svg";
-import FlagIcon from "@mui/icons-material/Flag";
-import DateRangeIcon from "@mui/icons-material/DateRange";
-import GroupsIcon from "@mui/icons-material/Groups";
-import HowToRegIcon from "@mui/icons-material/HowToReg";
-import BackpackIcon from "@mui/icons-material/Backpack";
-import FirstPageIcon from "@mui/icons-material/FirstPage";
-import { get } from "../../../services/backend.service";
-import { useSelector } from "react-redux";
-import { useNavigate, withRouter  } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import styles from './NavBar.css';
+import { Button } from '@mui/material';
+import { FormControl, TextField, MenuItem } from '@mui/material';
+import { Link } from 'react-router-dom';
+import HorseImage from '../../../assets/horse.svg';
+import FlagIcon from '@mui/icons-material/Flag';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import GroupsIcon from '@mui/icons-material/Groups';
+import HowToRegIcon from '@mui/icons-material/HowToReg';
+import BackpackIcon from '@mui/icons-material/Backpack';
+import FirstPageIcon from '@mui/icons-material/FirstPage';
+import { get } from '../../../services/backend.service';
+import { useSelector } from 'react-redux';
+import { useNavigate, withRouter } from 'react-router-dom';
 
 export default function NavBar() {
   const [compdId, setCompId] = useState(null);
@@ -26,8 +26,8 @@ export default function NavBar() {
   const setComp = (id) => {
     setCompId(id);
     setHasSelectedComp(true);
-    const pathName = window.location.pathname.split("/");
-    if(!pathName.includes("competitions") && !pathName.includes("timetable")){
+    const pathName = window.location.pathname.split('/');
+    if (!pathName.includes('competitions') && !pathName.includes('timetable')) {
       navigate(`/${tournamentId}/${id}/${pathName[3]}`);
     }
   };
@@ -138,6 +138,17 @@ export default function NavBar() {
                 </div>
               </>
             )}
+            <div className="NavBarSection">
+              <p className="NavBarSectionTitle">Languages</p>
+              <div className="NavBarRow" onClick={() => alert('en')}>
+                <div className="NavBarIconWrapper">🇬🇧</div>
+                <p className="NavBarRowTitle">English</p>
+              </div>
+              <div className="NavBarRow" onClick={() => alert('hu')}>
+                <div className="NavBarIconWrapper">🇭🇺</div>
+                <p className="NavBarRowTitle">Hungarian</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
