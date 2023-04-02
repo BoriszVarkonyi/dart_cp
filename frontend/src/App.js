@@ -1,21 +1,21 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes } from "react-router-dom";
 
-import LoginLayout from './components/layouts/LoginLayout/LoginLayout';
-import { TournamentLayout } from './components/layouts/ControlLayout/TournamentLayout';
-import PanelLayout from './components/layouts/PanelLayout/PanelLayout';
-import useTokenService from './common/AuthVerify';
+import LoginLayout from "./components/layouts/LoginLayout/LoginLayout";
+import { TournamentLayout } from "./components/layouts/ControlLayout/TournamentLayout";
+import PanelLayout from "./components/layouts/PanelLayout/PanelLayout";
+import useTokenService from "./common/AuthVerify";
 
-import Competitions from './views/Competition/Competitions';
-import Competition from './views/Competition/Competition';
-import Timetable from './views/Timetable/Timetable';
-import Competitors from './views/Competitor/Competitors';
-import Competitor from './views/Competitor/Competitor';
-import ImportXML from './views/Competitor/ImportXML';
-import Registration from './views/Registration/Registration';
-import PrintBarcode from './views/Registration/PrintBarcode';
-import WeaponControls from './views/WeaponControl/WeaponControls';
-import WeaponControl from './views/WeaponControl/WeaponControl';
-import NotFound from './components/static/Not_Found/Not_found';
+import Competitions from "./views/Competition/Competitions";
+import Competition from "./views/Competition/Competition";
+import Timetable from "./views/Timetable/Timetable";
+import Competitors from "./views/Competitor/Competitors";
+import Competitor from "./views/Competitor/Competitor";
+import ImportXML from "./views/Competitor/ImportXML";
+import Registration from "./views/Registration/Registration";
+import PrintBarcode from "./views/Registration/PrintBarcode";
+import WeaponControls from "./views/WeaponControl/WeaponControls";
+import WeaponControl from "./views/WeaponControl/WeaponControl";
+import NotFound from "./components/static/Not_Found/Not_found";
 
 //Under construction. Will delete.
 
@@ -50,22 +50,13 @@ function App() {
               <Route path="add" element={<WeaponControl type="Add" />} />
               <Route path="modify" element={<WeaponControl type="Modify" />} />
             </Route>
+            <Route path="*" element={<NotFound />} />
           </Route>
         </Route>
 
         {/* Its just a test path*/}
         <Route path="test" element={<WeaponControls />} />
         <Route path="not_found" element={<NotFound />} />
-        <Route
-          path="*"
-          element={
-            <h1>
-              NINCS MEG NINCS MEG NINCS MEGNINCS MEGNINCS MEGNINCS MEGNINCS
-              MEGNINCS MEGNINCS MEGNINCS MEGNINCS MEGNINCS MEGNINCS Mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmms
-            </h1>
-            
-          }
-        />
       </Routes>
     </>
   );

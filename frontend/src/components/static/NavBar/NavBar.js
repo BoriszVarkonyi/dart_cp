@@ -54,6 +54,10 @@ export default function NavBar() {
   useEffect(() => {
     const menuItems = competitions.map((e) => setMenuItem(e));
     setMenuItems(menuItems);
+
+    let isDeleted = true
+    competitions.map((e) => {if(compdId == e.id) isDeleted = false});
+    if(isDeleted) setHasSelectedComp(false);
   }, [competitions]);
 
   return (
