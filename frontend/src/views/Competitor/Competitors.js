@@ -9,19 +9,14 @@ import useBasicServices from "../../services/basic.service";
 import ModalComp from "../../components/static/Modal/ModalComp";
 import { useLocation } from "react-router-dom";
 
-const row = (element) => {
+
+const rowDT = (element) => {
   return {
     id: element.id,
-    classement: element.classement,
-    points: element.points,
     nom: element.nom,
     pre_nom: element.pre_nom,
     nation: element.nation,
     club: element.club,
-    date_naissance: element.date_naissance,
-    sexe: element.sexe,
-    lateralite: element.lateralite,
-    licence: element.licence,
     reg_status: element.reg_status,
     wc_status: element.wc_status,
   };
@@ -42,6 +37,16 @@ const columns = [
   { field: "wc_status", headerName: "Wc. Status" },
 ];
 
+const columnsDT = [
+  { field: "nom", headerName: "Last Name" },
+  { field: "pre_nom", headerName: "First Name" },
+  { field: "nation", headerName: "Nationality" },
+  { field: "club", headerName: "Club" },
+  { field: "reg_status", headerName: "Reg. Status" },
+  { field: "wc_status", headerName: "Wc. Status" },
+];
+
+
 export default function Competitors() {
   const {
     selectionModel,
@@ -53,6 +58,8 @@ export default function Competitors() {
     deleteFunction,
     openModalFunctiom,
   } = useDataGridHelper();
+  const [rowDTView, setRowDTView] = useState([])
+  const [allDataView, setAllDataView] = useState(true)
   const navigate = useNavigate();
   const { tourId, compId } = useParams();
   const location = useLocation();
@@ -61,6 +68,10 @@ export default function Competitors() {
   async function getFencersData() {
     const data = await get(`competitions/${compId}/fencers/`);
     setRows(data);
+
+    const rowArray = data.map((e) => rowDT(e))
+    setRowDTView(rowArray)
+
   }
 
   //Gets the competitors from api. Also updates the data on route change. For example when another comp is selected.
@@ -130,8 +141,8 @@ export default function Competitors() {
         </div>
         <div className="PageContent WithButtons">
           <div className="TableGridColumnOptions">
-            <Button variant="contained" size="small">All data</Button>
-            <Button variant="contained" size="small">DT</Button>
+            <Button variant="contained" size="small" onClick={() =>setAllDataView(true)}>All data</Button>
+            <Button variant="contained" size="small" onClick={() =>setAllDataView(false)}>DT</Button>
           </div>
           <div className="TableGrid">
             <DataGrid
@@ -139,8 +150,8 @@ export default function Competitors() {
               checkboxSelection={true}
               selectionModel={selectionModel}
               onSelectionModelChange={handleEvent}
-              rows={rows}
-              columns={columns}
+              rows={allDataView? rows : rowDTView}
+              columns={allDataView? columns : columnsDT}
             />
           </div>
         </div>
