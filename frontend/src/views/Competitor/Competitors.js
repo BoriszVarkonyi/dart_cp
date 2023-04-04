@@ -9,7 +9,7 @@ import useBasicServices from "../../services/basic.service";
 import ModalComp from "../../components/static/Modal/ModalComp";
 import { useLocation } from "react-router-dom";
 
-
+//Sets the rows for DT view
 const rowDT = (element) => {
   return {
     id: element.id,
@@ -37,6 +37,7 @@ const columns = [
   { field: "wc_status", headerName: "Wc. Status" },
 ];
 
+//Sets the columns for the DT view
 const columnsDT = [
   { field: "nom", headerName: "Last Name" },
   { field: "pre_nom", headerName: "First Name" },
@@ -67,8 +68,10 @@ export default function Competitors() {
 
   async function getFencersData() {
     const data = await get(`competitions/${compId}/fencers/`);
+    //Sets the datas for the All Data view
     setRows(data);
 
+    //Sets the datas for the DT view
     const rowArray = data.map((e) => rowDT(e))
     setRowDTView(rowArray)
 
