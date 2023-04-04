@@ -57,7 +57,7 @@ export default function Competitors() {
   const { tourId, compId } = useParams();
   const location = useLocation();
   const basicServices = useBasicServices();
-  
+
   async function getFencersData() {
     const data = await get(`competitions/${compId}/fencers/`);
     setRows(data);
@@ -128,7 +128,11 @@ export default function Competitors() {
             )}
           </div>
         </div>
-        <div className="PageContent">
+        <div className="PageContent WithButtons">
+          <div className="TableGridColumnOptions">
+            <Button variant="contained" size="small">All data</Button>
+            <Button variant="contained" size="small">DT</Button>
+          </div>
           <div className="TableGrid">
             <DataGrid
               style={{ height: "100%", width: "100%" }}

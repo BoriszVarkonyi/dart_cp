@@ -55,6 +55,7 @@
 	align-items: center;
 	padding: 20px;
 	background-color: #f9f9f9;
+	box-shadow: 1px 3px 1px rgba(0, 0, 0, 0.1);
 }
 
 .PageTitle {
@@ -69,6 +70,16 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+.PageContent.WithButtons {
+	flex-direction: column;
+}
+
+.TableGridColumnOptions {
+	display: flex;
+	gap: 8px;
+	margin: 0 auto 10px 0;
 }
 
 /*

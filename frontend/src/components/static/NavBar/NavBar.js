@@ -132,6 +132,7 @@ export default function NavBar() {
               </div>
             </>
           )}
+          {/*
           <div className="NavBarSection">
             <p className="NavBarSectionTitle">Languages</p>
             <div className="NavBarRow" onClick={() => alert('en')}>
@@ -143,6 +144,7 @@ export default function NavBar() {
               <p className="NavBarRowTitle">Hungarian</p>
             </div>
           </div>
+          */}
         </div>
       </div>
       {/*
