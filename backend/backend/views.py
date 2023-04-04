@@ -359,9 +359,18 @@ class GetHash(APIView):
         ciphertext, tag = cipher.encrypt_and_digest(tohash_bytes)
 
         # Make the object
+
+        # Converts bytets (like ciphertext) to lists of integers (suitable for json)
+        def convert_from_byties(byties):
+            return_list = []
+            for byte in byties:
+                return_list.append(byte)
+            return return_list
+
+
         return_json_string = {
-                              'ciphertext': ciphertext.decode('latin-1'),
-                              'tag': tag.decode('latin-1')
+                              'ciphertext': convert_from_byties(ciphertext),
+                              'tag': convert_from_byties(tag)
                              }
 
         # Return ciphertext
@@ -370,6 +379,7 @@ class GetHash(APIView):
 
 # TODO VerifyHash:
 # [ ] Get tag from post
+# [ ] Convert tag back to bytes
 # [ ] verify tag with Secret key cipher
 # [ ] Decode ciphertext into fencer - compt object
 # [ ] Check if the fencer - comp relationship exists
@@ -379,30 +389,35 @@ class VerifyHash(APIView):
     def post(self, request):
 
         # get data from post
-        post_data = request.data.copy()
+        post_data = request.data
 
         # Get tag from post
-        tag = post_data['tag']
+        tag_list = post_data['tag']
+        # Converts from list of integers to bytets
+        # "Reverse" of convert_from_byties
+        def convert_to_byties(list):
+            return bytes(bytearray(list))
+        tag = convert_to_byties(tag_list)
+
         # Verify tag
         cipher = AES.new(str.encode(SECRET_KEY), AES.MODE_EAX)
-        try:
-            cipher.verify(tag)
-        except ValueError:
-            return Response(0)
+        # try:
+        #     cipher.verify(tag)
+        # except ValueError:
+        #     return Response(0)
 
         # get ciphertext and decrypt
-        ciphertext = post_data['ciphertext']
-        data_bytes = cipher.decrypt(str.encode(ciphertext))
+        ciphertext_list = post_data['ciphertext']
+        ciphertext = convert_to_byties(ciphertext_list)
+        data_string = cipher.decrypt(ciphertext)
 
-        # Get the json object from bytes
-        data_string = data_bytes.decode('latin-1')
-        data_json = json.loads(data_string)
-
+         # make json from string data
+        # data_json = json.loads(data_string)
 
         # Check for relationship
-        fencer = data_json['fencer']
-        competition = data_json['competition']
-        get_object_or_404(FencerModel, id=fencer , competitions=competition)
+        # fencer = data_json['fencer']
+        # competition = data_json['competition']
+        # get_object_or_404(FencerModel, id=fencer , competitions=competition)
 
         # return json_string
         return Response(data_string)
