@@ -15,9 +15,12 @@ export default function Header() {
 
   return (
     <div className="Header">
-      <p className="RoleText">Organiser</p>
-      <p className="UserNameText">USERNAME</p>
-      <Button onClick={logout}>Log out</Button>
+      <p className="AppName">d'ARTAGNAN CONTROL ALPHA BUILD</p>
+      <div className="HeaderContent">
+        <p className="RoleText">Organiser</p>
+        <p className="UserNameText">USERNAME</p>
+        <Button onClick={logout}>Log out</Button>
+      </div>
     </div>
   );
 }

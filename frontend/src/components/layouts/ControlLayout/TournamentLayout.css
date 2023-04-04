@@ -1,16 +1,43 @@
-/* Temporary */
-body, #root {
-	background-color: var(--c-white) !important;
+/* For extremely small screen devices (595px and below) */
+@media only screen and (max-width: 595px) {
+	:root {
+		--l-Header: 2.2rem;
+		--l-NavBar: 280px;
+	}
 }
 
-body::before {
-	content: '';
-	position: absolute;
-	left: 0;
-	width: 400px;
-	height: 50px;
-	background: var(--c-PrimaryBlue-300);
+/* Small screen devices (600px and above) */
+@media only screen and (min-width: 600px) {
+	:root {
+		--l-Header: 2.2rem;
+		--l-NavBar: 290px;
+	}
 }
+
+/* Medium screen devices (768px and above) */
+@media only screen and (min-width: 768px) {
+	:root {
+		--l-Header: 2.3rem;
+		--l-NavBar: 290px;
+	}
+}
+
+/* Big screen devices (889px and above) */
+@media only screen and (min-width: 889px) {
+	:root {
+		--l-Header: 2.4rem;
+		--l-NavBar: 300px;
+	}
+}
+
+/* Extra big screen devices (1200px and above) */
+@media only screen and (min-width: 1200px) {
+	:root {
+		--l-Header: 2.5rem;
+		--l-NavBar: 300px;
+	}
+}
+
 /* Temporary */
 
 #root {
@@ -20,16 +47,45 @@ body::before {
 	overflow: hidden;
 	width: 100vw;
 	height: 100vh;
+	position: relative;
 }
 
+#root::after {
+	content: '';
+	width: 100%;
+	height: 3px;
+	background: linear-gradient(270deg,
+		var(--c-PrimaryBlue-300) 0%,
+		var(--c-PrimaryMix-300) 25%,
+		var(--c-PrimaryGreen-300) 50%,
+		var(--c-PrimaryMix-300) 75%,
+		var(--c-PrimaryBlue-300) 100%);
+	background-size: 200%;
+	animation: slide 5s infinite;
+	position: absolute;
+	top: var(--l-Header);
+	z-index: 3;
+}
+
+@keyframes slide {
+	from {
+		background-position: left;
+	}
+
+	to {
+		background-position: right;
+	}
+}
+
+
 .Header {
-	grid-area: 1 / 2 / 2 / 3;
+	grid-area: 1 / 1 / 2 / 3;
 	position: relative;
 	z-index: 2;
 }
 
 .NavBar {
-	grid-area: 1 / 1 / 3 / 2;
+	grid-area: 2 / 1 / 3 / 2;
 	position: relative;
 	z-index: 3;
 }
@@ -50,24 +106,6 @@ body::before {
 		farthest-corner at top left,
 		rgba(214,231,240,1),
 		rgba(255,255,255,1));
-	border-radius: 0 0 0 var(--l-Header);
-	border-left: 2pt solid var(--c-Gray-500);
-	border-bottom: 2pt solid var(--c-Gray-500);
-}
-
-.Main {
-	display: grid;
-	grid-template-rows: auto 1fr;
-	grid-template-columns: 1fr;
-	overflow: hidden;
-	width: 100%;
-	background: radial-gradient(
-		farthest-corner at top left,
-		rgba(214,231,240,1),
-		rgba(255,255,255,1));
-	border-radius: 0 0 0 var(--l-Header);
-	border-left: 2pt solid var(--c-Gray-500);
-	border-bottom: 2pt solid var(--c-Gray-500);
 }
 
 .PageContent.WithSideBar {
@@ -119,4 +157,3 @@ body::before {
 .FormRow > * {
 	margin: 0 !important;
 }
-

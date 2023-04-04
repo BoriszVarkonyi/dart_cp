@@ -4,7 +4,6 @@ import styles from './NavBar.css';
 import { Button } from '@mui/material';
 import { FormControl, TextField, MenuItem } from '@mui/material';
 import { Link } from 'react-router-dom';
-import HorseImage from '../../../assets/horse.svg';
 import FlagIcon from '@mui/icons-material/Flag';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import GroupsIcon from '@mui/icons-material/Groups';
@@ -56,105 +55,102 @@ export default function NavBar() {
     setMenuItems(menuItems);
 
     let isDeleted = true
-    competitions.map((e) => {if(compdId == e.id) isDeleted = false});
-    if(isDeleted) setHasSelectedComp(false);
+    competitions.map((e) => { if (compdId == e.id) isDeleted = false });
+    if (isDeleted) setHasSelectedComp(false);
   }, [competitions]);
 
   return (
     <div className="NavBar">
-      <div className="NavBarInner">
-        <div className="NavBarHead">
-          <img className="LogoImage" src={HorseImage} />
-          <p className="AppName">d'ARTAGNAN</p>
-        </div>
-        <div className="NavBarContent">
-          <div className="NavBarContentInner">
-            <p className="NavBarSectionTitle">Tournament</p>
-            <div className="NavBarSection">
-              <Link to="competitions">
-                <div className="NavBarRow">
-                  <div className="NavBarIconWrapper">
-                    <FlagIcon />
-                  </div>
-                  <p className="NavBarRowTitle">Competitions</p>
+      <div className="NavBarContent">
+        <div className="NavBarContentInner">
+          <p className="NavBarSectionTitle">Tournament</p>
+          <div className="NavBarSection">
+            <Link to="competitions">
+              <div className="NavBarRow">
+                <div className="NavBarIconWrapper">
+                  <FlagIcon />
                 </div>
-              </Link>
-
-              <Link to="timetable">
-                <div className="NavBarRow">
-                  <div className="NavBarIconWrapper">
-                    <DateRangeIcon />
-                  </div>
-                  <p className="NavBarRowTitle">Timetable</p>
-                </div>
-              </Link>
-            </div>
-
-            <div className="CompetitionSelect">
-              <FormControl sx={{ m: 0, width: 200 }} size="small">
-                <TextField
-                  select
-                  label="Select competition"
-                  id="select_comp_id"
-                  defaultValue=""
-                  sx={{
-                    width: 200,
-                  }}
-                >
-                  {menuItems}
-                </TextField>
-              </FormControl>
-            </div>
-            {hasSelectedComp && (
-              <>
-                <p className="NavBarSectionTitle">Competition</p>
-                <div className="NavBarSection">
-                  <Link to={`${compdId}/competitors`}>
-                    <div className="NavBarRow">
-                      <div className="NavBarIconWrapper">
-                        <GroupsIcon />
-                      </div>
-                      <p className="NavBarRowTitle">Competitors</p>
-                    </div>
-                  </Link>
-
-                  <Link to={`${compdId}/registration`}>
-                    <div className="NavBarRow">
-                      <div className="NavBarIconWrapper">
-                        <HowToRegIcon />
-                      </div>
-                      <p className="NavBarRowTitle">Registration</p>
-                    </div>
-                  </Link>
-
-                  <Link to={`${compdId}/weapon_control`}>
-                    <div className="NavBarRow">
-                      <div className="NavBarIconWrapper">
-                        <BackpackIcon />
-                      </div>
-                      <p className="NavBarRowTitle">Weapon Control</p>
-                    </div>
-                  </Link>
-                </div>
-              </>
-            )}
-            <div className="NavBarSection">
-              <p className="NavBarSectionTitle">Languages</p>
-              <div className="NavBarRow" onClick={() => alert('en')}>
-                <div className="NavBarIconWrapper">🇬🇧</div>
-                <p className="NavBarRowTitle">English</p>
+                <p className="NavBarRowTitle">Competitions</p>
               </div>
-              <div className="NavBarRow" onClick={() => alert('hu')}>
-                <div className="NavBarIconWrapper">🇭🇺</div>
-                <p className="NavBarRowTitle">Hungarian</p>
+            </Link>
+
+            <Link to="timetable">
+              <div className="NavBarRow">
+                <div className="NavBarIconWrapper">
+                  <DateRangeIcon />
+                </div>
+                <p className="NavBarRowTitle">Timetable</p>
               </div>
+            </Link>
+          </div>
+
+          <div className="CompetitionSelect">
+            <FormControl sx={{ m: 0, width: 200 }} size="small">
+              <TextField
+                select
+                label="Select competition"
+                id="select_comp_id"
+                defaultValue=""
+                sx={{
+                  width: 200,
+                }}
+              >
+                {menuItems}
+              </TextField>
+            </FormControl>
+          </div>
+          {hasSelectedComp && (
+            <>
+              <p className="NavBarSectionTitle">Competition</p>
+              <div className="NavBarSection">
+                <Link to={`${compdId}/competitors`}>
+                  <div className="NavBarRow">
+                    <div className="NavBarIconWrapper">
+                      <GroupsIcon />
+                    </div>
+                    <p className="NavBarRowTitle">Competitors</p>
+                  </div>
+                </Link>
+
+                <Link to={`${compdId}/registration`}>
+                  <div className="NavBarRow">
+                    <div className="NavBarIconWrapper">
+                      <HowToRegIcon />
+                    </div>
+                    <p className="NavBarRowTitle">Registration</p>
+                  </div>
+                </Link>
+
+                <Link to={`${compdId}/weapon_control`}>
+                  <div className="NavBarRow">
+                    <div className="NavBarIconWrapper">
+                      <BackpackIcon />
+                    </div>
+                    <p className="NavBarRowTitle">Weapon Control</p>
+                  </div>
+                </Link>
+              </div>
+            </>
+          )}
+          <div className="NavBarSection">
+            <p className="NavBarSectionTitle">Languages</p>
+            <div className="NavBarRow" onClick={() => alert('en')}>
+              <div className="NavBarIconWrapper">🇬🇧</div>
+              <p className="NavBarRowTitle">English</p>
+            </div>
+            <div className="NavBarRow" onClick={() => alert('hu')}>
+              <div className="NavBarIconWrapper">🇭🇺</div>
+              <p className="NavBarRowTitle">Hungarian</p>
             </div>
           </div>
         </div>
       </div>
+      {/*
       <button className="NavBarButton">
         <FirstPageIcon />
       </button>
+      */}
+
     </div>
   );
 }
