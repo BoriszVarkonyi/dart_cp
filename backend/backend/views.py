@@ -338,11 +338,10 @@ class CompetitionIssuesByNations(APIView):
 # [x] Hash data into ciphertext and tag
 # [x] Make json object wiht ciphertext and tag
 # [x] Return the made object
-
 class GetHash(APIView):
     def get(self, request, competition, fencer):
 
-        # Get compid & fencerid
+        # Get compid & fencerid from request
         comp_id = competition
         fencer_id = fencer
 
@@ -354,23 +353,22 @@ class GetHash(APIView):
         tohash_string = json.dumps(tohash_obj)
         tohash_bytes = str.encode(tohash_string)
 
-        # HASH
+        # Make cipher obj then HASH
         cipher = AES.new(str.encode(SECRET_KEY), AES.MODE_EAX)
         ciphertext, tag = cipher.encrypt_and_digest(tohash_bytes)
 
         # Make the object
-
-        # Converts bytets (like ciphertext) to lists of integers (suitable for json)
         def convert_from_byties(byties):
+            # Converts bytes (like ciphertext) to lists of integers (suitable for json)
             return_list = []
             for byte in byties:
                 return_list.append(byte)
             return return_list
 
-
         return_json_string = {
                               'ciphertext': convert_from_byties(ciphertext),
-                              'tag': convert_from_byties(tag)
+                              'tag': convert_from_byties(tag),
+                              'nonce': convert_from_byties(cipher.nonce),
                              }
 
         # Return ciphertext
@@ -378,49 +376,72 @@ class GetHash(APIView):
 
 
 # TODO VerifyHash:
-# [ ] Get tag from post
-# [ ] Convert tag back to bytes
-# [ ] verify tag with Secret key cipher
-# [ ] Decode ciphertext into fencer - compt object
-# [ ] Check if the fencer - comp relationship exists
-# [ ] Return the fencer - comp object
-
+# [x] Get tag from post
+# [x] Get nonce
+# [x] Generate cipher obj
+# [x] Convert tag, nonce, ciphertext back to bytes
+# [x] verify tag
+# [x] Decode ciphertext into fencer - compt object
+# [x] Check if the fencer - comp relationship exists
+# [x] Return the fencer - comp object
 class VerifyHash(APIView):
     def post(self, request):
 
+        # errors
+        http_bad_input = status.HTTP_415_UNSUPPORTED_MEDIA_TYPE
+        msg_bad_input = {
+                "The structure of the POST data was invalid":
+                "If everything was done correctly contact support"
+            }
+
         # get data from post
         post_data = request.data
+        try:
+            tag_list = post_data['tag']
+            nonce_list = post_data['nonce']
+            ciphertext_list = post_data['ciphertext']
+        except KeyError:
+            return Response(msg_bad_input, http_bad_input)
 
-        # Get tag from post
-        tag_list = post_data['tag']
-        # Converts from list of integers to bytets
-        # "Reverse" of convert_from_byties
         def convert_to_byties(list):
+            # Converts from list of integers to bytets
+            # "Reverse" of convert_from_byties
             return bytes(bytearray(list))
-        tag = convert_to_byties(tag_list)
 
-        # Verify tag
-        cipher = AES.new(str.encode(SECRET_KEY), AES.MODE_EAX)
-        # try:
-        #     cipher.verify(tag)
-        # except ValueError:
-        #     return Response(0)
+        # Convert data to bytes with func
+        try:
+            nonce = convert_to_byties(nonce_list)
+            tag = convert_to_byties(tag_list)
+            ciphertext = convert_to_byties(ciphertext_list)
+        except:
+            return Response(msg_bad_input, http_bad_input)
 
-        # get ciphertext and decrypt
-        ciphertext_list = post_data['ciphertext']
-        ciphertext = convert_to_byties(ciphertext_list)
-        data_string = cipher.decrypt(ciphertext)
+        # Make cipher obj with nonce
+        cipher = AES.new(str.encode(SECRET_KEY), AES.MODE_EAX, nonce)
+
+        # decrypt and verify
+        try:
+            decrypted_bytes = cipher.decrypt_and_verify(ciphertext, tag)
+        except ValueError:
+            return Response(
+                    {
+                        "Failed to decrypt data":
+                        "Invalid format, or the data has been tampered with"
+                    },
+                    status=status.HTTP_423_LOCKED
+                )
 
          # make json from string data
-        # data_json = json.loads(data_string)
+        data_string = decrypted_bytes.decode('utf-8')
+        data_json = json.loads(data_string)
 
-        # Check for relationship
-        # fencer = data_json['fencer']
-        # competition = data_json['competition']
-        # get_object_or_404(FencerModel, id=fencer , competitions=competition)
+        # Check existance of fencer-competition pair
+        fencer = data_json['fencer']
+        competition = data_json['competition']
+        get_object_or_404(FencerModel, id=fencer , competitions=competition)
 
         # return json_string
-        return Response(data_string)
+        return Response(decrypted_bytes.decode('utf-8'))
 
 
 class CustomTokenObtainPairView(TokenObtainPairView):
