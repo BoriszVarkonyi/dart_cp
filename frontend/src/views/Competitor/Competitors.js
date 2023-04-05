@@ -8,8 +8,8 @@ import { useNavigate } from "react-router-dom";
 import useDataGridHelper from "../../services/useDataGridHelper";
 import useBasicServices from "../../services/basic.service";
 import ModalComp from "../../components/static/Modal/ModalComp";
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { useLocation } from "react-router-dom";
 
 //Sets the rows for DT view
@@ -38,8 +38,42 @@ const columns = [
   { field: "lateralite", headerName: "Lateralite" },
   { field: "licence", headerName: "Licence" },
   { field: "statut", headerName: "Statut" },
-  { field: "reg_status", headerName: "Reg. Status" },
-  { field: "wc_status", headerName: "Wc. Status" },
+  {
+    field: "reg_status",
+    headerName: "Reg. Status",
+    type: "boolean",
+    renderCell: (params) => {
+      return params.value ? (
+        <Chip
+          icon={<CheckCircleOutlineIcon />}
+          label="Done"
+          variant="outlined"
+        />
+      ) : (
+        <Chip icon={<HighlightOffIcon />} label="Not done" variant="outlined" />
+      );
+    },
+  },
+  {
+    field: "wc_status",
+    headerName: "Wc. Status",
+    type: "boolean",
+    renderCell: (params) => {
+      return params.value ? (
+        <Chip
+          icon={<CheckCircleOutlineIcon />}
+          label="Finished"
+          variant="outlined"
+        />
+      ) : (
+        <Chip
+          icon={<HighlightOffIcon />}
+          label="Not finished"
+          variant="outlined"
+        />
+      );
+    },
+  },
 ];
 
 //Sets the columns for the DT view
@@ -52,7 +86,6 @@ const columnsDT = [
   { field: "wc_status", headerName: "Wc. Status" },
 ];
 
-
 export default function Competitors() {
   const {
     selectionModel,
@@ -64,8 +97,8 @@ export default function Competitors() {
     deleteFunction,
     openModalFunctiom,
   } = useDataGridHelper();
-  const [rowDTView, setRowDTView] = useState([])
-  const [allDataView, setAllDataView] = useState(true)
+  const [rowDTView, setRowDTView] = useState([]);
+  const [allDataView, setAllDataView] = useState(true);
   const navigate = useNavigate();
   const { tourId, compId } = useParams();
   const location = useLocation();
@@ -77,9 +110,8 @@ export default function Competitors() {
     setRows(data);
 
     //Sets the datas for the DT view
-    const rowArray = data.map((e) => rowDT(e))
-    setRowDTView(rowArray)
-
+    const rowArray = data.map((e) => rowDT(e));
+    setRowDTView(rowArray);
   }
 
   //Gets the competitors from api. Also updates the data on route change. For example when another comp is selected.
@@ -149,16 +181,22 @@ export default function Competitors() {
         </div>
         <div className="PageContent WithButtons">
           <div className="TableGridColumnOptions">
-            <Button variant="contained" size="small" onClick={() => setAllDataView(true)}>All data</Button>
-            <Button variant="contained" size="small" onClick={() => setAllDataView(false)}>DT</Button>
+            <Button
+              variant="contained"
+              size="small"
+              onClick={() => setAllDataView(true)}
+            >
+              All data
+            </Button>
+            <Button
+              variant="contained"
+              size="small"
+              onClick={() => setAllDataView(false)}
+            >
+              DT
+            </Button>
           </div>
           <div className="TableGrid">
-            reg status:
-            <Chip icon={<CheckCircleOutlineIcon />} label="Done" variant="outlined" />
-            <Chip icon={<HighlightOffIcon />} label="Not done" variant="outlined" />
-            wc status:
-            <Chip icon={<CheckCircleOutlineIcon />} label="Finished" variant="outlined" />
-            <Chip icon={<HighlightOffIcon />} label="Not finished" variant="outlined" />
             <DataGrid
               style={{ height: "100%", width: "100%" }}
               checkboxSelection={true}

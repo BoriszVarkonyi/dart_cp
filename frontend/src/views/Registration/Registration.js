@@ -1,25 +1,38 @@
-import React, { useState, useEffect } from 'react';
-import { Button } from '@mui/material';
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Button } from "@mui/material";
+import { useParams } from "react-router-dom";
 import { Chip } from "@mui/material";
-import { DataGrid } from '@mui/x-data-grid';
-import { get, post } from '../../services/backend.service';
-import { useNavigate } from 'react-router-dom';
-import useDataGridHelper from '../../services/useDataGridHelper';
-import { useLocation } from 'react-router-dom';
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-import useBasicServices from '../../services/basic.service';
+import { DataGrid } from "@mui/x-data-grid";
+import { get, post } from "../../services/backend.service";
+import { useNavigate } from "react-router-dom";
+import useDataGridHelper from "../../services/useDataGridHelper";
+import { useLocation } from "react-router-dom";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import useBasicServices from "../../services/basic.service";
 
 const columns = [
-  { field: 'nom', headerName: 'First Name' },
-  { field: 'pre_nom', headerName: 'Last Name' },
-  { field: 'nation', headerName: 'Nationality' },
-  { field: 'date_naissance', headerName: 'Date of Birth' },
-  { field: 'sexe', headerName: 'Sex' },
-  { field: 'registered', headerName: 'Status', type: 'boolean', renderCell: (params) =>{
-    
-  } },
+  { field: "nom", headerName: "First Name" },
+  { field: "pre_nom", headerName: "Last Name" },
+  { field: "nation", headerName: "Nationality" },
+  { field: "date_naissance", headerName: "Date of Birth" },
+  { field: "sexe", headerName: "Sex" },
+  {
+    field: "registered",
+    headerName: "Status",
+    type: "boolean",
+    renderCell: (params) => {
+      return params.value ? (
+        <Chip
+          icon={<CheckCircleOutlineIcon />}
+          label="Done"
+          variant="outlined"
+        />
+      ) : (
+        <Chip icon={<HighlightOffIcon />} label="Not done" variant="outlined" />
+      );
+    },
+  },
 ];
 
 export default function Registration() {
@@ -133,11 +146,8 @@ export default function Registration() {
         </div>
         <div className="PageContent">
           <div className="TableGrid">
-            reg status:
-            <Chip icon={<CheckCircleOutlineIcon />} label="Done" variant="outlined" />
-            <Chip icon={<HighlightOffIcon />} label="Not done" variant="outlined" />
             <DataGrid
-              style={{ height: '100%', width: '100%' }}
+              style={{ height: "100%", width: "100%" }}
               checkboxSelection={true}
               selectionModel={selectionModel}
               onSelectionModelChange={handleEvent}
