@@ -17,6 +17,7 @@ const rowDT = (element) => {
     pre_nom: element.pre_nom,
     nation: element.nation,
     club: element.club,
+    statut: element.statut,
     reg_status: element.reg_status,
     wc_status: element.wc_status,
   };
@@ -33,6 +34,7 @@ const columns = [
   { field: "sexe", headerName: "Sex" },
   { field: "lateralite", headerName: "Lateralite" },
   { field: "licence", headerName: "Licence" },
+  { field: "statut", headerName: "Statut" },
   { field: "reg_status", headerName: "Reg. Status" },
   { field: "wc_status", headerName: "Wc. Status" },
 ];

@@ -34,12 +34,13 @@ export default function WeaponControl(props) {
         <td>
           <TextField
             error={!!errors[`issue_${rowKey + 1}`]}
+            helperText={errors[`issue_${rowKey + 1}`]?.message}
             type="number"
             size="small"
             defaultValue={keyValue}
             {...register(`issue_${rowKey + 1}`, {
               max: {
-                value: 9,
+                value: 10,
                 message: "Please enter a number below nine!",
               },
               min: {
@@ -77,6 +78,7 @@ export default function WeaponControl(props) {
     }
     navigate(-1);
   };
+
 
   //Gets the issue datas from api
   useEffect(() => {

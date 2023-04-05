@@ -14,7 +14,9 @@ const columns = [
   { field: 'nation', headerName: 'Nationality' },
   { field: 'date_naissance', headerName: 'Date of Birth' },
   { field: 'sexe', headerName: 'Sex' },
-  { field: 'registered', headerName: 'Status' },
+  { field: 'registered', headerName: 'Status', type: 'boolean', renderCell: (params) =>{
+    
+  } },
 ];
 
 export default function Registration() {
