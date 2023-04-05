@@ -13,6 +13,12 @@ import Typography from '@mui/material/Typography';
 export default function PrintBarcode() {
   const { tournamentId, compId, fencerId } = useParams();
   const [fencer, setFencer] = useState({});
+  const [hash, setHash] = useState();
+
+  async function getFencerHash() {
+    const hashedData = await get(`gethash/${compId}/${fencerId}`);
+    setHash(JSON.stringify(hashedData));
+  }
 
   async function getFencerData() {
     const f = await get(`fencers/${fencerId}`);
@@ -21,6 +27,7 @@ export default function PrintBarcode() {
 
   useEffect(() => {
     getFencerData();
+    getFencerHash();
   }, []);
 
   const cardRef = useRef();
@@ -30,7 +37,7 @@ export default function PrintBarcode() {
       <div className="Main">
         <Card sx={{ maxWidth: 320 }} ref={cardRef}>
           <CardMedia sx={{ height: 350 }} title="">
-            <QRCodeSVG value="https://youtu.be/dQw4w9WgXcQ" size="320" />
+            <QRCodeSVG value={hash} size="320" />
           </CardMedia>
           <CardContent>
             <Typography gutterBottom variant="h3" component="div">
