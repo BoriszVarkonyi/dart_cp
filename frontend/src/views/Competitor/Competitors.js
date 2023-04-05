@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Button } from "@mui/material";
+import { Chip } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { get } from "../../services/backend.service";
 import { useNavigate } from "react-router-dom";
 import useDataGridHelper from "../../services/useDataGridHelper";
 import useBasicServices from "../../services/basic.service";
 import ModalComp from "../../components/static/Modal/ModalComp";
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { useLocation } from "react-router-dom";
 
 //Sets the rows for DT view
@@ -146,17 +149,24 @@ export default function Competitors() {
         </div>
         <div className="PageContent WithButtons">
           <div className="TableGridColumnOptions">
-            <Button variant="contained" size="small" onClick={() =>setAllDataView(true)}>All data</Button>
-            <Button variant="contained" size="small" onClick={() =>setAllDataView(false)}>DT</Button>
+            <Button variant="contained" size="small" onClick={() => setAllDataView(true)}>All data</Button>
+            <Button variant="contained" size="small" onClick={() => setAllDataView(false)}>DT</Button>
           </div>
           <div className="TableGrid">
+            reg status:
+            <Chip icon={<CheckCircleOutlineIcon />} label="Done" variant="outlined" />
+            <Chip icon={<HighlightOffIcon />} label="Not done" variant="outlined" />
+            wc status:
+            <Chip icon={<CheckCircleOutlineIcon />} label="Finished" variant="outlined" />
+            <Chip icon={<HighlightOffIcon />} label="Not finished" variant="outlined" />
             <DataGrid
               style={{ height: "100%", width: "100%" }}
               checkboxSelection={true}
               selectionModel={selectionModel}
               onSelectionModelChange={handleEvent}
-              rows={allDataView? rows : rowDTView}
-              columns={allDataView? columns : columnsDT}
+              rows={allDataView ? rows : rowDTView}
+              rowHeight={25}
+              columns={allDataView ? columns : columnsDT}
             />
           </div>
         </div>
