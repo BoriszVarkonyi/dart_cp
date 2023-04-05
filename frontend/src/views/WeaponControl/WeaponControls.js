@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Button } from "@mui/material";
+import { Chip } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import useDataGridHelper from "../../services/useDataGridHelper";
 import { useParams } from "react-router-dom";
 import { get, remove } from "../../services/backend.service";
 import ModalComp from "../../components/static/Modal/ModalComp";
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { useLocation } from "react-router-dom";
 import useBasicServices from "../../services/basic.service";
 
@@ -129,6 +132,9 @@ export default function WeaponControls() {
       </div>
       <div className="PageContent">
         <div className="TableGrid">
+          wc status:
+          <Chip icon={<CheckCircleOutlineIcon />} label="Finished" variant="outlined" />
+          <Chip icon={<HighlightOffIcon />} label="Not finished" variant="outlined" />
           <DataGrid
             style={{ height: "100%", width: "100%" }}
             checkboxSelection={true}
