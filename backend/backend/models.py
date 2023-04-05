@@ -2,7 +2,7 @@ from django.db import models
 from backend.choices import *
 
 class TournamentModel(models.Model):
-    title_long = models.CharField(max_length=12)
+    title_long = models.CharField(max_length=100)
     starting_date = models.DateField()
     ending_date = models.DateField()
 
