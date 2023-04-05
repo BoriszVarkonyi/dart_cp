@@ -425,7 +425,7 @@ export default function Competition(props) {
                   message: `Field cannot be longer than 31 characters!`,
                 },
                 validate: (value) =>
-                  value < getValues("end_date") ||
+                  value <= getValues("end_date") ||
                   "Please enter a valid time interval!",
                 onChange: (e) =>
                   setInputState((prevState) =>
