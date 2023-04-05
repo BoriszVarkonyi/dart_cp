@@ -55,12 +55,16 @@ urlpatterns = [
         'stats/competitions/<str:competition>/issues/',
         views.CompetitionIssuesByNations.as_view(),
     ),
-    #path(
-    #    'gethash/<str:competition>/<str:fencer>/',
-    #    views.GetHash.as_view(),
-    #),
+    path(
+        'gethash/<int:competition>/<str:fencer>/',
+        views.GetHash.as_view(),
+    ),
     path(
         'customtoken',
         views.CustomTokenObtainPairView.as_view()
+    ),
+    path(
+        'verifyhash/',
+        views.VerifyHash.as_view(),
     ),
 ]
