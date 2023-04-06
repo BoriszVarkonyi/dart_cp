@@ -15,6 +15,7 @@ import Registration from "./views/Registration/Registration";
 import PrintBarcode from "./views/Registration/PrintBarcode";
 import WeaponControls from "./views/WeaponControl/WeaponControls";
 import WeaponControl from "./views/WeaponControl/WeaponControl";
+import WeaponControlStatistics from "./views/WeaponControl/WeaponControlStatistics";
 import NotFound from "./components/static/Not_Found/Not_found";
 
 //Under construction. Will delete.
@@ -49,6 +50,7 @@ function App() {
               <Route index element={<WeaponControls />} />
               <Route path="add" element={<WeaponControl type="Add" />} />
               <Route path="modify" element={<WeaponControl type="Modify" />} />
+              <Route path="statistics" element={<WeaponControlStatistics />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Route>
