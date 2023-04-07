@@ -25,7 +25,36 @@ export default function WeaponControlStatistics() {
         </div>
       </div>
       <div className="PageContent">
-
+        <table>
+          <thead>
+            <tr>
+              <th>Country</th>
+              <th>No. Fencers</th>
+              <th>No. Issues</th>
+              <th>Ratio</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>United Kingdom</td>
+              <td>10</td>
+              <td>20</td>
+              <td>2</td>              
+            </tr>
+            <tr>
+              <td>Germany</td>
+              <td>5</td>
+              <td>5</td>
+              <td>1</td>              
+            </tr>
+            <tr>
+              <td>Hungary</td>
+              <td>12</td>
+              <td>6</td>
+              <td>0.5</td>              
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   );
