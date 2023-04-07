@@ -449,9 +449,12 @@ class CustomTokenObtainPairView(TokenObtainPairView):
 
 
 class AllCompetitorsData(APIView):
-    def get(self, request):
+
+    def get(self, request, competition):
+
+        competition = self.kwargs['competition']
 
         queryset = FencerModel.objects
-        serializer = TestSerializer(queryset, many=True)
+        serializer = TestSerializer(queryset, many=True, context={'competition': competition})
 
         return Response(data=serializer.data)

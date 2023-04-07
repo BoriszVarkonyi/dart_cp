@@ -201,6 +201,7 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
 
 class TestSerializer(serializers.ModelSerializer):
     registered = serializers.SerializerMethodField()
+    weaponcontrol = serializers.SerializerMethodField()
 
     class Meta:
         model = FencerModel
@@ -208,8 +209,16 @@ class TestSerializer(serializers.ModelSerializer):
 
     def get_registered(self, obj):
 
-        queryset = RegistrationModel.objects.filter(fencers=obj.id).values('registered')
+        competition = self.context.get('competition')
 
-        #print(type(queryset))
+        queryset = RegistrationModel.objects.filter(fencers=obj.id, competitions=competition).exists()
 
-        return queryset.first()
+        return queryset
+    
+    def get_weaponcontrol(self, obj):
+
+        competition = self.context.get('competition')
+
+        queryset = WeaponControlModel.objects.filter(fencers=obj.id, competitions=competition).exists()
+
+        return queryset
