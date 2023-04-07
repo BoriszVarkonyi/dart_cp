@@ -5,7 +5,7 @@ import { FormControl, MenuItem, TextField, Button, Alert } from "@mui/material";
 import { Box } from "@mui/system";
 import { useForm } from "react-hook-form";
 import { post, update, get } from "../../services/backend.service";
-import countries from "../../components/static/countries.json";
+import countries from "../../utils/countries.json";
 import useBasicServices from "../../services/basic.service";
 
 import { useParams } from "react-router-dom";

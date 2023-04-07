@@ -16,7 +16,7 @@ import PrintBarcode from "./views/Registration/PrintBarcode";
 import WeaponControls from "./views/WeaponControl/WeaponControls";
 import WeaponControl from "./views/WeaponControl/WeaponControl";
 import WeaponControlStatistics from "./views/WeaponControl/WeaponControlStatistics";
-import NotFound from "./components/static/Not_Found/Not_found";
+import NotFound from "./components/static/NotFound/NotFound";
 
 //Under construction. Will delete.
 
