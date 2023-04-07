@@ -9,10 +9,12 @@ import { TextField } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import BarcodeImage from '../../../assets/barcode-read.svg';
 import verifyHash from '../../../services/hash.service';
+import { useNavigate } from 'react-router-dom';
 
 export default function ModalComp(props) {
   const dispatch = useDispatch();
   const { isOpen } = useSelector((state) => state.modal);
+  const navigate = useNavigate();
 
   const modalProps = props.modalProps;
 
@@ -25,7 +27,7 @@ export default function ModalComp(props) {
       if (obj && obj.ciphertext && obj.nonce && obj.nonce) {
         const result = await verifyHash(obj);
         if (result !== false)
-          console.log(`${result.competition} ${result.fencer}`);
+          navigate('add', { state: { rowId: result.fencer } });
       }
     }
   };
