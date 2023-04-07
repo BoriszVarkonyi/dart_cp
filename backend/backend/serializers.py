@@ -197,3 +197,19 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         token = super().get_token(user)
         token['name'] = user.username
         return token
+    
+
+class TestSerializer(serializers.ModelSerializer):
+    registered = serializers.SerializerMethodField()
+
+    class Meta:
+        model = FencerModel
+        fields = '__all__'
+
+    def get_registered(self, obj):
+
+        queryset = RegistrationModel.objects.filter(fencers=obj.id).values('registered')
+
+        #print(type(queryset))
+
+        return queryset.first()

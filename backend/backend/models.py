@@ -77,3 +77,6 @@ class RegistrationModel(models.Model):
     fencers = models.ForeignKey(FencerModel, on_delete=models.CASCADE)
     competitions = models.ForeignKey(CompetitionModel, on_delete=models.CASCADE)
     registered = models.BooleanField()
+
+    def __unicode__(self):
+        return '%d: %s' % (self.registered)

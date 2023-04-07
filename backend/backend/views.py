@@ -446,3 +446,12 @@ class VerifyHash(APIView):
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     sefializer_class = CustomTokenObtainPairSerializer
+
+
+class AllCompetitorsData(APIView):
+    def get(self, request):
+
+        queryset = FencerModel.objects
+        serializer = TestSerializer(queryset, many=True)
+
+        return Response(data=serializer.data)

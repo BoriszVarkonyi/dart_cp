@@ -67,4 +67,8 @@ urlpatterns = [
         'verifyhash/',
         views.VerifyHash.as_view(),
     ),
+    path(
+        'competitorsdata/',
+        views.AllCompetitorsData.as_view(),
+    ),
 ]
