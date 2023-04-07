@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Modal.css";
 import { Button, Modal, Box, Typography, IconButton } from "@mui/material";
 import { closeModal } from "../../../slices/modalSlice";
@@ -14,6 +14,12 @@ export default function ModalComp(props) {
   const { isOpen } = useSelector((state) => state.modal);
 
   const modalProps = props.modalProps;
+
+  const barCodeInputHandler = (e)=>{
+    if(e.key == "Enter"){
+      console.log("A beolvasott szöveg: " + e.target.value)
+    }
+  }
 
   return (
     <Modal open={isOpen} className="ModalWrapper">
@@ -56,6 +62,7 @@ export default function ModalComp(props) {
                 type="text"
                 size="small"
                 variant="filled"
+                onKeyDown={(e)=>{barCodeInputHandler(e)}}
               />
             </div>
           </div>
