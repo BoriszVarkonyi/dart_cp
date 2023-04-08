@@ -1,6 +1,8 @@
 import axios from "axios";
 import authHeader from "./auth-header";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, SortGridMenuItems } from "@mui/x-data-grid";
+import { useState } from "react";
+
 
 const instance = axios.create({
   baseURL: process.env.REACT_APP_API,
@@ -9,8 +11,11 @@ const instance = axios.create({
     Authorization: authHeader(),
     "Content-Type": "application/json",
   },
+  cancelToken: ''
 });
 
+
+//Lord forgive me what I'm about to do
 async function get(url) {
   instance.defaults.headers.Authorization = authHeader();
   try {

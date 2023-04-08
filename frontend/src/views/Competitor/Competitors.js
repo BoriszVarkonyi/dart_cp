@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Button } from "@mui/material";
 import { Chip } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, SortGridMenuItems } from "@mui/x-data-grid";
 import { get } from "../../services/backend.service";
 import { useNavigate } from "react-router-dom";
 import useDataGridHelper from "../../services/useDataGridHelper";
@@ -11,6 +11,7 @@ import ModalComp from "../../components/static/Modal/ModalComp";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { useLocation } from "react-router-dom";
+import axios from "axios";
 
 //Sets the rows for DT view
 const rowDT = (element) => {
@@ -21,8 +22,8 @@ const rowDT = (element) => {
     nation: element.nation,
     club: element.club,
     statut: element.statut,
-    reg_status: element.reg_status,
-    wc_status: element.wc_status,
+    reg_status: element.registered,
+    wc_status: element.weaponcontrol,
   };
 };
 
@@ -105,12 +106,12 @@ export default function Competitors() {
   const basicServices = useBasicServices();
 
   async function getFencersData() {
-    const data = await get(`competitions/${compId}/fencers/`);
+    const data = await get(`competitorsdata/${compId}`);
     //Sets the datas for the All Data view
     setRows(data);
 
     //Sets the datas for the DT view
-    const rowArray = data.map((e) => rowDT(e));
+    let rowArray = data.map((e) => rowDT(e));
     setRowDTView(rowArray);
   }
 
