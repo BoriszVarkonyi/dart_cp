@@ -200,14 +200,14 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     
 
 class TestSerializer(serializers.ModelSerializer):
-    registered = serializers.SerializerMethodField()
-    weaponcontrol = serializers.SerializerMethodField()
+    reg_status = serializers.SerializerMethodField()
+    wc_status = serializers.SerializerMethodField()
 
     class Meta:
         model = FencerModel
         fields = '__all__'
 
-    def get_registered(self, obj):
+    def get_reg_status(self, obj):
 
         competition = self.context.get('competition')
 
@@ -215,7 +215,7 @@ class TestSerializer(serializers.ModelSerializer):
 
         return queryset
     
-    def get_weaponcontrol(self, obj):
+    def get_wc_status(self, obj):
 
         competition = self.context.get('competition')
 

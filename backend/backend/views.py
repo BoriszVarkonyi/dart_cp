@@ -36,9 +36,35 @@ class FencerModelMixin(object):
     return super(FencerModelMixin, self).get_serializer(*args, **kwargs)
 
 class FencerViewSet(FencerModelMixin, viewsets.ModelViewSet):
-  queryset = FencerModel.objects.all()
-  serializer_class = FencerSerializer
-  permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    queryset = FencerModel.objects.all()
+    serializer_class = FencerSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    def create(self, request, *args, **kwargs):
+
+        print(len(request.data))
+
+        if len(request.data) == 13:
+            print("SINGLE")
+            if FencerModel.objects.filter(id=request.data['id']).exists():
+                fencerobject = FencerModel.objects.get(id=request.data['id'])
+                fencerobject.competitions.add(2)
+                fencerobject.save()
+                return Response(status=200)
+            else:
+                serializer = FencerSerializer(data=request.data)
+                if serializer.is_valid():
+                    serializer.save()
+                    return Response(serializer.data, status=201)
+                return Response(serializer.errors, status=400)
+                
+        else:
+            print("MULTIPLE")
+            serializer = FencerSerializer(data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=201)
+            return Response(serializer.errors, status=400)
 
 class CompetitionViewSet(viewsets.ModelViewSet):
   queryset = CompetitionModel.objects.all()
@@ -454,7 +480,7 @@ class AllCompetitorsData(APIView):
 
         competition = self.kwargs['competition']
 
-        queryset = FencerModel.objects
+        queryset = FencerModel.objects.filter(competitions=competition)
         serializer = TestSerializer(queryset, many=True, context={'competition': competition})
 
         return Response(data=serializer.data)
