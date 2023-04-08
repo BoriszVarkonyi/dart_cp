@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import './Modal.css';
-import { Button, Modal, Box, Typography, IconButton } from '@mui/material';
-import { closeModal } from '../../../slices/modalSlice';
-import { useDispatch } from 'react-redux';
-import useDataGridHelper from '../../../services/useDataGridHelper';
-import { useSelector } from 'react-redux';
-import { TextField } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
-import BarcodeImage from '../../../assets/barcode-read.svg';
-import verifyHash from '../../../services/hash.service';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import "./Modal.css";
+import { Button, Modal, Box, Typography, IconButton } from "@mui/material";
+import { closeModal } from "../../../slices/modalSlice";
+import { useDispatch } from "react-redux";
+import useDataGridHelper from "../../../services/useDataGridHelper";
+import { useSelector } from "react-redux";
+import { TextField } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import BarcodeImage from "../../../assets/barcode-read.svg";
+import verifyHash from "../../../services/hash.service";
+import { useNavigate } from "react-router-dom";
 
 export default function ModalComp(props) {
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ export default function ModalComp(props) {
   const modalProps = props.modalProps;
 
   const barCodeInputHandler = async (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       let obj = {};
       try {
         obj = JSON.parse(e.target.value);
@@ -27,7 +27,7 @@ export default function ModalComp(props) {
       if (obj && obj.ciphertext && obj.nonce && obj.nonce) {
         const result = await verifyHash(obj);
         if (result !== false)
-          navigate('add', { state: { rowId: result.fencer } });
+          navigate("add", { state: { rowId: result.fencer } });
       }
     }
   };
@@ -47,7 +47,7 @@ export default function ModalComp(props) {
             <CloseIcon />
           </IconButton>
         </div>
-        {modalProps.type == 'Alert' && (
+        {modalProps.type == "Alert" && (
           <div className="ModalFooter">
             <Button variant="outlined" onClick={() => dispatch(closeModal())}>
               Cancel
@@ -64,7 +64,7 @@ export default function ModalComp(props) {
           </div>
         )}
 
-        {modalProps.type == 'Barcode' && (
+        {modalProps.type == "Barcode" && (
           <div className="ModalContent">
             <div className="ModalContentInner">
               <img className="BarcodeImage" src={BarcodeImage} />
@@ -81,10 +81,18 @@ export default function ModalComp(props) {
           </div>
         )}
 
-        {modalProps.type == 'Succes' && (
+        {modalProps.type == "Succes" && (
           <div className="ModalContent">
             <div className="ModalContentInner">
               <p>{modalProps.text}</p>
+            </div>
+          </div>
+        )}
+
+        {modalProps.type == "Loading" && (
+          <div className="ModalContent">
+            <div className="ModalContentInner">
+              <p>tölt te geci</p>
             </div>
           </div>
         )}

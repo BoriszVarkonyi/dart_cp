@@ -2,6 +2,8 @@ import axios from "axios";
 import authHeader from "./auth-header";
 import { DataGrid, SortGridMenuItems } from "@mui/x-data-grid";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { openModal } from "../slices/modalSlice";
 
 
 const instance = axios.create({

@@ -11,7 +11,6 @@ import ModalComp from "../../components/static/Modal/ModalComp";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { useLocation } from "react-router-dom";
-import axios from "axios";
 
 //Sets the rows for DT view
 const rowDT = (element) => {

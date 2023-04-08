@@ -17,14 +17,16 @@ import WeaponControls from "./views/WeaponControl/WeaponControls";
 import WeaponControl from "./views/WeaponControl/WeaponControl";
 import WeaponControlStatistics from "./views/WeaponControl/WeaponControlStatistics";
 import NotFound from "./components/static/NotFound/NotFound";
+import { useState } from "react";
 
 //Under construction. Will delete.
 
 function App() {
   const tokenHandler = useTokenService();
-
+  const [isLoading, setIsloading] = useState(true)
   return (
-    <>
+    <> 
+    
       <Routes>
         <Route path="/" element={<LoginLayout />} />
         <Route path="/panel/*" element={<PanelLayout />} />
