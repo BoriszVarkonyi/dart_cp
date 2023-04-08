@@ -8,7 +8,7 @@ import { openModal } from "../slices/modalSlice";
 
 const instance = axios.create({
   baseURL: process.env.REACT_APP_API,
-  timeout: 1000,
+  timeout: 100000,
   headers: {
     Authorization: authHeader(),
     "Content-Type": "application/json",
