@@ -10,7 +10,8 @@ import { useLocation } from "react-router-dom";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import useBasicServices from "../../services/basic.service";
-import axios from "axios";
+import { useSelector } from "react-redux";
+import Loading from "../../components/static/Loading/Loading";
 
 const columns = [
   { field: "nom", headerName: "First Name" },
@@ -50,12 +51,14 @@ export default function Registration() {
   const navigate = useNavigate();
   const location = useLocation();
   const { tourId, compId } = useParams();
-  const basicServices = useBasicServices();
+  const { setLoadingState } = useBasicServices();
+  const { isLoading } = useSelector((state) => state.isLoading);
 
   async function getFencersData() {
     const fencersData = await get(`competitions/${compId}/fencers/`);
     const registrationData = await getRegistrationData();
     setRows(fencerInCompetition(fencersData, registrationData));
+    setLoadingState(false);
   }
 
   async function getRegistrationData() {
@@ -65,6 +68,7 @@ export default function Registration() {
   // Gets the data from api. Updates the data on route change.
   // For example when another comp is selected.
   useEffect(() => {
+    setLoadingState(true);
     getFencersData();
   }, [location]);
 
@@ -114,50 +118,54 @@ export default function Registration() {
 
   return (
     <>
-      <div className="Main">
-        <div className="PageHeader">
-          <h2 className="PageTitle">Registration</h2>
-          <div className="PageButtonsWrapper">
-            {isSelected &&
-              rows.filter((f) => f.id == selectedRowId)[0].registered && (
-                <>
-                  <Button
-                    variant="contained"
-                    size="small"
-                    onClick={() => navigate(`${selectedRowId}/print`)}
-                  >
-                    Print Code
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <div className="Main">
+          <div className="PageHeader">
+            <h2 className="PageTitle">Registration</h2>
+            <div className="PageButtonsWrapper">
+              {isSelected &&
+                rows.filter((f) => f.id == selectedRowId)[0].registered && (
+                  <>
+                    <Button
+                      variant="contained"
+                      size="small"
+                      onClick={() => navigate(`${selectedRowId}/print`)}
+                    >
+                      Print Code
+                    </Button>
+                    <Button
+                      variant="contained"
+                      size="small"
+                      onClick={registerOut}
+                    >
+                      Register out
+                    </Button>
+                  </>
+                )}
+              {isSelected &&
+                !rows.filter((f) => f.id == selectedRowId)[0].registered && (
+                  <Button variant="contained" size="small" onClick={registerIn}>
+                    Register in
                   </Button>
-                  <Button
-                    variant="contained"
-                    size="small"
-                    onClick={registerOut}
-                  >
-                    Register out
-                  </Button>
-                </>
-              )}
-            {isSelected &&
-              !rows.filter((f) => f.id == selectedRowId)[0].registered && (
-                <Button variant="contained" size="small" onClick={registerIn}>
-                  Register in
-                </Button>
-              )}
+                )}
+            </div>
+          </div>
+          <div className="PageContent">
+            <div className="TableGrid">
+              <DataGrid
+                style={{ height: "100%", width: "100%" }}
+                checkboxSelection={true}
+                selectionModel={selectionModel}
+                onSelectionModelChange={handleEvent}
+                rows={rows}
+                columns={columns}
+              />
+            </div>
           </div>
         </div>
-        <div className="PageContent">
-          <div className="TableGrid">
-            <DataGrid
-              style={{ height: "100%", width: "100%" }}
-              checkboxSelection={true}
-              selectionModel={selectionModel}
-              onSelectionModelChange={handleEvent}
-              rows={rows}
-              columns={columns}
-            />
-          </div>
-        </div>
-      </div>
+      )}
     </>
   );
 }
