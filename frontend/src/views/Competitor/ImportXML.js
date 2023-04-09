@@ -39,7 +39,7 @@ export default function Import() {
   const [fencerArray, setFencerArray] = useState([]);
   const { tournamentId, compId } = useParams();
   const { openModalFunctiom } = useDataGridHelper();
-  const basicServices = useBasicServices();
+  const {setLoadingState} = useBasicServices();
 
   const modalProps = {
     type: "Succes",
@@ -71,6 +71,7 @@ export default function Import() {
   //Helper functions
   async function handleFile(file) {
     parseFencers(file, generateDataGrid, setFencerArray);
+    setLoadingState(false)
 
     /*
     const formData = new FormData();
@@ -111,6 +112,7 @@ export default function Import() {
       setImportStatus(true);
     }
 
+    setLoadingState(false)
     openModalFunctiom();
     setTimeout(() => {
       dispatch(closeModal())
@@ -132,7 +134,9 @@ export default function Import() {
           </Button>
           {hasError && <Alert severity="error">Wrong file format!</Alert>}
           {hasSelectedFile && (
-            <Button variant="contained" size="small" onClick={importFencers}>
+            <Button variant="contained" size="small" onClick={()=>{ 
+              setLoadingState(true)
+              importFencers()}}>
               Import
             </Button>
           )}

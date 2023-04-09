@@ -11,8 +11,7 @@ import ModalComp from "../../components/static/Modal/ModalComp";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
-import Loading from "../../components/static/Loading/Loading";
+
 
 //Sets the rows for DT view
 const rowDT = (element) => {
@@ -23,8 +22,8 @@ const rowDT = (element) => {
     nation: element.nation,
     club: element.club,
     statut: element.statut,
-    reg_status: element.registered,
-    wc_status: element.weaponcontrol,
+    reg_status: element.reg_status,
+    wc_status: element.wc_status,
   };
 };
 
