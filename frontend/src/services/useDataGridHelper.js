@@ -34,9 +34,9 @@ export default function useDataGridHelper() {
     dispatch(openModal());
   };
 
-  const deleteFunction = async (url) => {
+  const deleteFunction = async (url, payload) => {
     //Deletes the tournament in the database
-    await remove(url);
+    await remove(url, {...payload});
     //Deletes the row in the data grid
     setRows((prevRows) => {
       const rowToDeleteIndex = prevRows.findIndex(
