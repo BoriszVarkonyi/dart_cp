@@ -17,7 +17,7 @@ export default function WeaponControl(props) {
   const { tourId, compId } = useParams();
   const { state } = useLocation();
   const { rowId } = state;
-  const basicServices = useBasicServices();
+  const { setLoadingState } = useBasicServices();
 
   //react-hook-form
   const {

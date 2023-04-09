@@ -22,19 +22,20 @@ export default function useBasicServices() {
   }
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API + getURL()}`)
-      .then((response) => {
-        if (response.status == 404) {
-          navigate("/not_found");
-          console.clear();
-        }
-      })
-      .catch((error) => console.log(error));
+    if (!isNaN(pathname.split("/")[1])) {
+      fetch(`${process.env.REACT_APP_API + getURL()}`)
+        .then((response) => {
+          if (response.status == 404) {
+            navigate("/not_found");
+            console.clear();
+          }
+        })
+        .catch((error) => console.log(error));
+    }
   }, [pathname]);
 
-  
   const setLoadingState = (state) => {
-    dispatch(setIsLoading(state))
+    dispatch(setIsLoading(state));
   };
 
   return { setLoadingState };

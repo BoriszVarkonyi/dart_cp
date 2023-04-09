@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { get, remove } from "../../services/backend.service";
 import { useSelector } from "react-redux";
 import useDataGridHelper from "../../services/useDataGridHelper";
+import useBasicServices from "../../services/basic.service";
 import ModalComp from "../../components/static/Modal/ModalComp";
 
 const row = (element) => {
@@ -36,8 +37,8 @@ export default function Tournaments() {
     openModalFunctiom,
   } = useDataGridHelper();
   const { isLoggedIn } = useSelector((state) => state.auth);
-
   const navigate = useNavigate();
+  const {setLoadingState} = useBasicServices();
 
   //Gets the tournaments from api
   useEffect(() => {
@@ -45,7 +46,9 @@ export default function Tournaments() {
       const data = await get("tournaments/");
       const rows = data.map((e) => row(e));
       setRows(rows);
+      setLoadingState(false)
     }
+    setLoadingState(true)
     getData();
   }, []);
 

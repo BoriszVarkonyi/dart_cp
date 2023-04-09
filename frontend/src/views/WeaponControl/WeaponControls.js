@@ -53,16 +53,18 @@ export default function WeaponControls() {
   const { tourId, compId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
-  const basicServices = useBasicServices();
+  const { setLoadingState } = useBasicServices();
 
   async function getFencersData() {
     const data = await get(`competitions/${compId}/fencers/`);
     const rows = data.map((e) => row(e));
     setRows(rows);
+    setLoadingState(false)
   }
 
   //Gets the data from api. Also updates the data on route change. For example when another comp is selected.
   useEffect(() => {
+    setLoadingState(true)
     getFencersData();
   }, [location]);
 

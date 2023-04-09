@@ -89,13 +89,6 @@ export default function ModalComp(props) {
           </div>
         )}
 
-        {modalProps.type == "Loading" && (
-          <div className="ModalContent">
-            <div className="ModalContentInner">
-              <p>tölt te geci</p>
-            </div>
-          </div>
-        )}
 
         {/*props.type == "Print" && (
           <div>

@@ -35,7 +35,7 @@ const columns = [
 export default function Competitions() {
   const navigate = useNavigate();
   const dispatch = useDispatch()
-  const basicServices = useBasicServices();
+  const { setLoadingState } = useBasicServices();
   const {
     selectionModel,
     selectedRowId,
@@ -48,15 +48,18 @@ export default function Competitions() {
   } = useDataGridHelper();
   const { tournamentId } = useParams();
 
-  useEffect(() => {
-    async function getData() {
-      const data = await get(`tournaments/${tournamentId}/competitions/`);
-      const rows = data.map((e) => row(e));
-      setRows(rows);
+  async function getData() {
+    const data = await get(`tournaments/${tournamentId}/competitions/`);
+    const rows = data.map((e) => row(e));
+    setRows(rows);
 
-      //Navbar menuitems works from a redux store state. This sets that state
-      dispatch(setCompetitions(data))
-    }
+    //Navbar menuitems works from a redux store state. This sets that state
+    dispatch(setCompetitions(data))
+    setLoadingState(false)
+  }
+
+  useEffect(() => {
+    setLoadingState(true)
     getData();
   }, []);
 
