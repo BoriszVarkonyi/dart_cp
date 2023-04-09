@@ -139,7 +139,7 @@ export default function Competitors() {
   return (
     <>
       {isLoading ? (
-        <Loading/>
+        <Loading />
       ) : (
         <>
           <div className="Main">
