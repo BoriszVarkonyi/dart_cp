@@ -127,6 +127,9 @@ export default function WeaponControls() {
               Add weapon control
             </Button>
           )}
+          <Button variant="contained" size="small">
+            STATISTICS
+          </Button>
           <Button variant="contained" size="small" onClick={openBarcode}>
             Read Barcode
           </Button>
