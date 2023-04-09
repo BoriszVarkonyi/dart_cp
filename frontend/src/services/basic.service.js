@@ -3,7 +3,7 @@ import { get } from "./backend.service";
 import { useNavigate, useLocation } from "react-router-dom";
 import { areOptionsEqual } from "@mui/base";
 import { useDispatch } from "react-redux";
-//import { setIsLoading } from "../slices/load";
+import { setIsLoading } from "../slices/load";
 
 export default function useBasicServices() {
   const { pathname } = useLocation();
@@ -32,10 +32,10 @@ export default function useBasicServices() {
       .catch((error) => console.log(error));
   }, [pathname]);
 
-  /*
+  
   const setLoadingState = (state) => {
     dispatch(setIsLoading(state))
   };
 
-  return { setLoadingState };*/
+  return { setLoadingState };
 }
