@@ -73,9 +73,10 @@ class FencerViewSet(FencerModelMixin, viewsets.ModelViewSet):
             return Response(status=201)
     
     def destroy(self, request, *args, **kwargs):
-        print(request)
-        fencerobj = FencerModel.objects.get(id=request.data['id'])
+        print(request.data)
+        #fencerobj = FencerModel.objects.get(id=request.data['id'])
         #fencerobj.competitions.remove(request.data)
+        return Response(status=200)
 
 
 class CompetitionViewSet(viewsets.ModelViewSet):
@@ -493,6 +494,15 @@ class AllCompetitorsData(APIView):
         competition = self.kwargs['competition']
 
         queryset = FencerModel.objects.filter(competitions=competition)
-        serializer = TestSerializer(queryset, many=True, context={'competition': competition})
+        serializer = CompetitorsDataSerializer(queryset, many=True, context={'competition': competition})
 
         return Response(data=serializer.data)
+    
+class Statistics(APIView):
+
+    def get(self, request, competition):
+
+
+
+
+        return(Response(data="WORKING"))
