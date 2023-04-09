@@ -59,12 +59,12 @@ async function postBulk(url, payload) {
 
 async function remove(url, payload) {
   instance.defaults.headers.Authorization = authHeader();
-  const resp = await instance.delete(`${url}`, payload);
+  const resp = await instance.delete(`${url}`, {data: payload});
 }
 
 async function update(url, payload) {
   instance.defaults.headers.Authorization = authHeader();
-  const resp = await instance.patch(`${url}`, payload);
+  const resp = await instance.patch(`${url}`);
 }
 
 export { get, post, postBulk, remove, update };
