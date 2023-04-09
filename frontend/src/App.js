@@ -17,13 +17,11 @@ import WeaponControls from "./views/WeaponControl/WeaponControls";
 import WeaponControl from "./views/WeaponControl/WeaponControl";
 import WeaponControlStatistics from "./views/WeaponControl/WeaponControlStatistics";
 import NotFound from "./components/static/NotFound/NotFound";
-import { useSelector } from "react-redux";
 
 //Under construction. Will delete.
 
 function App() {
   const tokenHandler = useTokenService();
-  const { isLoading } = useSelector((state) => state.isLoading);
   return (
     <>
       <Routes>

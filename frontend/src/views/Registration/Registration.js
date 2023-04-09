@@ -52,7 +52,6 @@ export default function Registration() {
   const location = useLocation();
   const { tourId, compId } = useParams();
   const { setLoadingState } = useBasicServices();
-  const { isLoading } = useSelector((state) => state.isLoading);
 
   async function getFencersData() {
     const fencersData = await get(`competitions/${compId}/fencers/`);
@@ -117,55 +116,45 @@ export default function Registration() {
   const modalContent = {};
 
   return (
-    <>
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <div className="Main">
-          <div className="PageHeader">
-            <h2 className="PageTitle">Registration</h2>
-            <div className="PageButtonsWrapper">
-              {isSelected &&
-                rows.filter((f) => f.id == selectedRowId)[0].registered && (
-                  <>
-                    <Button
-                      variant="contained"
-                      size="small"
-                      onClick={() => navigate(`${selectedRowId}/print`)}
-                    >
-                      Print Code
-                    </Button>
-                    <Button
-                      variant="contained"
-                      size="small"
-                      onClick={registerOut}
-                    >
-                      Register out
-                    </Button>
-                  </>
-                )}
-              {isSelected &&
-                !rows.filter((f) => f.id == selectedRowId)[0].registered && (
-                  <Button variant="contained" size="small" onClick={registerIn}>
-                    Register in
-                  </Button>
-                )}
-            </div>
-          </div>
-          <div className="PageContent">
-            <div className="TableGrid">
-              <DataGrid
-                style={{ height: "100%", width: "100%" }}
-                checkboxSelection={true}
-                selectionModel={selectionModel}
-                onSelectionModelChange={handleEvent}
-                rows={rows}
-                columns={columns}
-              />
-            </div>
-          </div>
+    <div className="Main">
+      <div className="PageHeader">
+        <h2 className="PageTitle">Registration</h2>
+        <div className="PageButtonsWrapper">
+          {isSelected &&
+            rows.filter((f) => f.id == selectedRowId)[0].registered && (
+              <>
+                <Button
+                  variant="contained"
+                  size="small"
+                  onClick={() => navigate(`${selectedRowId}/print`)}
+                >
+                  Print Code
+                </Button>
+                <Button variant="contained" size="small" onClick={registerOut}>
+                  Register out
+                </Button>
+              </>
+            )}
+          {isSelected &&
+            !rows.filter((f) => f.id == selectedRowId)[0].registered && (
+              <Button variant="contained" size="small" onClick={registerIn}>
+                Register in
+              </Button>
+            )}
         </div>
-      )}
-    </>
+      </div>
+      <div className="PageContent">
+        <div className="TableGrid">
+          <DataGrid
+            style={{ height: "100%", width: "100%" }}
+            checkboxSelection={true}
+            selectionModel={selectionModel}
+            onSelectionModelChange={handleEvent}
+            rows={rows}
+            columns={columns}
+          />
+        </div>
+      </div>
+    </div>
   );
 }

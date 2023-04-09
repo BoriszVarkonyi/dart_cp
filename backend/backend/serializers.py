@@ -218,7 +218,7 @@ class TestSerializer(serializers.ModelSerializer):
     def get_wc_status(self, obj):
 
         competition = self.context.get('competition')
-
+    
         queryset = WeaponControlModel.objects.filter(fencers=obj.id, competitions=competition).exists()
 
         return queryset

@@ -42,13 +42,13 @@ class FencerViewSet(FencerModelMixin, viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
 
-        print(len(request.data))
+        #print(request.data)
 
         if len(request.data) == 13:
             print("SINGLE")
             if FencerModel.objects.filter(id=request.data['id']).exists():
                 fencerobject = FencerModel.objects.get(id=request.data['id'])
-                fencerobject.competitions.add(2)
+                fencerobject.competitions.add(request.data['competitions'][0])
                 fencerobject.save()
                 return Response(status=200)
             else:
@@ -60,11 +60,23 @@ class FencerViewSet(FencerModelMixin, viewsets.ModelViewSet):
 
         else:
             print("MULTIPLE")
-            serializer = FencerSerializer(data=request.data)
-            if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data, status=201)
-            return Response(serializer.errors, status=400)
+            for x in request.data:
+                #print(x['id'])
+                if FencerModel.objects.filter(id=x['id']).exists():
+                    fencerobject = FencerModel.objects.get(id=x['id'])
+                    fencerobject.competitions.add(x['competitions'][0])
+                    fencerobject.save()
+                else:
+                    serializer = FencerSerializer(data=x)
+                    if serializer.is_valid():
+                        serializer.save()
+            return Response(status=201)
+    
+    def destroy(self, request, *args, **kwargs):
+        print(request)
+        fencerobj = FencerModel.objects.get(id=request.data['id'])
+        #fencerobj.competitions.remove(request.data)
+
 
 class CompetitionViewSet(viewsets.ModelViewSet):
   queryset = CompetitionModel.objects.all()
