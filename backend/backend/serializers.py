@@ -199,7 +199,7 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         return token
     
 
-class TestSerializer(serializers.ModelSerializer):
+class CompetitorsDataSerializer(serializers.ModelSerializer):
     reg_status = serializers.SerializerMethodField()
     wc_status = serializers.SerializerMethodField()
 
@@ -222,3 +222,6 @@ class TestSerializer(serializers.ModelSerializer):
         queryset = WeaponControlModel.objects.filter(fencers=obj.id, competitions=competition).exists()
 
         return queryset
+
+# Nem vagyok benne biztos, hogy használni fogok itt serializert, de itthagyom mindenesetre
+#class StatisticsSerializer(serializers.ModelSerializer):

@@ -51,10 +51,10 @@ urlpatterns = [
         'registration/<str:competition>/',
         views.RegisterFencerList.as_view(),
     ),
-    path(
-        'stats/competitions/<str:competition>/issues/',
-        views.CompetitionIssuesByNations.as_view(),
-    ),
+    #path(
+    #    'stats/competitions/<str:competition>/issues/',
+    #   views.CompetitionIssuesByNations.as_view(),
+    #),
     path(
         'gethash/<int:competition>/<str:fencer>/',
         views.GetHash.as_view(),
@@ -70,5 +70,9 @@ urlpatterns = [
     path(
         'competitorsdata/<int:competition>',
         views.AllCompetitorsData.as_view(),
+    ),
+    path(
+        'stats/<int:competition>',
+        views.Statistics.as_view(),
     ),
 ]
