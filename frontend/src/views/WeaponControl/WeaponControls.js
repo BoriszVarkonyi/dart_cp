@@ -35,7 +35,26 @@ const columns = [
   { field: "wcClub", headerName: "CLUB", width: 200 },
   { field: "wcDTB", headerName: "DATE OF BIRTH", width: 200 },
   { field: "wcSex", headerName: "SEX", width: 200 },
-  { field: "wcStatus", headerName: "WC. STATUS", width: 200 },
+  {
+    field: "wcStatus",
+    headerName: "WC. STATUS",
+    type: "boolean",
+    renderCell: (params) => {
+      return params.value ? (
+        <Chip
+          icon={<CheckCircleOutlineIcon />}
+          label="Finished"
+          variant="outlined"
+        />
+      ) : (
+        <Chip
+          icon={<HighlightOffIcon />}
+          label="Not finished"
+          variant="outlined"
+        />
+      );
+    },
+  },
   { field: "statut", headerName: "STATUS", width: 200 },
 ];
 
