@@ -123,7 +123,7 @@ export default function Competitors() {
   }, [location]);
 
   const deleteRow = () => {
-    deleteFunction(`fencers/${selectedRowId}/`, {compID: compId});
+    deleteFunction(`fencers/${selectedRowId}/`, {compID: compId, fencerID: selectedRowId});
   };
 
   const modalProps = {
