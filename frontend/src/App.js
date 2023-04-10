@@ -45,6 +45,7 @@ function App() {
               <Route index element={<Registration />} />
               <Route path=":fencerId/print" element={<PrintBarcode />} />
             </Route>
+            {/*Béla was here*/}
             <Route path="weapon_control">
               <Route index element={<WeaponControls />} />
               <Route path="add" element={<WeaponControl type="Add" />} />

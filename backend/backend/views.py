@@ -57,7 +57,7 @@ class FencerViewSet(FencerModelMixin, viewsets.ModelViewSet):
                     serializer.save()
                     return Response(serializer.data, status=201)
                 return Response(serializer.errors, status=400)
-                
+
         else:
             print("MULTIPLE")
             for x in request.data:
@@ -112,7 +112,7 @@ class XmlUploadView(APIView):
     parser_classes = (XMLParser,MultiPartParser,)
     def post(self, request):
       print(request.FILES)
-      
+
 
       #File upload and save to disk
       f = request.FILES['xmlfile']
@@ -152,7 +152,7 @@ class XmlUploadView(APIView):
         obj = FencerModel(
                 id=ID,
                 nom=NOM,
-                pre_nom=PRENOM, 
+                pre_nom=PRENOM,
                 sexe=SEXE,
                 lateralite=LATERALITE,
                 nation=NATION,
@@ -173,9 +173,9 @@ class XmlUploadView(APIView):
 class FencersCompetitionsView(APIView):
     def get(self, request, fencer):
         fencer = self.kwargs['fencer']
-        queryset = FencerModel.objects.get(id=fencer) 
+        queryset = FencerModel.objects.get(id=fencer)
         serializer_class = FencersCompetitionSerializer(
-            queryset, 
+            queryset,
             context={'request': request}
         )
         return Response(serializer_class.data)
@@ -358,12 +358,12 @@ class CompetitionIssuesByNations(APIView):
 
         an_iterator = groupby(serializer.data, lambda x : x['fencers']['nation'])
 
-        orderedFencers = {} 
+        orderedFencers = {}
 
         for key, group in an_iterator:
             key_and_group = {key : list(group)}
             print(key_and_group)
-            orderedFencers.update(key_and_group) 
+            orderedFencers.update(key_and_group)
 
         #print(serializer)
 

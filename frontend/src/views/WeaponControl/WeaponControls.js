@@ -8,8 +8,8 @@ import useDataGridHelper from "../../services/useDataGridHelper";
 import { useParams } from "react-router-dom";
 import { get, remove } from "../../services/backend.service";
 import ModalComp from "../../components/static/Modal/ModalComp";
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { useLocation } from "react-router-dom";
 import useBasicServices from "../../services/basic.service";
 
@@ -22,7 +22,8 @@ const row = (element) => {
     wcClub: element.club,
     wcDTB: element.date_naissance,
     wcSex: element.sexe,
-    wcStatus: element.statut,
+    wcStatus: element.wc_status,
+    statut: element.statut,
   };
 };
 
@@ -34,7 +35,8 @@ const columns = [
   { field: "wcClub", headerName: "CLUB", width: 200 },
   { field: "wcDTB", headerName: "DATE OF BIRTH", width: 200 },
   { field: "wcSex", headerName: "SEX", width: 200 },
-  { field: "wcStatus", headerName: "STATUS", width: 200 },
+  { field: "wcStatus", headerName: "WC. STATUS", width: 200 },
+  { field: "statut", headerName: "STATUS", width: 200 },
 ];
 
 export default function WeaponControls() {
@@ -50,23 +52,34 @@ export default function WeaponControls() {
     openModalFunctiom,
   } = useDataGridHelper();
   const [modalProps, setModalProps] = useState({});
+  const [hasWC, setHasWC] = useState(false);
   const { tourId, compId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
   const { setLoadingState } = useBasicServices();
 
   async function getFencersData() {
-    const data = await get(`competitions/${compId}/fencers/`);
+    const data = await get(`competitorsdata/${compId}`);
     const rows = data.map((e) => row(e));
     setRows(rows);
-    setLoadingState(false)
+    setLoadingState(false);
   }
 
   //Gets the data from api. Also updates the data on route change. For example when another comp is selected.
   useEffect(() => {
-    setLoadingState(true)
+    setLoadingState(true);
     getFencersData();
   }, [location]);
+
+  //Determindes if a competition has already wc.
+  useEffect(() => {
+    if (selectedRowId != undefined) {
+      let selectedRow = rows.filter((row) => row.id.includes(selectedRowId));
+      selectedRow[0].wcStatus ? setHasWC(true) : setHasWC(false);
+    } else {
+      setHasWC(false);
+    }
+  }, [selectedRowId]);
 
   const deleteRow = async () => {
     await remove(`stats/weaponcontrols/issues/${compId}/${selectedRowId}/`);
@@ -100,12 +113,12 @@ export default function WeaponControls() {
       <div className="PageHeader">
         <h2 className="PageTitle">Weapon Control</h2>
         <div className="PageButtonsWrapper">
-          {isSelected && (
+          {isSelected && hasWC && (
             <Button variant="contained" size="small" onClick={deleteWc}>
               Remove weapon control
             </Button>
           )}
-          {isSelected && (
+          {isSelected && hasWC && (
             <Button
               variant="contained"
               size="small"
@@ -116,7 +129,7 @@ export default function WeaponControls() {
               Modify weapon control
             </Button>
           )}
-          {isSelected && (
+          {isSelected && !hasWC && (
             <Button
               variant="contained"
               size="small"
@@ -127,22 +140,38 @@ export default function WeaponControls() {
               Add weapon control
             </Button>
           )}
-          <Button variant="contained" size="small" onClick={openBarcode}>
-            Read Barcode
-          </Button>
+          {!isSelected && (
+            <Button variant="contained" size="small">
+              STATISTICS
+            </Button>
+          )}
+          {!isSelected && (
+            <Button variant="contained" size="small" onClick={openBarcode}>
+              Read Barcode
+            </Button>
+          )}
         </div>
       </div>
       <div className="PageContent">
         <div className="TableGrid">
           wc status:
-          <Chip icon={<CheckCircleOutlineIcon />} label="Finished" variant="outlined" />
-          <Chip icon={<HighlightOffIcon />} label="Not finished" variant="outlined" />
+          <Chip
+            icon={<CheckCircleOutlineIcon />}
+            label="Finished"
+            variant="outlined"
+          />
+          <Chip
+            icon={<HighlightOffIcon />}
+            label="Not finished"
+            variant="outlined"
+          />
           <DataGrid
             style={{ height: "100%", width: "100%" }}
             checkboxSelection={true}
             selectionModel={selectionModel}
             onSelectionModelChange={handleEvent}
             rows={rows}
+            rowHeight={25}
             columns={columns}
           />
         </div>
