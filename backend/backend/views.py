@@ -502,7 +502,23 @@ class Statistics(APIView):
 
     def get(self, request, competition):
 
+        #Get all fencers
+        fencers = FencerModel.objects.filter(competitions=competition).count()
+
+        all_issues = WeaponControlModel.objects.filter(competitions=competition)
+        serializer = WeaponControlSerializer(all_issues, many=True)
+
+        counter = 0
+
+        for x in serializer.data:
+            ycount = 0
+            for key,value in x.items():
+                if ycount > 1:
+                    if value == None:
+                        continue
+                    counter += value
+                ycount += 1
 
 
 
-        return(Response(data="WORKING"))
+        return(Response({'total_issues':counter, 'total_fencers':fencers}))
