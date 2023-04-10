@@ -5,11 +5,235 @@ import "./WeaponControlStatistics.css";
 import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { DataGrid } from "@mui/x-data-grid";
+import { ResponsivePieCanvas } from '@nivo/pie'
 
 export default function WeaponControlStatistics() {
 
+  const MyResponsivePieCanvas = ({ data /* see data tab */ }) => (
+    <ResponsivePieCanvas
+      data={[
+        {
+          "id": "scala",
+          "label": "scala",
+          "value": 201,
+          "color": "hsl(355, 70%, 50%)"
+        },
+        {
+          "id": "php",
+          "label": "php",
+          "value": 392,
+          "color": "hsl(77, 70%, 50%)"
+        },
+        {
+          "id": "ruby",
+          "label": "ruby",
+          "value": 523,
+          "color": "hsl(68, 70%, 50%)"
+        },
+        {
+          "id": "java",
+          "label": "java",
+          "value": 492,
+          "color": "hsl(100, 70%, 50%)"
+        },
+        {
+          "id": "css",
+          "label": "css",
+          "value": 365,
+          "color": "hsl(91, 70%, 50%)"
+        },
+        {
+          "id": "javascript",
+          "label": "javascript",
+          "value": 186,
+          "color": "hsl(37, 70%, 50%)"
+        },
+        {
+          "id": "stylus",
+          "label": "stylus",
+          "value": 409,
+          "color": "hsl(156, 70%, 50%)"
+        },
+        {
+          "id": "erlang",
+          "label": "erlang",
+          "value": 144,
+          "color": "hsl(64, 70%, 50%)"
+        },
+        {
+          "id": "c",
+          "label": "c",
+          "value": 207,
+          "color": "hsl(172, 70%, 50%)"
+        },
+        {
+          "id": "go",
+          "label": "go",
+          "value": 103,
+          "color": "hsl(215, 70%, 50%)"
+        },
+        {
+          "id": "hack",
+          "label": "hack",
+          "value": 546,
+          "color": "hsl(116, 70%, 50%)"
+        },
+        {
+          "id": "lisp",
+          "label": "lisp",
+          "value": 345,
+          "color": "hsl(193, 70%, 50%)"
+        },
+        {
+          "id": "rust",
+          "label": "rust",
+          "value": 454,
+          "color": "hsl(169, 70%, 50%)"
+        },
+        {
+          "id": "python",
+          "label": "python",
+          "value": 201,
+          "color": "hsl(293, 70%, 50%)"
+        },
+        {
+          "id": "make",
+          "label": "make",
+          "value": 247,
+          "color": "hsl(191, 70%, 50%)"
+        },
+        {
+          "id": "haskell",
+          "label": "haskell",
+          "value": 504,
+          "color": "hsl(219, 70%, 50%)"
+        },
+        {
+          "id": "elixir",
+          "label": "elixir",
+          "value": 56,
+          "color": "hsl(187, 70%, 50%)"
+        },
+        {
+          "id": "sass",
+          "label": "sass",
+          "value": 76,
+          "color": "hsl(339, 70%, 50%)"
+        }
+      ]}
+      margin={{ top: 40, right: 200, bottom: 40, left: 80 }}
+      innerRadius={0.5}
+      padAngle={0.7}
+      cornerRadius={3}
+      activeOuterRadiusOffset={8}
+      colors={{ scheme: 'paired' }}
+      borderColor={{
+        from: 'color',
+        modifiers: [
+          [
+            'darker',
+            0.6
+          ]
+        ]
+      }}
+      arcLinkLabelsSkipAngle={10}
+      arcLinkLabelsTextColor="#333333"
+      arcLinkLabelsThickness={2}
+      arcLinkLabelsColor={{ from: 'color' }}
+      arcLabelsSkipAngle={10}
+      arcLabelsTextColor="#333333"
+      defs={[
+        {
+          id: 'dots',
+          type: 'patternDots',
+          background: 'inherit',
+          color: 'rgba(255, 255, 255, 0.3)',
+          size: 4,
+          padding: 1,
+          stagger: true
+        },
+        {
+          id: 'lines',
+          type: 'patternLines',
+          background: 'inherit',
+          color: 'rgba(255, 255, 255, 0.3)',
+          rotation: -45,
+          lineWidth: 6,
+          spacing: 10
+        }
+      ]}
+      fill={[
+        {
+          match: {
+            id: 'ruby'
+          },
+          id: 'dots'
+        },
+        {
+          match: {
+            id: 'c'
+          },
+          id: 'dots'
+        },
+        {
+          match: {
+            id: 'go'
+          },
+          id: 'dots'
+        },
+        {
+          match: {
+            id: 'python'
+          },
+          id: 'dots'
+        },
+        {
+          match: {
+            id: 'scala'
+          },
+          id: 'lines'
+        },
+        {
+          match: {
+            id: 'lisp'
+          },
+          id: 'lines'
+        },
+        {
+          match: {
+            id: 'elixir'
+          },
+          id: 'lines'
+        },
+        {
+          match: {
+            id: 'javascript'
+          },
+          id: 'lines'
+        }
+      ]}
+      legends={[
+        {
+          anchor: 'right',
+          direction: 'column',
+          justify: false,
+          translateX: 140,
+          translateY: 0,
+          itemsSpacing: 2,
+          itemWidth: 60,
+          itemHeight: 14,
+          itemTextColor: '#999',
+          itemDirection: 'left-to-right',
+          itemOpacity: 1,
+          symbolSize: 14,
+          symbolShape: 'circle'
+        }
+      ]}
+    />
+  )
+
   // Statistics document styling
-  const styles = StyleSheet.create({
+  const DocumentStyles = StyleSheet.create({
     page: {
       flexDirection: 'row',
       backgroundColor: '#E4E4E4'
@@ -24,11 +248,11 @@ export default function WeaponControlStatistics() {
   // Statistics document declaration
   const WCStatisticsDocument = () => (
     <Document>
-      <Page size="A4" style={styles.page}>
-        <View style={styles.section}>
+      <Page size="A4" style={DocumentStyles.page}>
+        <View style={DocumentStyles.section}>
           <Text>Section #1</Text>
         </View>
-        <View style={styles.section}>
+        <View style={DocumentStyles.section}>
           <Text>Section #2</Text>
         </View>
       </Page>
@@ -49,6 +273,7 @@ export default function WeaponControlStatistics() {
         </div>
       </div>
       <div className="ColumnPage">
+        <MyResponsivePieCanvas />
         <p className="PageSectionTitle">SUMMARY</p>
         <div className="PageSection">
           <div className="StatGrid">
