@@ -171,6 +171,7 @@ export default function WeaponControls() {
             selectionModel={selectionModel}
             onSelectionModelChange={handleEvent}
             rows={rows}
+            rowHeight={25}
             columns={columns}
           />
         </div>
