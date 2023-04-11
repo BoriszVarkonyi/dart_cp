@@ -156,3 +156,8 @@
 .FormRow > * {
 	margin: 0 !important;
 }
+
+.DataGridAlert {
+	width: 100%;
+	padding: 13px 0;
+}

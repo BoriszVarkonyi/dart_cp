@@ -39,7 +39,7 @@ export default function Import() {
   const [fencerArray, setFencerArray] = useState([]);
   const { tournamentId, compId } = useParams();
   const { openModalFunctiom } = useDataGridHelper();
-  const {setLoadingState} = useBasicServices();
+  const { setLoadingState } = useBasicServices();
 
   const modalProps = {
     type: "Succes",
@@ -130,13 +130,14 @@ export default function Import() {
           </Button>
           <Button variant="contained" component="label" size="small">
             Upload File
-            <input type="file" hidden onChange={selectFile} />
+            <input type="file" accept=".xml" hidden onChange={selectFile} />
           </Button>
           {hasError && <Alert severity="error">Wrong file format!</Alert>}
           {hasSelectedFile && (
-            <Button variant="contained" size="small" onClick={()=>{ 
+            <Button variant="contained" size="small" onClick={() => {
               setLoadingState(true)
-              importFencers()}}>
+              importFencers()
+            }}>
               Import
             </Button>
           )}
@@ -151,19 +152,21 @@ export default function Import() {
         )}
       </div>
       <div className="PageContent">
-        <div className="TableGrid">
-          {!hasSelectedFile && <Alert severity="info">File not selected</Alert>}
-          {hasSelectedFile && (
-            <>
-              <h3>Preview:</h3>
+        {!hasSelectedFile && <Alert severity="info">File not selected</Alert>}
+        {hasSelectedFile && (
+          <>
+            <div className="TableGrid">
               <DataGrid
                 rows={rows}
                 columns={columns}
                 style={{ height: "100%", width: "100%" }}
               />
-            </>
-          )}
-        </div>
+              <div className="DataGridAlert">
+                <p>Preview</p>
+              </div>
+            </div>
+          </>
+        )}
       </div>
       <ModalComp modalProps={modalProps} />
     </div>
