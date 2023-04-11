@@ -18,7 +18,7 @@ const instance = axios.create({
   cancelToken: "",
 });
 
-function apiCallHandler() {
+function createCancelToken() {
   const CancelToken = axios.CancelToken;
   const source = CancelToken.source();
   return source;
@@ -26,23 +26,23 @@ function apiCallHandler() {
 
 //Lord forgive me what I'm about to do
 async function get(url) {
-  if (
-    apiCalls.some((call) => {
-      if (call.apiCall == url) {
-        return true;
-      }
-      return false;
-    })
-  ) {
-    const callToCancel = apiCalls.filter((call)=>call.apiCall.includes(url))
-    console.log(callToCancel[0].apiCall)
-  } else {
-    apiCalls.push({ apiCall: url, cToken: apiCallHandler() });
-  }
+  // if (
+  //   apiCalls.some((call) => {
+  //     if (call.apiCall == url) {
+  //       return true;
+  //     }
+  //     return false;
+  //   })
+  // ) {
+  //   const callToCancel = apiCalls.filter((call) => call.apiCall.includes(url));
+  // } else {
+  //   apiCalls.push({ apiCall: url, cToken: apiCallHandler() });
+  // }
+
   instance.defaults.headers.Authorization = authHeader();
   try {
     const resp = await instance.get(`${url}`);
-    apiCalls = apiCalls.filter((item) => item.apiCall != url);
+    //apiCalls = apiCalls.filter((item) => item.apiCall != url);
     return await resp.data;
   } catch (err) {
     return [];
@@ -88,4 +88,4 @@ async function update(url, payload) {
   const resp = await instance.patch(`${url}`);
 }
 
-export { get, post, postBulk, remove, update };
+export { get, post, postBulk, remove, update, createCancelToken };

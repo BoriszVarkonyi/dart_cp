@@ -3,7 +3,6 @@ import { DataGrid } from "@mui/x-data-grid";
 import { Button } from "@mui/material";
 import { Chip } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 import useDataGridHelper from "../../services/useDataGridHelper";
 import { useParams } from "react-router-dom";
 import { get, remove } from "../../services/backend.service";
@@ -23,7 +22,6 @@ const row = (element) => {
     wcDTB: element.date_naissance,
     wcSex: element.sexe,
     wcStatus: element.wc_status,
-    statut: element.statut,
   };
 };
 
@@ -55,7 +53,6 @@ const columns = [
       );
     },
   },
-  { field: "statut", headerName: "STATUS", width: 200 },
 ];
 
 export default function WeaponControls() {
