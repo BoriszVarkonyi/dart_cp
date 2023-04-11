@@ -3,7 +3,7 @@ import { Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { get, remove } from "../../services/backend.service";
+import { get, remove, createCancelToken } from "../../services/backend.service";
 import { useParams } from "react-router-dom";
 import useDataGridHelper from "../../services/useDataGridHelper";
 import ModalComp from "../../components/static/Modal/ModalComp";
@@ -48,19 +48,20 @@ export default function Competitions() {
   } = useDataGridHelper();
   const { tournamentId } = useParams();
 
-  async function getData() {
-    const data = await get(`tournaments/${tournamentId}/competitions/`);
+  async function getData(cancelToken) {
+    const data = await get(`tournaments/${tournamentId}/competitions/`, cancelToken.token);
     const rows = data.map((e) => row(e));
     setRows(rows);
 
     //Navbar menuitems works from a redux store state. This sets that state
     dispatch(setCompetitions(data))
-    setLoadingState(false)
   }
 
   useEffect(() => {
     setLoadingState(true)
-    getData();
+    const cancelToken = createCancelToken();
+    getData(cancelToken);
+    return ()=> cancelToken.cancel();
   }, []);
 
 

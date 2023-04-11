@@ -1,12 +1,8 @@
 import axios from "axios";
 import authHeader from "./auth-header";
-import { DataGrid, SortGridMenuItems } from "@mui/x-data-grid";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { openModal } from "../slices/modalSlice";
+import store from "../store"
+import { setIsLoading } from "../slices/load";
 import createMixins from "@mui/material/styles/createMixins";
-
-let apiCalls = [];
 
 const instance = axios.create({
   baseURL: process.env.REACT_APP_API,
@@ -24,25 +20,13 @@ function createCancelToken() {
   return source;
 }
 
-//Lord forgive me what I'm about to do
-async function get(url) {
-  // if (
-  //   apiCalls.some((call) => {
-  //     if (call.apiCall == url) {
-  //       return true;
-  //     }
-  //     return false;
-  //   })
-  // ) {
-  //   const callToCancel = apiCalls.filter((call) => call.apiCall.includes(url));
-  // } else {
-  //   apiCalls.push({ apiCall: url, cToken: apiCallHandler() });
-  // }
 
+async function get(url, cToken) {
   instance.defaults.headers.Authorization = authHeader();
   try {
-    const resp = await instance.get(`${url}`);
-    //apiCalls = apiCalls.filter((item) => item.apiCall != url);
+    const resp = await instance.get(`${url}`, {cancelToken: cToken});
+    //I the api call is done, sets the loading state to false. Loading state is stored in Redux store.
+    store.dispatch(setIsLoading(false))
     return await resp.data;
   } catch (err) {
     return [];

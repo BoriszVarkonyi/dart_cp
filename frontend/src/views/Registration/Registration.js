@@ -3,7 +3,7 @@ import { Button } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { Chip } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
-import { get, post } from "../../services/backend.service";
+import { get, post, createCancelToken } from "../../services/backend.service";
 import { useNavigate } from "react-router-dom";
 import useDataGridHelper from "../../services/useDataGridHelper";
 import { useLocation } from "react-router-dom";
@@ -53,22 +53,25 @@ export default function Registration() {
   const { tourId, compId } = useParams();
   const { setLoadingState } = useBasicServices();
 
-  async function getFencersData() {
-    const fencersData = await get(`competitions/${compId}/fencers/`);
-    const registrationData = await getRegistrationData();
+  async function getFencersData(fCancelToken, rCancelToken) {
+    const fencersData = await get(`competitions/${compId}/fencers/`, fCancelToken.token);
+    const registrationData = await get(`competitions/${compId}/registrations/`, rCancelToken.token);
     setRows(fencerInCompetition(fencersData, registrationData));
-    setLoadingState(false);
-  }
-
-  async function getRegistrationData() {
-    return await get(`competitions/${compId}/registrations/`);
   }
 
   // Gets the data from api. Updates the data on route change.
   // For example when another comp is selected.
   useEffect(() => {
     setLoadingState(true);
-    getFencersData();
+    //Creates cancel token(s). It prevents the user to spam api calls.
+    const fencerCancelToken = createCancelToken();
+    const regCancelToken = createCancelToken();
+    getFencersData(fencerCancelToken, regCancelToken);
+    return()=>{
+      //Cancels the old api call(s), if a new one is made.
+      fencerCancelToken.cancel();
+      regCancelToken.cancel()
+    }
   }, [location]);
 
   function fencerInCompetition(fencers, registartions) {

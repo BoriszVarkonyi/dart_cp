@@ -14,6 +14,7 @@ export default function Loading() {
         alignItems: "center",
         justifyContent: "center",
         height: "100%"
+        
       }}
     >
       <img src="https://media.tenor.com/KEzW7ALwfUAAAAAC/cat-what.gif" />

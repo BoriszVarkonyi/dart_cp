@@ -5,7 +5,7 @@ import { Chip } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import useDataGridHelper from "../../services/useDataGridHelper";
 import { useParams } from "react-router-dom";
-import { get, remove } from "../../services/backend.service";
+import { get, remove, createCancelToken } from "../../services/backend.service";
 import ModalComp from "../../components/static/Modal/ModalComp";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
@@ -74,17 +74,20 @@ export default function WeaponControls() {
   const location = useLocation();
   const { setLoadingState } = useBasicServices();
 
-  async function getFencersData() {
-    const data = await get(`competitorsdata/${compId}`);
+  async function getFencersData(cancelToken) {
+    const data = await get(`competitorsdata/${compId}`, cancelToken.token);
     const rows = data.map((e) => row(e));
     setRows(rows);
-    setLoadingState(false);
   }
 
   //Gets the data from api. Also updates the data on route change. For example when another comp is selected.
   useEffect(() => {
+    //Sets the Loading state to true. Loading state is stored in a Redux store.
     setLoadingState(true);
-    getFencersData();
+    //Creates cancel token(s). It prevents the user to spam api calls.
+    const cancelToken = createCancelToken();
+    getFencersData(cancelToken);
+    return ()=> cancelToken.cancel();
   }, [location]);
 
   //Determindes if a competition has already wc.
@@ -157,7 +160,11 @@ export default function WeaponControls() {
             </Button>
           )}
           {!isSelected && (
-            <Button variant="contained" size="small" onClick={()=> navigate("statistics")}>
+            <Button
+              variant="contained"
+              size="small"
+              onClick={() => navigate("statistics")}
+            >
               STATISTICS
             </Button>
           )}

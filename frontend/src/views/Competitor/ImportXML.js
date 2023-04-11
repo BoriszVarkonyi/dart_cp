@@ -53,7 +53,7 @@ export default function Import() {
   }
 
   const selectFile = (event) => {
-    const fileType = event.target.files[0].type;
+    const fileType = event.target.files[0]?.type;
     const file = event.target.files[0];
 
     if (fileType == "text/xml") {
@@ -130,7 +130,7 @@ export default function Import() {
           </Button>
           <Button variant="contained" component="label" size="small">
             Upload File
-            <input type="file" accept=".xml" hidden onChange={selectFile} />
+            <input type="file" accept=".xml" hidden onChange={selectFile} onSelect={()=>console.log("??")}/>
           </Button>
           {hasError && <Alert severity="error">Wrong file format!</Alert>}
           {hasSelectedFile && (

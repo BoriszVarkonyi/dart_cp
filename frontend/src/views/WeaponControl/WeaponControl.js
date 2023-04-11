@@ -26,7 +26,7 @@ export default function WeaponControl(props) {
     formState: { errors },
   } = useForm();
 
-  //Generates the issues. It uses an API.
+  //Generates the issues. It gets the data from an API.
   const generateTR = (key, keyValue, rowKey) => {
     return (
       <tr key={rowKey}>

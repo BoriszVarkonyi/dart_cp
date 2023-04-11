@@ -12,7 +12,6 @@ import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { useLocation } from "react-router-dom";
 
-
 //Sets the rows for DT view
 const rowDT = (element) => {
   return {
@@ -105,25 +104,33 @@ export default function Competitors() {
   const location = useLocation();
   const { setLoadingState } = useBasicServices();
 
-  async function getFencersData() {
-    const data = await get(`competitorsdata/${compId}`);
+  async function getFencersData(cancelToken) {
+    const data = await get(`competitorsdata/${compId}`, cancelToken.token);
+
     //Sets the datas for the All Data view
     setRows(data);
 
     //Sets the datas for the DT view
     let rowArray = data.map((e) => rowDT(e));
     setRowDTView(rowArray);
-    setLoadingState(false);
   }
 
   //Gets the competitors from api. Also updates the data on route change. For example when another comp is selected.
   useEffect(() => {
+    //Sets the Loading state to true. Loading state is stored in a Redux store.
     setLoadingState(true);
-    getFencersData();
+    //Creates cancel token(s). It prevents the user to spam api calls.
+    const cancelToken = createCancelToken();
+    getFencersData(cancelToken);
+    //Cancels the old api call(s), if a new one is made.
+    return () => cancelToken.cancel();
   }, [location]);
 
   const deleteRow = () => {
-    deleteFunction(`fencers/${selectedRowId}/`, {compID: compId, fencerID: selectedRowId});
+    deleteFunction(`fencers/${selectedRowId}/`, {
+      compID: compId,
+      fencerID: selectedRowId,
+    });
   };
 
   const modalProps = {
