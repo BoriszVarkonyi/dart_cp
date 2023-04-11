@@ -79,12 +79,10 @@ export default function WeaponControl(props) {
     navigate(-1);
   };
 
-
   //Gets the issue datas from api
   useEffect(() => {
     async function getData() {
       const data = await get(`stats/weaponcontrols/issues/${compId}/${rowId}/`);
-
       let inputArray = [];
 
       let rowKey = 0;
@@ -99,7 +97,7 @@ export default function WeaponControl(props) {
             inputArray.push(row);
           }
           if (props.type == "Add") {
-            const row = generateTR(key, undefined, rowKey);
+            const row = generateTR(key, 0, rowKey);
             inputArray.push(row);
           }
           rowKey++;
@@ -120,11 +118,7 @@ export default function WeaponControl(props) {
           <Button variant="contained" onClick={() => navigate(-1)}>
             Cancel
           </Button>
-          <Button
-            variant="contained"
-            type="submit"
-            form="issue-form"
-          >
+          <Button variant="contained" type="submit" form="issue-form">
             Save weapon control
           </Button>
         </div>

@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import "./Modal.css";
-import { Button, Modal, Box, Typography, IconButton } from "@mui/material";
+import { Button, Modal, Box, IconButton } from "@mui/material";
 import { closeModal } from "../../../slices/modalSlice";
 import { useDispatch } from "react-redux";
-import useDataGridHelper from "../../../services/useDataGridHelper";
 import { useSelector } from "react-redux";
 import { TextField } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import BarcodeImage from "../../../assets/barcode-read.svg";
+import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
 import verifyHash from "../../../services/hash.service";
 import { useNavigate } from "react-router-dom";
 
@@ -67,7 +66,7 @@ export default function ModalComp(props) {
         {modalProps.type == "Barcode" && (
           <div className="ModalContent">
             <div className="ModalContentInner">
-              <img className="BarcodeImage" src={BarcodeImage} />
+              <QrCodeScannerIcon className="BarcodeImage" sx={{ fontSize: 160 }} />
               <TextField
                 label="Code"
                 type="text"

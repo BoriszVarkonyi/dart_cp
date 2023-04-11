@@ -548,17 +548,21 @@ class Statistics(APIView):
             ycount = 0
             for key, value in x.items():
                 if ycount > 1:
+                    realname = WeaponControlModel._meta.get_field(key).verbose_name
                     if value == None:
                         continue
-                    if key in Issues_Dict:
-                        Issues_Dict[key] += value
+                    if realname in Issues_Dict:
+                        Issues_Dict[realname] += value
                     else:
-                        Issues_Dict[key] = value
+                        Issues_Dict[realname] = value
                 ycount += 1
 
-        
+        sorted_issues = dict(sorted(Issues_Dict.items(), key=lambda x:x[1], reverse=True))
 
+        most_issue_name = list(sorted_issues.keys())[0]
+        most_issue_value = list(sorted_issues.values())[0]
 
+        least_issue_name = list(sorted_issues.keys())[-1]
+        least_issue_value = list(sorted_issues.values())[-1]
 
-
-        return(Response({'total_issues':counter, 'total_fencers':fencernum, 'total_nation':count, 'total_ratio':total_ratio, 'test':Issues_Dict}))
+        return(Response({'total_issues':counter, 'total_fencers':fencernum, 'total_nation':count, 'total_ratio':total_ratio, 'most_issue':{most_issue_name:most_issue_value}, 'least_issue':{least_issue_name:least_issue_value}}))

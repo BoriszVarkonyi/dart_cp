@@ -15,7 +15,6 @@ import useBasicServices from "../../services/basic.service";
 const row = (element) => {
   return {
     id: element.id,
-    barCode: element.barcode,
     wcName: element.pre_nom + " " + element.nom,
     wcNat: element.nation,
     wcClub: element.club,
@@ -27,7 +26,6 @@ const row = (element) => {
 
 //Sets the columns
 const columns = [
-  { field: "barCode", headerName: "BARCODE", width: 200 },
   { field: "wcName", headerName: "NAME", width: 200 },
   { field: "wcNat", headerName: "NATIONALITY", width: 200 },
   { field: "wcClub", headerName: "CLUB", width: 200 },
@@ -52,6 +50,7 @@ const columns = [
         />
       );
     },
+    width: 250,
   },
 ];
 
