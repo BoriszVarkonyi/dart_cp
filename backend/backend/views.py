@@ -503,11 +503,14 @@ class Statistics(APIView):
     def get(self, request, competition):
 
         #Get all fencers
-        fencers = FencerModel.objects.filter(competitions=competition).count()
+        fencers = FencerModel.objects.filter(competitions=competition)
+        fencernum = fencers.count()
 
         all_issues = WeaponControlModel.objects.filter(competitions=competition)
         serializer = WeaponControlSerializer(all_issues, many=True)
 
+
+        #Get total issues
         counter = 0
 
         for x in serializer.data:
@@ -519,6 +522,43 @@ class Statistics(APIView):
                     counter += value
                 ycount += 1
 
+        #Get total countries
+
+        countries = []
+
+        fser = FencerSerializer(fencers, many=True)
+
+        for x in fser.data:
+            print(x['nation'])
+            if x['nation'] in countries:
+                print("MARBENNE")
+            else:
+                countries.append(x['nation'])
+
+        count = len(countries)
+
+        #Get total ratio
+        total_ratio =  round(counter / fencernum, 2)
+
+        #Get most/least common issues
+
+        Issues_Dict = {}
+
+        for x in serializer.data:
+            ycount = 0
+            for key, value in x.items():
+                if ycount > 1:
+                    if value == None:
+                        continue
+                    if key in Issues_Dict:
+                        Issues_Dict[key] += value
+                    else:
+                        Issues_Dict[key] = value
+                ycount += 1
+
+        
 
 
-        return(Response({'total_issues':counter, 'total_fencers':fencers}))
+
+
+        return(Response({'total_issues':counter, 'total_fencers':fencernum, 'total_nation':count, 'total_ratio':total_ratio, 'test':Issues_Dict}))
