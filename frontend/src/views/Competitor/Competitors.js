@@ -11,6 +11,11 @@ import ModalComp from "../../components/static/Modal/ModalComp";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { useLocation } from "react-router-dom";
+import {
+  translateLateralite,
+  translateSex,
+  translateStatus,
+} from "../../services/translate.service";
 
 //Sets the rows for DT view
 const rowDT = (element) => {
@@ -108,7 +113,16 @@ export default function Competitors() {
     const data = await get(`competitorsdata/${compId}`, cancelToken.token);
 
     //Sets the datas for the All Data view
-    setRows(data);
+    setRows(
+      data.map((f) => {
+        return {
+          ...f,
+          sexe: translateSex(f.sexe),
+          lateralite: translateLateralite(f.lateralite),
+          statut: translateStatus(f.statut),
+        };
+      })
+    );
 
     //Sets the datas for the DT view
     let rowArray = data.map((e) => rowDT(e));

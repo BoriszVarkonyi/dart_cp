@@ -11,6 +11,7 @@ import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { useLocation } from "react-router-dom";
 import useBasicServices from "../../services/basic.service";
+import { translateSex } from "../../services/translate.service";
 
 const row = (element) => {
   return {
@@ -19,7 +20,7 @@ const row = (element) => {
     wcNat: element.nation,
     wcClub: element.club,
     wcDTB: element.date_naissance,
-    wcSex: element.sexe,
+    wcSex: translateSex(element.sexe),
     wcStatus: element.wc_status,
   };
 };

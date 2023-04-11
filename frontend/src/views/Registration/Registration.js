@@ -12,6 +12,7 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import useBasicServices from "../../services/basic.service";
 import { useSelector } from "react-redux";
 import Loading from "../../components/static/Loading/Loading";
+import { translateSex } from "../../services/translate.service";
 
 const columns = [
   { field: "nom", headerName: "First Name" },
@@ -54,8 +55,14 @@ export default function Registration() {
   const { setLoadingState } = useBasicServices();
 
   async function getFencersData(fCancelToken, rCancelToken) {
-    const fencersData = await get(`competitions/${compId}/fencers/`, fCancelToken.token);
-    const registrationData = await get(`competitions/${compId}/registrations/`, rCancelToken.token);
+    const fencersData = await get(
+      `competitions/${compId}/fencers/`,
+      fCancelToken.token
+    );
+    const registrationData = await get(
+      `competitions/${compId}/registrations/`,
+      rCancelToken.token
+    );
     setRows(fencerInCompetition(fencersData, registrationData));
   }
 
@@ -67,18 +74,22 @@ export default function Registration() {
     const fencerCancelToken = createCancelToken();
     const regCancelToken = createCancelToken();
     getFencersData(fencerCancelToken, regCancelToken);
-    return()=>{
+    return () => {
       //Cancels the old api call(s), if a new one is made.
       fencerCancelToken.cancel();
-      regCancelToken.cancel()
-    }
+      regCancelToken.cancel();
+    };
   }, [location]);
 
   function fencerInCompetition(fencers, registartions) {
     return fencers.map((f) => {
       const registrationArray = registartions.filter((r) => f.id == r.fencers);
       if (registrationArray.length == 1) {
-        return { ...f, registered: registrationArray[0].registered };
+        return {
+          ...f,
+          registered: registrationArray[0].registered,
+          sexe: translateSex(f.sexe),
+        };
       } else {
         return { ...f, registered: false };
       }
