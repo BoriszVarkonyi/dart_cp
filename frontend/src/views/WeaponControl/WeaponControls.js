@@ -157,7 +157,7 @@ export default function WeaponControls() {
             </Button>
           )}
           {!isSelected && (
-            <Button variant="contained" size="small">
+            <Button variant="contained" size="small" onClick={()=> navigate("statistics")}>
               STATISTICS
             </Button>
           )}
