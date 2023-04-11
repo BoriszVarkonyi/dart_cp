@@ -170,17 +170,6 @@ export default function WeaponControls() {
       </div>
       <div className="PageContent">
         <div className="TableGrid">
-          wc status:
-          <Chip
-            icon={<CheckCircleOutlineIcon />}
-            label="Finished"
-            variant="outlined"
-          />
-          <Chip
-            icon={<HighlightOffIcon />}
-            label="Not finished"
-            variant="outlined"
-          />
           <DataGrid
             style={{ height: "100%", width: "100%" }}
             checkboxSelection={true}
