@@ -565,4 +565,37 @@ class Statistics(APIView):
         least_issue_name = list(sorted_issues.keys())[-1]
         least_issue_value = list(sorted_issues.values())[-1]
 
-        return(Response({'total_issues':counter, 'total_fencers':fencernum, 'total_nation':count, 'total_ratio':total_ratio, 'most_issue':{most_issue_name:most_issue_value}, 'least_issue':{least_issue_name:least_issue_value}}))
+        #Get most/least issues & ratio
+
+        n_r_dict = {}
+
+        for z in countries:
+            n_r_dict[z] = {}
+
+        for x in fser.data:
+            for y in serializer.data:
+                f_id = x['id']
+                if y['fencers'] == f_id:
+                    ccount = 0
+                    issue_count = 0
+                    for key,value in y.items():
+                        if ccount > 1:
+                            if value == None:
+                                continue
+                            issue_count += value
+                        ccount += 1
+                    if n_r_dict[x['nation']] == {}:
+                        n_r_dict[x['nation']] = {'fencer_num':1, 'issue_num':issue_count}
+                    else:
+                        n_r_dict[x['nation']]['fencer_num'] += 1
+                        n_r_dict[x['nation']]['issue_num'] += issue_count
+
+        for key,value in n_r_dict.items():
+            if value != {}:
+                value['ratio'] = value['issue_num'] / value['fencer_num']
+
+
+
+
+
+        return(Response({'total_issues':counter, 'total_fencers':fencernum, 'total_nation':count, 'total_ratio':total_ratio, 'most_issue':{most_issue_name:most_issue_value}, 'least_issue':{least_issue_name:least_issue_value}, 'n_r':n_r_dict}))
