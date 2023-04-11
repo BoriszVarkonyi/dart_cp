@@ -9,16 +9,17 @@ import useDataGridHelper from "../../services/useDataGridHelper";
 import ModalComp from "../../components/static/Modal/ModalComp";
 import { setCompetitions, deleteCompetition } from "../../slices/compSlice";
 import { useDispatch } from "react-redux";
-import useBasicServices from "../../services/basic.service"
+import useBasicServices from "../../services/basic.service";
+import { translateWeaponType, translateSex, translateCompType } from '../../services/translate.service';
 
 const row = (element) => {
   return {
     id: element.id,
     name: element.title_long,
-    weapon_type: element.weapon_type,
+    weapon_type: translateWeaponType(element.weapon_type),
     is_wheelchair: element.is_wheelchair,
-    sex: element.sex,
-    type: element.type,
+    sex: translateSex(element.sex),
+    type: translateCompType(element.type),
     age_group: element.age_group,
   };
 };
