@@ -3,6 +3,7 @@ import ReactToPrint from 'react-to-print';
 import { useParams } from 'react-router-dom';
 import { QRCodeSVG } from 'qrcode.react';
 import { get } from '../../services/backend.service';
+import "../../StickerPrinting.css";
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -34,6 +35,18 @@ export default function PrintBarcode() {
 
   return (
     <>
+      <div className="PrintableSticker">
+        <div className="Sticker">
+          <QRCodeSVG value={hash} size="350" />
+          <div>
+            <b className="StickerName">Kristóf WOLFRAM Kristóf WOLFRAM</b>
+            <p className="StickerNationality">UZBEGISTAN UZBEGISTAN UZBEGISTAN</p>
+          </div>
+          <b className="StickerCode">0905151</b>
+          <p className="StickerWhitemark">Made with: <b>D'ARTGANAN CONTROL</b></p>
+        </div>
+      </div>
+      {/*
       <div className="Main">
         <Card sx={{ maxWidth: 320 }} ref={cardRef}>
           <CardMedia sx={{ height: 350 }} title="">
@@ -62,6 +75,8 @@ export default function PrintBarcode() {
           </CardActions>
         </Card>
       </div>
+    */}
+
     </>
   );
 }

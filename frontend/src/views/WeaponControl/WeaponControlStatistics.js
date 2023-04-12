@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@mui/material";
 import "./WeaponControlStatistics.css";
+import "../../DocumentPrinting.css";
 import { ResponsivePieCanvas } from "@nivo/pie";
 import { useNavigate } from "react-router-dom";
 import { DataGrid } from '@mui/x-data-grid';
