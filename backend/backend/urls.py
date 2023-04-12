@@ -75,4 +75,16 @@ urlpatterns = [
         'stats/<int:competition>',
         views.Statistics.as_view(),
     ),
+    path(
+        'stats/byNation/<int:competition>/',
+        views.StatisticsGetByNations.as_view(),
+    ),
+    path(
+        'stats/byNationByIssues/<int:competition>/',
+        views.StatisticsGetByNationsByIssue.as_view(),
+    ),
+    path(
+        'stats/byIssues/<int:competition>/',
+        views.StatisticsGetByIssues.as_view(),
+    ),
 ]

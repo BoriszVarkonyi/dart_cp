@@ -599,3 +599,194 @@ class Statistics(APIView):
 
 
         return(Response({'total_issues':counter, 'total_fencers':fencernum, 'total_nation':count, 'total_ratio':total_ratio, 'most_issue':{most_issue_name:most_issue_value}, 'least_issue':{least_issue_name:least_issue_value}, 'n_r':n_r_dict}))
+
+
+class StatisticsGetByNations(APIView):
+    def get(self, request, competition):
+
+        # get comp id from url
+        comp_id = competition
+
+        # data from db
+        queryset = WeaponControlModel.objects.filter( competitions=comp_id, )
+        serializer = WeaponControlNationSerializer(queryset, many=True)
+
+        # generate return list
+        return_list = dict()
+
+        # generate issues list
+        issues_list = [
+                'issue_1',
+                'issue_2',
+                'issue_3',
+                'issue_4',
+                'issue_5',
+                'issue_6',
+                'issue_7',
+                'issue_8',
+                'issue_9',
+                'issue_10',
+                'issue_11',
+                'issue_12',
+                'issue_13',
+                'issue_14',
+                'issue_15',
+                'issue_16',
+                'issue_17',
+                'issue_18',
+                'issue_19',
+                'issue_20',
+                'issue_21',
+                'issue_22',
+                'issue_23',
+                'issue_24',
+                'issue_25',
+                'issue_26',
+                'issue_27',
+                'issue_28',
+            ]
+
+        # loop through all issues of the competition and add the issues to the return list
+        for weapon_control_data in serializer.data:
+            nation = weapon_control_data['fencers']['nation']
+            # get sums of issues
+            sums_of_issues = 0
+            for issue_id in issues_list:
+                sums_of_issues += weapon_control_data[issue_id]
+
+            if (nation not in return_list):
+                return_list[nation] = 0
+
+            return_list[nation] += sums_of_issues
+
+        # Return the list and return_list
+        return Response(return_list)
+
+
+class StatisticsGetByNationsByIssue(APIView):
+    def get(self, request, competition):
+
+        # get comp id from url
+        comp_id = competition
+
+        # data from db
+        queryset = WeaponControlModel.objects.filter( competitions=comp_id, )
+        serializer = WeaponControlNationSerializer(queryset, many=True)
+
+        # generate return list
+        list_return = dict()
+
+        # generate issues list
+        issues_list = {
+           "issue_1": "FIE mark on blade",
+           "issue_2": "Arm gap and weight",
+           "issue_3": "Arm length",
+           "issue_4": "Blade length",
+           "issue_5": "Grip length",
+           "issue_6": "Form and depth of the guard",
+           "issue_7": "Guard oxydation/ deformation",
+           "issue_8": "Excentricity of the blade",
+           "issue_9": "Blade flexibility",
+           "issue_10": "Curve on the blade",
+           "issue_11": "Foucault current device",
+           "issue_12": "Point and arm size",
+           "issue_13": "Length/ condition of body/ mask wire",
+           "issue_14": "Resistance of body/ mask wire",
+           "issue_15": "Mask: FIE mark",
+           "issue_16": "Mask: condition and insulation",
+           "issue_17": "Mask: resistance (sabre/foil",
+           "issue_18": "Metallic jacket condition",
+           "issue_19": "Metallic jacket resistance",
+           "issue_20": "Sabre/ glove overlay condition",
+           "issue_21": "Sabre glove overlay resistance",
+           "issue_22": "Glove condition",
+           "issue_23": "Foil chest protector",
+           "issue_24": "Socks",
+           "issue_25": "Incorrect name printing",
+           "issue_26": "Incorrect national logo",
+           "issue_27": "Commercial",
+           "issue_28": "Other items",
+        }
+
+        for weapon_control_data in serializer.data:
+            nation = weapon_control_data['fencers']['nation']
+            # make issues obj
+            list_issues = dict()
+
+            for issue_id in issues_list:
+                human_readable_issue = issues_list[issue_id]
+                list_issues[human_readable_issue] = weapon_control_data[issue_id]
+
+            if (nation not in list_return):
+                list_return[nation] = dict()
+                for issue_id in issues_list:
+                    human_readable_issue = issues_list[issue_id]
+                    list_return[nation][human_readable_issue] = 0
+
+            for issue_id in issues_list:
+                human_readable_issue = issues_list[issue_id]
+                list_return[nation][human_readable_issue] += list_issues[human_readable_issue]
+
+        return Response(list_return)
+
+
+class StatisticsGetByIssues(APIView):
+    def get(self, request, competition):
+
+        # get comp id from url
+        comp_id = competition
+
+        # data from db
+        queryset = WeaponControlModel.objects.filter( competitions=comp_id, )
+        serializer = WeaponControlNationSerializer(queryset, many=True)
+
+        # generate return list
+        list_return = dict()
+
+        issues_list = {
+           "issue_1": "FIE mark on blade",
+           "issue_2": "Arm gap and weight",
+           "issue_3": "Arm length",
+           "issue_4": "Blade length",
+           "issue_5": "Grip length",
+           "issue_6": "Form and depth of the guard",
+           "issue_7": "Guard oxydation/ deformation",
+           "issue_8": "Excentricity of the blade",
+           "issue_9": "Blade flexibility",
+           "issue_10": "Curve on the blade",
+           "issue_11": "Foucault current device",
+           "issue_12": "Point and arm size",
+           "issue_13": "Length/ condition of body/ mask wire",
+           "issue_14": "Resistance of body/ mask wire",
+           "issue_15": "Mask: FIE mark",
+           "issue_16": "Mask: condition and insulation",
+           "issue_17": "Mask: resistance (sabre/foil",
+           "issue_18": "Metallic jacket condition",
+           "issue_19": "Metallic jacket resistance",
+           "issue_20": "Sabre/ glove overlay condition",
+           "issue_21": "Sabre glove overlay resistance",
+           "issue_22": "Glove condition",
+           "issue_23": "Foil chest protector",
+           "issue_24": "Socks",
+           "issue_25": "Incorrect name printing",
+           "issue_26": "Incorrect national logo",
+           "issue_27": "Commercial",
+           "issue_28": "Other items",
+        }
+
+        for issue_id in issues_list:
+            human_readable_issue = issues_list[issue_id]
+            list_return[human_readable_issue] = 0
+
+        # loop through all issues of the competition and add the issues to the return list
+        for weapon_control_data in serializer.data:
+            nation = weapon_control_data['fencers']['nation']
+            # get sums of issues
+
+            for issue_id in issues_list:
+                human_readable_issue = issues_list[issue_id]
+                list_return[human_readable_issue] += weapon_control_data[issue_id]
+
+        # Return the list and return_list
+        return Response(list_return)
+
