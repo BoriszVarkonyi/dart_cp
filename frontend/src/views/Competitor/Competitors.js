@@ -11,6 +11,8 @@ import ModalComp from "../../components/static/Modal/ModalComp";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { useLocation } from "react-router-dom";
+import Loading from "../../components/static/Loading/Loading";
+
 import {
   translateLateralite,
   translateSex,
@@ -221,6 +223,7 @@ export default function Competitors() {
             </Button>
           </div>
           <div className="TableGrid">
+            <Loading />
             <DataGrid
               style={{ height: "100%", width: "100%" }}
               checkboxSelection={true}
