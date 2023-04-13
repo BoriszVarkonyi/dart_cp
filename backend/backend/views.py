@@ -73,9 +73,15 @@ class FencerViewSet(FencerModelMixin, viewsets.ModelViewSet):
             return Response(status=201)
     
     def destroy(self, request, *args, **kwargs):
-        print(request.data)
-        #fencerobj = FencerModel.objects.get(id=request.data['id'])
-        #fencerobj.competitions.remove(request.data)
+        fencerobj = FencerModel.objects.get(id=request.data['fencerID'])
+        count_comps = fencerobj.competitions.count()
+        print('fobjcomp')
+        print (fencerobj.competitions.all())
+        if count_comps == 1:
+            fencerobj.delete()
+        else:
+            fencerobj.competitions.remove(request.data['compID'])
+            fencerobj.save()
         return Response(status=200)
 
 
@@ -587,8 +593,10 @@ class Statistics(APIView):
 
 
 
-
-        return(Response({'total_issues':counter, 'total_fencers':fencernum, 'total_nation':count, 'total_ratio':total_ratio, 'most_issue':{most_issue_name:most_issue_value}, 'least_issue':{least_issue_name:least_issue_value}, 'n_r':n_r_dict}))
+        if len(serializer.data) == 0:
+            return(Response("Not a valid competition or no weapon control record added"))
+        else:
+            return(Response({'total_issues':counter, 'total_fencers':fencernum, 'total_nation':count, 'total_ratio':total_ratio, 'most_issue':{most_issue_name:most_issue_value}, 'least_issue':{least_issue_name:least_issue_value}, 'n_r':n_r_dict}))
 
 
 class StatisticsGetByNations(APIView):
