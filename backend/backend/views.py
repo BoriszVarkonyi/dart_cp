@@ -516,6 +516,8 @@ class Statistics(APIView):
         for x in serializer.data:
             ycount = 0
             for key,value in x.items():
+                if key == "notes":
+                    continue 
                 if ycount > 1:
                     if value == None:
                         continue
@@ -538,7 +540,10 @@ class Statistics(APIView):
         count = len(countries)
 
         #Get total ratio
-        total_ratio =  round(counter / fencernum, 2)
+        if fencernum == 0:
+            total_ratio = "Not enough data"
+        else:
+            total_ratio =  round(counter / fencernum, 2)
 
         #Get most/least common issues
 
@@ -549,7 +554,7 @@ class Statistics(APIView):
             for key, value in x.items():
                 if ycount > 1:
                     realname = WeaponControlModel._meta.get_field(key).verbose_name
-                    if value == None:
+                    if key == "notes":
                         continue
                     if realname in Issues_Dict:
                         Issues_Dict[realname] += value
@@ -559,11 +564,18 @@ class Statistics(APIView):
 
         sorted_issues = dict(sorted(Issues_Dict.items(), key=lambda x:x[1], reverse=True))
 
-        most_issue_name = list(sorted_issues.keys())[0]
-        most_issue_value = list(sorted_issues.values())[0]
+        if sorted_issues == {}:
+            most_issue_name = "Not enough data"
+            most_issue_value = "Not enough data"
 
-        least_issue_name = list(sorted_issues.keys())[-1]
-        least_issue_value = list(sorted_issues.values())[-1]
+            least_issue_name = "Not enough data"
+            least_issue_value = "Not enough data"
+        else:
+            most_issue_name = list(sorted_issues.keys())[0]
+            most_issue_value = list(sorted_issues.values())[0]
+
+            least_issue_name = list(sorted_issues.keys())[-1]
+            least_issue_value = list(sorted_issues.values())[-1]
 
         #Get most/least issues & ratio
 
@@ -580,7 +592,7 @@ class Statistics(APIView):
                     issue_count = 0
                     for key,value in y.items():
                         if ccount > 1:
-                            if value == None:
+                            if key == "notes":
                                 continue
                             issue_count += value
                         ccount += 1
