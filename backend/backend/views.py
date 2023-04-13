@@ -348,28 +348,6 @@ class RegisterFencerList(APIView):
         )
         return Response(serializer.data)
 
-class CompetitionIssuesByNations(APIView):
-    def get(self, request, competition):
-
-        competition = self.kwargs['competition']
-
-        queryset = WeaponControlModel.objects.filter(competitions = competition).annotate(co = Count(id)).order_by('fencers__nation')
-        serializer = WeaponControlNationSerializer(queryset, many=True)
-
-        an_iterator = groupby(serializer.data, lambda x : x['fencers']['nation'])
-
-        orderedFencers = {}
-
-        for key, group in an_iterator:
-            key_and_group = {key : list(group)}
-            print(key_and_group)
-            orderedFencers.update(key_and_group)
-
-        #print(serializer)
-
-        return Response(data=orderedFencers)
-
-
 # TODO GetHash:
 # [x] Get competition id and fencer id
 # [x] Check ids if they exist
