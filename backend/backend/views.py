@@ -587,8 +587,10 @@ class Statistics(APIView):
 
 
 
-
-        return(Response({'total_issues':counter, 'total_fencers':fencernum, 'total_nation':count, 'total_ratio':total_ratio, 'most_issue':{most_issue_name:most_issue_value}, 'least_issue':{least_issue_name:least_issue_value}, 'n_r':n_r_dict}))
+        if len(serializer.data) == 0:
+            return(Response("Not a valid competition or no weapon control record added"))
+        else:
+            return(Response({'total_issues':counter, 'total_fencers':fencernum, 'total_nation':count, 'total_ratio':total_ratio, 'most_issue':{most_issue_name:most_issue_value}, 'least_issue':{least_issue_name:least_issue_value}, 'n_r':n_r_dict}))
 
 
 class StatisticsGetByNations(APIView):
