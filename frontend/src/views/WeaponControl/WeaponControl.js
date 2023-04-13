@@ -38,6 +38,7 @@ export default function WeaponControl(props) {
             type="number"
             size="small"
             defaultValue={keyValue}
+            onWheel={(event)=>event.target.blur()}
             {...register(`issue_${rowKey + 1}`, {
               max: {
                 value: 10,
@@ -47,6 +48,10 @@ export default function WeaponControl(props) {
                 value: 0,
                 message: "Please enter a number above zero!",
               },
+              pattern: {
+                value: /[0-9]*/,
+                message: "Please enter only numbers!"
+              }
             })}
           />
         </td>

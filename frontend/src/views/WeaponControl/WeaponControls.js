@@ -19,8 +19,6 @@ const row = (element) => {
     wcName: element.pre_nom + " " + element.nom,
     wcNat: element.nation,
     wcClub: element.club,
-    wcDTB: element.date_naissance,
-    wcSex: translateSex(element.sexe),
     wcStatus: element.wc_status,
   };
 };
@@ -30,8 +28,6 @@ const columns = [
   { field: "wcName", headerName: "NAME", width: 200 },
   { field: "wcNat", headerName: "NATIONALITY", width: 200 },
   { field: "wcClub", headerName: "CLUB", width: 200 },
-  { field: "wcDTB", headerName: "DATE OF BIRTH", width: 200 },
-  { field: "wcSex", headerName: "SEX", width: 200 },
   {
     field: "wcStatus",
     headerName: "WC. STATUS",
