@@ -4,10 +4,26 @@ import "./WeaponControlStatistics.css";
 import "../../DocumentPrinting.css";
 import { ResponsivePieCanvas } from "@nivo/pie";
 import { useNavigate } from "react-router-dom";
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid } from "@mui/x-data-grid";
+import { get, createCancelToken } from "../../services/backend.service";
+import { useParams } from "react-router-dom";
 
 export default function WeaponControlStatistics() {
+  const [statistics, setStatistics] = useState();
   const navigate = useNavigate();
+  const { compId } = useParams();
+
+  async function getData() {
+    const data = await get(`stats/${compId}`)
+    setStatistics(data)
+  }
+
+  useEffect(() => {
+
+    getData()
+  }, []);
+
+
 
   const MyResponsivePieCanvas = ({ data /* see data tab */ }) => (
     <ResponsivePieCanvas
@@ -217,7 +233,11 @@ export default function WeaponControlStatistics() {
         <div className="PageHeader">
           <h2 className="PageTitle">Weapon Control Statistics</h2>
           <div className="PageButtonsWrapper">
-            <Button variant="contained" size="small" onClick={() => navigate(-1)}>
+            <Button
+              variant="contained"
+              size="small"
+              onClick={() => navigate(-1)}
+            >
               GO BACK
             </Button>
           </div>
@@ -239,7 +259,7 @@ export default function WeaponControlStatistics() {
               <div className="StatGridCell5">
                 <div className="StatCard Large">
                   <p className="StatTitle">ISSUE TOTAL</p>
-                  <p className="StatData">80</p>
+                  <p className="StatData">{statistics? statistics["total_issues"]: 0}</p>
                 </div>
               </div>
               <div className="StatGridCell6">
@@ -250,8 +270,8 @@ export default function WeaponControlStatistics() {
                     </div>
                     <div className="StatDetails">
                       <div>
-                        <p className="StatTopic">Missing screw</p>
-                        <p>18 i.</p>
+                        <p className="StatTopic">{statistics? statistics["most_issue"]["type"]: 0}</p>
+                        <p>{statistics? statistics["most_issue"]["value"]: 0} i.</p>
                       </div>
                     </div>
                   </div>
@@ -262,8 +282,8 @@ export default function WeaponControlStatistics() {
                     </div>
                     <div className="StatDetails">
                       <div>
-                        <p className="StatTopic">Missing FIE mark</p>
-                        <p>0 i.</p>
+                        <p className="StatTopic">{statistics? statistics["least_issue"]["type"]: 0}</p>
+                        <p>{statistics? statistics["least_issue"]["value"]: 0} i.</p>
                       </div>
                     </div>
                   </div>
@@ -276,13 +296,13 @@ export default function WeaponControlStatistics() {
               <div className="StatGridCell9">
                 <div className="StatCard Large">
                   <p className="StatTitle">FENCER TOTAL</p>
-                  <p className="StatData">75</p>
+                  <p className="StatData">{statistics? statistics["total_fencers"]: 0}</p>
                 </div>
               </div>
               <div className="StatGridCell10">
                 <div className="StatCard Large Extra">
                   <p className="StatTitle">AVARAGE RATIO</p>
-                  <p className="StatData">1.3</p>
+                  <p className="StatData">{statistics? statistics["total_ratio"]: 0}</p>
                 </div>
               </div>
               <div className="StatGridCell11"></div>
@@ -292,7 +312,7 @@ export default function WeaponControlStatistics() {
               <div className="StatGridCell13">
                 <div className="StatCard Large">
                   <p className="StatTitle">COUNTRY TOTAL</p>
-                  <p className="StatData">12</p>
+                  <p className="StatData">{statistics? statistics["total_nation"]: 0}</p>
                 </div>
               </div>
               <div className="StatGridCell14">
@@ -370,8 +390,8 @@ export default function WeaponControlStatistics() {
           <p className="PageSectionTitle">NUMBER OF ISSUES BY COUNTRY</p>
           <div className="PageSection">
             <p>
-              datagrid ---- columns: country, number of issue ---- sorted by: no.
-              issue most to least
+              datagrid ---- columns: country, number of issue ---- sorted by:
+              no. issue most to least
             </p>
           </div>
           <p className="PageSectionTitle">ISSUE TYPES BY FREQUENCY</p>
@@ -409,7 +429,9 @@ export default function WeaponControlStatistics() {
               <div>
                 <p className="DocumentHeaderTitle">WEAPON CONTROL</p>
                 <p className="DocumentHeaderTitleExtension">STATISTICS</p>
-                <p className="DocumentHeaderSubtitle">Generated by: <span>DARTGANAN</span></p>
+                <p className="DocumentHeaderSubtitle">
+                  Generated by: <span>DARTGANAN</span>
+                </p>
               </div>
             </div>
             <div className="DocumentHeaderMiddle">
@@ -426,7 +448,9 @@ export default function WeaponControlStatistics() {
           </div>
           <div className="DocumentSectionTitle">ABSTRACT</div>
           <div className="DocumentSection DocumentColumnLayout Standard">
-            <p className="DocumentFootnote">*Total number of issues divided by total number of fencers</p>
+            <p className="DocumentFootnote">
+              *Total number of issues divided by total number of fencers
+            </p>
             <div>
               <p>NUMBER OF FENCERS:</p>
               <p>NUMBER OF COUNTRIES:</p>
@@ -452,9 +476,12 @@ export default function WeaponControlStatistics() {
               <p>ACCOUNTED ISSUE TYPES:</p>
             </div>
             <div>
-              <p>]issue name issue name issue name issue name issue name issue, issue name issue name,
-                issue name issue name issue name issue, name issue name issue name issue name,
-                issue name issue name issue name issue name issue name issue name issue name]</p>
+              <p>
+                ]issue name issue name issue name issue name issue name issue,
+                issue name issue name, issue name issue name issue name issue,
+                name issue name issue name issue name, issue name issue name
+                issue name issue name issue name issue name issue name]
+              </p>
             </div>
           </div>
           <div className="DocumentDivider">-</div>
@@ -476,9 +503,13 @@ export default function WeaponControlStatistics() {
               <p>]no]</p>
             </div>
           </div>
-          <p className="DocumentSectionSubtitle">COUNTRIES WITH MOST AND LEAST ISSUES</p>
+          <p className="DocumentSectionSubtitle">
+            COUNTRIES WITH MOST AND LEAST ISSUES
+          </p>
           <div className="DocumentSection DocumentColumnLayout ThreeColumns">
-            <p className="DocumentFootnote">*Number of issues divided by number of fencers in each country</p>
+            <p className="DocumentFootnote">
+              *Number of issues divided by number of fencers in each country
+            </p>
             <div>
               <p className="Hidden">-</p>
               <p>MOST ISSUES:</p>
@@ -495,7 +526,9 @@ export default function WeaponControlStatistics() {
               <p>]no]</p>
             </div>
           </div>
-          <p className="DocumentSectionSubtitle">COUNTRIES WITH WORST AND BEST RATIOS*</p>
+          <p className="DocumentSectionSubtitle">
+            COUNTRIES WITH WORST AND BEST RATIOS*
+          </p>
           <div className="DocumentSection DocumentColumnLayout ThreeColumns">
             <div>
               <p className="Hidden">-</p>
@@ -515,7 +548,9 @@ export default function WeaponControlStatistics() {
           </div>
           <div className="DocumentDivider">-</div>
           <div className="DocumentSection DocumentColumnLayout Growable WithChart">
-            <p className="DocumentSectionSubtitle">NUMBER OF FENCERS BY COUNTRY</p>
+            <p className="DocumentSectionSubtitle">
+              NUMBER OF FENCERS BY COUNTRY
+            </p>
             <div className="DocumentChartWrapper">
               <MyResponsivePieCanvas />
             </div>
@@ -527,7 +562,9 @@ export default function WeaponControlStatistics() {
               <div>
                 <p className="DocumentHeaderTitle">WEAPON CONTROL</p>
                 <p className="DocumentHeaderTitleExtension">STATISTICS</p>
-                <p className="DocumentHeaderSubtitle">Generated by: <span>DARTGANAN</span></p>
+                <p className="DocumentHeaderSubtitle">
+                  Generated by: <span>DARTGANAN</span>
+                </p>
               </div>
             </div>
             <div className="DocumentHeaderMiddle">
@@ -542,10 +579,10 @@ export default function WeaponControlStatistics() {
               <p>]YEAR]</p>
             </div>
           </div>
-          <div className="DocumentSectionTitle">NUMBER OF ISSUES BY COUNTRY</div>
-          <div className="DocumentSection Growable">
-            {/* datagrid */}
+          <div className="DocumentSectionTitle">
+            NUMBER OF ISSUES BY COUNTRY
           </div>
+          <div className="DocumentSection Growable">{/* datagrid */}</div>
         </div>
         <div className="DocumentPage">
           <div className="DocumentHeader DocumentColumnLayout">
@@ -553,7 +590,9 @@ export default function WeaponControlStatistics() {
               <div>
                 <p className="DocumentHeaderTitle">WEAPON CONTROL</p>
                 <p className="DocumentHeaderTitleExtension">STATISTICS</p>
-                <p className="DocumentHeaderSubtitle">Generated by: <span>DARTGANAN</span></p>
+                <p className="DocumentHeaderSubtitle">
+                  Generated by: <span>DARTGANAN</span>
+                </p>
               </div>
             </div>
             <div className="DocumentHeaderMiddle">
@@ -568,12 +607,12 @@ export default function WeaponControlStatistics() {
               <p>]YEAR]</p>
             </div>
           </div>
-          <div className="DocumentSectionTitle">NUMBER OF ISSUES BY COUNTRY</div>
-          <div className="DocumentSection Growable">
-            {/* datagrid */}
+          <div className="DocumentSectionTitle">
+            NUMBER OF ISSUES BY COUNTRY
           </div>
+          <div className="DocumentSection Growable">{/* datagrid */}</div>
         </div>
       </div>
-    </>
+      </>
   );
 }

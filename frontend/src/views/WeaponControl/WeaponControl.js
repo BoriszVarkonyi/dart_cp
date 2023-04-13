@@ -37,8 +37,7 @@ export default function WeaponControl(props) {
             helperText={errors[`issue_${rowKey + 1}`]?.message}
             type="number"
             size="small"
-            defaultValue={keyValue}
-            onWheel={(event)=>event.target.blur()}
+            defaultValue={Math.round(Math.random()*10)}
             {...register(`issue_${rowKey + 1}`, {
               max: {
                 value: 10,

@@ -12,6 +12,7 @@ import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { useLocation } from "react-router-dom";
 import Loading from "../../components/static/Loading/Loading";
+import { useSelector } from "react-redux";
 
 import {
   translateLateralite,
@@ -110,6 +111,7 @@ export default function Competitors() {
   const { tourId, compId } = useParams();
   const location = useLocation();
   const { setLoadingState } = useBasicServices();
+  const { isLoading } = useSelector((state) => state.isLoading);
 
   async function getFencersData(cancelToken) {
     const data = await get(`competitorsdata/${compId}`, cancelToken.token);
@@ -133,8 +135,10 @@ export default function Competitors() {
 
   //Gets the competitors from api. Also updates the data on route change. For example when another comp is selected.
   useEffect(() => {
+
     //Sets the Loading state to true. Loading state is stored in a Redux store.
     setLoadingState(true);
+    console.log("A kurva function alatt vagyok bazdmeg")
     //Creates cancel token(s). It prevents the user to spam api calls.
     const cancelToken = createCancelToken();
     getFencersData(cancelToken);
@@ -223,16 +227,18 @@ export default function Competitors() {
             </Button>
           </div>
           <div className="TableGrid">
-            <Loading />
-            <DataGrid
-              style={{ height: "100%", width: "100%" }}
-              checkboxSelection={true}
-              selectionModel={selectionModel}
-              onSelectionModelChange={handleEvent}
-              rows={allDataView ? rows : rowDTView}
-              rowHeight={25}
-              columns={allDataView ? columns : columnsDT}
-            />
+            {isLoading && <Loading />}
+            {!isLoading && (
+              <DataGrid
+                style={{ height: "100%", width: "100%" }}
+                checkboxSelection={true}
+                selectionModel={selectionModel}
+                onSelectionModelChange={handleEvent}
+                rows={allDataView ? rows : rowDTView}
+                rowHeight={25}
+                columns={allDataView ? columns : columnsDT}
+              />
+            )}
           </div>
         </div>
       </div>
