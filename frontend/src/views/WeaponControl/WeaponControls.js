@@ -87,7 +87,7 @@ export default function WeaponControls() {
     //Creates cancel token(s). It prevents the user to spam api calls.
     const cancelToken = createCancelToken();
     getFencersData(cancelToken);
-    return ()=> cancelToken.cancel();
+    return () => cancelToken.cancel();
   }, [location]);
 
   //Determindes if a competition has already wc.
@@ -118,7 +118,7 @@ export default function WeaponControls() {
     openModalFunctiom();
   };
 
-  const openBarcode = () => {
+  const openQRCode = () => {
     setModalProps({
       type: "Barcode",
       title: "Read barcode",
@@ -169,8 +169,8 @@ export default function WeaponControls() {
             </Button>
           )}
           {!isSelected && (
-            <Button variant="contained" size="small" onClick={openBarcode}>
-              Read Barcode
+            <Button variant="contained" size="small" onClick={openQRCode}>
+              Read QR Code
             </Button>
           )}
         </div>
