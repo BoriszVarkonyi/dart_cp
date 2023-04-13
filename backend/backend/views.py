@@ -588,7 +588,7 @@ class Statistics(APIView):
 
         for key,value in n_r_dict.items():
             if value != {}:
-                value['ratio'] = value['issue_num'] / value['fencer_num']
+                value['ratio'] = round(value['issue_num'] / value['fencer_num'], 2)
 
 
 
