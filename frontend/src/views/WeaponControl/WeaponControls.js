@@ -179,8 +179,12 @@ export default function WeaponControls() {
             selectionModel={selectionModel}
             onSelectionModelChange={handleEvent}
             rows={rows}
-            rowHeight={25}
+            rowHeight={30}
             columns={columns}
+            initialState={{
+              pagination: { paginationModel: { pageSize: 300 } },
+            }}
+            pageSizeOptions={[300, 400]}
           />
         </div>
       </div>
