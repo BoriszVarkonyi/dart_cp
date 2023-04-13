@@ -9,7 +9,7 @@ import ModalComp from "../../components/static/Modal/ModalComp";
 import useDataGridHelper from "../../services/useDataGridHelper";
 import { useDispatch } from "react-redux";
 import { closeModal } from "../../slices/modalSlice";
-import useBasicServices from "../../services/basic.service"
+import useBasicServices from "../../services/basic.service";
 
 const row = (element) => {
   return {
@@ -53,6 +53,7 @@ export default function Import() {
   }
 
   const selectFile = (event) => {
+    setLoadingState(false);
     const fileType = event.target.files[0]?.type;
     const file = event.target.files[0];
 
@@ -71,7 +72,7 @@ export default function Import() {
   //Helper functions
   async function handleFile(file) {
     parseFencers(file, generateDataGrid, setFencerArray);
-    setLoadingState(false)
+    setLoadingState(false);
 
     /*
     const formData = new FormData();
@@ -112,12 +113,12 @@ export default function Import() {
       setImportStatus(true);
     }
 
-    setLoadingState(false)
+    setLoadingState(false);
     openModalFunctiom();
     setTimeout(() => {
-      dispatch(closeModal())
-      navigate(-1)
-    }, 3000)
+      dispatch(closeModal());
+      navigate(-1);
+    }, 3000);
   };
 
   return (
@@ -128,16 +129,24 @@ export default function Import() {
           <Button variant="contained" size="small" onClick={() => navigate(-1)}>
             Go back
           </Button>
-          <Button variant="contained" component="label" size="small">
+          <Button
+            variant="contained"
+            component="label"
+            size="small"
+          >
             Upload File
-            <input type="file" accept=".xml" hidden onChange={selectFile} onSelect={()=>console.log("??")}/>
+            <input type="file" accept=".xml" hidden onChange={selectFile} />
           </Button>
           {hasError && <Alert severity="error">Wrong file format!</Alert>}
           {hasSelectedFile && (
-            <Button variant="contained" size="small" onClick={() => {
-              setLoadingState(true)
-              importFencers()
-            }}>
+            <Button
+              variant="contained"
+              size="small"
+              onClick={() => {
+                setLoadingState(true);
+                importFencers();
+              }}
+            >
               Import
             </Button>
           )}

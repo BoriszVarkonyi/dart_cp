@@ -19,8 +19,6 @@ const row = (element) => {
     wcName: element.pre_nom + " " + element.nom,
     wcNat: element.nation,
     wcClub: element.club,
-    wcDTB: element.date_naissance,
-    wcSex: translateSex(element.sexe),
     wcStatus: element.wc_status,
   };
 };
@@ -30,8 +28,6 @@ const columns = [
   { field: "wcName", headerName: "NAME", width: 200 },
   { field: "wcNat", headerName: "NATIONALITY", width: 200 },
   { field: "wcClub", headerName: "CLUB", width: 200 },
-  { field: "wcDTB", headerName: "DATE OF BIRTH", width: 200 },
-  { field: "wcSex", headerName: "SEX", width: 200 },
   {
     field: "wcStatus",
     headerName: "WC. STATUS",
@@ -87,7 +83,7 @@ export default function WeaponControls() {
     //Creates cancel token(s). It prevents the user to spam api calls.
     const cancelToken = createCancelToken();
     getFencersData(cancelToken);
-    return ()=> cancelToken.cancel();
+    return () => cancelToken.cancel();
   }, [location]);
 
   //Determindes if a competition has already wc.
@@ -118,7 +114,7 @@ export default function WeaponControls() {
     openModalFunctiom();
   };
 
-  const openBarcode = () => {
+  const openQRCode = () => {
     setModalProps({
       type: "Barcode",
       title: "Read barcode",
@@ -169,8 +165,8 @@ export default function WeaponControls() {
             </Button>
           )}
           {!isSelected && (
-            <Button variant="contained" size="small" onClick={openBarcode}>
-              Read Barcode
+            <Button variant="contained" size="small" onClick={openQRCode}>
+              Read QR Code
             </Button>
           )}
         </div>

@@ -121,7 +121,6 @@ export default function Competition(props) {
             variant="contained"
             size="small"
             type="submit"
-            onClick={() => console.log(errors)}
           >
             {text}
           </Button>
