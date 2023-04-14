@@ -48,6 +48,8 @@ export default function WeaponControlStatistics() {
   const [statistics, setStatistics] = useState();
   const [issueByC, setIssueByC] = useState([]);
   const [issuesWithSums, setIssuesWithSums] = useState([]);
+  const [countryCells, setCountryCells] = useState([])
+  const [tempState, setTempState] = useState([])
 
   const navigate = useNavigate();
   const { compId } = useParams();
@@ -57,6 +59,15 @@ export default function WeaponControlStatistics() {
     let tempArray = [];
     setStatistics(data);
 
+    Object.keys(data["n_r"]).forEach(function (key, index) {
+      return (
+        tempArray.push(generateCell(key))
+
+      )
+    })
+    setCountryCells(tempArray)
+
+    tempArray =[]
     data = await get(`/stats/byNation/${compId}`);
     Object.keys(data).forEach(function (key, index) {
       tempArray.push(setIssueByCRow(key, data[key]));
@@ -71,6 +82,28 @@ export default function WeaponControlStatistics() {
       }
     });
     setIssuesWithSums(tempArray);
+
+    data = await get(`stats/byNationByIssues/${compId}`);
+  }
+
+  function generateCell(key){
+    return(
+      <div className="CountryCell" key={key}>
+      <p className="CountryName">{getLongCountryName(key)}</p>
+      <div className="CountryData">
+        <p>{statistics? statistics["n_r"][key]["fencer_num"]: 0} fencers</p>
+        <b>{statistics? statistics["n_r"][key]["issue_num"]: 0} issues</b>
+        <p>{statistics? statistics["n_r"][key]["ratio"]: 0} ratio</p>
+      </div>
+      <div className="CountryContent">
+
+        <p>
+          datagrid ---- columns: issue name, frequency ---- sorted
+          by: frequency most to least, dont show where freq = 0
+        </p>
+      </div>
+    </div>
+    )
   }
 
   function getMost(prop) {
@@ -579,7 +612,7 @@ export default function WeaponControlStatistics() {
             />
           </div>
           <p className="PageSectionTitle">ISSUE TYPES BY FREQUENCY</p>
-          <div className="PageSection"  style={{ height: "700px" }}>
+          <div className="PageSection" style={{ height: "700px" }}>
             <DataGrid
               style={{ height: "100%", width: "100%" }}
               disableRowSelectionOnClick
@@ -592,28 +625,11 @@ export default function WeaponControlStatistics() {
                 },
               }}
             />
-            <p>
-              datagrid ---- columns: issue name, frequency ---- sorted by:
-              frequency most to least, dont show where freq = 0
-            </p>
           </div>
           <p className="PageSectionTitle">NUMBER OF ISSUE TYPES BY COUNTRY</p>
           <div className="PageSection">
             <div className="CountryGrid">
-              <div className="CountryCell">
-                <p className="CountryName">Country Name</p>
-                <div className="CountryData">
-                  <p>20 fencers</p>
-                  <b>26 issues</b>
-                  <p>1.3 ratio</p>
-                </div>
-                <div className="CountryContent">
-                  <p>
-                    datagrid ---- columns: issue name, frequency ---- sorted by:
-                    frequency most to least, dont show where freq = 0
-                  </p>
-                </div>
-              </div>
+              {countryCells}
             </div>
           </div>
         </div>
