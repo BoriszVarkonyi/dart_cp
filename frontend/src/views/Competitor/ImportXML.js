@@ -167,6 +167,7 @@ export default function Import() {
             <div className="TableGrid">
               <DataGrid
                 rows={rows}
+                rowHeight={30}
                 columns={columns}
                 style={{ height: "100%", width: "100%" }}
               />

@@ -38,7 +38,7 @@ export default function Tournaments() {
   } = useDataGridHelper();
   const { isLoggedIn } = useSelector((state) => state.auth);
   const navigate = useNavigate();
-  const {setLoadingState} = useBasicServices();
+  const { setLoadingState } = useBasicServices();
 
   //Gets the tournaments from api
   useEffect(() => {
@@ -124,6 +124,7 @@ export default function Tournaments() {
               selectionModel={selectionModel}
               onSelectionModelChange={handleEvent}
               rows={rows}
+              rowHeight={30}
               columns={columns}
             />
           </div>

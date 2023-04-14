@@ -62,7 +62,7 @@ export default function Competitions() {
     setLoadingState(true)
     const cancelToken = createCancelToken();
     getData(cancelToken);
-    return ()=> cancelToken.cancel();
+    return () => cancelToken.cancel();
   }, []);
 
 
@@ -129,6 +129,7 @@ export default function Competitions() {
               selectionModel={selectionModel}
               onSelectionModelChange={handleEvent}
               rows={rows}
+              rowHeight={30}
               columns={columns}
             />
           </div>

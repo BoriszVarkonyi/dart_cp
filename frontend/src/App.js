@@ -12,7 +12,6 @@ import Competitors from "./views/Competitor/Competitors";
 import Competitor from "./views/Competitor/Competitor";
 import ImportXML from "./views/Competitor/ImportXML";
 import Registration from "./views/Registration/Registration";
-import PrintBarcode from "./views/Registration/PrintBarcode";
 import WeaponControls from "./views/WeaponControl/WeaponControls";
 import WeaponControl from "./views/WeaponControl/WeaponControl";
 import WeaponControlStatistics from "./views/WeaponControl/WeaponControlStatistics";
@@ -43,7 +42,6 @@ function App() {
             </Route>
             <Route path="registration">
               <Route index element={<Registration />} />
-              <Route path=":fencerId/print" element={<PrintBarcode />} />
             </Route>
             {/*Béla was here*/}
             <Route path="weapon_control">
