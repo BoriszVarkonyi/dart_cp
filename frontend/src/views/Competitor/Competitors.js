@@ -235,7 +235,7 @@ export default function Competitors() {
                 selectionModel={selectionModel}
                 onSelectionModelChange={handleEvent}
                 rows={allDataView ? rows : rowDTView}
-                rowHeight={25}
+                rowHeight={30}
                 columns={allDataView ? columns : columnsDT}
               />
             )}

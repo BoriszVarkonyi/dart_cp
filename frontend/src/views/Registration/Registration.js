@@ -24,6 +24,7 @@ const columns = [
     field: "registered",
     headerName: "Status",
     type: "boolean",
+    width: 150,
     renderCell: (params) => {
       return params.value ? (
         <Chip
@@ -165,6 +166,7 @@ export default function Registration() {
             selectionModel={selectionModel}
             onSelectionModelChange={handleEvent}
             rows={rows}
+            rowHeight={30}
             columns={columns}
           />
         </div>
