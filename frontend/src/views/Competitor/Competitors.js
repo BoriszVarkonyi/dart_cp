@@ -138,7 +138,7 @@ export default function Competitors() {
 
     //Sets the Loading state to true. Loading state is stored in a Redux store.
     setLoadingState(true);
-    console.log("A kurva function alatt vagyok bazdmeg")
+
     //Creates cancel token(s). It prevents the user to spam api calls.
     const cancelToken = createCancelToken();
     getFencersData(cancelToken);

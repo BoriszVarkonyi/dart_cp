@@ -7,23 +7,101 @@ import { useNavigate } from "react-router-dom";
 import { DataGrid } from "@mui/x-data-grid";
 import { get, createCancelToken } from "../../services/backend.service";
 import { useParams } from "react-router-dom";
+import countries from "../../utils/countries.json";
+
+function getLongCountryName(value) {
+  return countries["countries"].find((country) => country.short == value).long;
+}
+
+const colIssueByC = [
+  { field: "country", headerName: "Country", width: 200 },
+  { field: "issue_num", headerName: "Number of issues", width: 200 },
+];
+
+const setIssueByCRow = (shortName, number) => {
+  return {
+    id: shortName + number,
+    country: getLongCountryName(shortName),
+    issue_num: number,
+  };
+};
+
+const colIssueWithValues = [
+  { field: "issue_name", headerName: "Iusse name", width: 200 },
+  { field: "freq", headerName: "Frequency", width: 200 },
+];
+
+const setIssueWithValuesRow = (issueName, value) => {
+  const splittedName = issueName.split(" ");
+  let code = "";
+  for (let i = 0; i < splittedName.length; i++) {
+    code += splittedName[i][0];
+  }
+  return {
+    id: code + value,
+    issue_name: issueName,
+    freq: value,
+  };
+};
 
 export default function WeaponControlStatistics() {
   const [statistics, setStatistics] = useState();
+  const [issueByC, setIssueByC] = useState([]);
+  const [issuesWithSums, setIssuesWithSums] = useState([]);
+
   const navigate = useNavigate();
   const { compId } = useParams();
 
   async function getData() {
-    const data = await get(`stats/${compId}`)
-    setStatistics(data)
+    let data = await get(`stats/${compId}`);
+    let tempArray = [];
+    setStatistics(data);
+
+    data = await get(`/stats/byNation/${compId}`);
+    Object.keys(data).forEach(function (key, index) {
+      tempArray.push(setIssueByCRow(key, data[key]));
+    });
+    setIssueByC(tempArray);
+
+    tempArray = [];
+    data = await get(`stats/byIssues/${compId}`);
+    Object.keys(data).forEach(function (key, index) {
+      if (data[key] != 0) {
+        tempArray.push(setIssueWithValuesRow(key, data[key]));
+      }
+    });
+    setIssuesWithSums(tempArray);
+  }
+
+  function getMost(prop) {
+    return Object.keys(statistics["n_r"]).reduce(function (a, b) {
+      return (statistics["n_r"][a][prop] == undefined
+        ? 0
+        : statistics["n_r"][a][prop]) >
+        (statistics["n_r"][b][prop] == undefined
+          ? 0
+          : statistics["n_r"][b][prop])
+        ? a
+        : b;
+    });
+  }
+
+  function getLeast(prop) {
+    return Object.keys(statistics["n_r"]).reduce(function (a, b) {
+      return (statistics["n_r"][a][prop] == undefined
+        ? 0
+        : statistics["n_r"][a][prop]) <
+        (statistics["n_r"][b][prop] == undefined
+          ? 0
+          : statistics["n_r"][b][prop])
+        ? a
+        : b;
+    });
   }
 
   useEffect(() => {
-
-    getData()
+    getData();
   }, []);
-
-
 
   const MyResponsivePieCanvas = ({ data /* see data tab */ }) => (
     <ResponsivePieCanvas
@@ -259,7 +337,9 @@ export default function WeaponControlStatistics() {
               <div className="StatGridCell5">
                 <div className="StatCard Large">
                   <p className="StatTitle">ISSUE TOTAL</p>
-                  <p className="StatData">{statistics? statistics["total_issues"]: 0}</p>
+                  <p className="StatData">
+                    {statistics ? statistics["total_issues"] : 0}
+                  </p>
                 </div>
               </div>
               <div className="StatGridCell6">
@@ -270,8 +350,13 @@ export default function WeaponControlStatistics() {
                     </div>
                     <div className="StatDetails">
                       <div>
-                        <p className="StatTopic">{statistics? statistics["most_issue"]["type"]: 0}</p>
-                        <p>{statistics? statistics["most_issue"]["value"]: 0} i.</p>
+                        <p className="StatTopic">
+                          {statistics ? statistics["most_issue"]["type"] : 0}
+                        </p>
+                        <p>
+                          {statistics ? statistics["most_issue"]["value"] : 0}{" "}
+                          i.
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -282,8 +367,13 @@ export default function WeaponControlStatistics() {
                     </div>
                     <div className="StatDetails">
                       <div>
-                        <p className="StatTopic">{statistics? statistics["least_issue"]["type"]: 0}</p>
-                        <p>{statistics? statistics["least_issue"]["value"]: 0} i.</p>
+                        <p className="StatTopic">
+                          {statistics ? statistics["least_issue"]["type"] : 0}
+                        </p>
+                        <p>
+                          {statistics ? statistics["least_issue"]["value"] : 0}
+                          i.
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -296,13 +386,17 @@ export default function WeaponControlStatistics() {
               <div className="StatGridCell9">
                 <div className="StatCard Large">
                   <p className="StatTitle">FENCER TOTAL</p>
-                  <p className="StatData">{statistics? statistics["total_fencers"]: 0}</p>
+                  <p className="StatData">
+                    {statistics ? statistics["total_fencers"] : 0}
+                  </p>
                 </div>
               </div>
               <div className="StatGridCell10">
                 <div className="StatCard Large Extra">
                   <p className="StatTitle">AVARAGE RATIO</p>
-                  <p className="StatData">{statistics? statistics["total_ratio"]: 0}</p>
+                  <p className="StatData">
+                    {statistics ? statistics["total_ratio"] : 0}
+                  </p>
                 </div>
               </div>
               <div className="StatGridCell11"></div>
@@ -312,7 +406,9 @@ export default function WeaponControlStatistics() {
               <div className="StatGridCell13">
                 <div className="StatCard Large">
                   <p className="StatTitle">COUNTRY TOTAL</p>
-                  <p className="StatData">{statistics? statistics["total_nation"]: 0}</p>
+                  <p className="StatData">
+                    {statistics ? statistics["total_nation"] : 0}
+                  </p>
                 </div>
               </div>
               <div className="StatGridCell14">
@@ -323,11 +419,32 @@ export default function WeaponControlStatistics() {
                     </div>
                     <div className="StatDetails">
                       <div>
-                        <p className="StatTopic">Romania</p>
+                        <p className="StatTopic">
+                          {statistics
+                            ? getLongCountryName(getMost("issue_num"))
+                            : ""}
+                        </p>
                         <div>
-                          <p>18 f.</p>
-                          <b>36 i.</b>
-                          <p>2r</p>
+                          <p>
+                            {statistics
+                              ? statistics["n_r"][getMost("issue_num")]
+                                  .fencer_num
+                              : 0}{" "}
+                            f.
+                          </p>
+                          <b>
+                            {statistics
+                              ? statistics["n_r"][getMost("issue_num")]
+                                  .issue_num
+                              : 0}{" "}
+                            i.
+                          </b>
+                          <p>
+                            {statistics
+                              ? statistics["n_r"][getMost("issue_num")].ratio
+                              : 0}{" "}
+                            r
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -339,11 +456,32 @@ export default function WeaponControlStatistics() {
                     </div>
                     <div className="StatDetails">
                       <div>
-                        <p className="StatTopic">Japan</p>
+                        <p className="StatTopic">
+                          {statistics
+                            ? getLongCountryName(getLeast("issue_num"))
+                            : ""}
+                        </p>
                         <div>
-                          <p>15 f.</p>
-                          <b>1 i.</b>
-                          <p>0.1r</p>
+                          <p>
+                            {statistics
+                              ? statistics["n_r"][getLeast("issue_num")]
+                                  .fencer_num
+                              : 0}{" "}
+                            f.
+                          </p>
+                          <b>
+                            {statistics
+                              ? statistics["n_r"][getLeast("issue_num")]
+                                  .issue_num
+                              : 0}{" "}
+                            i.
+                          </b>
+                          <p>
+                            {statistics
+                              ? statistics["n_r"][getLeast("issue_num")].ratio
+                              : 0}
+                            .1r
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -358,11 +496,30 @@ export default function WeaponControlStatistics() {
                     </div>
                     <div className="StatDetails">
                       <div>
-                        <p className="StatTopic">Poland</p>
+                        <p className="StatTopic">
+                          {statistics
+                            ? getLongCountryName(getMost("ratio"))
+                            : ""}
+                        </p>
                         <div>
-                          <p>2 f.</p>
-                          <p>4 i.</p>
-                          <b>2r</b>
+                          <p>
+                            {statistics
+                              ? statistics["n_r"][getMost("ratio")].fencer_num
+                              : 0}{" "}
+                            f.
+                          </p>
+                          <p>
+                            {statistics
+                              ? statistics["n_r"][getMost("ratio")].issue_num
+                              : 0}{" "}
+                            i.
+                          </p>
+                          <b>
+                            {statistics
+                              ? statistics["n_r"][getMost("ratio")].ratio
+                              : 0}
+                            r
+                          </b>
                         </div>
                       </div>
                     </div>
@@ -374,11 +531,30 @@ export default function WeaponControlStatistics() {
                     </div>
                     <div className="StatDetails">
                       <div>
-                        <p className="StatTopic">Hungary</p>
+                        <p className="StatTopic">
+                          {statistics
+                            ? getLongCountryName(getLeast("ratio"))
+                            : ""}
+                        </p>
                         <div>
-                          <p>20 f.</p>
-                          <p>26 i.</p>
-                          <b>1.3r</b>
+                          <p>
+                            {statistics
+                              ? statistics["n_r"][getLeast("ratio")].fencer_num
+                              : 0}{" "}
+                            f.
+                          </p>
+                          <p>
+                            {statistics
+                              ? statistics["n_r"][getLeast("ratio")].issue_num
+                              : 0}{" "}
+                            i.
+                          </p>
+                          <b>
+                            {statistics
+                              ? statistics["n_r"][getLeast("ratio")].ratio
+                              : 0}
+                            r
+                          </b>
                         </div>
                       </div>
                     </div>
@@ -388,14 +564,34 @@ export default function WeaponControlStatistics() {
             </div>
           </div>
           <p className="PageSectionTitle">NUMBER OF ISSUES BY COUNTRY</p>
-          <div className="PageSection">
-            <p>
-              datagrid ---- columns: country, number of issue ---- sorted by:
-              no. issue most to least
-            </p>
+          <div className="PageSection" style={{ height: "700px" }}>
+            <DataGrid
+              style={{ height: "100%", width: "100%" }}
+              disableRowSelectionOnClick
+              rows={issueByC}
+              rowHeight={25}
+              columns={colIssueByC}
+              initialState={{
+                sorting: {
+                  sortModel: [{ field: "issue_num", sort: "desc" }],
+                },
+              }}
+            />
           </div>
           <p className="PageSectionTitle">ISSUE TYPES BY FREQUENCY</p>
-          <div className="PageSection">
+          <div className="PageSection"  style={{ height: "700px" }}>
+            <DataGrid
+              style={{ height: "100%", width: "100%" }}
+              disableRowSelectionOnClick
+              rows={issuesWithSums}
+              rowHeight={25}
+              columns={colIssueWithValues}
+              initialState={{
+                sorting: {
+                  sortModel: [{ field: "freq", sort: "desc" }],
+                },
+              }}
+            />
             <p>
               datagrid ---- columns: issue name, frequency ---- sorted by:
               frequency most to least, dont show where freq = 0
@@ -613,6 +809,6 @@ export default function WeaponControlStatistics() {
           <div className="DocumentSection Growable">{/* datagrid */}</div>
         </div>
       </div>
-      </>
+    </>
   );
 }
