@@ -12,7 +12,7 @@ export default function CountryCell(props){
             <b>{prop.issueNum} issues</b>
             <p>{prop.ratio} ratio</p>
           </div>
-          <div className="CountryContent" style={{ height: "200px" }}>
+          <div className="CountryContent" style={{ height: "500px" }}>
             <DataGrid
               style={{ height: "100%", width: "100%" }}
               disableRowSelectionOnClick
@@ -25,10 +25,6 @@ export default function CountryCell(props){
                 },
               }}
             />
-            <p>
-              datagrid ---- columns: issue name, frequency ---- sorted by:
-              frequency most to least, dont show where freq = 0
-            </p>
           </div>
         </div>
       );

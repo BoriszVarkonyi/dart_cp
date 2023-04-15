@@ -9,7 +9,10 @@ import { get, createCancelToken } from "../../services/backend.service";
 import { useParams } from "react-router-dom";
 import countries from "../../utils/countries.json";
 import CountryCell from "./CountryCell";
-import compSlice from "../../slices/compSlice";
+import {
+  translateSex,
+  translateCompType,
+} from "../../services/translate.service";
 
 function getLongCountryName(value) {
   return countries["countries"].find((country) => country.short == value).long;
@@ -51,15 +54,22 @@ export default function WeaponControlStatistics() {
   const [issueByC, setIssueByC] = useState([]);
   const [issuesWithSums, setIssuesWithSums] = useState([]);
   const [countryCells, setCountryCells] = useState([]);
+  const [currentComp, setCurrentComp] = useState();
+  const [currentTour, setCurrentTour] = useState()
+  const [listedIssues, setListedIssues]=useState() 
   const navigate = useNavigate();
-  const { compId } = useParams();
+  const { compId, tournamentId } = useParams();
 
   async function getData() {
     const data = await get(`stats/${compId}`);
     const byIssues = await get(`stats/byIssues/${compId}`);
     const issueByNat = await get(`stats/byNationByIssues/${compId}`);
     const byNation = await get(`/stats/byNation/${compId}`);
+    const comp = await get(`competitions/${compId}`);
+    const tour = await get(`tournaments/${tournamentId}`)
     let tempArray = [];
+    setCurrentComp(comp);
+    setCurrentTour(tour)
     setStatistics(data);
 
     tempArray = [];
@@ -68,12 +78,16 @@ export default function WeaponControlStatistics() {
     });
     setIssueByC(tempArray);
 
+    let iessueListText = ""
     tempArray = [];
     Object.keys(byIssues).forEach(function (key, index) {
       if (byIssues[key] != 0) {
+        iessueListText += key + ", "
         tempArray.push(setIssueWithValuesRow(key, byIssues[key]));
       }
     });
+    iessueListText = iessueListText.slice(0, -2)
+    setListedIssues(iessueListText)
     setIssuesWithSums(tempArray);
 
     const compArray = [];
@@ -94,11 +108,11 @@ export default function WeaponControlStatistics() {
         col: colIssueWithValues,
         row: tempArray,
       };
-      compArray.push(
-        <CountryCell props={props} key={key + index} />
-      );
+      compArray.push(<CountryCell props={props} key={key + index} />);
     });
-    const sortedCompArray = [...compArray].sort((a, b) => b.props.props.issueNum - a.props.props.issueNum);
+    const sortedCompArray = [...compArray].sort(
+      (a, b) => b.props.props.issueNum - a.props.props.issueNum
+    );
     setCountryCells(sortedCompArray);
   }
 
@@ -244,6 +258,8 @@ export default function WeaponControlStatistics() {
           color: "hsl(339, 70%, 50%)",
         },
       ]}
+
+
       margin={{ top: 40, right: 200, bottom: 40, left: 80 }}
       innerRadius={0.5}
       padAngle={0.7}
@@ -260,6 +276,8 @@ export default function WeaponControlStatistics() {
       arcLinkLabelsColor={{ from: "color" }}
       arcLabelsSkipAngle={5}
       arcLabelsTextColor="#333333"
+
+
       defs={[
         {
           id: "dots",
@@ -280,6 +298,8 @@ export default function WeaponControlStatistics() {
           spacing: 10,
         },
       ]}
+
+
       fill={[
         {
           match: {
@@ -330,6 +350,7 @@ export default function WeaponControlStatistics() {
           id: "lines",
         },
       ]}
+
       legends={[]}
     />
   );
@@ -383,7 +404,7 @@ export default function WeaponControlStatistics() {
                           {statistics ? statistics["most_issue"]["type"] : 0}
                         </p>
                         <p>
-                          {statistics ? statistics["most_issue"]["value"] : 0}{" "}
+                          {statistics ? statistics["most_issue"]["value"] : 0}s
                           i.
                         </p>
                       </div>
@@ -458,20 +479,20 @@ export default function WeaponControlStatistics() {
                             {statistics
                               ? statistics["n_r"][getMost("issue_num")]
                                   .fencer_num
-                              : 0}{" "}
+                              : 0}
                             f.
                           </p>
                           <b>
                             {statistics
                               ? statistics["n_r"][getMost("issue_num")]
                                   .issue_num
-                              : 0}{" "}
+                              : 0}
                             i.
                           </b>
                           <p>
                             {statistics
                               ? statistics["n_r"][getMost("issue_num")].ratio
-                              : 0}{" "}
+                              : 0}
                             r
                           </p>
                         </div>
@@ -495,14 +516,14 @@ export default function WeaponControlStatistics() {
                             {statistics
                               ? statistics["n_r"][getLeast("issue_num")]
                                   .fencer_num
-                              : 0}{" "}
+                              : 0}
                             f.
                           </p>
                           <b>
                             {statistics
                               ? statistics["n_r"][getLeast("issue_num")]
                                   .issue_num
-                              : 0}{" "}
+                              : 0}
                             i.
                           </b>
                           <p>
@@ -534,13 +555,13 @@ export default function WeaponControlStatistics() {
                           <p>
                             {statistics
                               ? statistics["n_r"][getMost("ratio")].fencer_num
-                              : 0}{" "}
+                              : 0}
                             f.
                           </p>
                           <p>
                             {statistics
                               ? statistics["n_r"][getMost("ratio")].issue_num
-                              : 0}{" "}
+                              : 0}
                             i.
                           </p>
                           <b>
@@ -569,13 +590,13 @@ export default function WeaponControlStatistics() {
                           <p>
                             {statistics
                               ? statistics["n_r"][getLeast("ratio")].fencer_num
-                              : 0}{" "}
+                              : 0}
                             f.
                           </p>
                           <p>
                             {statistics
                               ? statistics["n_r"][getLeast("ratio")].issue_num
-                              : 0}{" "}
+                              : 0}
                             i.
                           </p>
                           <b>
@@ -641,15 +662,19 @@ export default function WeaponControlStatistics() {
               </div>
             </div>
             <div className="DocumentHeaderMiddle">
-              <b>]competitions name competition name competition name]</b>
-              <p>]tournament name tournament name]</p>
+              <b>{currentComp ? currentComp.title_long : ""}</b>
+              <p>{currentTour? currentTour.title_long: ""}</p>
             </div>
             <div className="DocumentHeaderRight">
-              <p>]SEX]</p>
-              <p>]COMP TYPE]</p>
-              <p>]AGE GROUP]</p>
-              <p>]HOST COUNTRY]</p>
-              <p>]YEAR]</p>
+              <p>{currentComp ? translateSex(currentComp.sex) : ""}</p>
+              <p>{currentComp ? translateCompType(currentComp.type) : ""}</p>
+              <p>{currentComp ? currentComp.age_group : ""}</p>
+              <p>
+                {currentComp
+                  ? getLongCountryName(currentComp.host_country)
+                  : ""}
+              </p>
+              <p>{currentComp ? currentComp.start_date.substring(0, 4) : ""}</p>
             </div>
           </div>
           <div className="DocumentSectionTitle">ABSTRACT</div>
@@ -664,10 +689,10 @@ export default function WeaponControlStatistics() {
               <p>AVARAGE RATIO*:</p>
             </div>
             <div>
-              <p>]no]</p>
-              <p>]no]</p>
-              <p>]no]</p>
-              <p>]no]</p>
+              <p>{statistics ? statistics["total_fencers"] : 0}</p>
+              <p> {statistics ? statistics["total_nation"] : 0}</p>
+              <p> {statistics ? statistics["total_issues"] : 0}</p>
+              <p> {statistics ? statistics["total_ratio"] : 0}</p>
             </div>
             <div className="Light">
               <p>- see more on pages: 1, 2</p>
@@ -683,10 +708,7 @@ export default function WeaponControlStatistics() {
             </div>
             <div>
               <p>
-                ]issue name issue name issue name issue name issue name issue,
-                issue name issue name, issue name issue name issue name issue,
-                name issue name issue name issue name, issue name issue name
-                issue name issue name issue name issue name issue name]
+                {listedIssues? listedIssues : ""}
               </p>
             </div>
           </div>
@@ -700,13 +722,13 @@ export default function WeaponControlStatistics() {
             </div>
             <div className="Center">
               <p className="Light">TYPE</p>
-              <p>]issue name issue name]</p>
-              <p>]issue name issue name]</p>
+              <p>{statistics ? statistics["most_issue"]["type"] : ""}s</p>
+              <p>{statistics ? statistics["least_issue"]["type"] : ""}s</p>
             </div>
             <div className="Center Bold">
               <p className="Light">NUMBER OF</p>
-              <p>]no]</p>
-              <p>]no]</p>
+              <p>{statistics ? statistics["most_issue"]["value"] : ""}</p>
+              <p>{statistics ? statistics["least_issue"]["value"] : ""}</p>
             </div>
           </div>
           <p className="DocumentSectionSubtitle">
@@ -723,13 +745,25 @@ export default function WeaponControlStatistics() {
             </div>
             <div className="Center">
               <p className="Light">COUNTRY</p>
-              <p>]country name]</p>
-              <p>]country name]</p>
+              <p>
+                {statistics ? getLongCountryName(getMost("issue_num")) : ""}
+              </p>
+              <p>
+                {statistics ? getLongCountryName(getLeast("issue_num")) : ""}
+              </p>
             </div>
             <div className="Center Bold">
               <p className="Light">NUMBER OF</p>
-              <p>]no]</p>
-              <p>]no]</p>
+              <p>
+                {statistics
+                  ? statistics["n_r"][getMost("issue_num")].issue_num
+                  : 0}
+              </p>
+              <p>
+                {statistics
+                  ? statistics["n_r"][getLeast("issue_num")].issue_num
+                  : 0}
+              </p>
             </div>
           </div>
           <p className="DocumentSectionSubtitle">
@@ -743,13 +777,17 @@ export default function WeaponControlStatistics() {
             </div>
             <div className="Center">
               <p className="Light">COUNTRY</p>
-              <p>]country name]</p>
-              <p>]country name]</p>
+              <p>{statistics ? getLongCountryName(getMost("ratio")) : ""}</p>
+              <p>{statistics ? getLongCountryName(getLeast("ratio")) : ""}</p>
             </div>
             <div className="Center Bold">
               <p className="Light">RATIO</p>
-              <p>]r]</p>
-              <p>]r]</p>
+              <p>
+                {statistics ? statistics["n_r"][getLeast("ratio")].ratio : 0}
+              </p>
+              <p>
+                {statistics ? statistics["n_r"][getMost("ratio")].ratio : 0}
+              </p>
             </div>
           </div>
           <div className="DocumentDivider">-</div>
@@ -763,7 +801,7 @@ export default function WeaponControlStatistics() {
           </div>
         </div>
         <div className="DocumentPage">
-          <div className="DocumentHeader DocumentColumnLayout">
+        <div className="DocumentHeader DocumentColumnLayout">
             <div className="DocumentHeaderLeft">
               <div>
                 <p className="DocumentHeaderTitle">WEAPON CONTROL</p>
@@ -774,15 +812,19 @@ export default function WeaponControlStatistics() {
               </div>
             </div>
             <div className="DocumentHeaderMiddle">
-              <b>]competitions name competition name competition name]</b>
-              <p>]tournament name tournament name]</p>
+              <b>{currentComp ? currentComp.title_long : ""}</b>
+              <p>{currentTour? currentTour.title_long: ""}</p>
             </div>
             <div className="DocumentHeaderRight">
-              <p>]SEX]</p>
-              <p>]COMP TYPE]</p>
-              <p>]AGE GROUP]</p>
-              <p>]HOST COUNTRY]</p>
-              <p>]YEAR]</p>
+              <p>{currentComp ? translateSex(currentComp.sex) : ""}</p>
+              <p>{currentComp ? translateCompType(currentComp.type) : ""}</p>
+              <p>{currentComp ? currentComp.age_group : ""}</p>
+              <p>
+                {currentComp
+                  ? getLongCountryName(currentComp.host_country)
+                  : ""}
+              </p>
+              <p>{currentComp ? currentComp.start_date.substring(0, 4) : ""}</p>
             </div>
           </div>
           <div className="DocumentSectionTitle">
@@ -791,7 +833,7 @@ export default function WeaponControlStatistics() {
           <div className="DocumentSection Growable">{/* datagrid */}</div>
         </div>
         <div className="DocumentPage">
-          <div className="DocumentHeader DocumentColumnLayout">
+        <div className="DocumentHeader DocumentColumnLayout">
             <div className="DocumentHeaderLeft">
               <div>
                 <p className="DocumentHeaderTitle">WEAPON CONTROL</p>
@@ -802,21 +844,25 @@ export default function WeaponControlStatistics() {
               </div>
             </div>
             <div className="DocumentHeaderMiddle">
-              <b>]competitions name competition name competition name]</b>
-              <p>]tournament name tournament name]</p>
+              <b>{currentComp ? currentComp.title_long : ""}</b>
+              <p>{currentTour? currentTour.title_long: ""}</p>
             </div>
             <div className="DocumentHeaderRight">
-              <p>]SEX]</p>
-              <p>]COMP TYPE]</p>
-              <p>]AGE GROUP]</p>
-              <p>]HOST COUNTRY]</p>
-              <p>]YEAR]</p>
+              <p>{currentComp ? translateSex(currentComp.sex) : ""}</p>
+              <p>{currentComp ? translateCompType(currentComp.type) : ""}</p>
+              <p>{currentComp ? currentComp.age_group : ""}</p>
+              <p>
+                {currentComp
+                  ? getLongCountryName(currentComp.host_country)
+                  : ""}
+              </p>
+              <p>{currentComp ? currentComp.start_date.substring(0, 4) : ""}</p>
             </div>
           </div>
           <div className="DocumentSectionTitle">
             NUMBER OF ISSUES BY COUNTRY
           </div>
-          <div className="DocumentSection Growable">{/* datagrid */}</div>
+          <div className="DocumentSection Growable">{countryCells}</div>
         </div>
       </div>
     </>

@@ -135,7 +135,6 @@ export default function Competitors() {
 
   //Gets the competitors from api. Also updates the data on route change. For example when another comp is selected.
   useEffect(() => {
-
     //Sets the Loading state to true. Loading state is stored in a Redux store.
     setLoadingState(true);
 
@@ -163,86 +162,89 @@ export default function Competitors() {
 
   return (
     <>
-      <div className="Main">
-        <div className="PageHeader">
-          <h2 className="PageTitle">Competitors</h2>
-          <div className="PageButtonsWrapper">
-            {!isSelected && (
-              <Button
-                variant="contained"
-                size="small"
-                onClick={() => navigate("importXML")}
-              >
-                Import XML
-              </Button>
-            )}
-            {isSelected && (
-              <Button
-                variant="contained"
-                size="small"
-                onClick={openModalFunctiom}
-              >
-                Delete
-              </Button>
-            )}
-            {isSelected && (
-              <Button
-                variant="contained"
-                size="small"
-                onClick={() =>
-                  navigate("modify", { state: { rowId: selectedRowId } })
-                }
-              >
-                Modify
-              </Button>
-            )}
-            {!isSelected && (
-              <Button
-                variant="contained"
-                size="small"
-                onClick={() =>
-                  navigate("add", { state: { rowId: selectedRowId } })
-                }
-              >
-                Create
-              </Button>
-            )}
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <>
+          <div className="Main">
+            <div className="PageHeader">
+              <h2 className="PageTitle">Competitors</h2>
+              <div className="PageButtonsWrapper">
+                {!isSelected && (
+                  <Button
+                    variant="contained"
+                    size="small"
+                    onClick={() => navigate("importXML")}
+                  >
+                    Import XML
+                  </Button>
+                )}
+                {isSelected && (
+                  <Button
+                    variant="contained"
+                    size="small"
+                    onClick={openModalFunctiom}
+                  >
+                    Delete
+                  </Button>
+                )}
+                {isSelected && (
+                  <Button
+                    variant="contained"
+                    size="small"
+                    onClick={() =>
+                      navigate("modify", { state: { rowId: selectedRowId } })
+                    }
+                  >
+                    Modify
+                  </Button>
+                )}
+                {!isSelected && (
+                  <Button
+                    variant="contained"
+                    size="small"
+                    onClick={() =>
+                      navigate("add", { state: { rowId: selectedRowId } })
+                    }
+                  >
+                    Create
+                  </Button>
+                )}
+              </div>
+            </div>
+            <div className="PageContent WithButtons">
+              <div className="TableGridColumnOptions">
+                <Button
+                  variant="contained"
+                  size="small"
+                  onClick={() => setAllDataView(true)}
+                >
+                  All data
+                </Button>
+                <Button
+                  variant="contained"
+                  size="small"
+                  onClick={() => setAllDataView(false)}
+                >
+                  DT
+                </Button>
+              </div>
+              <div className="TableGrid">
+                <DataGrid
+                  style={{ height: "100%", width: "100%" }}
+                  checkboxSelection={true}
+                  selectionModel={selectionModel}
+                  onSelectionModelChange={handleEvent}
+                  rows={allDataView ? rows : rowDTView}
+                  rowHeight={30}
+                  columns={allDataView ? columns : columnsDT}
+                />
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="PageContent WithButtons">
-          <div className="TableGridColumnOptions">
-            <Button
-              variant="contained"
-              size="small"
-              onClick={() => setAllDataView(true)}
-            >
-              All data
-            </Button>
-            <Button
-              variant="contained"
-              size="small"
-              onClick={() => setAllDataView(false)}
-            >
-              DT
-            </Button>
-          </div>
-          <div className="TableGrid">
-            {isLoading && <Loading />}
-            {!isLoading && (
-              <DataGrid
-                style={{ height: "100%", width: "100%" }}
-                checkboxSelection={true}
-                selectionModel={selectionModel}
-                onSelectionModelChange={handleEvent}
-                rows={allDataView ? rows : rowDTView}
-                rowHeight={30}
-                columns={allDataView ? columns : columnsDT}
-              />
-            )}
-          </div>
-        </div>
-      </div>
-      <ModalComp modalProps={modalProps} />
+          <ModalComp modalProps={modalProps} />
+        </>
+      )}
     </>
   );
 }
