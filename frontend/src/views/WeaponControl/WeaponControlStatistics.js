@@ -8,6 +8,8 @@ import { DataGrid } from "@mui/x-data-grid";
 import { get, createCancelToken } from "../../services/backend.service";
 import { useParams } from "react-router-dom";
 import countries from "../../utils/countries.json";
+import CountryCell from "./CountryCell";
+import compSlice from "../../slices/compSlice";
 
 function getLongCountryName(value) {
   return countries["countries"].find((country) => country.short == value).long;
@@ -48,62 +50,56 @@ export default function WeaponControlStatistics() {
   const [statistics, setStatistics] = useState();
   const [issueByC, setIssueByC] = useState([]);
   const [issuesWithSums, setIssuesWithSums] = useState([]);
-  const [countryCells, setCountryCells] = useState([])
-  const [tempState, setTempState] = useState([])
-
+  const [countryCells, setCountryCells] = useState([]);
   const navigate = useNavigate();
   const { compId } = useParams();
 
   async function getData() {
-    let data = await get(`stats/${compId}`);
+    const data = await get(`stats/${compId}`);
+    const byIssues = await get(`stats/byIssues/${compId}`);
+    const issueByNat = await get(`stats/byNationByIssues/${compId}`);
+    const byNation = await get(`/stats/byNation/${compId}`);
     let tempArray = [];
     setStatistics(data);
 
-    Object.keys(data["n_r"]).forEach(function (key, index) {
-      return (
-        tempArray.push(generateCell(key))
-
-      )
-    })
-    setCountryCells(tempArray)
-
-    tempArray =[]
-    data = await get(`/stats/byNation/${compId}`);
-    Object.keys(data).forEach(function (key, index) {
-      tempArray.push(setIssueByCRow(key, data[key]));
+    tempArray = [];
+    Object.keys(byNation).forEach(function (key, index) {
+      tempArray.push(setIssueByCRow(key, byNation[key]));
     });
     setIssueByC(tempArray);
 
     tempArray = [];
-    data = await get(`stats/byIssues/${compId}`);
-    Object.keys(data).forEach(function (key, index) {
-      if (data[key] != 0) {
-        tempArray.push(setIssueWithValuesRow(key, data[key]));
+    Object.keys(byIssues).forEach(function (key, index) {
+      if (byIssues[key] != 0) {
+        tempArray.push(setIssueWithValuesRow(key, byIssues[key]));
       }
     });
     setIssuesWithSums(tempArray);
 
-    data = await get(`stats/byNationByIssues/${compId}`);
-  }
-
-  function generateCell(key){
-    return(
-      <div className="CountryCell" key={key}>
-      <p className="CountryName">{getLongCountryName(key)}</p>
-      <div className="CountryData">
-        <p>{statistics? statistics["n_r"][key]["fencer_num"]: 0} fencers</p>
-        <b>{statistics? statistics["n_r"][key]["issue_num"]: 0} issues</b>
-        <p>{statistics? statistics["n_r"][key]["ratio"]: 0} ratio</p>
-      </div>
-      <div className="CountryContent">
-
-        <p>
-          datagrid ---- columns: issue name, frequency ---- sorted
-          by: frequency most to least, dont show where freq = 0
-        </p>
-      </div>
-    </div>
-    )
+    const compArray = [];
+    Object.keys(issueByNat).forEach(function (key, index) {
+      const tempArray = [];
+      Object.keys(issueByNat[key]).forEach(function (natKey, index) {
+        if (issueByNat[key][natKey] != 0) {
+          tempArray.push(
+            setIssueWithValuesRow(natKey, issueByNat[key][natKey])
+          );
+        }
+      });
+      const props = {
+        longName: getLongCountryName(key),
+        fencerNum: data["n_r"][key].fencer_num,
+        issueNum: data["n_r"][key].issue_num,
+        ratio: data["n_r"][key].ratio,
+        col: colIssueWithValues,
+        row: tempArray,
+      };
+      compArray.push(
+        <CountryCell props={props} key={key + index} />
+      );
+    });
+    const sortedCompArray = [...compArray].sort((a, b) => b.props.props.issueNum - a.props.props.issueNum);
+    setCountryCells(sortedCompArray);
   }
 
   function getMost(prop) {
@@ -628,9 +624,7 @@ export default function WeaponControlStatistics() {
           </div>
           <p className="PageSectionTitle">NUMBER OF ISSUE TYPES BY COUNTRY</p>
           <div className="PageSection">
-            <div className="CountryGrid">
-              {countryCells}
-            </div>
+            <div className="CountryGrid">{countryCells}</div>
           </div>
         </div>
       </div>
