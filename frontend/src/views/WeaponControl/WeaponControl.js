@@ -50,9 +50,9 @@ export default function WeaponControl(props) {
     }
     navigate(-1);
   };
-  useEffect(()=>{
-    console.log(errors)
-  },[errors])
+  useEffect(() => {
+    console.log(errors);
+  }, [errors]);
 
   //Gets the issue datas from api
   useEffect(() => {
@@ -66,13 +66,17 @@ export default function WeaponControl(props) {
         if (key == "notes") {
           data[key] == null ? setNotes("") : setNotes(data[key]);
         }
-        if (key != "exists" && key != "notes") {
-          if (props.type == "Modify") {
-            inputArray.push(<Issue key={key} issueName={key} issueNum={data[key]} rowKey={rowKey+1} register={register} errors={errors}/>);
-          }
-          if (props.type == "Add") {
-            inputArray.push(<Issue key={key} issueName={key} issueNum={0} rowKey={rowKey+1} register={register} errors={errors}/>);
-          }
+        if (key !== "exists" && key !== "notes") {
+          inputArray.push(
+            <Issue
+              key={key}
+              issueName={key}
+              issueNum={data[key] ?? 0}
+              rowKey={rowKey + 1}
+              register={register}
+              errors={errors}
+            />
+          );
           rowKey++;
         }
       }
@@ -82,7 +86,7 @@ export default function WeaponControl(props) {
     getData();
   }, []);
 
-  const title = `${props.type} Weapon control of`;
+  const title = `${props.type} Weapon control of ${rowId}`;
   return (
     <div className="Main">
       <div className="PageHeader">
