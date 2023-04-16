@@ -26,16 +26,18 @@ const columns = [
     field: "registered",
     headerName: "Status",
     type: "boolean",
-    width: 150,
+    width: 170,
     renderCell: (params) => {
       return params.value ? (
-        <Chip
-          icon={<CheckCircleOutlineIcon />}
-          label="Done"
-          variant="outlined"
-        />
+        <div className="Chip Green">
+          <CheckCircleOutlineIcon />
+          <p>Done</p>
+        </div>
       ) : (
-        <Chip icon={<HighlightOffIcon />} label="Not done" variant="outlined" />
+        <div className="Chip Red">
+          <HighlightOffIcon />
+          <p>Not done</p>
+        </div>
       );
     },
   },

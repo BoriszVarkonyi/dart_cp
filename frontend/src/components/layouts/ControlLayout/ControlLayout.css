@@ -40,7 +40,7 @@
 
 /* Temporary */
 
-#root {
+#ControlLayout {
 	display: grid;
 	grid-template-columns: auto 1fr;
 	grid-template-rows: auto 1fr;
@@ -50,7 +50,7 @@
 	position: relative;
 }
 
-#root::after {
+#ControlLayout::after {
 	content: '';
 	width: 100%;
 	height: 3px;
@@ -160,4 +160,18 @@
 .DataGridAlert {
 	width: 100%;
 	padding: 13px 0;
+}
+
+.Chip {
+	display: flex;
+	gap: 7px;
+	align-items: center;
+}
+
+.Chip.Red {
+	color: #c41818;
+}
+
+.Chip.Green {
+	color: #0db44a;
 }

@@ -58,7 +58,7 @@ export default function Login() {
   };
 
   return (
-    <div className="LoginForm">
+    <div id="LoginForm">
       <Box
         component="form"
         onSubmit={handleSubmit(onSubmit)}
@@ -86,9 +86,9 @@ export default function Login() {
           variant="filled"
           {...register('password', { required: t('login.enterPassword') })}
         />
-        <Button variant="contained" type="submit" size="small">
+        <button type="submit" size="small" id="LoginButton">
           {t('login.login')}
-        </Button>
+        </button>
       </Box>
       {message && <div>{message}</div>}
     </div>

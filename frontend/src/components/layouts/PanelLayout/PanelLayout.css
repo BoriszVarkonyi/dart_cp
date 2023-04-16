@@ -1,7 +1,6 @@
-#root {
+#PanelLayout {
 	animation: gradient 5s ease infinite;
 	background: var(--c-PrimaryBlue-400);
-	/*
 	background:
 		radial-gradient(
 		farthest-corner at top left,
@@ -9,7 +8,11 @@
 		var(--c-PrimaryMix-400) 50%,
 		var(--c-PrimaryGreen-400) 100%);
 	background-size: 200% 200%;
-	*/
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 @keyframes gradient {
@@ -22,14 +25,6 @@
 	100% {
 		background-position: 0% 50%;
 	}
-}
-
-.PanelLayout {
-	width: 100vw;
-	height: 100vh;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 }
 
 .Panel {

@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 
 import LoginLayout from "./components/layouts/LoginLayout/LoginLayout";
-import { TournamentLayout } from "./components/layouts/ControlLayout/TournamentLayout";
+import { ControlLayout } from "./components/layouts/ControlLayout/ControlLayout";
 import PanelLayout from "./components/layouts/PanelLayout/PanelLayout";
 import useTokenService from "./common/AuthVerify";
 
@@ -17,6 +17,12 @@ import WeaponControl from "./views/WeaponControl/WeaponControl";
 import WeaponControlStatistics from "./views/WeaponControl/WeaponControlStatistics";
 import NotFound from "./components/static/NotFound/NotFound";
 
+/*
+import LoginStyles from "./components/layouts/LoginLayout/LoginLayout.css"
+import PanelStyles from "./components/layouts/PanelLayout/PanelLayout.css"
+import ControlStyles from "./components/layouts/ControlLayout/ControlLayout.css"
+*/
+
 //Under construction. Will delete.
 
 function App() {
@@ -26,7 +32,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginLayout />} />
         <Route path="/panel/*" element={<PanelLayout />} />
-        <Route path=":tournamentId/*" element={<TournamentLayout />}>
+        <Route path=":tournamentId/*" element={<ControlLayout />}>
           <Route path="competitions">
             <Route index element={<Competitions />} />
             <Route path="create" element={<Competition type="Create" />} />
@@ -54,8 +60,6 @@ function App() {
           </Route>
         </Route>
 
-        {/* Its just a test path*/}
-        <Route path="test" element={<WeaponControls />} />
         <Route path="not_found" element={<NotFound />} />
       </Routes>
     </>

@@ -48,37 +48,37 @@ const columns = [
   { field: "statut", headerName: "Statut" },
   {
     field: "reg_status",
-    headerName: "Reg. Status",
+    headerName: "Registartion",
     type: "boolean",
     renderCell: (params) => {
       return params.value ? (
-        <Chip
-          icon={<CheckCircleOutlineIcon />}
-          label="Done"
-          variant="outlined"
-        />
+        <div className="Chip Green">
+          <CheckCircleOutlineIcon />
+          <p>Done</p>
+        </div>
       ) : (
-        <Chip icon={<HighlightOffIcon />} label="Not done" variant="outlined" />
+        <div className="Chip Red">
+          <HighlightOffIcon />
+          <p>Not done</p>
+        </div>
       );
     },
   },
   {
     field: "wc_status",
-    headerName: "Wc. Status",
+    headerName: "Weapon Control",
     type: "boolean",
     renderCell: (params) => {
       return params.value ? (
-        <Chip
-          icon={<CheckCircleOutlineIcon />}
-          label="Finished"
-          variant="outlined"
-        />
+        <div className="Chip Green">
+          <CheckCircleOutlineIcon />
+          <p>Finished</p>
+        </div>
       ) : (
-        <Chip
-          icon={<HighlightOffIcon />}
-          label="Not finished"
-          variant="outlined"
-        />
+        <div className="Chip Red">
+          <HighlightOffIcon />
+          <p>Not finished</p>
+        </div>
       );
     },
   },
@@ -86,12 +86,12 @@ const columns = [
 
 //Sets the columns for the DT view
 const columnsDT = [
-  { field: "nom", headerName: "Last Name" },
   { field: "pre_nom", headerName: "First Name" },
+  { field: "nom", headerName: "Last Name" },
   { field: "nation", headerName: "Nationality" },
   { field: "club", headerName: "Club" },
-  { field: "reg_status", headerName: "Reg. Status" },
-  { field: "wc_status", headerName: "Wc. Status" },
+  { field: "reg_status", headerName: "Registartion", width: 170, align: "center", headerAlign: 'center' },
+  { field: "wc_status", headerName: "Weapon Control", width: 170, align: "center", headerAlign: 'center' },
 ];
 
 export default function Competitors() {

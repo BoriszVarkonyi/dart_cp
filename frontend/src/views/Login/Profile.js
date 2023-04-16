@@ -25,7 +25,7 @@ const Profile = () => {
   }
   return (
     <div className="Panel">
-      <h1>This is a tempomary website</h1>
+      <p>This is a tempomary website</p>
       <header>
         <h3>
           username: <strong>{currentUser.meta.arg.username}</strong>

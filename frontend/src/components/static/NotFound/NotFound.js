@@ -7,14 +7,14 @@ export default function NotFound() {
   return (
     <div className="Panel">
       <div className="PageHeader">
-        <h1 className="PageTitle">Ooops! Not found.</h1>
+        <p className="PageTitle">Ooops! Not found.</p>
       </div>
       <div className="PageContent">
         <p>
           Page is not found. Maybe the url is wrong. Check tournament and
           competition id.
         </p>
-        <Button variant="contained" onClick={()=> navigate("/")}>Back to login</Button>
+        <Button variant="contained" onClick={() => navigate("/")}>Back to login</Button>
       </div>
     </div>
   );
