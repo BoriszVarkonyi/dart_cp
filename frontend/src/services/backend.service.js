@@ -68,8 +68,9 @@ async function remove(url, payload) {
 }
 
 async function update(url, payload) {
+
   instance.defaults.headers.Authorization = authHeader();
-  const resp = await instance.patch(`${url}`);
+  const resp = await instance.patch(`${url}`, payload);
 }
 
 export { get, post, postBulk, remove, update, createCancelToken };

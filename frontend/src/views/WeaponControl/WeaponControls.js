@@ -98,6 +98,10 @@ export default function WeaponControls() {
 
   const deleteRow = async () => {
     await remove(`stats/weaponcontrols/issues/${compId}/${selectedRowId}/`);
+    const rowIndex = rows.findIndex(
+      (row) => row.id == selectedRowId
+    );
+    rows[rowIndex].wcStatus = false
     setIsSelected(false);
     setSelectionModel([]);
   };

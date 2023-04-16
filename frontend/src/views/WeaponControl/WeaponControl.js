@@ -8,6 +8,7 @@ import { get, post, update } from "../../services/backend.service";
 import { TextField, Box } from "@mui/material";
 import { useForm } from "react-hook-form";
 import useBasicServices from "../../services/basic.service";
+import Issue from "./Issue";
 
 export default function WeaponControl(props) {
   const [issues, setIssues] = useState([]);
@@ -26,38 +27,6 @@ export default function WeaponControl(props) {
     formState: { errors },
   } = useForm();
 
-  //Generates the issues. It gets the data from an API.
-  const generateTR = (key, keyValue, rowKey) => {
-    return (
-      <tr key={rowKey}>
-        <td>{key}</td>
-        <td>
-          <TextField
-            error={!!errors[`issue_${rowKey + 1}`]}
-            helperText={errors[`issue_${rowKey + 1}`]?.message}
-            type="number"
-            size="small"
-            defaultValue={Math.round(Math.random()*10)}
-            {...register(`issue_${rowKey + 1}`, {
-              max: {
-                value: 10,
-                message: "Please enter a number below nine!",
-              },
-              min: {
-                value: 0,
-                message: "Please enter a number above zero!",
-              },
-              pattern: {
-                value: /[0-9]*/,
-                message: "Please enter only numbers!"
-              }
-            })}
-          />
-        </td>
-      </tr>
-    );
-  };
-
   const onSubmit = async (data) => {
     for (const key of Object.keys(data)) {
       if (data[key] == "") {
@@ -71,7 +40,6 @@ export default function WeaponControl(props) {
         }
       }
     }
-
     data["notes"] == "" ? (data["notes"] = null) : (data["notes"] = notes);
 
     if (props.type == "Add") {
@@ -82,6 +50,9 @@ export default function WeaponControl(props) {
     }
     navigate(-1);
   };
+  useEffect(()=>{
+    console.log(errors)
+  },[errors])
 
   //Gets the issue datas from api
   useEffect(() => {
@@ -97,12 +68,10 @@ export default function WeaponControl(props) {
         }
         if (key != "exists" && key != "notes") {
           if (props.type == "Modify") {
-            const row = generateTR(key, data[key], rowKey);
-            inputArray.push(row);
+            inputArray.push(<Issue key={key} issueName={key} issueNum={data[key]} rowKey={rowKey+1} register={register} errors={errors}/>);
           }
           if (props.type == "Add") {
-            const row = generateTR(key, 0, rowKey);
-            inputArray.push(row);
+            inputArray.push(<Issue key={key} issueName={key} issueNum={0} rowKey={rowKey+1} register={register} errors={errors}/>);
           }
           rowKey++;
         }
