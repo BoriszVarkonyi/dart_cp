@@ -192,6 +192,10 @@ button:-moz-focusring,
   100% {left: -120px; opacity: 0;}
 }
 
+.MuiDataGrid-columnHeaderTitleContainer {
+  text-transform: uppercase;
+}
+
 @media screen {
   .PrintableDocument, .PrintableSticker {
     display: none !important;
