@@ -20,6 +20,7 @@ export default function WeaponControl(props) {
   const { rowId } = state;
   const { setLoadingState } = useBasicServices();
   const [exists, setExists] = useState(false);
+  //test
 
   //react-hook-form
   const {
