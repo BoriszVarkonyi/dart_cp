@@ -162,7 +162,7 @@ export default function Registration() {
         <>
           <div className="Main">
             <div className="PageHeader">
-              <h2 className="PageTitle">Registration</h2>
+              <h1 className="PageTitle">Registration</h1>
               <div className="PageButtonsWrapper">
                 {isSelected &&
                   rows.filter((f) => f.id == selectedRowId)[0].registered && (
@@ -199,7 +199,7 @@ export default function Registration() {
               </div>
             </div>
             <div className="PageContent">
-              <div className="TableGrid">
+              <div className="DataGridWrapper">
                 <DataGrid
                   style={{ height: "100%", width: "100%" }}
                   checkboxSelection={true}

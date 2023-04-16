@@ -128,7 +128,7 @@ export default function Import() {
       {!isLoading && (
         <div className="Main">
           <div className="PageHeader">
-            <h2 className="PageTitle">Import XML</h2>
+            <h1 className="PageTitle">Import XML</h1>
             <div className="PageButtonsWrapper">
               <Button
                 variant="contained"
@@ -170,7 +170,7 @@ export default function Import() {
             )}
             {hasSelectedFile && (
               <>
-                <div className="TableGrid">
+                <div className="DataGridWrapper">
                   <DataGrid
                     rows={rows}
                     rowHeight={30}

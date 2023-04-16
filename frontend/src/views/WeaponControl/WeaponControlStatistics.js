@@ -57,7 +57,7 @@ export default function WeaponControlStatistics() {
   const [countryCells, setCountryCells] = useState([]);
   const [currentComp, setCurrentComp] = useState();
   const [currentTour, setCurrentTour] = useState()
-  const [listedIssues, setListedIssues]=useState() 
+  const [listedIssues, setListedIssues] = useState()
   const navigate = useNavigate();
   const { compId, tournamentId } = useParams();
   const { setLoadingState } = useBasicServices();
@@ -363,7 +363,7 @@ export default function WeaponControlStatistics() {
     <>
       <div className="Main">
         <div className="PageHeader">
-          <h2 className="PageTitle">Weapon Control Statistics</h2>
+          <h1 className="PageTitle">Weapon Control Statistics</h1>
           <div className="PageButtonsWrapper">
             <Button
               variant="contained"
@@ -482,14 +482,14 @@ export default function WeaponControlStatistics() {
                           <p>
                             {statistics
                               ? statistics["n_r"][getMost("issue_num")]
-                                  .fencer_num
+                                .fencer_num
                               : 0}
                             f.
                           </p>
                           <b>
                             {statistics
                               ? statistics["n_r"][getMost("issue_num")]
-                                  .issue_num
+                                .issue_num
                               : 0}
                             i.
                           </b>
@@ -519,14 +519,14 @@ export default function WeaponControlStatistics() {
                           <p>
                             {statistics
                               ? statistics["n_r"][getLeast("issue_num")]
-                                  .fencer_num
+                                .fencer_num
                               : 0}
                             f.
                           </p>
                           <b>
                             {statistics
                               ? statistics["n_r"][getLeast("issue_num")]
-                                  .issue_num
+                                .issue_num
                               : 0}
                             i.
                           </b>
@@ -667,7 +667,7 @@ export default function WeaponControlStatistics() {
             </div>
             <div className="DocumentHeaderMiddle">
               <b>{currentComp ? currentComp.title_long : ""}</b>
-              <p>{currentTour? currentTour.title_long: ""}</p>
+              <p>{currentTour ? currentTour.title_long : ""}</p>
             </div>
             <div className="DocumentHeaderRight">
               <p>{currentComp ? translateSex(currentComp.sex) : ""}</p>
@@ -712,7 +712,7 @@ export default function WeaponControlStatistics() {
             </div>
             <div>
               <p>
-                {listedIssues? listedIssues : ""}
+                {listedIssues ? listedIssues : ""}
               </p>
             </div>
           </div>
@@ -805,7 +805,7 @@ export default function WeaponControlStatistics() {
           </div>
         </div>
         <div className="DocumentPage">
-        <div className="DocumentHeader DocumentColumnLayout">
+          <div className="DocumentHeader DocumentColumnLayout">
             <div className="DocumentHeaderLeft">
               <div>
                 <p className="DocumentHeaderTitle">WEAPON CONTROL</p>
@@ -817,7 +817,7 @@ export default function WeaponControlStatistics() {
             </div>
             <div className="DocumentHeaderMiddle">
               <b>{currentComp ? currentComp.title_long : ""}</b>
-              <p>{currentTour? currentTour.title_long: ""}</p>
+              <p>{currentTour ? currentTour.title_long : ""}</p>
             </div>
             <div className="DocumentHeaderRight">
               <p>{currentComp ? translateSex(currentComp.sex) : ""}</p>
@@ -837,7 +837,7 @@ export default function WeaponControlStatistics() {
           <div className="DocumentSection Growable">{/* datagrid */}</div>
         </div>
         <div className="DocumentPage">
-        <div className="DocumentHeader DocumentColumnLayout">
+          <div className="DocumentHeader DocumentColumnLayout">
             <div className="DocumentHeaderLeft">
               <div>
                 <p className="DocumentHeaderTitle">WEAPON CONTROL</p>
@@ -849,7 +849,7 @@ export default function WeaponControlStatistics() {
             </div>
             <div className="DocumentHeaderMiddle">
               <b>{currentComp ? currentComp.title_long : ""}</b>
-              <p>{currentTour? currentTour.title_long: ""}</p>
+              <p>{currentTour ? currentTour.title_long : ""}</p>
             </div>
             <div className="DocumentHeaderRight">
               <p>{currentComp ? translateSex(currentComp.sex) : ""}</p>

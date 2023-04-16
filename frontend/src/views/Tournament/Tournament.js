@@ -79,7 +79,7 @@ export default function Tournament(props) {
   return (
     <div className="Panel">
       <div className="PageHeader">
-        <h2 className="PageTitle">{text}</h2>
+        <h1 className="PageTitle">{text}</h1>
         <div className="PageButtonsWrapper">
           <Button variant="contained" onClick={() => navigate(-1)}>
             Cancel
@@ -92,7 +92,7 @@ export default function Tournament(props) {
           </Button>
         </div>
       </div>
-      <Box className="PanelContent" component="form">
+      <Box className="PanelContent Form" component="form">
         <div className="FormColumn">
           <TextField
             error={!!errors.title_long}

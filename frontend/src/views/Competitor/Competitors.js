@@ -211,7 +211,7 @@ export default function Competitors() {
         <>
           <div className="Main">
             <div className="PageHeader">
-              <h2 className="PageTitle">Competitors</h2>
+              <h1 className="PageTitle">Competitors</h1>
               <div className="PageButtonsWrapper">
                 {!isSelected && (
                   <Button
@@ -272,7 +272,7 @@ export default function Competitors() {
                   DT
                 </Button>
               </div>
-              <div className="TableGrid">
+              <div className="DataGridWrapper">
                 <DataGrid
                   style={{ height: "100%", width: "100%" }}
                   checkboxSelection={true}

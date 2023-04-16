@@ -132,7 +132,7 @@ export default function WeaponControls() {
       {!isLoading && (
         <div className="Main">
           <div className="PageHeader">
-            <h2 className="PageTitle">Weapon Control</h2>
+            <h1 className="PageTitle">Weapon Control</h1>
             <div className="PageButtonsWrapper">
               {isSelected && hasWC && (
                 <Button variant="contained" size="small" onClick={deleteWc}>
@@ -178,7 +178,7 @@ export default function WeaponControls() {
             </div>
           </div>
           <div className="PageContent">
-            <div className="TableGrid">
+            <div className="DataGridWrapper">
               <DataGrid
                 style={{ height: "100%", width: "100%" }}
                 checkboxSelection={true}

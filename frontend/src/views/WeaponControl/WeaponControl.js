@@ -19,7 +19,7 @@ export default function WeaponControl(props) {
   const { state } = useLocation();
   const { rowId } = state;
   const { setLoadingState } = useBasicServices();
-  const [ exists, setExists ] = useState(false);
+  const [exists, setExists] = useState(false);
 
   //react-hook-form
   const {
@@ -44,7 +44,7 @@ export default function WeaponControl(props) {
     data["notes"] == "" ? (data["notes"] = null) : (data["notes"] = notes);
 
 
-    if(exists)
+    if (exists)
       await update(`stats/weaponcontrols/issues/${compId}/${rowId}/`, data);
     else
       await post(`stats/weaponcontrols/issues/${compId}/${rowId}/`, data);
@@ -93,7 +93,7 @@ export default function WeaponControl(props) {
   return (
     <div className="Main">
       <div className="PageHeader">
-        <h2 className="PageTitle"> {title}</h2>
+        <h1 className="PageTitle"> {title}</h1>
         <div className="PageButtonsWrapper">
           <Button variant="contained" onClick={() => navigate(-1)}>
             Cancel

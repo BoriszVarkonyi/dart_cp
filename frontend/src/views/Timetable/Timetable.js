@@ -5,7 +5,7 @@ export default function Timetable() {
     return (
         <div className="Main">
             <div className="PageHeader">
-                <h2 className="PageTitle">Timetable</h2>
+                <h1 className="PageTitle">Timetable</h1>
                 <div className="PageButtonsWrapper">
                     <Button
                         variant="contained"
