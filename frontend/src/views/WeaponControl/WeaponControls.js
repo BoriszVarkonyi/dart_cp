@@ -3,7 +3,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { Button } from "@mui/material";
 import { Chip } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import useDataGridHelper from "../../services/useDataGridHelper";
+import useDataGridHelper from "../../services/datagrid.service";
 import { useParams } from "react-router-dom";
 import { get, remove, createCancelToken } from "../../services/backend.service";
 import ModalComp from "../../components/static/Modal/ModalComp";

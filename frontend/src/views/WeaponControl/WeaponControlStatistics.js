@@ -9,6 +9,7 @@ import { get, createCancelToken } from "../../services/backend.service";
 import { useParams } from "react-router-dom";
 import countries from "../../utils/countries.json";
 import CountryCell from "./CountryCell";
+import useBasicServices from "../../services/basic.service";
 import {
   translateSex,
   translateCompType,
@@ -59,6 +60,7 @@ export default function WeaponControlStatistics() {
   const [listedIssues, setListedIssues]=useState() 
   const navigate = useNavigate();
   const { compId, tournamentId } = useParams();
+  const { setLoadingState } = useBasicServices();
 
   async function getData() {
     const data = await get(`stats/${compId}`);
@@ -114,6 +116,7 @@ export default function WeaponControlStatistics() {
       (a, b) => b.props.props.issueNum - a.props.props.issueNum
     );
     setCountryCells(sortedCompArray);
+    setLoadingState(false)
   }
 
   function getMost(prop) {
@@ -143,6 +146,7 @@ export default function WeaponControlStatistics() {
   }
 
   useEffect(() => {
+    setLoadingState(true)
     getData();
   }, []);
 

@@ -1,19 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import styles from './NavBar.css';
-import { Button } from '@mui/material';
-import { FormControl, TextField, MenuItem } from '@mui/material';
-import { Link } from 'react-router-dom';
-import FlagIcon from '@mui/icons-material/Flag';
-import DateRangeIcon from '@mui/icons-material/DateRange';
-import GroupsIcon from '@mui/icons-material/Groups';
-import HowToRegIcon from '@mui/icons-material/HowToReg';
-import BackpackIcon from '@mui/icons-material/Backpack';
-import FirstPageIcon from '@mui/icons-material/FirstPage';
-import { get } from '../../../services/backend.service';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, withRouter } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import styles from "./NavBar.css";
+import { Button } from "@mui/material";
+import { FormControl, TextField, MenuItem } from "@mui/material";
+import { Link } from "react-router-dom";
+import FlagIcon from "@mui/icons-material/Flag";
+import DateRangeIcon from "@mui/icons-material/DateRange";
+import GroupsIcon from "@mui/icons-material/Groups";
+import HowToRegIcon from "@mui/icons-material/HowToReg";
+import BackpackIcon from "@mui/icons-material/Backpack";
+import FirstPageIcon from "@mui/icons-material/FirstPage";
+import { get } from "../../../services/backend.service";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, withRouter } from "react-router-dom";
 import { setCompetitions } from "../../../slices/compSlice";
+import { cookieFinder } from "../../../services/cookieMonster.service";
 
 export default function NavBar() {
   const [compdId, setCompId] = useState(null);
@@ -25,10 +26,11 @@ export default function NavBar() {
   const dispatch = useDispatch();
 
   const setComp = (id) => {
+    document.cookie = "selectedComp=" + id
     setCompId(id);
     setHasSelectedComp(true);
-    const pathName = window.location.pathname.split('/');
-    if (!pathName.includes('competitions') && !pathName.includes('timetable')) {
+    const pathName = window.location.pathname.split("/");
+    if (!pathName.includes("competitions") && !pathName.includes("timetable")) {
       navigate(`/${tournamentId}/${id}/${pathName[3]}`);
     }
   };
@@ -45,9 +47,10 @@ export default function NavBar() {
   useEffect(() => {
     async function getData() {
       const data = await get(`tournaments/${tournamentId}/competitions/`);
-      dispatch(setCompetitions(data))
+      dispatch(setCompetitions(data));
       const menuItems = data.map((e) => setMenuItem(e));
       setMenuItems(menuItems);
+      setCompId(cookieFinder("selectedComp", null, true))
     }
     getData();
   }, []);
@@ -57,9 +60,13 @@ export default function NavBar() {
     const menuItems = competitions.map((e) => setMenuItem(e));
     setMenuItems(menuItems);
 
-    let isDeleted = true
-    competitions.map((e) => { if (compdId == e.id) isDeleted = false });
-    if (isDeleted) setHasSelectedComp(false);
+    let isDeleted = true;
+    competitions.map((e) => {
+      if (compdId == e.id) isDeleted = false;
+    });
+    if (isDeleted) {
+      setHasSelectedComp(false);
+    }
   }, [competitions]);
 
   return (
@@ -93,7 +100,7 @@ export default function NavBar() {
                 select
                 label="Select competition"
                 id="select_comp_id"
-                defaultValue=""
+                defaultValue={compdId}
                 sx={{
                   width: 200,
                 }}
@@ -155,7 +162,6 @@ export default function NavBar() {
         <FirstPageIcon />
       </button>
       */}
-
     </div>
   );
 }

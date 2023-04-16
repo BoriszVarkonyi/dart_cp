@@ -5,7 +5,7 @@ import { Chip } from "@mui/material";
 import { DataGrid, SortGridMenuItems } from "@mui/x-data-grid";
 import { get, createCancelToken } from "../../services/backend.service";
 import { useNavigate } from "react-router-dom";
-import useDataGridHelper from "../../services/useDataGridHelper";
+import useDataGridHelper from "../../services/datagrid.service";
 import useBasicServices from "../../services/basic.service";
 import ModalComp from "../../components/static/Modal/ModalComp";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";

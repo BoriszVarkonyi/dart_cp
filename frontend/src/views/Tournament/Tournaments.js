@@ -4,7 +4,7 @@ import { Button, Modal } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { get, remove } from "../../services/backend.service";
 import { useSelector } from "react-redux";
-import useDataGridHelper from "../../services/useDataGridHelper";
+import useDataGridHelper from "../../services/datagrid.service";
 import useBasicServices from "../../services/basic.service";
 import ModalComp from "../../components/static/Modal/ModalComp";
 

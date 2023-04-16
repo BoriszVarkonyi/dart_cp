@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { get, remove, createCancelToken } from "../../services/backend.service";
 import { useParams } from "react-router-dom";
-import useDataGridHelper from "../../services/useDataGridHelper";
+import useDataGridHelper from "../../services/datagrid.service";
 import ModalComp from "../../components/static/Modal/ModalComp";
 import { setCompetitions, deleteCompetition } from "../../slices/compSlice";
 import { useDispatch } from "react-redux";

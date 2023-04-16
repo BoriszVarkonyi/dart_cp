@@ -6,10 +6,11 @@ import { post, postBulk } from "./../../services/backend.service";
 import { useParams } from "react-router-dom";
 import { parseFencers } from "../../services/xml.service";
 import ModalComp from "../../components/static/Modal/ModalComp";
-import useDataGridHelper from "../../services/useDataGridHelper";
+import useDataGridHelper from "../../services/datagrid.service";
 import { useDispatch } from "react-redux";
 import { closeModal } from "../../slices/modalSlice";
 import useBasicServices from "../../services/basic.service";
+import { useSelector } from "react-redux";
 
 const row = (element) => {
   return {
@@ -40,6 +41,7 @@ export default function Import() {
   const { tournamentId, compId } = useParams();
   const { openModalFunctiom } = useDataGridHelper();
   const { setLoadingState } = useBasicServices();
+  const { isLoading } = useSelector((state) => state.isLoading);
 
   const modalProps = {
     type: "Succes",
@@ -122,63 +124,69 @@ export default function Import() {
   };
 
   return (
-    <div className="Main">
-      <div className="PageHeader">
-        <h2 className="PageTitle">Import XML</h2>
-        <div className="PageButtonsWrapper">
-          <Button variant="contained" size="small" onClick={() => navigate(-1)}>
-            Go back
-          </Button>
-          <Button
-            variant="contained"
-            component="label"
-            size="small"
-          >
-            Upload File
-            <input type="file" accept=".xml" hidden onChange={selectFile} />
-          </Button>
-          {hasError && <Alert severity="error">Wrong file format!</Alert>}
-          {hasSelectedFile && (
-            <Button
-              variant="contained"
-              size="small"
-              onClick={() => {
-                setLoadingState(true);
-                importFencers();
-              }}
-            >
-              Import
-            </Button>
-          )}
-        </div>
-        {importStatus === true && (
-          <Alert severity="success">Imported successfully!</Alert>
-        )}
-        {importStatus === false && (
-          <Alert severity="error">
-            A server error has occured while importing!
-          </Alert>
-        )}
-      </div>
-      <div className="PageContent">
-        {!hasSelectedFile && <Alert severity="info">File not selected</Alert>}
-        {hasSelectedFile && (
-          <>
-            <div className="TableGrid">
-              <DataGrid
-                rows={rows}
-                rowHeight={30}
-                columns={columns}
-                style={{ height: "100%", width: "100%" }}
-              />
-              <div className="DataGridAlert">
-                <p>Preview</p>
-              </div>
+    <>
+      {!isLoading && (
+        <div className="Main">
+          <div className="PageHeader">
+            <h2 className="PageTitle">Import XML</h2>
+            <div className="PageButtonsWrapper">
+              <Button
+                variant="contained"
+                size="small"
+                onClick={() => navigate(-1)}
+              >
+                Go back
+              </Button>
+              <Button variant="contained" component="label" size="small">
+                Upload File
+                <input type="file" accept=".xml" hidden onChange={selectFile} />
+              </Button>
+              {hasError && <Alert severity="error">Wrong file format!</Alert>}
+              {hasSelectedFile && (
+                <Button
+                  variant="contained"
+                  size="small"
+                  onClick={() => {
+                    setLoadingState(true);
+                    importFencers();
+                  }}
+                >
+                  Import
+                </Button>
+              )}
             </div>
-          </>
-        )}
-      </div>
-      <ModalComp modalProps={modalProps} />
-    </div>
+            {importStatus === true && (
+              <Alert severity="success">Imported successfully!</Alert>
+            )}
+            {importStatus === false && (
+              <Alert severity="error">
+                A server error has occured while importing!
+              </Alert>
+            )}
+          </div>
+          <div className="PageContent">
+            {!hasSelectedFile && (
+              <Alert severity="info">File not selected</Alert>
+            )}
+            {hasSelectedFile && (
+              <>
+                <div className="TableGrid">
+                  <DataGrid
+                    rows={rows}
+                    rowHeight={30}
+                    columns={columns}
+                    style={{ height: "100%", width: "100%" }}
+                  />
+                  <div className="DataGridAlert">
+                    <p>Preview</p>
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+          <ModalComp modalProps={modalProps} />
+        </div>
+      )}
+    </>
   );
 }

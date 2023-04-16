@@ -5,7 +5,7 @@ import { Chip } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { get, post, createCancelToken } from "../../services/backend.service";
 import { useNavigate } from "react-router-dom";
-import useDataGridHelper from "../../services/useDataGridHelper";
+import useDataGridHelper from "../../services/datagrid.service";
 import { useLocation } from "react-router-dom";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
