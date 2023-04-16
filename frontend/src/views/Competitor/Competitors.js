@@ -41,7 +41,7 @@ const columns = [
   { field: "nom", headerName: "Last Name", width: 150 },
   { field: "nation", headerName: "Nationality", width: 100 },
   { field: "club", headerName: "Club", width: 200 },
-  { field: "date_naissance", headerName: "Date of Birth", width: 100 },
+  { field: "date_naissance", headerName: "Date of Birth", width: 120 },
   { field: "sexe", headerName: "Sex", width: 100 },
   { field: "lateralite", headerName: "Lateralite", width: 100 },
   { field: "licence", headerName: "Licence", width: 150 },

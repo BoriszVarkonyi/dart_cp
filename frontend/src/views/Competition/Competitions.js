@@ -31,11 +31,11 @@ const row = (element) => {
 
 const columns = [
   { field: "name", headerName: "NAME", width: 200 },
-  { field: "weapon_type", headerName: "WEAPON TYPE", width: 200 },
-  { field: "is_wheelchair", headerName: "IS WHEELCHAIR", width: 200 },
-  { field: "sex", headerName: "SEX", width: 200 },
-  { field: "type", headerName: "TYPE", width: 200 },
-  { field: "age_group", headerName: "AGE GROUP", width: 200 },
+  { field: "weapon_type", headerName: "WEAPON TYPE", width: 100 },
+  { field: "is_wheelchair", headerName: "IS WHEELCHAIR", width: 150 },
+  { field: "sex", headerName: "SEX", width: 100 },
+  { field: "type", headerName: "TYPE", width: 100 },
+  { field: "age_group", headerName: "AGE GROUP", width: 150 },
 ];
 
 export default function Competitions() {
@@ -138,7 +138,7 @@ export default function Competitions() {
                   selectionModel={selectionModel}
                   onSelectionModelChange={handleEvent}
                   rows={rows}
-                  rowHeight={30}
+                  rowHeight={55}
                   columns={columns}
                 />
               </div>

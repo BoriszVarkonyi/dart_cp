@@ -20,7 +20,7 @@ const columns = [
   { field: "nom", headerName: "First Name", width: 200 },
   { field: "pre_nom", headerName: "Last Name", width: 200 },
   { field: "nation", headerName: "Nationality", width: 100 },
-  { field: "date_naissance", headerName: "Date of Birth", width: 100 },
+  { field: "date_naissance", headerName: "Date of Birth", width: 120 },
   { field: "sexe", headerName: "Sex" },
   {
     field: "registered",
@@ -173,7 +173,7 @@ export default function Registration() {
                         onClick={() => {
                           getFencerQRCode();
                         }}
-                        /* onClick={() => navigate(`${selectedRowId}/print`)}*/
+                      /* onClick={() => navigate(`${selectedRowId}/print`)}*/
                       >
                         Print QR Code
                       </Button>
