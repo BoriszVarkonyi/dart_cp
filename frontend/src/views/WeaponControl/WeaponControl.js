@@ -19,6 +19,7 @@ export default function WeaponControl(props) {
   const { state } = useLocation();
   const { rowId } = state;
   const { setLoadingState } = useBasicServices();
+  const [ exists, setExists ] = useState(false);
 
   //react-hook-form
   const {
@@ -42,12 +43,12 @@ export default function WeaponControl(props) {
     }
     data["notes"] == "" ? (data["notes"] = null) : (data["notes"] = notes);
 
-    if (props.type == "Add") {
-      await post(`stats/weaponcontrols/issues/${compId}/${rowId}/`, data);
-    }
-    if (props.type == "Modify") {
+
+    if(exists)
       await update(`stats/weaponcontrols/issues/${compId}/${rowId}/`, data);
-    }
+    else
+      await post(`stats/weaponcontrols/issues/${compId}/${rowId}/`, data);
+
     navigate(-1);
   };
   useEffect(() => {
@@ -58,6 +59,8 @@ export default function WeaponControl(props) {
   useEffect(() => {
     async function getData() {
       const data = await get(`stats/weaponcontrols/issues/${compId}/${rowId}/`);
+      setExists(data.exists);
+
       let inputArray = [];
 
       let rowKey = 0;
