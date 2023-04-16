@@ -12,230 +12,230 @@
     }
 
     .PrintableDocument {
-    line-height: 1.4;
-    --l-BorderWidth: 1.5pt;
-    counter-reset: page;
+        line-height: 1.4;
+        --l-BorderWidth: 1.5pt;
+        counter-reset: page;
     }
 
     .PrintableDocument * {
-    background: transparent !important;
-    background-color: transparent !important;
-}
+        background: transparent !important;
+        background-color: transparent !important;
+    }
 
     .DocumentPage {
-    width: 210mm;
-    height: 297mm;
-    padding: 8mm !important;
-    padding-top: 8 !important;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    page-break-after: always;
-    break-after: always;
-    break-inside: avoid;
-    page-break-inside: avoid;
+        width: 210mm;
+        height: 297mm;
+        padding: 8mm !important;
+        padding-top: 8 !important;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        page-break-after: always;
+        break-after: always;
+        break-inside: avoid;
+        page-break-inside: avoid;
     }
 
     .DocumentPage::after {
-    position: absolute;
-    counter-increment: page;
-    content: counter(page);
-    line-height: 4.5mm;
-    text-align: center;
-    bottom: 8mm;
-    right: 8mm;
-    background-color: black;
-    color: white;
-    -webkit-print-color-adjust:exact !important;
-    print-color-adjust:exact !important;
-    width: 4mm;
-    aspect-ratio: 1;
-    height: 4mm;
-    padding: 0 0 var(--l-BorderWidth) 0;
+        position: absolute;
+        counter-increment: page;
+        content: counter(page);
+        line-height: 4.5mm;
+        text-align: center;
+        bottom: 8mm;
+        right: 8mm;
+        background-color: black;
+        color: white;
+        -webkit-print-color-adjust:exact !important;
+        print-color-adjust:exact !important;
+        width: 4mm;
+        aspect-ratio: 1;
+        height: 4mm;
+        padding: 0 0 var(--l-BorderWidth) 0;
     }
 
     .DocumentPage, .DocumentPage * {
-    box-sizing: border-box;
+        box-sizing: border-box;
     }
 
     .DocumentPage > div {
-    width: 100%;
-    border: solid black;
-    border-width: 0 var(--l-BorderWidth) var(--l-BorderWidth) var(--l-BorderWidth);
+        width: 100%;
+        border: solid black;
+        border-width: 0 var(--l-BorderWidth) var(--l-BorderWidth) var(--l-BorderWidth);
     }
 
     .DocumentHeader {
-    padding: 0 !important;
-    height: 25mm;
-    flex: 0 0 25mm;
-    border-width: var(--l-BorderWidth) !important;
-    grid-template-columns: 69mm 100mm 25mm;
+        padding: 0 !important;
+        height: 25mm;
+        flex: 0 0 25mm;
+        border-width: var(--l-BorderWidth) !important;
+        grid-template-columns: 69mm 100mm 25mm;
     }
 
     .DocumentHeader > div {
-    border-left: var(--l-BorderWidth) solid black;
+        border-left: var(--l-BorderWidth) solid black;
     }
 
     .DocumentHeaderLeft {
-    border-left: 0 !important;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 !important;
+        border-left: 0 !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 !important;
     }
 
     .DocumentHeaderTitle, .DocumentHeaderTitleExtension {
-    text-transform: uppercase;
+        text-transform: uppercase;
     }
 
     .DocumentHeaderTitle {
-    font-size: 19pt;
-    line-height: 0.8;
-    font-weight: bold;
+        font-size: 19pt;
+        line-height: 0.8;
+        font-weight: bold;
     }
 
     .DocumentHeaderTitleExtension {
-    font-size: 31.2pt;
-    line-height: 0.8;
-    font-weight: 800;
+        font-size: 31.2pt;
+        line-height: 0.8;
+        font-weight: 800;
     }
 
     .DocumentHeaderSubtitle {
-    font-size: 12pt;
-    line-height: 0.8;
-    margin-top: 1.5mm;
-    text-align: end;
+        font-size: 12pt;
+        line-height: 0.8;
+        margin-top: 1.5mm;
+        text-align: end;
     }
 
     .DocumentHeaderSubtitle span {
-    font-weight: 700;
+        font-weight: 700;
     }
 
     .DocumentHeaderMiddle {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
 
     .DocumentHeaderRight {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    font-size: 7pt;
-    line-height: 1.1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-size: 7pt;
+        line-height: 1.1;
     }
 
     .DocumentSectionTitle {
-    height: 8.5mm;
-    flex: 0 0 8.5mm;
-    font-size: 22pt;
-    font-weight: bold;
-    padding-left: 5mm;
-    line-height: 13.75mm;
-    display: flex;
-    align-items: center;
-    position: relative;
+        height: 8.5mm;
+        flex: 0 0 8.5mm;
+        font-size: 22pt;
+        font-weight: bold;
+        padding-left: 5mm;
+        line-height: 13.75mm;
+        display: flex;
+        align-items: center;
+        position: relative;
     }
 
     .DocumentSectionTitle p {
-    height: 0;
-    position: absolute;
+        height: 0;
+        position: absolute;
     }
 
     .DocumentFootnote {
-    position: absolute;
-    font-size: 6pt;
-    font-style: italic;
-    right: 1mm;
-    bottom: 0.1mm;
+        position: absolute;
+        font-size: 6pt;
+        font-style: italic;
+        right: 1mm;
+        bottom: 0.1mm;
     }
 
     .DocumentDivider {
-    height: 1.7mm;
-    flex: 0 0 1.7mm;
-    overflow: hidden;
+        height: 1.7mm;
+        flex: 0 0 1.7mm;
+        overflow: hidden;
     }
 
     .DocumentDivider * {
-    visibility: hidden !important;
+        visibility: hidden !important;
     }
 
     .DocumentSection {
-    flex: 0 0 auto;
-    position: relative;
+        flex: 0 0 auto;
+        position: relative;
     }
 
     .DocumentSection.Growable {
-    flex: 1 1 auto;
-    padding: 0 !important;
+        flex: 1 1 auto;
+        padding: 0 !important;
     }
 
     .DocumentSectionSubtitle {
-    font-size: 16pt;
-    padding: 3.5mm 0 0 13.5mm;
-    line-height: 0.8;
-    font-weight: bold;
-    width: 100%;
-    border: solid black;
-    border-width: 0 var(--l-BorderWidth) 0 var(--l-BorderWidth);
+        font-size: 16pt;
+        padding: 3.5mm 0 0 13.5mm;
+        line-height: 0.8;
+        font-weight: bold;
+        width: 100%;
+        border: solid black;
+        border-width: 0 var(--l-BorderWidth) 0 var(--l-BorderWidth);
     }
 
     .DocumentSection .DocumentSectionSubtitle {
-    border-width: 0 !important;
+        border-width: 0 !important;
     }
 
     .DocumentColumnLayout {
-    width: 100%;
-    display: grid;
-    grid-template-rows: 1fr;
-    padding: 4.2mm 0;
+        width: 100%;
+        display: grid;
+        grid-template-rows: 1fr;
+        padding: 4.2mm 0;
     }
 
     .DocumentColumnLayout.Standard {
-    grid-template-columns: 69mm 15mm auto;
+        grid-template-columns: 69mm 15mm auto;
     }
 
     .DocumentColumnLayout.TwoColumns {
-    grid-template-columns: 69mm auto;
+        grid-template-columns: 69mm auto;
     }
 
     .DocumentColumnLayout.ThreeColumns {
-    grid-template-columns: 69mm 50mm 30mm auto;
-    padding-top: 0 !important;
+        grid-template-columns: 69mm 50mm 30mm auto;
+        padding-top: 0 !important;
     }
 
     .DocumentColumnLayout.WithChart {
-    grid-template-columns: 69mm auto;
+        grid-template-columns: 69mm auto;
     }
 
     .DocumentChartWrapper {
-    height: 77mm;
+        height: 77mm;
     }
 
     .DocumentColumnLayout > div {
-    padding: 2.5mm;
+        padding: 2.5mm;
     }
 
     .DocumentColumnLayout > div.Light, .DocumentColumnLayout p.Light {
-    font-weight: 200;
-    font-size: 9pt;
-    line-height: 14pt;
+        font-weight: 200;
+        font-size: 9pt;
+        line-height: 14pt;
     }
 
     .DocumentColumnLayout > div.Center {
-    text-align: center;
+        text-align: center;
     }
 
     .DocumentColumnLayout > div.Bold {
-    font-weight: 700;
+        font-weight: 700;
     }
 
     .DocumentColumnLayout > div.Hidden, .DocumentColumnLayout p.Hidden {
-    visibility: hidden;
+        visibility: hidden;
     }
 
     .DocumentColumnLayout > div:nth-of-type(1):not(.DocumentHeaderLeft) {
-    font-weight: 700;
-    text-align: end;
+        font-weight: 700;
+        text-align: end;
     }
 }

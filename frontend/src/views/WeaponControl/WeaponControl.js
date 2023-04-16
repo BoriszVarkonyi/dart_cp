@@ -19,6 +19,7 @@ export default function WeaponControl(props) {
   const { state } = useLocation();
   const { rowId } = state;
   const { setLoadingState } = useBasicServices();
+  const [ exists, setExists ] = useState(false);
 
   //react-hook-form
   const {
@@ -42,22 +43,24 @@ export default function WeaponControl(props) {
     }
     data["notes"] == "" ? (data["notes"] = null) : (data["notes"] = notes);
 
-    if (props.type == "Add") {
-      await post(`stats/weaponcontrols/issues/${compId}/${rowId}/`, data);
-    }
-    if (props.type == "Modify") {
+
+    if(exists)
       await update(`stats/weaponcontrols/issues/${compId}/${rowId}/`, data);
-    }
+    else
+      await post(`stats/weaponcontrols/issues/${compId}/${rowId}/`, data);
+
     navigate(-1);
   };
-  useEffect(()=>{
-    console.log(errors)
-  },[errors])
+  useEffect(() => {
+    console.log(errors);
+  }, [errors]);
 
   //Gets the issue datas from api
   useEffect(() => {
     async function getData() {
       const data = await get(`stats/weaponcontrols/issues/${compId}/${rowId}/`);
+      setExists(data.exists);
+
       let inputArray = [];
 
       let rowKey = 0;
@@ -66,13 +69,17 @@ export default function WeaponControl(props) {
         if (key == "notes") {
           data[key] == null ? setNotes("") : setNotes(data[key]);
         }
-        if (key != "exists" && key != "notes") {
-          if (props.type == "Modify") {
-            inputArray.push(<Issue key={key} issueName={key} issueNum={data[key]} rowKey={rowKey+1} register={register} errors={errors}/>);
-          }
-          if (props.type == "Add") {
-            inputArray.push(<Issue key={key} issueName={key} issueNum={0} rowKey={rowKey+1} register={register} errors={errors}/>);
-          }
+        if (key !== "exists" && key !== "notes") {
+          inputArray.push(
+            <Issue
+              key={key}
+              issueName={key}
+              issueNum={data[key] ?? 0}
+              rowKey={rowKey + 1}
+              register={register}
+              errors={errors}
+            />
+          );
           rowKey++;
         }
       }
@@ -82,7 +89,7 @@ export default function WeaponControl(props) {
     getData();
   }, []);
 
-  const title = `${props.type} Weapon control of`;
+  const title = `${props.type} Weapon control of ${rowId}`;
   return (
     <div className="Main">
       <div className="PageHeader">
