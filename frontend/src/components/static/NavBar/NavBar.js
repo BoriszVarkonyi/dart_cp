@@ -76,7 +76,7 @@ export default function NavBar() {
                 <p className="NavBarRowTitle">Competitions</p>
               </div>
             </Link>
-
+            {/*
             <Link to="timetable">
               <div className="NavBarRow">
                 <div className="NavBarIconWrapper">
@@ -85,6 +85,7 @@ export default function NavBar() {
                 <p className="NavBarRowTitle">Timetable</p>
               </div>
             </Link>
+            */}
           </div>
 
           <div className="CompetitionSelect">
@@ -95,7 +96,7 @@ export default function NavBar() {
                 id="select_comp_id"
                 defaultValue=""
                 sx={{
-                  width: 200,
+                  width: "100%",
                 }}
               >
                 {menuItems}

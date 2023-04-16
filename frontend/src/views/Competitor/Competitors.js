@@ -35,21 +35,24 @@ const rowDT = (element) => {
 };
 
 const columns = [
-  { field: "classement", headerName: "Ranking" },
-  { field: "points", headerName: "Points" },
-  { field: "nom", headerName: "Last Name" },
-  { field: "pre_nom", headerName: "First Name" },
-  { field: "nation", headerName: "Nationality" },
-  { field: "club", headerName: "Club" },
-  { field: "date_naissance", headerName: "Date of Birth" },
-  { field: "sexe", headerName: "Sex" },
-  { field: "lateralite", headerName: "Lateralite" },
-  { field: "licence", headerName: "Licence" },
-  { field: "statut", headerName: "Statut" },
+  { field: "classement", headerName: "Ranking", width: 100 },
+  { field: "points", headerName: "Points", width: 100 },
+  { field: "pre_nom", headerName: "First Name", width: 150 },
+  { field: "nom", headerName: "Last Name", width: 150 },
+  { field: "nation", headerName: "Nationality", width: 100 },
+  { field: "club", headerName: "Club", width: 200 },
+  { field: "date_naissance", headerName: "Date of Birth", width: 100 },
+  { field: "sexe", headerName: "Sex", width: 100 },
+  { field: "lateralite", headerName: "Lateralite", width: 100 },
+  { field: "licence", headerName: "Licence", width: 150 },
+  { field: "statut", headerName: "Statut", width: 100 },
   {
     field: "reg_status",
     headerName: "Registartion",
     type: "boolean",
+    width: 170,
+    align: "center",
+    headerAlign: 'center',
     renderCell: (params) => {
       return params.value ? (
         <div className="Chip Green">
@@ -68,6 +71,9 @@ const columns = [
     field: "wc_status",
     headerName: "Weapon Control",
     type: "boolean",
+    width: 170,
+    align: "center",
+    headerAlign: 'center',
     renderCell: (params) => {
       return params.value ? (
         <div className="Chip Green">
@@ -86,13 +92,52 @@ const columns = [
 
 //Sets the columns for the DT view
 const columnsDT = [
-  { field: "pre_nom", headerName: "First Name" },
-  { field: "nom", headerName: "Last Name" },
-  { field: "nation", headerName: "Nationality" },
-  { field: "club", headerName: "Club" },
-  { field: "reg_status", headerName: "Registartion", width: 170, align: "center", headerAlign: 'center' },
-  { field: "wc_status", headerName: "Weapon Control", width: 170, align: "center", headerAlign: 'center' },
-];
+  { field: "pre_nom", headerName: "First Name", width: 150 },
+  { field: "nom", headerName: "Last Name", width: 150 },
+  { field: "nation", headerName: "Nationality", width: 100 },
+  { field: "club", headerName: "Club", width: 200 },
+  {
+    field: "reg_status",
+    headerName: "Registartion",
+    type: "boolean",
+    width: 170,
+    align: "center",
+    headerAlign: 'center',
+    renderCell: (params) => {
+      return params.value ? (
+        <div className="Chip Green">
+          <CheckCircleOutlineIcon />
+          <p>Done</p>
+        </div>
+      ) : (
+        <div className="Chip Red">
+          <HighlightOffIcon />
+          <p>Not done</p>
+        </div>
+      );
+    },
+  },
+  {
+    field: "wc_status",
+    headerName: "Weapon Control",
+    type: "boolean",
+    width: 170,
+    align: "center",
+    headerAlign: 'center',
+    renderCell: (params) => {
+      return params.value ? (
+        <div className="Chip Green">
+          <CheckCircleOutlineIcon />
+          <p>Finished</p>
+        </div>
+      ) : (
+        <div className="Chip Red">
+          <HighlightOffIcon />
+          <p>Not finished</p>
+        </div>
+      );
+    },
+  },];
 
 export default function Competitors() {
   const {

@@ -26,28 +26,28 @@ const row = (element) => {
 //Sets the columns
 const columns = [
   { field: "wcName", headerName: "NAME", width: 200 },
-  { field: "wcNat", headerName: "NATIONALITY", width: 200 },
+  { field: "wcNat", headerName: "NATIONALITY", width: 100 },
   { field: "wcClub", headerName: "CLUB", width: 200 },
   {
     field: "wcStatus",
-    headerName: "WC. STATUS",
+    headerName: "Status",
     type: "boolean",
+    width: 170,
+    align: "center",
+    headerAlign: 'center',
     renderCell: (params) => {
       return params.value ? (
-        <Chip
-          icon={<CheckCircleOutlineIcon />}
-          label="Finished"
-          variant="outlined"
-        />
+        <div className="Chip Green">
+          <CheckCircleOutlineIcon />
+          <p>Finished</p>
+        </div>
       ) : (
-        <Chip
-          icon={<HighlightOffIcon />}
-          label="Not finished"
-          variant="outlined"
-        />
+        <div className="Chip Red">
+          <HighlightOffIcon />
+          <p>Not finished</p>
+        </div>
       );
     },
-    width: 250,
   },
 ];
 
@@ -185,10 +185,6 @@ export default function WeaponControls() {
             rows={rows}
             rowHeight={30}
             columns={columns}
-            initialState={{
-              pagination: { paginationModel: { pageSize: 300 } },
-            }}
-            pageSizeOptions={[300, 400]}
           />
         </div>
       </div>

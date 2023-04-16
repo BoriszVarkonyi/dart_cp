@@ -17,16 +17,18 @@ import "../../StickerPrinting.css";
 import { QRCodeSVG } from 'qrcode.react';
 
 const columns = [
-  { field: "nom", headerName: "First Name" },
-  { field: "pre_nom", headerName: "Last Name" },
-  { field: "nation", headerName: "Nationality" },
-  { field: "date_naissance", headerName: "Date of Birth" },
+  { field: "nom", headerName: "First Name", width: 200 },
+  { field: "pre_nom", headerName: "Last Name", width: 200 },
+  { field: "nation", headerName: "Nationality", width: 100, },
+  { field: "date_naissance", headerName: "Date of Birth", width: 100 },
   { field: "sexe", headerName: "Sex" },
   {
     field: "registered",
     headerName: "Status",
     type: "boolean",
     width: 170,
+    align: "center",
+    headerAlign: 'center',
     renderCell: (params) => {
       return params.value ? (
         <div className="Chip Green">
