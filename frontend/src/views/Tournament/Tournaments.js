@@ -39,6 +39,7 @@ export default function Tournaments() {
   const { isLoggedIn } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const { setLoadingState } = useBasicServices();
+  const { isLoading } = useSelector((state) => state.isLoading);
 
   //Gets the tournaments from api
   useEffect(() => {
@@ -46,9 +47,9 @@ export default function Tournaments() {
       const data = await get("tournaments/");
       const rows = data.map((e) => row(e));
       setRows(rows);
-      setLoadingState(false)
+      setLoadingState(false);
     }
-    setLoadingState(true)
+    setLoadingState(true);
     getData();
   }, []);
 
@@ -74,63 +75,64 @@ export default function Tournaments() {
     title: "Are you sure you want to delete this tournament?",
     subtitle: "You can not undo this action!",
     confirmButtonText: "DELETE",
-    deleteRow
-  }
+    deleteRow,
+  };
 
   return (
     <>
-      <div className="Panel">
-        <div className="PageHeader">
-          <h2 className="PageTitle">Your tournament</h2>
-          <div className="PageButtonsWrapper">
-            {/*Conditonal rendering by isSelected state*/}
-            {!isSelected && (
-              <Button
-                variant="contained"
-                onClick={() =>
-                  navigate("create_tournament", {
-                    state: { rowId: selectedRowId },
-                  })
-                }
-              >
-                Create
-              </Button>
-            )}
-            {isSelected && (
-              <Button
-                variant="contained"
-                onClick={openModalFunctiom}
-              >
-                Delete
-              </Button>
-            )}
-            {isSelected && (
-              <Button variant="contained" onClick={modifyButton}>
-                Modify
-              </Button>
-            )}
-            {isSelected && (
-              <Button variant="contained" onClick={openButton}>
-                Open
-              </Button>
-            )}
+      {!isLoading && (
+        <>
+          <div className="Panel">
+            <div className="PageHeader">
+              <h2 className="PageTitle">Your tournament</h2>
+              <div className="PageButtonsWrapper">
+                {/*Conditonal rendering by isSelected state*/}
+                {!isSelected && (
+                  <Button
+                    variant="contained"
+                    onClick={() =>
+                      navigate("create_tournament", {
+                        state: { rowId: selectedRowId },
+                      })
+                    }
+                  >
+                    Create
+                  </Button>
+                )}
+                {isSelected && (
+                  <Button variant="contained" onClick={openModalFunctiom}>
+                    Delete
+                  </Button>
+                )}
+                {isSelected && (
+                  <Button variant="contained" onClick={modifyButton}>
+                    Modify
+                  </Button>
+                )}
+                {isSelected && (
+                  <Button variant="contained" onClick={openButton}>
+                    Open
+                  </Button>
+                )}
+              </div>
+            </div>
+            <div className="PageContent">
+              <div className="TableGrid">
+                <DataGrid
+                  style={{ height: 300, width: "100%" }}
+                  checkboxSelection={true}
+                  selectionModel={selectionModel}
+                  onSelectionModelChange={handleEvent}
+                  rows={rows}
+                  rowHeight={30}
+                  columns={columns}
+                />
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="PageContent">
-          <div className="TableGrid" >
-            <DataGrid
-              style={{ height: 300, width: "100%" }}
-              checkboxSelection={true}
-              selectionModel={selectionModel}
-              onSelectionModelChange={handleEvent}
-              rows={rows}
-              rowHeight={30}
-              columns={columns}
-            />
-          </div>
-        </div>
-      </div>
-      <ModalComp modalProps={modalProps} />
+          <ModalComp modalProps={modalProps} />
+        </>
+      )}
     </>
   );
 }

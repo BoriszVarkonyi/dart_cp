@@ -17,7 +17,7 @@ import { setCompetitions } from "../../../slices/compSlice";
 import { cookieFinder } from "../../../services/cookieMonster.service";
 
 export default function NavBar() {
-  const [compdId, setCompId] = useState(null);
+  const [compdId, setCompId] = useState("");
   const [hasSelectedComp, setHasSelectedComp] = useState(false);
   const [menuItems, setMenuItems] = useState([]);
   const { tournamentId } = useParams();
@@ -50,7 +50,12 @@ export default function NavBar() {
       dispatch(setCompetitions(data));
       const menuItems = data.map((e) => setMenuItem(e));
       setMenuItems(menuItems);
-      setCompId(cookieFinder("selectedComp", null, true))
+      // const test = cookieFinder("selectedComp", null, true)
+      // console.log(test)
+      // setCompId(cookieFinder("selectedComp", null, true))
+      // if(cookieFinder("selectedComp", null, true) != null){
+      //   setHasSelectedComp(true)
+      // }
     }
     getData();
   }, []);
@@ -101,10 +106,11 @@ export default function NavBar() {
                 select
                 label="Select competition"
                 id="select_comp_id"
-                defaultValue={compdId}
+                value={compdId}
                 sx={{
                   width: "100%",
                 }}
+                onChange={(e)=>setCompId(e.target.value)}
               >
                 {menuItems}
               </TextField>
