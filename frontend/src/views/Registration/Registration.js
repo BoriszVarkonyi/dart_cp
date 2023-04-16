@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Button } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { Chip } from "@mui/material";
@@ -15,6 +15,7 @@ import Loading from "../../components/static/Loading/Loading";
 import { translateSex } from "../../services/translate.service";
 import "../../StickerPrinting.css";
 import { QRCodeSVG } from 'qrcode.react';
+import { useReactToPrint } from 'react-to-print';
 
 const columns = [
   { field: "nom", headerName: "First Name", width: 200 },
@@ -135,14 +136,23 @@ export default function Registration() {
   }
 
   const [fencer, setFencer] = useState({});
-  const [hash, setHash] = useState();
+  const [hash, setHash] = useState(undefined);
 
-  async function printQRCode() {
+  useEffect(() => {
+    if(hash !== undefined)
+      handlePrint();
+  }, [hash]);
+
+  const cardRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => cardRef.current,
+  });
+
+  async function getFencerQRCode() {
     const f = await get(`fencers/${selectedRowId}`);
     setFencer(f);
     const hashedData = await get(`gethash/${compId}/${selectedRowId}`);
     setHash(JSON.stringify(hashedData));
-    window.print();
   }
 
   const modalContent = {};
@@ -159,7 +169,7 @@ export default function Registration() {
                   <Button
                     variant="contained"
                     size="small"
-                    onClick={printQRCode}
+                    onClick={() => { getFencerQRCode() }}
                   /* onClick={() => navigate(`${selectedRowId}/print`)}*/
                   >
                     Print QR Code
@@ -191,7 +201,7 @@ export default function Registration() {
           </div>
         </div>
       </div>
-      <div className="PrintableSticker">
+      <div className="PrintableSticker" ref={cardRef} >
         <div className="Sticker">
           <QRCodeSVG value={hash} size="350" />
           <div>
