@@ -11,10 +11,9 @@ import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import useBasicServices from "../../services/basic.service";
 import { useSelector } from "react-redux";
-import Loading from "../../components/static/Loading/Loading";
 import { translateSex } from "../../services/translate.service";
 import "../../StickerPrinting.css";
-import { QRCodeSVG } from 'qrcode.react';
+import { QRCodeSVG } from "qrcode.react";
 
 const columns = [
   { field: "nom", headerName: "First Name" },
@@ -58,6 +57,7 @@ export default function Registration() {
   const location = useLocation();
   const { tourId, compId } = useParams();
   const { setLoadingState } = useBasicServices();
+  const { isLoading } = useSelector((state) => state.isLoading);
 
   async function getFencersData(fCancelToken, rCancelToken) {
     const fencersData = await get(
@@ -147,59 +147,77 @@ export default function Registration() {
 
   return (
     <>
-      <div className="Main">
-        <div className="PageHeader">
-          <h2 className="PageTitle">Registration</h2>
-          <div className="PageButtonsWrapper">
-            {isSelected &&
-              rows.filter((f) => f.id == selectedRowId)[0].registered && (
-                <>
-                  <Button
-                    variant="contained"
-                    size="small"
-                    onClick={printQRCode}
-                  /* onClick={() => navigate(`${selectedRowId}/print`)}*/
-                  >
-                    Print QR Code
-                  </Button>
-                  <Button variant="contained" size="small" onClick={registerOut}>
-                    Register out
-                  </Button>
-                </>
-              )}
-            {isSelected &&
-              !rows.filter((f) => f.id == selectedRowId)[0].registered && (
-                <Button variant="contained" size="small" onClick={registerIn}>
-                  Register in
-                </Button>
-              )}
+      {!isLoading && (
+        <>
+          <div className="Main">
+            <div className="PageHeader">
+              <h2 className="PageTitle">Registration</h2>
+              <div className="PageButtonsWrapper">
+                {isSelected &&
+                  rows.filter((f) => f.id == selectedRowId)[0].registered && (
+                    <>
+                      <Button
+                        variant="contained"
+                        size="small"
+                        onClick={printQRCode}
+                        /* onClick={() => navigate(`${selectedRowId}/print`)}*/
+                      >
+                        Print QR Code
+                      </Button>
+                      <Button
+                        variant="contained"
+                        size="small"
+                        onClick={registerOut}
+                      >
+                        Register out
+                      </Button>
+                    </>
+                  )}
+                {isSelected &&
+                  !rows.filter((f) => f.id == selectedRowId)[0].registered && (
+                    <Button
+                      variant="contained"
+                      size="small"
+                      onClick={registerIn}
+                    >
+                      Register in
+                    </Button>
+                  )}
+              </div>
+            </div>
+            <div className="PageContent">
+              <div className="TableGrid">
+                <DataGrid
+                  style={{ height: "100%", width: "100%" }}
+                  checkboxSelection={true}
+                  selectionModel={selectionModel}
+                  onSelectionModelChange={handleEvent}
+                  rows={rows}
+                  rowHeight={30}
+                  columns={columns}
+                />
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="PageContent">
-          <div className="TableGrid">
-            <DataGrid
-              style={{ height: "100%", width: "100%" }}
-              checkboxSelection={true}
-              selectionModel={selectionModel}
-              onSelectionModelChange={handleEvent}
-              rows={rows}
-              rowHeight={30}
-              columns={columns}
-            />
+          <div className="PrintableSticker">
+            <div className="Sticker">
+              <QRCodeSVG value={hash} size="350" />
+              <div>
+                <b className="StickerName">
+                  {fencer.nom} {fencer.pre_nom}
+                </b>
+                <p className="StickerNationality">
+                  {fencer.nation ?? fencer.club}
+                </p>
+              </div>
+              <b className="StickerCode">{selectedRowId}</b>
+              <p className="StickerWhitemark">
+                Made with: <b>D'ARTGANAN CONTROL</b>
+              </p>
+            </div>
           </div>
-        </div>
-      </div>
-      <div className="PrintableSticker">
-        <div className="Sticker">
-          <QRCodeSVG value={hash} size="350" />
-          <div>
-            <b className="StickerName">{fencer.nom} {fencer.pre_nom}</b>
-            <p className="StickerNationality">{fencer.nation ?? fencer.club}</p>
-          </div>
-          <b className="StickerCode">{selectedRowId}</b>
-          <p className="StickerWhitemark">Made with: <b>D'ARTGANAN CONTROL</b></p>
-        </div>
-      </div>
+        </>
+      )}
     </>
   );
 }

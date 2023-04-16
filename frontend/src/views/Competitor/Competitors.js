@@ -90,8 +90,20 @@ const columnsDT = [
   { field: "nom", headerName: "Last Name" },
   { field: "nation", headerName: "Nationality" },
   { field: "club", headerName: "Club" },
-  { field: "reg_status", headerName: "Registartion", width: 170, align: "center", headerAlign: 'center' },
-  { field: "wc_status", headerName: "Weapon Control", width: 170, align: "center", headerAlign: 'center' },
+  {
+    field: "reg_status",
+    headerName: "Registartion",
+    width: 170,
+    align: "center",
+    headerAlign: "center",
+  },
+  {
+    field: "wc_status",
+    headerName: "Weapon Control",
+    width: 170,
+    align: "center",
+    headerAlign: "center",
+  },
 ];
 
 export default function Competitors() {
@@ -162,9 +174,7 @@ export default function Competitors() {
 
   return (
     <>
-      {isLoading ? (
-        <Loading />
-      ) : (
+      {!isLoading && (
         <>
           <div className="Main">
             <div className="PageHeader">

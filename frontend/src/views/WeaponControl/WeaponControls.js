@@ -12,6 +12,7 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { useLocation } from "react-router-dom";
 import useBasicServices from "../../services/basic.service";
 import { translateSex } from "../../services/translate.service";
+import { useSelector } from "react-redux";
 
 const row = (element) => {
   return {
@@ -69,6 +70,7 @@ export default function WeaponControls() {
   const navigate = useNavigate();
   const location = useLocation();
   const { setLoadingState } = useBasicServices();
+  const { isLoading } = useSelector((state) => state.isLoading);
 
   async function getFencersData(cancelToken) {
     const data = await get(`competitorsdata/${compId}`, cancelToken.token);
@@ -98,10 +100,8 @@ export default function WeaponControls() {
 
   const deleteRow = async () => {
     await remove(`stats/weaponcontrols/issues/${compId}/${selectedRowId}/`);
-    const rowIndex = rows.findIndex(
-      (row) => row.id == selectedRowId
-    );
-    rows[rowIndex].wcStatus = false
+    const rowIndex = rows.findIndex((row) => row.id == selectedRowId);
+    rows[rowIndex].wcStatus = false;
     setIsSelected(false);
     setSelectionModel([]);
   };
@@ -128,71 +128,75 @@ export default function WeaponControls() {
   };
 
   return (
-    <div className="Main">
-      <div className="PageHeader">
-        <h2 className="PageTitle">Weapon Control</h2>
-        <div className="PageButtonsWrapper">
-          {isSelected && hasWC && (
-            <Button variant="contained" size="small" onClick={deleteWc}>
-              Remove weapon control
-            </Button>
-          )}
-          {isSelected && hasWC && (
-            <Button
-              variant="contained"
-              size="small"
-              onClick={() =>
-                navigate("modify", { state: { rowId: selectedRowId } })
-              }
-            >
-              Modify weapon control
-            </Button>
-          )}
-          {isSelected && !hasWC && (
-            <Button
-              variant="contained"
-              size="small"
-              onClick={() =>
-                navigate("add", { state: { rowId: selectedRowId } })
-              }
-            >
-              Add weapon control
-            </Button>
-          )}
-          {!isSelected && (
-            <Button
-              variant="contained"
-              size="small"
-              onClick={() => navigate("statistics")}
-            >
-              STATISTICS
-            </Button>
-          )}
-          {!isSelected && (
-            <Button variant="contained" size="small" onClick={openQRCode}>
-              Read QR Code
-            </Button>
-          )}
+    <>
+      {!isLoading && (
+        <div className="Main">
+          <div className="PageHeader">
+            <h2 className="PageTitle">Weapon Control</h2>
+            <div className="PageButtonsWrapper">
+              {isSelected && hasWC && (
+                <Button variant="contained" size="small" onClick={deleteWc}>
+                  Remove weapon control
+                </Button>
+              )}
+              {isSelected && hasWC && (
+                <Button
+                  variant="contained"
+                  size="small"
+                  onClick={() =>
+                    navigate("modify", { state: { rowId: selectedRowId } })
+                  }
+                >
+                  Modify weapon control
+                </Button>
+              )}
+              {isSelected && !hasWC && (
+                <Button
+                  variant="contained"
+                  size="small"
+                  onClick={() =>
+                    navigate("add", { state: { rowId: selectedRowId } })
+                  }
+                >
+                  Add weapon control
+                </Button>
+              )}
+              {!isSelected && (
+                <Button
+                  variant="contained"
+                  size="small"
+                  onClick={() => navigate("statistics")}
+                >
+                  STATISTICS
+                </Button>
+              )}
+              {!isSelected && (
+                <Button variant="contained" size="small" onClick={openQRCode}>
+                  Read QR Code
+                </Button>
+              )}
+            </div>
+          </div>
+          <div className="PageContent">
+            <div className="TableGrid">
+              <DataGrid
+                style={{ height: "100%", width: "100%" }}
+                checkboxSelection={true}
+                selectionModel={selectionModel}
+                onSelectionModelChange={handleEvent}
+                rows={rows}
+                rowHeight={30}
+                columns={columns}
+                initialState={{
+                  pagination: { paginationModel: { pageSize: 300 } },
+                }}
+                pageSizeOptions={[300, 400]}
+              />
+            </div>
+          </div>
+          <ModalComp modalProps={modalProps} />
         </div>
-      </div>
-      <div className="PageContent">
-        <div className="TableGrid">
-          <DataGrid
-            style={{ height: "100%", width: "100%" }}
-            checkboxSelection={true}
-            selectionModel={selectionModel}
-            onSelectionModelChange={handleEvent}
-            rows={rows}
-            rowHeight={30}
-            columns={columns}
-            initialState={{
-              pagination: { paginationModel: { pageSize: 300 } },
-            }}
-            pageSizeOptions={[300, 400]}
-          />
-        </div>
-      </div>
-      <ModalComp modalProps={modalProps} />
-    </div>
+      )}
+    </>
   );
 }

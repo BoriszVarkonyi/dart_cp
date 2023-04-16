@@ -10,7 +10,12 @@ import ModalComp from "../../components/static/Modal/ModalComp";
 import { setCompetitions, deleteCompetition } from "../../slices/compSlice";
 import { useDispatch } from "react-redux";
 import useBasicServices from "../../services/basic.service";
-import { translateWeaponType, translateSex, translateCompType } from '../../services/translate.service';
+import {
+  translateWeaponType,
+  translateSex,
+  translateCompType,
+} from "../../services/translate.service";
+import { useSelector } from "react-redux";
 
 const row = (element) => {
   return {
@@ -35,7 +40,7 @@ const columns = [
 
 export default function Competitions() {
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const { setLoadingState } = useBasicServices();
   const {
     selectionModel,
@@ -48,29 +53,32 @@ export default function Competitions() {
     openModalFunctiom,
   } = useDataGridHelper();
   const { tournamentId } = useParams();
+  const { isLoading } = useSelector((state) => state.isLoading);
 
   async function getData(cancelToken) {
-    const data = await get(`tournaments/${tournamentId}/competitions/`, cancelToken.token);
+    const data = await get(
+      `tournaments/${tournamentId}/competitions/`,
+      cancelToken.token
+    );
     const rows = data.map((e) => row(e));
     setRows(rows);
 
     //Navbar menuitems works from a redux store state. This sets that state
-    dispatch(setCompetitions(data))
+    dispatch(setCompetitions(data));
   }
 
   useEffect(() => {
-    setLoadingState(true)
+    setLoadingState(true);
     const cancelToken = createCancelToken();
     getData(cancelToken);
     return () => cancelToken.cancel();
   }, []);
 
-
   const deleteRow = () => {
     deleteFunction(`competitions/${selectedRowId}/`);
 
     //Navbar menuitems works from a redux store state. This deletes the comp from that state.
-    dispatch(deleteCompetition(selectedRowId))
+    dispatch(deleteCompetition(selectedRowId));
   };
 
   const modalProps = {
@@ -78,64 +86,67 @@ export default function Competitions() {
     title: "Are you sure you want to delete this competition?",
     subtitle: "You can not undo this action!",
     confirmButtonText: "DELETE",
-    deleteRow
-  }
-
+    deleteRow,
+  };
 
   return (
     <>
-      <div className="Main">
-        <div className="PageHeader">
-          <h2 className="PageTitle">Competitions</h2>
-          <div className="PageButtonsWrapper">
-            {isSelected && (
-              <Button
-                variant="contained"
-                size="small"
-                onClick={openModalFunctiom}
-              >
-                Delete
-              </Button>
-            )}
-            {isSelected && (
-              <Button
-                variant="contained"
-                size="small"
-                onClick={() =>
-                  navigate("modify", { state: { rowId: selectedRowId } })
-                }
-              >
-                Modify
-              </Button>
-            )}
-            {!isSelected && (
-              <Button
-                variant="contained"
-                size="small"
-                onClick={() =>
-                  navigate("create", { state: { rowId: selectedRowId } })
-                }
-              >
-                Create
-              </Button>
-            )}
+      {!isLoading && (
+        <>
+          <div className="Main">
+            <div className="PageHeader">
+              <h2 className="PageTitle">Competitions</h2>
+              <div className="PageButtonsWrapper">
+                {isSelected && (
+                  <Button
+                    variant="contained"
+                    size="small"
+                    onClick={openModalFunctiom}
+                  >
+                    Delete
+                  </Button>
+                )}
+                {isSelected && (
+                  <Button
+                    variant="contained"
+                    size="small"
+                    onClick={() =>
+                      navigate("modify", { state: { rowId: selectedRowId } })
+                    }
+                  >
+                    Modify
+                  </Button>
+                )}
+                {!isSelected && (
+                  <Button
+                    variant="contained"
+                    size="small"
+                    onClick={() =>
+                      navigate("create", { state: { rowId: selectedRowId } })
+                    }
+                  >
+                    Create
+                  </Button>
+                )}
+              </div>
+            </div>
+            <div className="PageContent">
+              <div className="TableGrid">
+                <DataGrid
+                  style={{ height: "100%", width: "100%" }}
+                  checkboxSelection={true}
+                  selectionModel={selectionModel}
+                  onSelectionModelChange={handleEvent}
+                  rows={rows}
+                  rowHeight={30}
+                  columns={columns}
+                />
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="PageContent">
-          <div className="TableGrid">
-            <DataGrid
-              style={{ height: "100%", width: "100%" }}
-              checkboxSelection={true}
-              selectionModel={selectionModel}
-              onSelectionModelChange={handleEvent}
-              rows={rows}
-              rowHeight={30}
-              columns={columns}
-            />
-          </div>
-        </div>
-      </div>
-      <ModalComp modalProps={modalProps} />
+          <ModalComp modalProps={modalProps} />
+        </>
+      )}
     </>
   );
 }
