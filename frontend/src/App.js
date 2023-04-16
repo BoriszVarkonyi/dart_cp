@@ -49,7 +49,6 @@ function App() {
             <Route path="registration">
               <Route index element={<Registration />} />
             </Route>
-            {/*Béla was here*/}
             <Route path="weapon_control">
               <Route index element={<WeaponControls />} />
               <Route path="add" element={<WeaponControl type="Add" />} />
@@ -59,7 +58,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Route>
         </Route>
-
+        {/* Only shows if the URL is incorrect */}
         <Route path="not_found" element={<NotFound />} />
       </Routes>
     </>

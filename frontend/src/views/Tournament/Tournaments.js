@@ -19,9 +19,9 @@ const row = (element) => {
 
 //Sets the columns
 const columns = [
-  { field: "tournamentName", headerName: "Name", width: 200 },
-  { field: "startingDate", headerName: "Starting Date", width: 200 },
-  { field: "endingDate", headerName: "Ending Date", width: 200 },
+  { field: "tournamentName", headerName: "Name", width: 200, flex: 200 },
+  { field: "startingDate", headerName: "Starting Date", width: 150 },
+  { field: "endingDate", headerName: "Ending Date", width: 150 },
 ];
 
 export default function Tournaments() {
@@ -126,6 +126,7 @@ export default function Tournaments() {
               rows={rows}
               rowHeight={30}
               columns={columns}
+              className="NoPagination"
             />
           </div>
         </div>

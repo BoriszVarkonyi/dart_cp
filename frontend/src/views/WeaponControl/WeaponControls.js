@@ -110,7 +110,7 @@ export default function WeaponControls() {
     setModalProps({
       type: "Alert",
       title:
-        "Are you sure you want to delete this competitiors weapon control?",
+        "Are you sure you want to delete this competitors weapon control?",
       subtitle: "You can not undo this action!",
       confirmButtonText: "DELETE",
       deleteRow,

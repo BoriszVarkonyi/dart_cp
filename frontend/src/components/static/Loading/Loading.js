@@ -10,7 +10,7 @@ export default function Loading() {
   return (
     <>
       {isLoading && (
-        <div className="LoadingModal">
+        <div className="LoadingWrapper">
           <div className="LoadingAnimation">
             <img src={Fencer1SVG} className="Fencer1" />
             <img src={Fencer2SVG} className="Fencer2" />

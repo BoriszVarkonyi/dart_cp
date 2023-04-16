@@ -105,7 +105,7 @@ export default function Competitor(props) {
     }
   };
 
-  const text = `${props.type} competitiors`;
+  const text = `${props.type} Competitor`;
   return (
     <div className="Main">
       <div className="PageHeader">

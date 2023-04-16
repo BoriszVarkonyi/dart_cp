@@ -199,7 +199,7 @@ export default function Competitors() {
 
   const modalProps = {
     type: "Alert",
-    title: "Are you sure you want to delete this competitior?",
+    title: "Are you sure you want to delete this competitor?",
     subtitle: "You can not undo this action!",
     confirmButtonText: "DELETE",
     deleteRow,
@@ -250,13 +250,13 @@ export default function Competitors() {
                       navigate("add", { state: { rowId: selectedRowId } })
                     }
                   >
-                    Create
+                    Add
                   </Button>
                 )}
               </div>
             </div>
             <div className="PageContent WithButtons">
-              <div className="TableGridColumnOptions">
+              <div className="DataGridColumnOptions">
                 <Button
                   variant="contained"
                   size="small"
