@@ -109,10 +109,27 @@
 		rgba(255,255,255,1));
 }
 
+.Main.WithAlert {
+	grid-template-rows: auto auto 1fr;
+}
+
 .PageContent.WithSideBar {
 	display: grid;
-	grid-template-columns: repeat(2, 1fr);
+	grid-template-columns: 1fr auto;
 	grid-template-rows: 1fr;
+	gap: 30px;
+}
+
+.SideBar {
+	position: sticky;
+	top: var(--l-PagePadding);
+	width: 400px;
+}
+
+.SideBar > * {
+	position: sticky;
+	top: 0;
+	width: 100%;
 }
 
 .PageContentInner {
@@ -120,47 +137,6 @@
 	padding: 30px;
 	border-radius: 7pt;
 	border: 2pt solid var(--c-Gray-500);
-}
-
-.DataGridWrapper {
-	background-color: white;
-	width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-}
-
-.Form {
-	display: flex;
-	flex-wrap: wrap;
-	flex-direction: row !important;
-	justify-content: center;
-	gap: 40px;
-}
-
-.Form > .FormColumn {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	flex: 0 1 250px;
-}
-
-.Form > .FormColumn > * {
-	width: 100%;
-	margin-block: 8px;
-}
-
-.FormRow {
-	display: flex;
-	gap: 16px;
-}
-
-.FormRow > * {
-	margin: 0 !important;
-}
-
-.DataGridAlert {
-	width: 100%;
-	padding: 13px 0;
 }
 
 .Chip {

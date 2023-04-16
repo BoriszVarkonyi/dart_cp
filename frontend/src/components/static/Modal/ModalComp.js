@@ -22,7 +22,7 @@ export default function ModalComp(props) {
       let obj = {};
       try {
         obj = JSON.parse(e.target.value);
-      } catch (e) {}
+      } catch (e) { }
       if (obj && obj.ciphertext && obj.nonce && obj.nonce) {
         const result = await verifyHash(obj);
         if (result !== false)
@@ -53,6 +53,7 @@ export default function ModalComp(props) {
             </Button>
             <Button
               variant="contained"
+              size="small"
               onClick={() => {
                 modalProps.deleteRow();
                 dispatch(closeModal());
@@ -80,7 +81,7 @@ export default function ModalComp(props) {
           </div>
         )}
 
-        {modalProps.type == "Succes" && (
+        {modalProps.type == "Success" && (
           <div className="ModalContent">
             <div className="ModalContentInner">
               <p>{modalProps.text}</p>

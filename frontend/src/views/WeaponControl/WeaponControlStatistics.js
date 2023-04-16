@@ -20,8 +20,8 @@ function getLongCountryName(value) {
 }
 
 const colIssueByC = [
-  { field: "country", headerName: "Country", width: 200 },
-  { field: "issue_num", headerName: "Number of issues", width: 200 },
+  { field: "country", headerName: "Country", width: 200, flex: 200 },
+  { field: "issue_num", headerName: "Number of issues", width: 200, flex: 100 },
 ];
 
 const setIssueByCRow = (shortName, number) => {
@@ -33,8 +33,8 @@ const setIssueByCRow = (shortName, number) => {
 };
 
 const colIssueWithValues = [
-  { field: "issue_name", headerName: "Iusse name", width: 200 },
-  { field: "freq", headerName: "Frequency", width: 200 },
+  { field: "issue_name", headerName: "Iusse name", width: 200, flex: 200 },
+  { field: "freq", headerName: "Frequency", width: 200, flex: 100 },
 ];
 
 const setIssueWithValuesRow = (issueName, value) => {
@@ -149,215 +149,6 @@ export default function WeaponControlStatistics() {
     setLoadingState(true)
     getData();
   }, []);
-
-  const MyResponsivePieCanvas = ({ data /* see data tab */ }) => (
-    <ResponsivePieCanvas
-      data={[
-        {
-          id: "scala",
-          label: "scala",
-          value: 201,
-          color: "hsl(355, 70%, 50%)",
-        },
-        {
-          id: "php",
-          label: "php",
-          value: 392,
-          color: "hsl(77, 70%, 50%)",
-        },
-        {
-          id: "ruby",
-          label: "ruby",
-          value: 523,
-          color: "hsl(68, 70%, 50%)",
-        },
-        {
-          id: "java",
-          label: "java",
-          value: 492,
-          color: "hsl(100, 70%, 50%)",
-        },
-        {
-          id: "css",
-          label: "css",
-          value: 365,
-          color: "hsl(91, 70%, 50%)",
-        },
-        {
-          id: "javascript",
-          label: "javascript",
-          value: 186,
-          color: "hsl(37, 70%, 50%)",
-        },
-        {
-          id: "stylus",
-          label: "stylus",
-          value: 409,
-          color: "hsl(156, 70%, 50%)",
-        },
-        {
-          id: "erlang",
-          label: "erlang",
-          value: 144,
-          color: "hsl(64, 70%, 50%)",
-        },
-        {
-          id: "c",
-          label: "c",
-          value: 207,
-          color: "hsl(172, 70%, 50%)",
-        },
-        {
-          id: "go",
-          label: "go",
-          value: 103,
-          color: "hsl(215, 70%, 50%)",
-        },
-        {
-          id: "hack",
-          label: "hack",
-          value: 546,
-          color: "hsl(116, 70%, 50%)",
-        },
-        {
-          id: "lisp",
-          label: "lisp",
-          value: 345,
-          color: "hsl(193, 70%, 50%)",
-        },
-        {
-          id: "rust",
-          label: "rust",
-          value: 454,
-          color: "hsl(169, 70%, 50%)",
-        },
-        {
-          id: "python",
-          label: "python",
-          value: 201,
-          color: "hsl(293, 70%, 50%)",
-        },
-        {
-          id: "make",
-          label: "make",
-          value: 247,
-          color: "hsl(191, 70%, 50%)",
-        },
-        {
-          id: "haskell",
-          label: "haskell",
-          value: 504,
-          color: "hsl(219, 70%, 50%)",
-        },
-        {
-          id: "elixir",
-          label: "elixir",
-          value: 56,
-          color: "hsl(187, 70%, 50%)",
-        },
-        {
-          id: "sass",
-          label: "sass",
-          value: 76,
-          color: "hsl(339, 70%, 50%)",
-        },
-      ]}
-
-
-      margin={{ top: 40, right: 200, bottom: 40, left: 80 }}
-      innerRadius={0.5}
-      padAngle={0.7}
-      cornerRadius={3}
-      activeOuterRadiusOffset={8}
-      colors={{ scheme: "greys" }}
-      borderColor={{
-        from: "color",
-        modifiers: [["darker", 0.6]],
-      }}
-      arcLinkLabelsSkipAngle={5}
-      arcLinkLabelsTextColor="#333333"
-      arcLinkLabelsThickness={2}
-      arcLinkLabelsColor={{ from: "color" }}
-      arcLabelsSkipAngle={5}
-      arcLabelsTextColor="#333333"
-
-
-      defs={[
-        {
-          id: "dots",
-          type: "patternDots",
-          background: "inherit",
-          color: "rgba(255, 255, 255, 0.3)",
-          size: 4,
-          padding: 1,
-          stagger: true,
-        },
-        {
-          id: "lines",
-          type: "patternLines",
-          background: "inherit",
-          color: "rgba(255, 255, 255, 0.3)",
-          rotation: -45,
-          lineWidth: 6,
-          spacing: 10,
-        },
-      ]}
-
-
-      fill={[
-        {
-          match: {
-            id: "ruby",
-          },
-          id: "dots",
-        },
-        {
-          match: {
-            id: "c",
-          },
-          id: "dots",
-        },
-        {
-          match: {
-            id: "go",
-          },
-          id: "dots",
-        },
-        {
-          match: {
-            id: "python",
-          },
-          id: "dots",
-        },
-        {
-          match: {
-            id: "scala",
-          },
-          id: "lines",
-        },
-        {
-          match: {
-            id: "lisp",
-          },
-          id: "lines",
-        },
-        {
-          match: {
-            id: "elixir",
-          },
-          id: "lines",
-        },
-        {
-          match: {
-            id: "javascript",
-          },
-          id: "lines",
-        },
-      ]}
-
-      legends={[]}
-    />
-  );
 
   return (
     <>
@@ -618,9 +409,9 @@ export default function WeaponControlStatistics() {
             </div>
           </div>
           <p className="PageSectionTitle">NUMBER OF ISSUES BY COUNTRY</p>
-          <div className="PageSection" style={{ height: "700px" }}>
+          <div className="PageSection">
             <DataGrid
-              style={{ height: "100%", width: "100%" }}
+              className="StatsDataGrid"
               disableRowSelectionOnClick
               rows={issueByC}
               rowHeight={25}
@@ -633,9 +424,9 @@ export default function WeaponControlStatistics() {
             />
           </div>
           <p className="PageSectionTitle">ISSUE TYPES BY FREQUENCY</p>
-          <div className="PageSection" style={{ height: "700px" }}>
+          <div className="PageSection">
             <DataGrid
-              style={{ height: "100%", width: "100%" }}
+              className="StatsDataGrid"
               disableRowSelectionOnClick
               rows={issuesWithSums}
               rowHeight={25}
@@ -800,7 +591,6 @@ export default function WeaponControlStatistics() {
               NUMBER OF FENCERS BY COUNTRY
             </p>
             <div className="DocumentChartWrapper">
-              <MyResponsivePieCanvas />
             </div>
           </div>
         </div>

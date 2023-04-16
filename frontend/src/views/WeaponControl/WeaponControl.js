@@ -89,51 +89,51 @@ export default function WeaponControl(props) {
     getData();
   }, []);
 
-  const title = `${props.type} Weapon control of ${rowId}`;
+  const title = `${props.type} Weapon Control of ${rowId}`;
   return (
     <div className="Main">
       <div className="PageHeader">
-        <h1 className="PageTitle"> {title}</h1>
+        <h1 className="PageTitle">{title}</h1>
         <div className="PageButtonsWrapper">
-          <Button variant="contained" onClick={() => navigate(-1)}>
+          <Button variant="contained" size="small" onClick={() => navigate(-1)}>
             Cancel
           </Button>
-          <Button variant="contained" type="submit" form="issue-form">
+          <Button variant="contained" size="small" type="submit" form="issue-form">
             Save weapon control
           </Button>
         </div>
       </div>
       <div className="PageContent WithSideBar">
         <Box
+          className="PageContentInner Form"
           component="form"
           id="issue-form"
           noValidate
           onSubmit={handleSubmit(onSubmit)}
         >
-          <div className="PageContentInner">
-            <table>
-              <thead>
-                <tr>
-                  <td>ISSUES</td>
-                  <td>QUANTITY</td>
-                </tr>
-              </thead>
-              <tbody>{issues}</tbody>
-            </table>
-          </div>
-          <div className="SideBar">
-            <TextField
-              id="outlined-textarea"
-              label="Notes"
-              placeholder="Type in the additional notes here"
-              multiline
-              value={notes}
-              {...register(`notes`, {
-                onChange: (e) => setNotes(e.target.value),
-              })}
-            />
-          </div>
+          <table>
+            <thead>
+              <tr>
+                <td>ISSUES</td>
+                <td>QUANTITY</td>
+              </tr>
+            </thead>
+            <tbody>{issues}</tbody>
+          </table>
         </Box>
+        <div className="SideBar">
+          <TextField
+            id="outlined-textarea"
+            label="Notes"
+            form="issue-form"
+            placeholder="Type in the additional notes here"
+            multiline
+            value={notes}
+            {...register(`notes`, {
+              onChange: (e) => setNotes(e.target.value),
+            })}
+          />
+        </div>
       </div>
     </div>
   );

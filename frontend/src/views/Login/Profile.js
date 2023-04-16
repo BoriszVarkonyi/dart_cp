@@ -38,8 +38,8 @@ const Profile = () => {
       <p>
         <strong>Id:</strong> {currentUser.meta.requestId}
       </p>
-      <Button variant="contained" onClick={test}> Next Page</Button>
-      <Button variant="contained" onClick={test2}> Log oute</Button>
+      <Button variant="contained" size="small" onClick={test}> Next Page</Button>
+      <Button variant="contained" size="small" onClick={test2}> Log oute</Button>
     </div>
   );
 };

@@ -40,7 +40,7 @@ const columns = [
   { field: "pre_nom", headerName: "First Name", width: 150 },
   { field: "nom", headerName: "Last Name", width: 150 },
   { field: "nation", headerName: "Nationality", width: 100 },
-  { field: "club", headerName: "Club", width: 200 },
+  { field: "club", headerName: "Club", width: 150 },
   { field: "date_naissance", headerName: "Date of Birth", width: 120 },
   { field: "sexe", headerName: "Sex", width: 100 },
   { field: "lateralite", headerName: "Lateralite", width: 100 },
@@ -95,7 +95,7 @@ const columnsDT = [
   { field: "pre_nom", headerName: "First Name", width: 150 },
   { field: "nom", headerName: "Last Name", width: 150 },
   { field: "nation", headerName: "Nationality", width: 100 },
-  { field: "club", headerName: "Club", width: 200 },
+  { field: "club", headerName: "Club", width: 150 },
   {
     field: "reg_status",
     headerName: "Registartion",
@@ -255,21 +255,22 @@ export default function Competitors() {
                 )}
               </div>
             </div>
-            <div className="PageContent WithButtons">
+            <div className="PageContent">
               <div className="DataGridColumnOptions">
+                <p>Show columns:</p>
                 <Button
                   variant="contained"
                   size="small"
                   onClick={() => setAllDataView(true)}
                 >
-                  All data
+                  ALL
                 </Button>
                 <Button
                   variant="contained"
                   size="small"
                   onClick={() => setAllDataView(false)}
                 >
-                  DT
+                  DT ONLY
                 </Button>
               </div>
               <div className="DataGridWrapper">

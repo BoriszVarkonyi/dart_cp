@@ -19,7 +19,7 @@ export default function Header() {
       <div className="HeaderContent">
         <p className="RoleText">Organiser</p>
         <p className="UserNameText">USERNAME</p>
-        <Button onClick={logout}>Log out</Button>
+        <Button onClick={logout} size="small">Log out</Button>
       </div>
     </div>
   );

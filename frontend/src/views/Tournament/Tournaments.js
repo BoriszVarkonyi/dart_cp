@@ -90,6 +90,7 @@ export default function Tournaments() {
                 {!isSelected && (
                   <Button
                     variant="contained"
+                    size="small"
                     onClick={() =>
                       navigate("create_tournament", {
                         state: { rowId: selectedRowId },
@@ -100,17 +101,17 @@ export default function Tournaments() {
                   </Button>
                 )}
                 {isSelected && (
-                  <Button variant="contained" onClick={openModalFunctiom}>
+                  <Button variant="contained" size="small" onClick={openModalFunctiom}>
                     Delete
                   </Button>
                 )}
                 {isSelected && (
-                  <Button variant="contained" onClick={modifyButton}>
+                  <Button variant="contained" size="small" onClick={modifyButton}>
                     Modify
                   </Button>
                 )}
                 {isSelected && (
-                  <Button variant="contained" onClick={openButton}>
+                  <Button variant="contained" size="small" onClick={openButton}>
                     Open
                   </Button>
                 )}

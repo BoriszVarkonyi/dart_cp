@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import { post, update, get } from '../../services/backend.service';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+import useBasicServices from "../../services/basic.service";
 import { useState, useEffect } from 'react';
 
 export default function Tournament(props) {
@@ -15,6 +16,8 @@ export default function Tournament(props) {
   const { state } = useLocation();
   const { rowId } = state;
   const navigate = useNavigate();
+  const { setLoadingState } = useBasicServices();
+  const { isLoading } = useSelector((state) => state.isLoading);
 
   const {
     register,
@@ -45,10 +48,13 @@ export default function Tournament(props) {
     async function getData() {
       const response = await get(`/tournaments/${rowId}`);
       setModifyData(response);
+      setLoadingState(false);
     }
     if (props.type == 'Modify') {
       getData();
     }
+    setLoadingState(true);
+    getData();
   }, []);
 
   useEffect(() => {
@@ -77,89 +83,95 @@ export default function Tournament(props) {
   const text = `${props.type} tournament`;
 
   return (
-    <div className="Panel">
-      <div className="PageHeader">
-        <h1 className="PageTitle">{text}</h1>
-        <div className="PageButtonsWrapper">
-          <Button variant="contained" onClick={() => navigate(-1)}>
-            Cancel
-          </Button>
-          <Button variant="contained" onClick={handleSubmit(onSubmitSave)}>
-            Save
-          </Button>
-          <Button variant="contained" onClick={handleSubmit(onSubmitSaveOpen)}>
-            Save & Open
-          </Button>
-        </div>
-      </div>
-      <Box className="PanelContent Form" component="form">
-        <div className="FormColumn">
-          <TextField
-            error={!!errors.title_long}
-            helperText={errors?.title_long?.message}
-            label="Name"
-            type="text"
-            margin="normal"
-            size="small"
-            variant="filled"
-            value={inputState.title_long || ''}
-            {...register('title_long', {
-              required: 'Please enter a name!',
-              onChange: (e) =>
-                setInputState((prevState) =>
-                  updateInputState(prevState, { title_long: e.target.value })
-                ),
-            })}
-          />
-        </div>
-        <div className="FormColumn">
-          <TextField
-            error={!!errors.starting_date}
-            helperText={errors?.starting_date?.message}
-            id="date"
-            label="Starting Date"
-            type="date"
-            size="small"
-            variant="filled"
-            value={inputState.starting_date}
-            sx={{ width: 220 }}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            {...register('starting_date', {
-              required: 'Please enter a start date!',
-              validate: (value) =>
-                value <= getValues('ending_date') ||
-                'Please enter a valid time interval!',
-              onChange: (e) =>
-                setInputState((prevState) =>
-                  updateInputState(prevState, { starting_date: e.target.value })
-                ),
-            })}
-          />
-          <TextField
-            error={!!errors.ending_date}
-            helperText={errors?.ending_date?.message}
-            id="date"
-            label="Ending Date"
-            type="date"
-            size="small"
-            variant="filled"
-            value={inputState.ending_date}
-            sx={{ width: 220 }}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            {...register('ending_date', {
-              required: 'Please enter an end date!',
-              onChange: (e) =>
-                setInputState((prevState) =>
-                  updateInputState(prevState, { ending_date: e.target.value })
-                ),
-            })}
-          />
-        </div>
-      </Box>
-    </div>
+    <>
+      {!isLoading && (
+        <>
+          <div className="Panel">
+            <div className="PageHeader">
+              <h1 className="PageTitle">{text}</h1>
+              <div className="PageButtonsWrapper">
+                <Button variant="contained" size="small" onClick={() => navigate(-1)}>
+                  Cancel
+                </Button>
+                <Button variant="contained" size="small" onClick={handleSubmit(onSubmitSave)}>
+                  Save
+                </Button>
+                <Button variant="contained" size="small" onClick={handleSubmit(onSubmitSaveOpen)}>
+                  Save & Open
+                </Button>
+              </div>
+            </div>
+            <Box className="PanelContent Form" component="form">
+              <div className="FormColumn">
+                <TextField
+                  error={!!errors.title_long}
+                  helperText={errors?.title_long?.message}
+                  label="Name"
+                  type="text"
+                  margin="normal"
+                  size="small"
+                  variant="filled"
+                  value={inputState.title_long || ''}
+                  {...register('title_long', {
+                    required: 'Please enter a name!',
+                    onChange: (e) =>
+                      setInputState((prevState) =>
+                        updateInputState(prevState, { title_long: e.target.value })
+                      ),
+                  })}
+                />
+              </div>
+              <div className="FormColumn">
+                <TextField
+                  error={!!errors.starting_date}
+                  helperText={errors?.starting_date?.message}
+                  id="date"
+                  label="Starting Date"
+                  type="date"
+                  size="small"
+                  variant="filled"
+                  value={inputState.starting_date}
+                  sx={{ width: 220 }}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  {...register('starting_date', {
+                    required: 'Please enter a start date!',
+                    validate: (value) =>
+                      value <= getValues('ending_date') ||
+                      'Please enter a valid time interval!',
+                    onChange: (e) =>
+                      setInputState((prevState) =>
+                        updateInputState(prevState, { starting_date: e.target.value })
+                      ),
+                  })}
+                />
+                <TextField
+                  error={!!errors.ending_date}
+                  helperText={errors?.ending_date?.message}
+                  id="date"
+                  label="Ending Date"
+                  type="date"
+                  size="small"
+                  variant="filled"
+                  value={inputState.ending_date}
+                  sx={{ width: 220 }}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  {...register('ending_date', {
+                    required: 'Please enter an end date!',
+                    onChange: (e) =>
+                      setInputState((prevState) =>
+                        updateInputState(prevState, { ending_date: e.target.value })
+                      ),
+                  })}
+                />
+              </div>
+            </Box>
+          </div>
+        </>
+      )}
+    </>
   );
 }

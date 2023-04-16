@@ -17,8 +17,8 @@ import { QRCodeSVG } from "qrcode.react";
 import { useReactToPrint } from "react-to-print";
 
 const columns = [
-  { field: "nom", headerName: "First Name", width: 200 },
-  { field: "pre_nom", headerName: "Last Name", width: 200 },
+  { field: "nom", headerName: "First Name", width: 100 },
+  { field: "pre_nom", headerName: "Last Name", width: 100 },
   { field: "nation", headerName: "Nationality", width: 100 },
   { field: "date_naissance", headerName: "Date of Birth", width: 120 },
   { field: "sexe", headerName: "Sex" },

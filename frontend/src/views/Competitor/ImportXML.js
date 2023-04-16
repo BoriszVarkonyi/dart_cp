@@ -24,10 +24,10 @@ const row = (element) => {
 
 //Sets the columns
 const columns = [
-  { field: "ranking", headerName: "RANKING", width: 200 },
-  { field: "fencerName", headerName: "NAME", width: 200 },
-  { field: "fencerNat", headerName: "NATIONALITY", width: 200 },
-  { field: "fencerClub", headerName: "CLUB", width: 200 },
+  { field: "ranking", headerName: "RANKING", width: 100 },
+  { field: "fencerName", headerName: "NAME", width: 200, flex: 200 },
+  { field: "fencerNat", headerName: "NATIONALITY", width: 100 },
+  { field: "fencerClub", headerName: "CLUB", width: 150 },
 ];
 
 export default function Import() {
@@ -44,9 +44,9 @@ export default function Import() {
   const { isLoading } = useSelector((state) => state.isLoading);
 
   const modalProps = {
-    type: "Succes",
-    title: "Succes!",
-    text: "Competitors have been imported succesfuly! \n Hold on! Let me redirect you;)",
+    type: "Success",
+    title: "Success!",
+    text: "Competitors have been imported successfully! \n Redirecting...",
   };
 
   function generateDataGrid(arrayOfFencers) {
@@ -126,7 +126,7 @@ export default function Import() {
   return (
     <>
       {!isLoading && (
-        <div className="Main">
+        <div className="Main WithAlert">
           <div className="PageHeader">
             <h1 className="PageTitle">Import XML</h1>
             <div className="PageButtonsWrapper">
@@ -141,7 +141,6 @@ export default function Import() {
                 Upload File
                 <input type="file" accept=".xml" hidden onChange={selectFile} />
               </Button>
-              {hasError && <Alert severity="error">Wrong file format!</Alert>}
               {hasSelectedFile && (
                 <Button
                   variant="contained"
@@ -155,33 +154,40 @@ export default function Import() {
                 </Button>
               )}
             </div>
-            {importStatus === true && (
-              <Alert severity="success">Imported successfully!</Alert>
-            )}
-            {importStatus === false && (
-              <Alert severity="error">
-                A server error has occured while importing!
-              </Alert>
-            )}
           </div>
+          {hasError && (
+            <div className="PageAlert">
+              <p className="PageAlertTitle">Incompatible file format!</p>
+              <p className="PageAlertSubTitle">Please select a XML file!</p>
+            </div>
+          )}
+          {importStatus === false && (
+            <div className="PageAlert">
+              <p className="PageAlertTitle">A server error has occured while importing!</p>
+              <p className="PageAlertSubTitle">Please try again later!</p>
+            </div>
+          )}
+          {!hasSelectedFile && (
+            <div className="PageAlert">
+              <p className="PageAlertTitle">Press 'Upload File' to proceed</p>
+            </div>
+          )}
+          {hasSelectedFile && (
+            <div className="PageAlert">
+              <p className="PageAlertTitle">This is only a preview!</p>
+              <p className="PageAlertSubTitle">Press 'Import' to finalize!</p>
+            </div>
+          )}
           <div className="PageContent">
-            {!hasSelectedFile && (
-              <Alert severity="info">File not selected</Alert>
-            )}
             {hasSelectedFile && (
-              <>
-                <div className="DataGridWrapper">
-                  <DataGrid
-                    rows={rows}
-                    rowHeight={30}
-                    columns={columns}
-                    style={{ height: "100%", width: "100%" }}
-                  />
-                  <div className="DataGridAlert">
-                    <p>Preview</p>
-                  </div>
-                </div>
-              </>
+              <div className="DataGridWrapper">
+                <DataGrid
+                  rows={rows}
+                  rowHeight={30}
+                  columns={columns}
+                  style={{ height: "100%", width: "100%" }}
+                />
+              </div>
             )}
           </div>
           <ModalComp modalProps={modalProps} />
