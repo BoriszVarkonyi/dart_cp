@@ -11,7 +11,7 @@ export default function NotFound() {
       </div>
       <div id="NotFoundContent">
         <p>Page is not found. The URL might be incorrect. Check tournament and competition ID.</p>
-        <Button variant="contained" onClick={() => navigate(-1)}>Go back</Button>
+        <Button variant="contained" onClick={() => navigate("/panel")}>Go back</Button>
       </div>
     </div>
   );
