@@ -148,6 +148,10 @@ REST_FRAMEWORK = {
     )
 }
 
+SIMPLE_JWT = {
+    'TOKEN_OBTAIN_SERIALIZER': 'backend.serializers.CustomTokenObtainPairSerializer',
+}
+
 # Django Rest Registration
 REST_REGISTRATION = {
     'REGISTER_VERIFICATION_ENABLED': False,
