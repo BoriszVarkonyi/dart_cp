@@ -9,8 +9,8 @@
 .PageSectionTitle {
     width: 100%;
     text-align: center;
-    padding-block: 1.5rem;
-    font-size: 23px;
+    padding-block: 1rem;
+    font-size: 21px;
     background-color: #ededed;
 }
 
@@ -76,7 +76,7 @@
     padding-left: 40px;
     align-items: center;
     justify-content: right;
-    min-height: 150px;
+    min-height: 120px;
     width: 100%;
     background: rgba(225,231,240,1);
     background: linear-gradient(to bottom right, rgba(225,231,240,1) 0%, rgba(186,193,198,0) 100%);
@@ -88,7 +88,7 @@
 }
 
 .StatData {
-    font-size: 150px;
+    font-size: 120px;
     line-height: 1;
     font-weight: bold;
     color: #BAC1C6;

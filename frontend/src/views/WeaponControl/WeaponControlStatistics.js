@@ -501,9 +501,10 @@ export default function WeaponControlStatistics() {
             <div>
               <p>ACCOUNTED ISSUE TYPES:</p>
             </div>
-            <div>
+            <div className="Small">
               <p>
                 {listedIssues ? listedIssues : ""}
+                {/*FIE mark on blade, Arm gap and weight, Arm length, Blade length, Grip length, Form and depth of the guard, Guard oxydation/ deformation, Excentricity of the blade, Blade flexibility, Curve on the blade, Foucault current device, Point and arm size, Length/ condition of body/ mask wire, Resistance of body/ mask wire, Mask: FIE mark, Mask: condition and insulation, Mask: resistance (sabre/foil, Metallic jacket condition, Metallic jacket resistance, Sabre/ glove overlay condition, Sabre glove overlay resistance, Glove condition, Foil chest protector, Socks, Incorrect name printing, Incorrect national logo, Commercial, Other items*/}
               </p>
             </div>
           </div>
