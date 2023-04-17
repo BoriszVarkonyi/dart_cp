@@ -30,12 +30,12 @@ const row = (element) => {
 };
 
 const columns = [
-  { field: "name", headerName: "NAME", width: 200 },
-  { field: "weapon_type", headerName: "WEAPON TYPE", width: 100 },
-  { field: "is_wheelchair", headerName: "IS WHEELCHAIR", width: 150 },
-  { field: "sex", headerName: "SEX", width: 100 },
-  { field: "type", headerName: "TYPE", width: 100 },
-  { field: "age_group", headerName: "AGE GROUP", width: 150 },
+  { field: "name", headerName: "NAME", width: 220, flex: 200, minWidth: 220 },
+  { field: "weapon_type", headerName: "WEAPON TYPE", width: 150, flex: 150 },
+  { field: "is_wheelchair", headerName: "IS WHEELCHAIR", width: 150, flex: 150 },
+  { field: "sex", headerName: "SEX", width: 100, flex: 100 },
+  { field: "type", headerName: "TYPE", width: 100, flex: 100 },
+  { field: "age_group", headerName: "AGE GROUP", width: 150, flex: 150 },
 ];
 
 export default function Competitions() {

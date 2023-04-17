@@ -24,10 +24,10 @@ const row = (element) => {
 
 //Sets the columns
 const columns = [
-  { field: "ranking", headerName: "RANKING", width: 100 },
-  { field: "fencerName", headerName: "NAME", width: 200, flex: 200 },
-  { field: "fencerNat", headerName: "NATIONALITY", width: 100 },
-  { field: "fencerClub", headerName: "CLUB", width: 150 },
+  { field: "ranking", headerName: "RANKING", width: 100, flex: 100 },
+  { field: "fencerName", headerName: "NAME", width: 220, flex: 220, minWidth: 200 },
+  { field: "fencerNat", headerName: "NATIONALITY", width: 100, flex: 100 },
+  { field: "fencerClub", headerName: "CLUB", width: 150, flex: 150 },
 ];
 
 export default function Import() {

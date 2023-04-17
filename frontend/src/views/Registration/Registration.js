@@ -17,16 +17,16 @@ import { QRCodeSVG } from "qrcode.react";
 import { useReactToPrint } from "react-to-print";
 
 const columns = [
-  { field: "nom", headerName: "First Name", width: 100 },
-  { field: "pre_nom", headerName: "Last Name", width: 100 },
-  { field: "nation", headerName: "Nationality", width: 100 },
-  { field: "date_naissance", headerName: "Date of Birth", width: 120 },
-  { field: "sexe", headerName: "Sex" },
+  { field: "nom", headerName: "First Name", width: 150, flex: 150, minWidth: 150 },
+  { field: "pre_nom", headerName: "Last Name", width: 150, flex: 150, minWidth: 150 },
+  { field: "nation", headerName: "Nationality", width: 100, flex: 100 },
+  { field: "date_naissance", headerName: "Date of Birth", width: 120, flex: 100 },
+  { field: "sexe", headerName: "Sex", flex: 100 },
   {
     field: "registered",
     headerName: "Status",
     type: "boolean",
-    width: 170,
+    width: 180,
     align: "center",
     headerAlign: "center",
     renderCell: (params) => {

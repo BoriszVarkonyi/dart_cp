@@ -35,10 +35,10 @@ const rowDT = (element) => {
 };
 
 const columns = [
-  { field: "classement", headerName: "Ranking", width: 100 },
-  { field: "points", headerName: "Points", width: 100 },
-  { field: "pre_nom", headerName: "First Name", width: 150 },
-  { field: "nom", headerName: "Last Name", width: 150 },
+  { field: "classement", headerName: "Ranking", width: 80 },
+  { field: "points", headerName: "Points", width: 80 },
+  { field: "pre_nom", headerName: "First Name", width: 150, flex: 150, minWidth: 150 },
+  { field: "nom", headerName: "Last Name", width: 150, flex: 150, minWidth: 150 },
   { field: "nation", headerName: "Nationality", width: 100 },
   { field: "club", headerName: "Club", width: 150 },
   { field: "date_naissance", headerName: "Date of Birth", width: 120 },
@@ -92,8 +92,8 @@ const columns = [
 
 //Sets the columns for the DT view
 const columnsDT = [
-  { field: "pre_nom", headerName: "First Name", width: 150 },
-  { field: "nom", headerName: "Last Name", width: 150 },
+  { field: "pre_nom", headerName: "First Name", width: 150, flex: 150, minWidth: 150 },
+  { field: "nom", headerName: "Last Name", width: 150, flex: 150, minWidth: 150 },
   { field: "nation", headerName: "Nationality", width: 100 },
   { field: "club", headerName: "Club", width: 150 },
   {
