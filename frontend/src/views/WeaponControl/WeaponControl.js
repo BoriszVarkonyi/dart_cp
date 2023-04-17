@@ -13,6 +13,7 @@ import Issue from "./Issue";
 export default function WeaponControl(props) {
   const [issues, setIssues] = useState([]);
   const [issueValues, setIssueValues] = useState({});
+  const [fencerName, setFencerName] = useState("")
   const [notes, setNotes] = useState("");
   const navigate = useNavigate();
   const { tourId, compId } = useParams();
@@ -69,7 +70,11 @@ export default function WeaponControl(props) {
         if (key == "notes") {
           data[key] == null ? setNotes("") : setNotes(data[key]);
         }
-        if (key !== "exists" && key !== "notes") {
+        if(key == "fencer_name"){
+          setFencerName(data[key])
+        }
+  
+        if (key !== "exists" && key !== "notes" && key!=="fencer_name") {
           inputArray.push(
             <Issue
               key={key}
@@ -89,7 +94,7 @@ export default function WeaponControl(props) {
     getData();
   }, []);
 
-  const title = `${props.type} Weapon Control of ${rowId}`;
+  const title = `${props.type} Weapon Control of ${fencerName}`;
   return (
     <div className="Main">
       <div className="PageHeader">
