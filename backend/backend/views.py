@@ -235,7 +235,7 @@ class WeaponControlFencersIssues(APIView):
                 fencers = fencer,
             )
         if queryset.exists():
-            wc_serializer = WeaponControlIssuesSerializer(
+            wc_serializer = WeaponControlNationSerializer(
                 queryset,
                 many=True,
             )
@@ -255,6 +255,16 @@ class WeaponControlFencersIssues(APIView):
                 response[hr_name] = 0
 
             response['notes'] = ""
+
+        # add fencer name to return object
+        # get data from fencer
+        queryset_fencer = FencerModel.objects.get(
+                    id = fencer,
+                )
+        serializers_fencer = FencerSerializer(queryset_fencer)
+        # add to obj
+        name = serializers_fencer.data['pre_nom'] + " " + serializers_fencer.data['nom']
+        response['fencer_name'] = name
 
         return Response(response)
 
