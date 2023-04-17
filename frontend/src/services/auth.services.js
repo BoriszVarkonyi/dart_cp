@@ -1,4 +1,5 @@
 import axios from "axios";
+import jwt_decode from "jwt-decode";
 
 const API_URL = "http://localhost:8082/api/token/";
 
@@ -21,6 +22,9 @@ const login = (username, password) => {
   .then((response) => {
     if (response.data.access) {
       localStorage.setItem("user", JSON.stringify(response.data));
+
+      const decoded = jwt_decode(response.data.access);
+      localStorage.setItem("username", decoded.name);
     }
     return response.data;
   });
