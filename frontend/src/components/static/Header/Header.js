@@ -18,7 +18,7 @@ export default function Header() {
       <p className="AppName">d'ARTAGNAN CONTROL ALPHA BUILD</p>
       <div className="HeaderContent">
         <p className="RoleText">Organiser</p>
-        <p className="UserNameText">USERNAME</p>
+        <p className="UserNameText">{localStorage.getItem('username')}</p>
         <Button onClick={logout} size="small">Log out</Button>
       </div>
     </div>

@@ -197,7 +197,6 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         token = super().get_token(user)
         token['name'] = user.username
         return token
-    
 
 class CompetitorsDataSerializer(serializers.ModelSerializer):
     reg_status = serializers.SerializerMethodField()

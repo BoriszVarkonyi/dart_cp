@@ -26,9 +26,9 @@ const row = (element) => {
 
 //Sets the columns
 const columns = [
-  { field: "wcName", headerName: "NAME", width: 200 },
-  { field: "wcNat", headerName: "NATIONALITY", width: 100 },
-  { field: "wcClub", headerName: "CLUB", width: 150 },
+  { field: "wcName", headerName: "NAME", width: 220, flex: 220, minWidth: 200 },
+  { field: "wcNat", headerName: "NATIONALITY", width: 100, flex: 120 },
+  { field: "wcClub", headerName: "CLUB", width: 150, flex: 150 },
   {
     field: "wcStatus",
     headerName: "Status",

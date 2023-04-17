@@ -56,7 +56,7 @@ urlpatterns = [
         views.GetHash.as_view(),
     ),
     path(
-        'customtoken',
+        'customtoken/',
         views.CustomTokenObtainPairView.as_view()
     ),
     path(
