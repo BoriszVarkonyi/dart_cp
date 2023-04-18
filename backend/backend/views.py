@@ -596,12 +596,12 @@ class Statistics(APIView):
                         n_r_dict[x['nation']]['fencer_num'] += 1
                         n_r_dict[x['nation']]['issue_num'] += issue_count
 
-        real_n_r = {}
+        real_n_r = []
 
         for key,value in n_r_dict.items():
             if value != {}:
-                value['ratio'] = round(value['issue_num'] / value['fencer_num'], 2)
-                real_n_r[key] = value
+                ratio = round(value['issue_num'] / value['fencer_num'], 2)
+                real_n_r.append({'nation':key,'fencer_num':value['fencer_num'],'issue_num':value['issue_num'],'ratio':ratio})
 
 
         if len(serializer.data) == 0:
