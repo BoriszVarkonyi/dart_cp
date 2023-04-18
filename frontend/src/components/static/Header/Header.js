@@ -19,7 +19,7 @@ export default function Header() {
       <div className="HeaderContent">
         <p className="RoleText">Organiser</p>
         <p className="UserNameText">{localStorage.getItem('username')}</p>
-        <Button onClick={logout} size="small">Log out</Button>
+        <button onClick={logout} id="LogOutButton">Log out</button>
       </div>
     </div>
   );

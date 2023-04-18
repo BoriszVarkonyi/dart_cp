@@ -81,6 +81,7 @@ export default function NavBar() {
     <div className="NavBar">
       <div className="NavBarContent">
         <div className="NavBarContentInner">
+          <Link className="NavBarTextButton" to="/panel">back to tournaments...</Link>
           <p className="NavBarSectionTitle">Tournament</p>
           <div className="NavBarSection">
             <Link to="competitions">

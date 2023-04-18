@@ -39,6 +39,22 @@
 	font-weight: bold;
 }
 
+#LogOutButton {
+	font-size: 15px;
+	padding: 3px 5px;
+	margin-right: 6px;
+	border-radius: 3pt;
+	color: white;
+	font-weight: 700;
+	background: var(--c-PrimaryBlue-400);
+	background:
+		radial-gradient(
+		farthest-corner at top left,
+		var(--c-PrimaryBlue-500) 0%,
+		var(--c-PrimaryMix-400) 50%,
+		var(--c-PrimaryGreen-300) 100%);
+}
+
 .RoleText {
 
 }

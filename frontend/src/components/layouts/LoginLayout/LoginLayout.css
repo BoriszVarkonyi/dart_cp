@@ -93,7 +93,6 @@
 }
 
 #LoginButton {
-	cursor: pointer;
 	width: min-content;
 	font-size: 18px;
 	margin: 25px auto 0;
