@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridToolbarQuickFilter } from '@mui/x-data-grid';
 import { Button, Modal } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { get, remove } from "../../services/backend.service";
@@ -70,6 +70,13 @@ export default function Tournaments() {
     navigate("modify_tournament", { state: { rowId: selectedRowId } });
   };
 
+  function CustomToolbar() {
+    return (
+      <div className="GridToolbar">
+        <GridToolbarQuickFilter />
+      </div>);
+  }
+
   const modalProps = {
     type: "Alert",
     title: "Are you sure you want to delete this tournament?",
@@ -120,13 +127,15 @@ export default function Tournaments() {
             <div className="PageContent">
               <div className="DataGridWrapper">
                 <DataGrid
-                  style={{ height: "100%", width: "100%" }}
                   checkboxSelection={true}
                   selectionModel={selectionModel}
                   onSelectionModelChange={handleEvent}
                   rows={rows}
                   rowHeight={30}
                   columns={columns}
+                  components={{
+                    Toolbar: CustomToolbar,
+                  }}
                 />
               </div>
             </div>

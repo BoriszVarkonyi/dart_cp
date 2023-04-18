@@ -267,16 +267,6 @@ button:-moz-focusring,
 	padding: var(--l-PagePadding);
 }
 
-.DataGridColumnOptions {
-  position: absolute;
-  left: var(--l-PagePadding);
-  top: calc(var(--l-PagePadding) - 35px);;
-	display: flex;
-  align-items: center;
-	gap: 8px;
-	margin: 0 auto 10px 0;
-}
-
 .PageButtonsWrapper {
 	display: flex;
 	align-items: center;
@@ -347,11 +337,33 @@ button:-moz-focusring,
 }
 
 .DataGridWrapper {
-	background-color: white;
 	width: 100%;
   height: 100%;
   box-sizing: border-box;
   position: relative;
+  background-color: white;
+}
+
+.DataGridWrapper > .MuiDataGrid-root {
+	width: 100%;
+  height: 100%;
+}
+
+.GridToolbar {
+  padding: 8px 12px 0;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.DataGridColumnOptions {
+	display: flex;
+  align-items: center;
+	gap: 8px;
+  justify-self: start;
+  margin-right: auto;
 }
 
 .Form {

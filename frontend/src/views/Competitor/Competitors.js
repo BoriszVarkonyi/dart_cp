@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Button } from "@mui/material";
 import { Chip } from "@mui/material";
-import { DataGrid, SortGridMenuItems } from "@mui/x-data-grid";
+import { DataGrid, GridToolbarQuickFilter } from '@mui/x-data-grid';
 import { get, createCancelToken } from "../../services/backend.service";
 import { useNavigate } from "react-router-dom";
 import useDataGridHelper from "../../services/datagrid.service";
@@ -197,6 +197,30 @@ export default function Competitors() {
     });
   };
 
+  function CustomToolbar() {
+    return (
+      <div className="GridToolbar">
+        <div className="DataGridColumnOptions">
+          <p>Show columns:</p>
+          <Button
+            variant="contained"
+            size="small"
+            onClick={() => setAllDataView(true)}
+          >
+            ALL
+          </Button>
+          <Button
+            variant="contained"
+            size="small"
+            onClick={() => setAllDataView(false)}
+          >
+            DT ONLY
+          </Button>
+        </div>
+        <GridToolbarQuickFilter />
+      </div>);
+  }
+
   const modalProps = {
     type: "Alert",
     title: "Are you sure you want to delete this competitor?",
@@ -256,32 +280,17 @@ export default function Competitors() {
               </div>
             </div>
             <div className="PageContent">
-              <div className="DataGridColumnOptions">
-                <p>Show columns:</p>
-                <Button
-                  variant="contained"
-                  size="small"
-                  onClick={() => setAllDataView(true)}
-                >
-                  ALL
-                </Button>
-                <Button
-                  variant="contained"
-                  size="small"
-                  onClick={() => setAllDataView(false)}
-                >
-                  DT ONLY
-                </Button>
-              </div>
               <div className="DataGridWrapper">
                 <DataGrid
-                  style={{ height: "100%", width: "100%" }}
                   checkboxSelection={true}
                   selectionModel={selectionModel}
                   onSelectionModelChange={handleEvent}
                   rows={allDataView ? rows : rowDTView}
                   rowHeight={30}
                   columns={allDataView ? columns : columnsDT}
+                  components={{
+                    Toolbar: CustomToolbar,
+                  }}
                 />
               </div>
             </div>

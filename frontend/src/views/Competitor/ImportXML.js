@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Alert, Modal } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridToolbarQuickFilter } from '@mui/x-data-grid';
 import { post, postBulk } from "./../../services/backend.service";
 import { useParams } from "react-router-dom";
 import { parseFencers } from "../../services/xml.service";
@@ -42,6 +42,13 @@ export default function Import() {
   const { openModalFunctiom } = useDataGridHelper();
   const { setLoadingState } = useBasicServices();
   const { isLoading } = useSelector((state) => state.isLoading);
+
+  function CustomToolbar() {
+    return (
+      <div className="GridToolbar">
+        <GridToolbarQuickFilter />
+      </div>);
+  }
 
   const modalProps = {
     type: "Success",
@@ -185,7 +192,9 @@ export default function Import() {
                   rows={rows}
                   rowHeight={30}
                   columns={columns}
-                  style={{ height: "100%", width: "100%" }}
+                  components={{
+                    Toolbar: CustomToolbar,
+                  }}
                 />
               </div>
             )}

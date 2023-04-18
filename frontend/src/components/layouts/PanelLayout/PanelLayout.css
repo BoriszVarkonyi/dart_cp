@@ -68,9 +68,3 @@
 	top: 0;
 	background-color: var(--c-PrimaryBlue-100);
 }
-
-/*
-.NoPagination > div:nth-of-type(3) {
-	display: none !important;
-}
-*/

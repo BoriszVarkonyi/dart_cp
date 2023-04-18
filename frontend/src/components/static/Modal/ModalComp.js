@@ -42,6 +42,7 @@ export default function ModalComp(props) {
           <IconButton
             className="ModalCloseButton"
             onClick={() => dispatch(closeModal())}
+            sx={{ color: "white" }}
           >
             <CloseIcon />
           </IconButton>

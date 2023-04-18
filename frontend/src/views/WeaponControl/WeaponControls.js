@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridToolbarQuickFilter } from '@mui/x-data-grid';
 import { Button } from "@mui/material";
 import { Chip } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -118,6 +118,13 @@ export default function WeaponControls() {
     openModalFunctiom();
   };
 
+  function CustomToolbar() {
+    return (
+      <div className="GridToolbar">
+        <GridToolbarQuickFilter />
+      </div>);
+  }
+
   const openQRCode = () => {
     setModalProps({
       type: "Barcode",
@@ -180,7 +187,6 @@ export default function WeaponControls() {
           <div className="PageContent">
             <div className="DataGridWrapper">
               <DataGrid
-                style={{ height: "100%", width: "100%" }}
                 checkboxSelection={true}
                 selectionModel={selectionModel}
                 onSelectionModelChange={handleEvent}
@@ -191,6 +197,9 @@ export default function WeaponControls() {
                   pagination: { paginationModel: { pageSize: 300 } },
                 }}
                 pageSizeOptions={[300, 400]}
+                components={{
+                  Toolbar: CustomToolbar,
+                }}
               />
             </div>
           </div>

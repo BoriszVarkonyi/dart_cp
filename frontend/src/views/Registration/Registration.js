@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Button } from "@mui/material";
+import { Button, IconButton } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { Chip } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
 import { get, post, createCancelToken } from "../../services/backend.service";
 import { useNavigate } from "react-router-dom";
 import useDataGridHelper from "../../services/datagrid.service";
@@ -15,6 +14,7 @@ import { translateSex } from "../../services/translate.service";
 import "../../StickerPrinting.css";
 import { QRCodeSVG } from "qrcode.react";
 import { useReactToPrint } from "react-to-print";
+import { DataGrid, GridToolbarContainer, GridToolbarQuickFilter } from '@mui/x-data-grid';
 
 const columns = [
   { field: "nom", headerName: "First Name", width: 150, flex: 150, minWidth: 150 },
@@ -46,6 +46,7 @@ const columns = [
 ];
 
 export default function Registration() {
+
   const {
     selectionModel,
     selectedRowId,
@@ -154,6 +155,13 @@ export default function Registration() {
     setHash(JSON.stringify(hashedData));
   }
 
+  function CustomToolbar() {
+    return (
+      <div className="GridToolbar">
+        <GridToolbarQuickFilter />
+      </div>);
+  }
+
   const modalContent = {};
 
   return (
@@ -201,13 +209,15 @@ export default function Registration() {
             <div className="PageContent">
               <div className="DataGridWrapper">
                 <DataGrid
-                  style={{ height: "100%", width: "100%" }}
                   checkboxSelection={true}
                   selectionModel={selectionModel}
                   onSelectionModelChange={handleEvent}
                   rows={rows}
                   rowHeight={30}
                   columns={columns}
+                  components={{
+                    Toolbar: CustomToolbar,
+                  }}
                 />
               </div>
             </div>

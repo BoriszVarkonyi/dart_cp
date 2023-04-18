@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridToolbarQuickFilter } from '@mui/x-data-grid';
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { get, remove, createCancelToken } from "../../services/backend.service";
@@ -10,11 +10,7 @@ import ModalComp from "../../components/static/Modal/ModalComp";
 import { setCompetitions, deleteCompetition } from "../../slices/compSlice";
 import { useDispatch } from "react-redux";
 import useBasicServices from "../../services/basic.service";
-import {
-  translateWeaponType,
-  translateSex,
-  translateCompType,
-} from "../../services/translate.service";
+import { translateWeaponType, translateSex, translateCompType } from "../../services/translate.service";
 import { useSelector } from "react-redux";
 
 const row = (element) => {
@@ -81,6 +77,13 @@ export default function Competitions() {
     dispatch(deleteCompetition(selectedRowId));
   };
 
+  function CustomToolbar() {
+    return (
+      <div className="GridToolbar">
+        <GridToolbarQuickFilter />
+      </div>);
+  }
+
   const modalProps = {
     type: "Alert",
     title: "Are you sure you want to delete this competition?",
@@ -133,13 +136,15 @@ export default function Competitions() {
             <div className="PageContent">
               <div className="DataGridWrapper">
                 <DataGrid
-                  style={{ height: "100%", width: "100%" }}
                   checkboxSelection={true}
                   selectionModel={selectionModel}
                   onSelectionModelChange={handleEvent}
                   rows={rows}
                   rowHeight={55}
                   columns={columns}
+                  components={{
+                    Toolbar: CustomToolbar,
+                  }}
                 />
               </div>
             </div>
