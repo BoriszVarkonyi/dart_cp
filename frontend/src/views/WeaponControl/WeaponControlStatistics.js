@@ -17,7 +17,6 @@ import {
 } from "../../services/translate.service";
 
 function getLongCountryName(value) {
-  console.log(value)
   return countries["countries"].find((country) => country.short == value).long;
 }
 
@@ -58,8 +57,6 @@ export default function WeaponControlStatistics() {
   const [issueByC, setIssueByC] = useState([]);
   const [issuesWithSums, setIssuesWithSums] = useState([]);
   const [countryCells, setCountryCells] = useState([]);
-  const [currentComp, setCurrentComp] = useState();
-  const [currentTour, setCurrentTour] = useState();
   const [listedIssues, setListedIssues] = useState();
   const navigate = useNavigate();
   const { setLoadingState } = useBasicServices();
@@ -69,14 +66,8 @@ export default function WeaponControlStatistics() {
     const byIssues = await get(`stats/byIssues/${compId}`);
     const issueByNat = await get(`stats/byNationByIssues/${compId}`);
     const byNation = await get(`/stats/byNation/${compId}`);
-    const comp = await get(`competitions/${compId}`);
-    const tour = await get(`tournaments/${tournamentId}`);
-    let tempArray = [];
-    setCurrentComp(comp);
-    setCurrentTour(tour);
     setStatistics(data);
 
-    console.log(issueByNat)
     const byNations = byNation.map((e) =>
       setIssueByCRow(e.fencer_nation, e.issues)
     );
@@ -91,7 +82,6 @@ export default function WeaponControlStatistics() {
     iessueListText = iessueListText.slice(0, -2);
     setListedIssues(iessueListText);
 
-    console.log(byIssues)
     //  const compArray = issueByNat.map((e)=>{
     //  });
 
