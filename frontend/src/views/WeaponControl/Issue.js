@@ -12,7 +12,7 @@ export default function Issue(props) {
           type="text"
           inputMode="numeric"
           size="small"
-          defaultValue={props.issueNum}
+          defaultValue={props.issueNum} //Math.round((Math.random()*4)) use it to generate random values for test
           {...props.register(`issue_${props.rowKey}`, {
             onChange: (e) => {
               if(e.target.value !="" && !e.target.value[e.target.value.length-1].match(/^[0-9]+$/s)){

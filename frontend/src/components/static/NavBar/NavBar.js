@@ -18,7 +18,7 @@ import { Cookies, useCookies } from "react-cookie";
 
 export default function NavBar() {
   const [cookies, setCookies] = useCookies("selectedComp");
-  const [compdId, setCompId] = useState(cookies["selectedComp"]);
+  const [compdId, setCompId] = useState(cookies["selectedComp"]==undefined? "" : cookies["selectedComp"]);
   const [hasSelectedComp, setHasSelectedComp] = useState(false);
   const [menuItems, setMenuItems] = useState([]);
   const { tournamentId } = useParams();
@@ -49,7 +49,7 @@ export default function NavBar() {
     dispatch(setCompetitions(data));
     const menuItems = data.map((e) => setMenuItem(e));
     setMenuItems(menuItems);
-    setCompId(cookies["selectedComp"]);
+    console.log(cookies["selectedComp"])
   }
 
   //Loades the competitions at the first render.

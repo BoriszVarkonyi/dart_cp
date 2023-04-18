@@ -9,6 +9,7 @@ import { get, createCancelToken } from "../../services/backend.service";
 import { useParams } from "react-router-dom";
 import countries from "../../utils/countries.json";
 import CountryCell from "./CountryCell";
+import WCPrint from "./wcPrint/WCPrint";
 import useBasicServices from "../../services/basic.service";
 import {
   translateSex,
@@ -16,6 +17,7 @@ import {
 } from "../../services/translate.service";
 
 function getLongCountryName(value) {
+  console.log(value)
   return countries["countries"].find((country) => country.short == value).long;
 }
 
@@ -51,15 +53,15 @@ const setIssueWithValuesRow = (issueName, value) => {
 };
 
 export default function WeaponControlStatistics() {
+  const { compId, tournamentId } = useParams();
   const [statistics, setStatistics] = useState();
   const [issueByC, setIssueByC] = useState([]);
   const [issuesWithSums, setIssuesWithSums] = useState([]);
   const [countryCells, setCountryCells] = useState([]);
   const [currentComp, setCurrentComp] = useState();
-  const [currentTour, setCurrentTour] = useState()
-  const [listedIssues, setListedIssues] = useState()
+  const [currentTour, setCurrentTour] = useState();
+  const [listedIssues, setListedIssues] = useState();
   const navigate = useNavigate();
-  const { compId, tournamentId } = useParams();
   const { setLoadingState } = useBasicServices();
 
   async function getData() {
@@ -68,91 +70,80 @@ export default function WeaponControlStatistics() {
     const issueByNat = await get(`stats/byNationByIssues/${compId}`);
     const byNation = await get(`/stats/byNation/${compId}`);
     const comp = await get(`competitions/${compId}`);
-    const tour = await get(`tournaments/${tournamentId}`)
+    const tour = await get(`tournaments/${tournamentId}`);
     let tempArray = [];
     setCurrentComp(comp);
-    setCurrentTour(tour)
+    setCurrentTour(tour);
     setStatistics(data);
 
-    tempArray = [];
-    Object.keys(byNation).forEach(function (key, index) {
-      tempArray.push(setIssueByCRow(key, byNation[key]));
-    });
-    setIssueByC(tempArray);
-
-    let iessueListText = ""
-    tempArray = [];
-    Object.keys(byIssues).forEach(function (key, index) {
-      if (byIssues[key] != 0) {
-        iessueListText += key + ", "
-        tempArray.push(setIssueWithValuesRow(key, byIssues[key]));
-      }
-    });
-    iessueListText = iessueListText.slice(0, -2)
-    setListedIssues(iessueListText)
-    setIssuesWithSums(tempArray);
-
-    const compArray = [];
-    Object.keys(issueByNat).forEach(function (key, index) {
-      const tempArray = [];
-      Object.keys(issueByNat[key]).forEach(function (natKey, index) {
-        if (issueByNat[key][natKey] != 0) {
-          tempArray.push(
-            setIssueWithValuesRow(natKey, issueByNat[key][natKey])
-          );
-        }
-      });
-      const props = {
-        longName: getLongCountryName(key),
-        fencerNum: data["n_r"][key].fencer_num,
-        issueNum: data["n_r"][key].issue_num,
-        ratio: data["n_r"][key].ratio,
-        col: colIssueWithValues,
-        row: tempArray,
-      };
-      compArray.push(<CountryCell props={props} key={key + index} />);
-    });
-    const sortedCompArray = [...compArray].sort(
-      (a, b) => b.props.props.issueNum - a.props.props.issueNum
+    console.log(issueByNat)
+    const byNations = byNation.map((e) =>
+      setIssueByCRow(e.fencer_nation, e.issues)
     );
-    setCountryCells(sortedCompArray);
-    setLoadingState(false)
+    setIssueByC(byNations);
+
+    let iessueListText = "";
+    const filteredByIssueArray = byIssues.filter((e) => e.issues != 0);
+    const byIssueArray = filteredByIssueArray.map((e) =>
+      setIssueWithValuesRow(e.issue_human_readable_name, e.issues)
+    );
+    setIssuesWithSums(byIssueArray);
+    iessueListText = iessueListText.slice(0, -2);
+    setListedIssues(iessueListText);
+
+    console.log(byIssues)
+    //  const compArray = issueByNat.map((e)=>{
+    //  });
+
+
+    // const compArray =[]
+    // Object.keys(issueByNat).forEach(function (key, index) {
+    //   const tempArray = [];
+    //   Object.keys(issueByNat[key]).forEach(function (natKey, index) {
+    //     if (issueByNat[key][natKey] != 0) {
+    //       tempArray.push(
+    //         setIssueWithValuesRow(natKey, issueByNat[key][natKey])
+    //       );
+    //     }
+    //   });
+    //   const props = {
+    //     longName: getLongCountryName(key),
+    //     fencerNum: data["n_r"][key].fencer_num,
+    //     issueNum: data["n_r"][key].issue_num,
+    //     ratio: data["n_r"][key].ratio,
+    //     col: colIssueWithValues,
+    //     row: tempArray,
+    //   };
+    //   compArray.push(<CountryCell props={props} key={key + index} />);
+    // });
+    // const sortedCompArray = [...compArray].sort(
+    //   (a, b) => b.props.props.issueNum - a.props.props.issueNum
+    // );
+    // setCountryCells(sortedCompArray);
+    // setLoadingState(false)
   }
 
   function getMost(prop) {
-    return Object.keys(statistics["n_r"]).reduce(function (a, b) {
-      return (statistics["n_r"][a][prop] == undefined
-        ? 0
-        : statistics["n_r"][a][prop]) >
-        (statistics["n_r"][b][prop] == undefined
-          ? 0
-          : statistics["n_r"][b][prop])
-        ? a
-        : b;
-    });
+      return statistics["n_r"].reduce(
+      (prev, current) => {
+        return prev[prop] > current[prop] ? prev : current
+      });
   }
 
   function getLeast(prop) {
-    return Object.keys(statistics["n_r"]).reduce(function (a, b) {
-      return (statistics["n_r"][a][prop] == undefined
-        ? 0
-        : statistics["n_r"][a][prop]) <
-        (statistics["n_r"][b][prop] == undefined
-          ? 0
-          : statistics["n_r"][b][prop])
-        ? a
-        : b;
-    });
+    return statistics["n_r"].reduce(
+      (prev, current) => {
+        return prev[prop] < current[prop] ? prev : current
+      });
   }
 
   useEffect(() => {
-    setLoadingState(true)
     getData();
   }, []);
 
   return (
     <>
-      <div className="Main">
+      {/* <div className="Main">
         <div className="PageHeader">
           <h1 className="PageTitle">Weapon Control Statistics</h1>
           <div className="PageButtonsWrapper">
@@ -443,223 +434,8 @@ export default function WeaponControlStatistics() {
             <div className="CountryGrid">{countryCells}</div>
           </div>
         </div>
-      </div>
-      <div className="PrintableDocument">
-        <div className="DocumentPage">
-          <div className="DocumentHeader DocumentColumnLayout">
-            <div className="DocumentHeaderLeft">
-              <div>
-                <p className="DocumentHeaderTitle">WEAPON CONTROL</p>
-                <p className="DocumentHeaderTitleExtension">STATISTICS</p>
-                <p className="DocumentHeaderSubtitle">
-                  Generated by: <span>DARTGANAN</span>
-                </p>
-              </div>
-            </div>
-            <div className="DocumentHeaderMiddle">
-              <b>{currentComp ? currentComp.title_long : ""}</b>
-              <p>{currentTour ? currentTour.title_long : ""}</p>
-            </div>
-            <div className="DocumentHeaderRight">
-              <p>{currentComp ? translateSex(currentComp.sex) : ""}</p>
-              <p>{currentComp ? translateCompType(currentComp.type) : ""}</p>
-              <p>{currentComp ? currentComp.age_group : ""}</p>
-              <p>
-                {currentComp
-                  ? getLongCountryName(currentComp.host_country)
-                  : ""}
-              </p>
-              <p>{currentComp ? currentComp.start_date.substring(0, 4) : ""}</p>
-            </div>
-          </div>
-          <div className="DocumentSectionTitle">ABSTRACT</div>
-          <div className="DocumentSection DocumentColumnLayout Standard">
-            <p className="DocumentFootnote">
-              *Total number of issues divided by total number of fencers
-            </p>
-            <div>
-              <p>NUMBER OF FENCERS:</p>
-              <p>NUMBER OF COUNTRIES:</p>
-              <p>NUMBER OF ISSUES:</p>
-              <p>AVARAGE RATIO*:</p>
-            </div>
-            <div>
-              <p>{statistics ? statistics["total_fencers"] : 0}</p>
-              <p> {statistics ? statistics["total_nation"] : 0}</p>
-              <p> {statistics ? statistics["total_issues"] : 0}</p>
-              <p> {statistics ? statistics["total_ratio"] : 0}</p>
-            </div>
-            <div className="Light">
-              <p>- see more on pages: 1, 2</p>
-              <p>- see more on pages: 1, 2</p>
-              <p>- see more on pages: 1, 2</p>
-              <p>- see more on pages: 1, 2</p>
-            </div>
-          </div>
-          <div className="DocumentDivider">-</div>
-          <div className="DocumentSection DocumentColumnLayout TwoColumns">
-            <div>
-              <p>ACCOUNTED ISSUE TYPES:</p>
-            </div>
-            <div className="Small">
-              <p>
-                {listedIssues ? listedIssues : ""}
-                {/*FIE mark on blade, Arm gap and weight, Arm length, Blade length, Grip length, Form and depth of the guard, Guard oxydation/ deformation, Excentricity of the blade, Blade flexibility, Curve on the blade, Foucault current device, Point and arm size, Length/ condition of body/ mask wire, Resistance of body/ mask wire, Mask: FIE mark, Mask: condition and insulation, Mask: resistance (sabre/foil, Metallic jacket condition, Metallic jacket resistance, Sabre/ glove overlay condition, Sabre glove overlay resistance, Glove condition, Foil chest protector, Socks, Incorrect name printing, Incorrect national logo, Commercial, Other items*/}
-              </p>
-            </div>
-          </div>
-          <div className="DocumentDivider">-</div>
-          <p className="DocumentSectionSubtitle">ISSUE TYPE BY FREQUENCY</p>
-          <div className="DocumentSection DocumentColumnLayout ThreeColumns">
-            <div>
-              <p className="Hidden">-</p>
-              <p>MOST COMMON:</p>
-              <p>LEAST COMMON:</p>
-            </div>
-            <div className="Center">
-              <p className="Light">TYPE</p>
-              <p>{statistics ? statistics["most_issue"]["type"] : ""}s</p>
-              <p>{statistics ? statistics["least_issue"]["type"] : ""}s</p>
-            </div>
-            <div className="Center Bold">
-              <p className="Light">NUMBER OF</p>
-              <p>{statistics ? statistics["most_issue"]["value"] : ""}</p>
-              <p>{statistics ? statistics["least_issue"]["value"] : ""}</p>
-            </div>
-          </div>
-          <p className="DocumentSectionSubtitle">
-            COUNTRIES WITH MOST AND LEAST ISSUES
-          </p>
-          <div className="DocumentSection DocumentColumnLayout ThreeColumns">
-            <p className="DocumentFootnote">
-              *Number of issues divided by number of fencers in each country
-            </p>
-            <div>
-              <p className="Hidden">-</p>
-              <p>MOST ISSUES:</p>
-              <p>LEAST ISSUES:</p>
-            </div>
-            <div className="Center">
-              <p className="Light">COUNTRY</p>
-              <p>
-                {statistics ? getLongCountryName(getMost("issue_num")) : ""}
-              </p>
-              <p>
-                {statistics ? getLongCountryName(getLeast("issue_num")) : ""}
-              </p>
-            </div>
-            <div className="Center Bold">
-              <p className="Light">NUMBER OF</p>
-              <p>
-                {statistics
-                  ? statistics["n_r"][getMost("issue_num")].issue_num
-                  : 0}
-              </p>
-              <p>
-                {statistics
-                  ? statistics["n_r"][getLeast("issue_num")].issue_num
-                  : 0}
-              </p>
-            </div>
-          </div>
-          <p className="DocumentSectionSubtitle">
-            COUNTRIES WITH WORST AND BEST RATIOS*
-          </p>
-          <div className="DocumentSection DocumentColumnLayout ThreeColumns">
-            <div>
-              <p className="Hidden">-</p>
-              <p>WORST RATIO:</p>
-              <p>BEST RATIO:</p>
-            </div>
-            <div className="Center">
-              <p className="Light">COUNTRY</p>
-              <p>{statistics ? getLongCountryName(getMost("ratio")) : ""}</p>
-              <p>{statistics ? getLongCountryName(getLeast("ratio")) : ""}</p>
-            </div>
-            <div className="Center Bold">
-              <p className="Light">RATIO</p>
-              <p>
-                {statistics ? statistics["n_r"][getLeast("ratio")].ratio : 0}
-              </p>
-              <p>
-                {statistics ? statistics["n_r"][getMost("ratio")].ratio : 0}
-              </p>
-            </div>
-          </div>
-          <div className="DocumentDivider">-</div>
-          <div className="DocumentSection DocumentColumnLayout Growable WithChart">
-            <p className="DocumentSectionSubtitle">
-              NUMBER OF FENCERS BY COUNTRY
-            </p>
-            <div className="DocumentChartWrapper">
-            </div>
-          </div>
-        </div>
-        <div className="DocumentPage">
-          <div className="DocumentHeader DocumentColumnLayout">
-            <div className="DocumentHeaderLeft">
-              <div>
-                <p className="DocumentHeaderTitle">WEAPON CONTROL</p>
-                <p className="DocumentHeaderTitleExtension">STATISTICS</p>
-                <p className="DocumentHeaderSubtitle">
-                  Generated by: <span>DARTGANAN</span>
-                </p>
-              </div>
-            </div>
-            <div className="DocumentHeaderMiddle">
-              <b>{currentComp ? currentComp.title_long : ""}</b>
-              <p>{currentTour ? currentTour.title_long : ""}</p>
-            </div>
-            <div className="DocumentHeaderRight">
-              <p>{currentComp ? translateSex(currentComp.sex) : ""}</p>
-              <p>{currentComp ? translateCompType(currentComp.type) : ""}</p>
-              <p>{currentComp ? currentComp.age_group : ""}</p>
-              <p>
-                {currentComp
-                  ? getLongCountryName(currentComp.host_country)
-                  : ""}
-              </p>
-              <p>{currentComp ? currentComp.start_date.substring(0, 4) : ""}</p>
-            </div>
-          </div>
-          <div className="DocumentSectionTitle">
-            NUMBER OF ISSUES BY COUNTRY
-          </div>
-          <div className="DocumentSection Growable">{/* datagrid */}</div>
-        </div>
-        <div className="DocumentPage">
-          <div className="DocumentHeader DocumentColumnLayout">
-            <div className="DocumentHeaderLeft">
-              <div>
-                <p className="DocumentHeaderTitle">WEAPON CONTROL</p>
-                <p className="DocumentHeaderTitleExtension">STATISTICS</p>
-                <p className="DocumentHeaderSubtitle">
-                  Generated by: <span>DARTGANAN</span>
-                </p>
-              </div>
-            </div>
-            <div className="DocumentHeaderMiddle">
-              <b>{currentComp ? currentComp.title_long : ""}</b>
-              <p>{currentTour ? currentTour.title_long : ""}</p>
-            </div>
-            <div className="DocumentHeaderRight">
-              <p>{currentComp ? translateSex(currentComp.sex) : ""}</p>
-              <p>{currentComp ? translateCompType(currentComp.type) : ""}</p>
-              <p>{currentComp ? currentComp.age_group : ""}</p>
-              <p>
-                {currentComp
-                  ? getLongCountryName(currentComp.host_country)
-                  : ""}
-              </p>
-              <p>{currentComp ? currentComp.start_date.substring(0, 4) : ""}</p>
-            </div>
-          </div>
-          <div className="DocumentSectionTitle">
-            NUMBER OF ISSUES BY COUNTRY
-          </div>
-          <div className="DocumentSection Growable">{countryCells}</div>
-        </div>
-      </div>
+      </div> */}
+      <WCPrint/>
     </>
   );
 }
