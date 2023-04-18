@@ -14,10 +14,11 @@ import { get } from "../../../services/backend.service";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, withRouter } from "react-router-dom";
 import { setCompetitions } from "../../../slices/compSlice";
-import { cookieFinder } from "../../../services/cookieMonster.service";
+import { Cookies, useCookies } from "react-cookie";
 
 export default function NavBar() {
-  const [compdId, setCompId] = useState("");
+  const [cookies, setCookies] = useCookies("selectedComp");
+  const [compdId, setCompId] = useState(cookies["selectedComp"]);
   const [hasSelectedComp, setHasSelectedComp] = useState(false);
   const [menuItems, setMenuItems] = useState([]);
   const { tournamentId } = useParams();
@@ -26,7 +27,7 @@ export default function NavBar() {
   const dispatch = useDispatch();
 
   const setComp = (id) => {
-    document.cookie = "selectedComp=" + id
+    setCookies("selectedComp", id, { path: "/" });
     setCompId(id);
     setHasSelectedComp(true);
     const pathName = window.location.pathname.split("/");
@@ -43,33 +44,35 @@ export default function NavBar() {
     );
   };
 
+  async function getData() {
+    const data = await get(`tournaments/${tournamentId}/competitions/`);
+    dispatch(setCompetitions(data));
+    const menuItems = data.map((e) => setMenuItem(e));
+    setMenuItems(menuItems);
+    setCompId(cookies["selectedComp"]);
+  }
+
   //Loades the competitions at the first render.
   useEffect(() => {
-    async function getData() {
-      const data = await get(`tournaments/${tournamentId}/competitions/`);
-      dispatch(setCompetitions(data));
-      const menuItems = data.map((e) => setMenuItem(e));
-      setMenuItems(menuItems);
-      // const test = cookieFinder("selectedComp", null, true)
-      // console.log(test)
-      // setCompId(cookieFinder("selectedComp", null, true))
-      // if(cookieFinder("selectedComp", null, true) != null){
-      //   setHasSelectedComp(true)
-      // }
-    }
     getData();
   }, []);
+
+  function isCompExists() {
+    const value = competitions.filter((e) => e.id == compdId).length;
+    if (value == 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   //Makes the selection responsive. Competitions is a redux store state.
   useEffect(() => {
     const menuItems = competitions.map((e) => setMenuItem(e));
     setMenuItems(menuItems);
-
-    let isDeleted = true;
-    competitions.map((e) => {
-      if (compdId == e.id) isDeleted = false;
-    });
-    if (isDeleted) {
+    if (isCompExists()) {
+      setHasSelectedComp(true);
+    } else {
       setHasSelectedComp(false);
     }
   }, [competitions]);
@@ -110,7 +113,7 @@ export default function NavBar() {
                 sx={{
                   width: "100%",
                 }}
-                onChange={(e)=>setCompId(e.target.value)}
+                onChange={(e) => setCompId(e.target.value)}
               >
                 {menuItems}
               </TextField>
