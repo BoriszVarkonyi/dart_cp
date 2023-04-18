@@ -596,12 +596,12 @@ class Statistics(APIView):
                         n_r_dict[x['nation']]['fencer_num'] += 1
                         n_r_dict[x['nation']]['issue_num'] += issue_count
 
-        real_n_r = {}
+        real_n_r = []
 
         for key,value in n_r_dict.items():
             if value != {}:
-                value['ratio'] = round(value['issue_num'] / value['fencer_num'], 2)
-                real_n_r[key] = value
+                ratio = round(value['issue_num'] / value['fencer_num'], 2)
+                real_n_r.append({'nation':key,'fencer_num':value['fencer_num'],'issue_num':value['issue_num'],'ratio':ratio})
 
 
         if len(serializer.data) == 0:
@@ -668,8 +668,18 @@ class StatisticsGetByNations(APIView):
 
             return_list[nation] += sums_of_issues
 
-        # Return the list and return_list
-        return Response(return_list)
+        edited_return_list = []
+        # Edit return list to make it array of objects
+        for nation in return_list:
+            # make the objects
+            obj = dict()
+            issues_obj = return_list[nation]
+            obj['fencer_nation'] = nation
+            obj['issues'] = issues_obj
+            edited_return_list.append(obj)
+
+        # Return the edited_return list
+        return Response(edited_return_list)
 
 
 class StatisticsGetByNationsByIssue(APIView):
@@ -736,7 +746,17 @@ class StatisticsGetByNationsByIssue(APIView):
                 human_readable_issue = issues_list[issue_id]
                 list_return[nation][human_readable_issue] += list_issues[human_readable_issue]
 
-        return Response(list_return)
+        edited_list_return = []
+        # Edit return list to make it array of objects
+        for nation in list_return:
+            # make the objects
+            obj = dict()
+            issues_obj = list_return[nation]
+            obj['fencer_nation'] = nation
+            obj['issues'] = issues_obj
+            edited_list_return.append(obj)
+
+        return Response(edited_list_return)
 
 
 class StatisticsGetByIssues(APIView):
@@ -796,6 +816,15 @@ class StatisticsGetByIssues(APIView):
                 human_readable_issue = issues_list[issue_id]
                 list_return[human_readable_issue] += weapon_control_data[issue_id]
 
-        # Return the list and return_list
-        return Response(list_return)
+        edited_list_return = []
+        # Edit return list to make it array of objects
+        for nation in list_return:
+            # make the objects
+            obj = dict()
+            issues_obj = list_return[nation]
+            obj['issue_human_readable_name'] = nation
+            obj['issues'] = issues_obj
+            edited_list_return.append(obj)
+
+        return Response(edited_list_return)
 
