@@ -1,23 +1,7 @@
 import React from "react";
 import { get } from '../../../services/backend.service';
-import { useState, useEffect } from "react";
 
 export default function WCPrintHeader(props) {
-  const compId = props.compId;
-  const tournamentId = props.tournamentId;
-  const [currentComp, setCurrentComp] = useState();
-  const [currentTour, setCurrentTour] = useState();
-  async function getData() {
-    const comp = await get(`competitions/${compId}`);
-    const tour = await get(`tournaments/${tournamentId}`);
-
-    setCurrentComp(comp);
-    setCurrentTour(tour);
-  }
-
-  useEffect(() => {
-    getData();
-  }, []);
 
   return (
     <div className="DocumentHeader DocumentColumnLayout">

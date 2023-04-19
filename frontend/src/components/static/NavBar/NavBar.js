@@ -49,7 +49,6 @@ export default function NavBar() {
     dispatch(setCompetitions(data));
     const menuItems = data.map((e) => setMenuItem(e));
     setMenuItems(menuItems);
-    console.log(cookies["selectedComp"])
   }
 
   //Loades the competitions at the first render.

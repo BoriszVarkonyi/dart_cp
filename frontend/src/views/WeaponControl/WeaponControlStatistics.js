@@ -58,6 +58,8 @@ export default function WeaponControlStatistics() {
   const [issuesWithSums, setIssuesWithSums] = useState([]);
   const [countryCells, setCountryCells] = useState([]);
   const [listedIssues, setListedIssues] = useState();
+  const [currentComp, setCurrentComp] = useState();
+  const [currentTour, setCurrentTour] = useState();
   const navigate = useNavigate();
   const { setLoadingState } = useBasicServices();
 
@@ -66,6 +68,11 @@ export default function WeaponControlStatistics() {
     const byIssues = await get(`stats/byIssues/${compId}`);
     const issueByNat = await get(`stats/byNationByIssues/${compId}`);
     const byNation = await get(`/stats/byNation/${compId}`);
+    const comp = await get(`competitions/${compId}`);
+    const tour = await get(`tournaments/${tournamentId}`);
+
+    setCurrentComp(comp);
+    setCurrentTour(tour);
     setStatistics(data);
 
     const byNations = byNation.map((e) =>
@@ -74,57 +81,67 @@ export default function WeaponControlStatistics() {
     setIssueByC(byNations);
 
     let iessueListText = "";
-    const filteredByIssueArray = byIssues.filter((e) => e.issues != 0);
-    const byIssueArray = filteredByIssueArray.map((e) =>
-      setIssueWithValuesRow(e.issue_human_readable_name, e.issues)
-    );
-    setIssuesWithSums(byIssueArray);
+    for(let i=0; i<byIssues.length; i++){
+      iessueListText += byIssues[i].issue_human_readable_name + ", "
+    }
     iessueListText = iessueListText.slice(0, -2);
     setListedIssues(iessueListText);
 
-    //  const compArray = issueByNat.map((e)=>{
-    //  });
 
+    const filteredByIssueArray = byIssues.filter((e) => e.issues != 0);
+    
+    const byIssueArray = filteredByIssueArray.map((e) => {
+      return setIssueWithValuesRow(e.issue_human_readable_name, e.issues);
+    });
+    setIssuesWithSums(byIssueArray);
 
-    // const compArray =[]
-    // Object.keys(issueByNat).forEach(function (key, index) {
-    //   const tempArray = [];
-    //   Object.keys(issueByNat[key]).forEach(function (natKey, index) {
-    //     if (issueByNat[key][natKey] != 0) {
-    //       tempArray.push(
-    //         setIssueWithValuesRow(natKey, issueByNat[key][natKey])
-    //       );
-    //     }
-    //   });
-    //   const props = {
-    //     longName: getLongCountryName(key),
-    //     fencerNum: data["n_r"][key].fencer_num,
-    //     issueNum: data["n_r"][key].issue_num,
-    //     ratio: data["n_r"][key].ratio,
-    //     col: colIssueWithValues,
-    //     row: tempArray,
-    //   };
-    //   compArray.push(<CountryCell props={props} key={key + index} />);
-    // });
-    // const sortedCompArray = [...compArray].sort(
-    //   (a, b) => b.props.props.issueNum - a.props.props.issueNum
-    // );
-    // setCountryCells(sortedCompArray);
-    // setLoadingState(false)
+    const compArray = issueByNat.map((e) => {
+      const filteredIssues = e.issues.filter((i) => i.value != 0);
+      const issues = filteredIssues.map((i) =>
+        setIssueWithValuesRow(i.issue_human_readable_name, i.value)
+      );
+      const index = data["n_r"].findIndex((c) => c.nation == e.fencer_nation);
+      const props = {
+        longName: getLongCountryName(e.fencer_nation),
+        fencerNum: data["n_r"][index].fencer_num,
+        issueNum: data["n_r"][index].issue_num,
+        ratio: data["n_r"][index].ratio,
+        col: colIssueWithValues,
+        row: issues,
+      };
+      return <CountryCell props={props} key={e.fencer_nation} />;
+    });
+
+    const sortedCompArray = compArray.sort((a, b) => {
+      return b.props.props.issueNum - a.props.props.issueNum;
+    });
+
+    setCountryCells(sortedCompArray);
   }
 
   function getMost(prop) {
-      return statistics["n_r"].reduce(
-      (prev, current) => {
-        return prev[prop] > current[prop] ? prev : current
-      });
+    return statistics["n_r"].indexOf(
+      statistics["n_r"].reduce((prev, current) => {
+        return prev[prop] > current[prop] ? prev : current;
+      })
+    );
   }
 
   function getLeast(prop) {
-    return statistics["n_r"].reduce(
-      (prev, current) => {
-        return prev[prop] < current[prop] ? prev : current
-      });
+    return statistics["n_r"].indexOf(
+      statistics["n_r"].reduce((prev, current) => {
+        return prev[prop] < current[prop] ? prev : current;
+      })
+    );
+  }
+
+  const printProps = {
+    stats: statistics,
+    allIssues: listedIssues,
+    getMostFunc: getMost,
+    getLeastFunc: getLeast, 
+    getLongCName: getLongCountryName
+
   }
 
   useEffect(() => {
@@ -133,7 +150,7 @@ export default function WeaponControlStatistics() {
 
   return (
     <>
-      {/* <div className="Main">
+      <div className="Main">
         <div className="PageHeader">
           <h1 className="PageTitle">Weapon Control Statistics</h1>
           <div className="PageButtonsWrapper">
@@ -247,21 +264,23 @@ export default function WeaponControlStatistics() {
                       <div>
                         <p className="StatTopic">
                           {statistics
-                            ? getLongCountryName(getMost("issue_num"))
+                            ? getLongCountryName(
+                                statistics["n_r"][getMost("issue_num")].nation
+                              )
                             : ""}
                         </p>
                         <div>
                           <p>
                             {statistics
                               ? statistics["n_r"][getMost("issue_num")]
-                                .fencer_num
+                                  .fencer_num
                               : 0}
                             f.
                           </p>
                           <b>
                             {statistics
                               ? statistics["n_r"][getMost("issue_num")]
-                                .issue_num
+                                  .issue_num
                               : 0}
                             i.
                           </b>
@@ -284,21 +303,23 @@ export default function WeaponControlStatistics() {
                       <div>
                         <p className="StatTopic">
                           {statistics
-                            ? getLongCountryName(getLeast("issue_num"))
+                            ? getLongCountryName(
+                                statistics["n_r"][getLeast("issue_num")].nation
+                              )
                             : ""}
                         </p>
                         <div>
                           <p>
                             {statistics
                               ? statistics["n_r"][getLeast("issue_num")]
-                                .fencer_num
+                                  .fencer_num
                               : 0}
                             f.
                           </p>
                           <b>
                             {statistics
                               ? statistics["n_r"][getLeast("issue_num")]
-                                .issue_num
+                                  .issue_num
                               : 0}
                             i.
                           </b>
@@ -324,7 +345,9 @@ export default function WeaponControlStatistics() {
                       <div>
                         <p className="StatTopic">
                           {statistics
-                            ? getLongCountryName(getMost("ratio"))
+                            ? getLongCountryName(
+                                statistics["n_r"][getMost("ratio")].nation
+                              )
                             : ""}
                         </p>
                         <div>
@@ -359,7 +382,9 @@ export default function WeaponControlStatistics() {
                       <div>
                         <p className="StatTopic">
                           {statistics
-                            ? getLongCountryName(getLeast("ratio"))
+                            ? getLongCountryName(
+                                statistics["n_r"][getLeast("ratio")].nation
+                              )
                             : ""}
                         </p>
                         <div>
@@ -424,8 +449,8 @@ export default function WeaponControlStatistics() {
             <div className="CountryGrid">{countryCells}</div>
           </div>
         </div>
-      </div> */}
-      <WCPrint/>
+      </div>
+      <WCPrint pageProps={printProps} />
     </>
   );
 }

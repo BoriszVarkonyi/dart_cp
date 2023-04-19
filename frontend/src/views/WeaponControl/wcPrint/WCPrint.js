@@ -2,6 +2,8 @@ import React from "react";
 import WCPrintHeader from "./WCPrintHeader";
 
 export default function WCPrint(props) {
+  const pageProps = props.pageProps
+  const getMost = pageProps.getMostFunc
   return (
     <div className="PrintableDocument">
       <div className="DocumentPage">
@@ -18,10 +20,10 @@ export default function WCPrint(props) {
             <p>AVARAGE RATIO*:</p>
           </div>
           <div>
-            {/* <p>{statistics ? statistics["total_fencers"] : 0}</p>
-            <p> {statistics ? statistics["total_nation"] : 0}</p>
-            <p> {statistics ? statistics["total_issues"] : 0}</p>
-            <p> {statistics ? statistics["total_ratio"] : 0}</p> */}
+            <p>{pageProps.stats ? pageProps.stats["total_fencers"] : 0}</p>
+            <p> {pageProps.stats ? pageProps.stats["total_nation"] : 0}</p>
+            <p> {pageProps.stats ? pageProps.stats["total_issues"] : 0}</p>
+            <p> {pageProps.stats ? pageProps.stats["total_ratio"] : 0}</p>
           </div>
           <div className="Light">
             <p>- see more on pages: 1, 2</p>
@@ -37,7 +39,7 @@ export default function WCPrint(props) {
           </div>
           <div className="Small">
             <p>
-              {/* {listedIssues ? listedIssues : ""} */}
+              {pageProps.allIssues ? pageProps.allIssues : ""}
               {/*FIE mark on blade, Arm gap and weight, Arm length, Blade length, Grip length, Form and depth of the guard, Guard oxydation/ deformation, Excentricity of the blade, Blade flexibility, Curve on the blade, Foucault current device, Point and arm size, Length/ condition of body/ mask wire, Resistance of body/ mask wire, Mask: FIE mark, Mask: condition and insulation, Mask: resistance (sabre/foil, Metallic jacket condition, Metallic jacket resistance, Sabre/ glove overlay condition, Sabre glove overlay resistance, Glove condition, Foil chest protector, Socks, Incorrect name printing, Incorrect national logo, Commercial, Other items*/}
             </p>
           </div>
@@ -52,13 +54,13 @@ export default function WCPrint(props) {
           </div>
           <div className="Center">
             <p className="Light">TYPE</p>
-            {/* <p>{statistics ? statistics["most_issue"]["type"] : ""}s</p>
-              <p>{statistics ? statistics["least_issue"]["type"] : ""}s</p> */}
+            <p>{pageProps.stats ? pageProps.stats["most_issue"]["type"] : ""}s</p>
+              <p>{pageProps.stats ? pageProps.stats["least_issue"]["type"] : ""}s</p>
           </div>
           <div className="Center Bold">
             <p className="Light">NUMBER OF</p>
-            {/* <p>{statistics ? statistics["most_issue"]["value"] : ""}</p>
-              <p>{statistics ? statistics["least_issue"]["value"] : ""}</p> */}
+            <p>{pageProps.stats ? pageProps.stats["most_issue"]["value"] : ""}</p>
+              <p>{pageProps.stats ? pageProps.stats["least_issue"]["value"] : ""}</p>
           </div>
         </div>
         <p className="DocumentSectionSubtitle">
@@ -76,7 +78,7 @@ export default function WCPrint(props) {
           <div className="Center">
             <p className="Light">COUNTRY</p>
             <p>
-              {/* {statistics ? getLongCountryName(getMost("issue_num")) : ""} */}
+              {pageProps.stats ? pageProps.getLongCName(pageProps.stats["n_r"][[pageProps.getMostFunc("issue_num")]].nation) : ""}
             </p>
             <p>
               {/* {statistics ? getLongCountryName(getLeast("issue_num")) : ""} */}
