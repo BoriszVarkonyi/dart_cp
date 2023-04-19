@@ -752,8 +752,17 @@ class StatisticsGetByNationsByIssue(APIView):
             # make the objects
             obj = dict()
             issues_obj = list_return[nation]
+            #make issues_obj
+            issues_list = []
+            for hr_issue in list_return[nation]:
+                issue_value = list_return[nation][hr_issue]
+                issue_obj = dict()
+                issue_obj['value'] = issue_value
+                issue_obj['issue_human_readable_name'] = hr_issue
+                issues_list.append(issue_obj)
+
             obj['fencer_nation'] = nation
-            obj['issues'] = issues_obj
+            obj['issues'] = issues_list
             edited_list_return.append(obj)
 
         return Response(edited_list_return)
