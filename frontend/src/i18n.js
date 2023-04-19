@@ -10,7 +10,7 @@ i18n
   // init i18next
   // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
-    debug: true,
+    debug: process.env.REACT_APP_DEBUG === "true",
     fallbackLng: 'en',
     interpolation: {
       escapeValue: false,
