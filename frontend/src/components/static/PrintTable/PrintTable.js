@@ -2,7 +2,7 @@ import React from "react";
 
 export default function PrintTable(props) {
   const fields = props.col.map((e) => e.field);
-  
+
   const sortedCompArray = [...props.row].sort((a, b) => {
     return b[props.sorting.field] - a[props.sorting.field];
   });
@@ -19,9 +19,9 @@ export default function PrintTable(props) {
       <tbody>
         {sortedCompArray.map((obj) => {
           return (
-            <tr >
+            <tr>
               {fields.map((field) => {
-                return <td>{obj[field]}</td>;
+                return <td key={counter}>{obj[field]}</td>;
               })}
             </tr>
           );
