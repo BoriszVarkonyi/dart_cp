@@ -2,10 +2,12 @@ import React from "react";
 import WCPrintHeader from "./WCPrintHeader";
 
 export default function WCPrint(props) {
+  const pageProps = props.pageProps
+  const headerProps = props.headerProps
   return (
     <div className="PrintableDocument">
       <div className="DocumentPage">
-        <WCPrintHeader />
+        <WCPrintHeader  {...headerProps} />
         <div className="DocumentSectionTitle">ABSTRACT</div>
         <div className="DocumentSection DocumentColumnLayout Standard">
           <p className="DocumentFootnote">
@@ -18,10 +20,10 @@ export default function WCPrint(props) {
             <p>AVARAGE RATIO*:</p>
           </div>
           <div>
-            {/* <p>{statistics ? statistics["total_fencers"] : 0}</p>
-            <p> {statistics ? statistics["total_nation"] : 0}</p>
-            <p> {statistics ? statistics["total_issues"] : 0}</p>
-            <p> {statistics ? statistics["total_ratio"] : 0}</p> */}
+            <p>{pageProps.stats ? pageProps.stats["total_fencers"] : 0}</p>
+            <p> {pageProps.stats ? pageProps.stats["total_nation"] : 0}</p>
+            <p> {pageProps.stats ? pageProps.stats["total_issues"] : 0}</p>
+            <p> {pageProps.stats ? pageProps.stats["total_ratio"] : 0}</p>
           </div>
           <div className="Light">
             <p>- see more on pages: 1, 2</p>
@@ -37,7 +39,7 @@ export default function WCPrint(props) {
           </div>
           <div className="Small">
             <p>
-              {/* {listedIssues ? listedIssues : ""} */}
+              {pageProps.allIssues ? pageProps.allIssues : ""}
               {/*FIE mark on blade, Arm gap and weight, Arm length, Blade length, Grip length, Form and depth of the guard, Guard oxydation/ deformation, Excentricity of the blade, Blade flexibility, Curve on the blade, Foucault current device, Point and arm size, Length/ condition of body/ mask wire, Resistance of body/ mask wire, Mask: FIE mark, Mask: condition and insulation, Mask: resistance (sabre/foil, Metallic jacket condition, Metallic jacket resistance, Sabre/ glove overlay condition, Sabre glove overlay resistance, Glove condition, Foil chest protector, Socks, Incorrect name printing, Incorrect national logo, Commercial, Other items*/}
             </p>
           </div>
@@ -52,13 +54,13 @@ export default function WCPrint(props) {
           </div>
           <div className="Center">
             <p className="Light">TYPE</p>
-            {/* <p>{statistics ? statistics["most_issue"]["type"] : ""}s</p>
-              <p>{statistics ? statistics["least_issue"]["type"] : ""}s</p> */}
+            <p>{pageProps.stats ? pageProps.stats["most_issue"]["type"] : ""}s</p>
+              <p>{pageProps.stats ? pageProps.stats["least_issue"]["type"] : ""}s</p>
           </div>
           <div className="Center Bold">
             <p className="Light">NUMBER OF</p>
-            {/* <p>{statistics ? statistics["most_issue"]["value"] : ""}</p>
-              <p>{statistics ? statistics["least_issue"]["value"] : ""}</p> */}
+            <p>{pageProps.stats ? pageProps.stats["most_issue"]["value"] : ""}</p>
+              <p>{pageProps.stats ? pageProps.stats["least_issue"]["value"] : ""}</p>
           </div>
         </div>
         <p className="DocumentSectionSubtitle">
@@ -76,23 +78,23 @@ export default function WCPrint(props) {
           <div className="Center">
             <p className="Light">COUNTRY</p>
             <p>
-              {/* {statistics ? getLongCountryName(getMost("issue_num")) : ""} */}
+              {pageProps.stats ? pageProps.getLongCName(pageProps.stats["n_r"][[pageProps.getMostFunc("issue_num")]].nation) : ""}
             </p>
             <p>
-              {/* {statistics ? getLongCountryName(getLeast("issue_num")) : ""} */}
+              {pageProps.stats  ?  pageProps.getLongCName(pageProps.stats["n_r"][[pageProps.getLeastFunc("issue_num")]].nation) : ""}
             </p>
           </div>
           <div className="Center Bold">
             <p className="Light">NUMBER OF</p>
             <p>
-              {/* {statistics
-                  ? statistics["n_r"][getMost("issue_num")].issue_num
-                  : 0} */}
+              {pageProps.stats
+                  ? pageProps.stats["n_r"][pageProps.getMostFunc("issue_num")].issue_num
+                  : 0}
             </p>
             <p>
-              {/* {statistics
-                  ? statistics["n_r"][getLeast("issue_num")].issue_num
-                  : 0} */}
+            {pageProps.stats
+                  ? pageProps.stats["n_r"][pageProps.getLeastFunc("issue_num")].issue_num
+                  : 0}
             </p>
           </div>
         </div>
@@ -107,17 +109,21 @@ export default function WCPrint(props) {
           </div>
           <div className="Center">
             <p className="Light">COUNTRY</p>
-            {/* <p>{statistics ? getLongCountryName(getMost("ratio")) : ""}</p>
-              <p>{statistics ? getLongCountryName(getLeast("ratio")) : ""}</p> */}
+            <p>  {pageProps.stats ? pageProps.getLongCName(pageProps.stats["n_r"][[pageProps.getMostFunc("ratio")]].nation) : ""}</p>
+              <p>{pageProps.stats ? pageProps.getLongCName(pageProps.stats["n_r"][[pageProps.getLeastFunc("ratio")]].nation) : ""}</p>
           </div>
           <div className="Center Bold">
             <p className="Light">RATIO</p>
-            {/* <p>
-                {statistics ? statistics["n_r"][getLeast("ratio")].ratio : 0}
+            <p>
+            {pageProps.stats
+                  ? pageProps.stats["n_r"][pageProps.getMostFunc("ratio")].issue_num
+                  : 0}
               </p>
               <p>
-                {statistics ? statistics["n_r"][getMost("ratio")].ratio : 0}
-              </p> */}
+              {pageProps.stats
+                  ? pageProps.stats["n_r"][pageProps.getLeastFunc("ratio")].issue_num
+                  : 0}
+              </p>
           </div>
         </div>
         <div className="DocumentDivider">-</div>
@@ -129,14 +135,14 @@ export default function WCPrint(props) {
         </div>
       </div>
       <div className="DocumentPage">
-        <WCPrintHeader />
+        <WCPrintHeader {...headerProps} />
         <div className="DocumentSectionTitle">NUMBER OF ISSUES BY COUNTRY</div>
         <div className="DocumentSection Growable">{/* datagrid */}</div>
       </div>
       <div className="DocumentPage">
-        <WCPrintHeader />
+        <WCPrintHeader {...headerProps} />
         <div className="DocumentSectionTitle">NUMBER OF ISSUES BY COUNTRY</div>
-        <div className="DocumentSection Growable">]idejönnek a country cellek :c]</div>
+        <div className="DocumentSection Growable">{pageProps? pageProps.printCells : ""}</div>
       </div>
     </div>
   );
