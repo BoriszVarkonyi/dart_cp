@@ -5,7 +5,6 @@ function generateThrow(){
 
 export default function PrintTable(props){
     const fields = props.col.map((e)=>e.field)
-    console.log(fields)
 
 
     return(
@@ -20,12 +19,12 @@ export default function PrintTable(props){
                 </tr>
             </thead>
             <tbody>
-                    {props.row.map((e)=>{
+                    {props.row.map((obj)=>{
                         return (
                             <tr>
-                                {fields.map((f)=>{
+                                {fields.map((field)=>{
                                     return(
-                                        <td>{e[f]}</td>
+                                        <td>{obj[field]}</td>
                                     )
                                 })}
                             </tr>
