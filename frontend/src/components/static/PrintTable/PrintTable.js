@@ -21,7 +21,7 @@ export default function PrintTable(props) {
           return (
             <tr>
               {fields.map((field) => {
-                return <td key={counter}>{obj[field]}</td>;
+                return <td>{obj[field]}</td>;
               })}
             </tr>
           );
