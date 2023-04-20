@@ -114,7 +114,7 @@ export default function WeaponControlStatistics() {
   }
 
   function getMost(prop) {
-      return statistics["n_r"].reduce(
+    return statistics["n_r"].reduce(
       (prev, current) => {
         return prev[prop] > current[prop] ? prev : current
       });
@@ -425,7 +425,7 @@ export default function WeaponControlStatistics() {
           </div>
         </div>
       </div> */}
-      <WCPrint/>
+      <WCPrint />
     </>
   );
 }
