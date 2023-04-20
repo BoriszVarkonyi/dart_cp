@@ -3,11 +3,11 @@ import WCPrintHeader from "./WCPrintHeader";
 
 export default function WCPrint(props) {
   const pageProps = props.pageProps
-  const getMost = pageProps.getMostFunc
+  const headerProps = props.headerProps
   return (
     <div className="PrintableDocument">
       <div className="DocumentPage">
-        <WCPrintHeader />
+        <WCPrintHeader  {...headerProps} />
         <div className="DocumentSectionTitle">ABSTRACT</div>
         <div className="DocumentSection DocumentColumnLayout Standard">
           <p className="DocumentFootnote">
@@ -81,20 +81,20 @@ export default function WCPrint(props) {
               {pageProps.stats ? pageProps.getLongCName(pageProps.stats["n_r"][[pageProps.getMostFunc("issue_num")]].nation) : ""}
             </p>
             <p>
-              {/* {statistics ? getLongCountryName(getLeast("issue_num")) : ""} */}
+              {pageProps.stats  ?  pageProps.getLongCName(pageProps.stats["n_r"][[pageProps.getLeastFunc("issue_num")]].nation) : ""}
             </p>
           </div>
           <div className="Center Bold">
             <p className="Light">NUMBER OF</p>
             <p>
-              {/* {statistics
-                  ? statistics["n_r"][getMost("issue_num")].issue_num
-                  : 0} */}
+              {pageProps.stats
+                  ? pageProps.stats["n_r"][pageProps.getMostFunc("issue_num")].issue_num
+                  : 0}
             </p>
             <p>
-              {/* {statistics
-                  ? statistics["n_r"][getLeast("issue_num")].issue_num
-                  : 0} */}
+            {pageProps.stats
+                  ? pageProps.stats["n_r"][pageProps.getLeastFunc("issue_num")].issue_num
+                  : 0}
             </p>
           </div>
         </div>
@@ -109,17 +109,21 @@ export default function WCPrint(props) {
           </div>
           <div className="Center">
             <p className="Light">COUNTRY</p>
-            {/* <p>{statistics ? getLongCountryName(getMost("ratio")) : ""}</p>
-              <p>{statistics ? getLongCountryName(getLeast("ratio")) : ""}</p> */}
+            <p>  {pageProps.stats ? pageProps.getLongCName(pageProps.stats["n_r"][[pageProps.getMostFunc("ratio")]].nation) : ""}</p>
+              <p>{pageProps.stats ? pageProps.getLongCName(pageProps.stats["n_r"][[pageProps.getLeastFunc("ratio")]].nation) : ""}</p>
           </div>
           <div className="Center Bold">
             <p className="Light">RATIO</p>
-            {/* <p>
-                {statistics ? statistics["n_r"][getLeast("ratio")].ratio : 0}
+            <p>
+            {pageProps.stats
+                  ? pageProps.stats["n_r"][pageProps.getMostFunc("ratio")].issue_num
+                  : 0}
               </p>
               <p>
-                {statistics ? statistics["n_r"][getMost("ratio")].ratio : 0}
-              </p> */}
+              {pageProps.stats
+                  ? pageProps.stats["n_r"][pageProps.getLeastFunc("ratio")].issue_num
+                  : 0}
+              </p>
           </div>
         </div>
         <div className="DocumentDivider">-</div>
@@ -131,12 +135,12 @@ export default function WCPrint(props) {
         </div>
       </div>
       <div className="DocumentPage">
-        <WCPrintHeader />
+        <WCPrintHeader {...headerProps} />
         <div className="DocumentSectionTitle">NUMBER OF ISSUES BY COUNTRY</div>
         <div className="DocumentSection Growable">{/* datagrid */}</div>
       </div>
       <div className="DocumentPage">
-        <WCPrintHeader />
+        <WCPrintHeader {...headerProps} />
         <div className="DocumentSectionTitle">NUMBER OF ISSUES BY COUNTRY</div>
         <div className="DocumentSection Growable">]idejönnek a country cellek :c]</div>
       </div>

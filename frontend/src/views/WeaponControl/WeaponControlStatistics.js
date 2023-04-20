@@ -11,6 +11,7 @@ import countries from "../../utils/countries.json";
 import CountryCell from "./CountryCell";
 import WCPrint from "./wcPrint/WCPrint";
 import useBasicServices from "../../services/basic.service";
+import PrintTable from "../../components/static/PrintTable/PrintTable";
 import {
   translateSex,
   translateCompType,
@@ -142,6 +143,16 @@ export default function WeaponControlStatistics() {
     getLeastFunc: getLeast, 
     getLongCName: getLongCountryName
 
+  }
+
+  const printHeaderProps = {
+    compTitle: currentComp? currentComp.title_long : "",
+    tourTitle: currentTour?  currentTour.title_long : "",  
+    sex: currentComp?  translateSex(currentComp.sex) : "",
+    compType: currentComp?  translateCompType(currentComp.type) : "",
+    ageGroup: currentComp? currentComp.age_group : "",
+    hostCountry: currentComp?  getLongCountryName(currentComp.host_country) : "",
+    year: currentComp?  currentComp.start_date.substring(0,4) : ""
   }
 
   useEffect(() => {
@@ -447,10 +458,11 @@ export default function WeaponControlStatistics() {
           <p className="PageSectionTitle">NUMBER OF ISSUE TYPES BY COUNTRY</p>
           <div className="PageSection">
             <div className="CountryGrid">{countryCells}</div>
+            <PrintTable col={colIssueByC} row={issueByC}/>
           </div>
         </div>
       </div>
-      <WCPrint pageProps={printProps} />
+      <WCPrint pageProps={printProps} headerProps={printHeaderProps} />
     </>
   );
 }

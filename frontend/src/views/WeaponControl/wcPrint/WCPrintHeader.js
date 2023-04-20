@@ -2,7 +2,6 @@ import React from "react";
 import { get } from '../../../services/backend.service';
 
 export default function WCPrintHeader(props) {
-
   return (
     <div className="DocumentHeader DocumentColumnLayout">
       <div className="DocumentHeaderLeft">
@@ -15,15 +14,15 @@ export default function WCPrintHeader(props) {
         </div>
       </div>
       <div className="DocumentHeaderMiddle">
-        <b>]comp title]</b>
-        <p>]tournament title]</p>
+        <b>{props.compTitle}</b>
+        <p>{props.tourTitle}</p>
       </div>
       <div className="DocumentHeaderRight">
-        <p>]sex?]</p>
-        <p>]comptype]</p>
-        <p>]age gruppe]</p>
-        <p>]host country]</p>
-        <p>]évvvvvvvvvvvvvvvvvvvvvvvvvvvv]</p>
+        <p>{props.sex}</p>
+        <p>{props.compType}</p>
+        <p>{props.ageGroup}</p>
+        <p>{props.hostCountry}</p>
+        <p>{props.year}</p>
       </div>
     </div>
   );
