@@ -11,7 +11,7 @@ import countries from "../../utils/countries.json";
 import CountryCell from "./CountryCell";
 import WCPrint from "./wcPrint/WCPrint";
 import useBasicServices from "../../services/basic.service";
-import PrintTable from "../../components/static/PrintTable/PrintTable";
+import PrintCell from "./wcPrint/PrintCell";
 import {
   translateSex,
   translateCompType,
@@ -58,6 +58,7 @@ export default function WeaponControlStatistics() {
   const [issueByC, setIssueByC] = useState([]);
   const [issuesWithSums, setIssuesWithSums] = useState([]);
   const [countryCells, setCountryCells] = useState([]);
+  const [printCells, setprintCells] = useState([]);
   const [listedIssues, setListedIssues] = useState();
   const [currentComp, setCurrentComp] = useState();
   const [currentTour, setCurrentTour] = useState();
@@ -82,19 +83,20 @@ export default function WeaponControlStatistics() {
     setIssueByC(byNations);
 
     let iessueListText = "";
-    for(let i=0; i<byIssues.length; i++){
-      iessueListText += byIssues[i].issue_human_readable_name + ", "
+    for (let i = 0; i < byIssues.length; i++) {
+      iessueListText += byIssues[i].issue_human_readable_name + ", ";
     }
     iessueListText = iessueListText.slice(0, -2);
     setListedIssues(iessueListText);
 
-
     const filteredByIssueArray = byIssues.filter((e) => e.issues != 0);
-    
+
     const byIssueArray = filteredByIssueArray.map((e) => {
       return setIssueWithValuesRow(e.issue_human_readable_name, e.issues);
     });
     setIssuesWithSums(byIssueArray);
+
+    let printArray = [];
 
     const compArray = issueByNat.map((e) => {
       const filteredIssues = e.issues.filter((i) => i.value != 0);
@@ -110,8 +112,15 @@ export default function WeaponControlStatistics() {
         col: colIssueWithValues,
         row: issues,
       };
+      printArray.push(<PrintCell props={props} key={e.fencer_nation} />);
       return <CountryCell props={props} key={e.fencer_nation} />;
     });
+
+    const sortedPrintArray = printArray.sort((a, b) => {
+      return b.props.props.issueNum - a.props.props.issueNum;
+    });
+
+    setprintCells(sortedPrintArray);
 
     const sortedCompArray = compArray.sort((a, b) => {
       return b.props.props.issueNum - a.props.props.issueNum;
@@ -139,21 +148,23 @@ export default function WeaponControlStatistics() {
   const printProps = {
     stats: statistics,
     allIssues: listedIssues,
+    printCells: printCells,
     getMostFunc: getMost,
-    getLeastFunc: getLeast, 
-    getLongCName: getLongCountryName
-
-  }
+    getLeastFunc: getLeast,
+    getLongCName: getLongCountryName,
+  };
 
   const printHeaderProps = {
-    compTitle: currentComp? currentComp.title_long : "",
-    tourTitle: currentTour?  currentTour.title_long : "",  
-    sex: currentComp?  translateSex(currentComp.sex) : "",
-    compType: currentComp?  translateCompType(currentComp.type) : "",
-    ageGroup: currentComp? currentComp.age_group : "",
-    hostCountry: currentComp?  getLongCountryName(currentComp.host_country) : "",
-    year: currentComp?  currentComp.start_date.substring(0,4) : ""
-  }
+    compTitle: currentComp ? currentComp.title_long : "",
+    tourTitle: currentTour ? currentTour.title_long : "",
+    sex: currentComp ? translateSex(currentComp.sex) : "",
+    compType: currentComp ? translateCompType(currentComp.type) : "",
+    ageGroup: currentComp ? currentComp.age_group : "",
+    hostCountry: currentComp
+      ? getLongCountryName(currentComp.host_country)
+      : "",
+    year: currentComp ? currentComp.start_date.substring(0, 4) : "",
+  };
 
   useEffect(() => {
     getData();
@@ -458,7 +469,6 @@ export default function WeaponControlStatistics() {
           <p className="PageSectionTitle">NUMBER OF ISSUE TYPES BY COUNTRY</p>
           <div className="PageSection">
             <div className="CountryGrid">{countryCells}</div>
-            <PrintTable col={colIssueByC} row={issueByC}/>
           </div>
         </div>
       </div>

@@ -142,7 +142,7 @@ export default function WCPrint(props) {
       <div className="DocumentPage">
         <WCPrintHeader {...headerProps} />
         <div className="DocumentSectionTitle">NUMBER OF ISSUES BY COUNTRY</div>
-        <div className="DocumentSection Growable">]idejönnek a country cellek :c]</div>
+        <div className="DocumentSection Growable">{pageProps? pageProps.printCells : ""}</div>
       </div>
     </div>
   );
