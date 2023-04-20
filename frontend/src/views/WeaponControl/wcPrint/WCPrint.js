@@ -5,7 +5,8 @@ export default function WCPrint(props) {
   const pageProps = props.pageProps
   const headerProps = props.headerProps
   return (
-    <div className="PrintableDocument">
+    <div className="PrintableDocument" >
+      {/* START OF PAGE 1 */}
       <div className="DocumentPage">
         <WCPrintHeader  {...headerProps} />
         <div className="DocumentSectionTitle">ABSTRACT</div>
@@ -26,10 +27,10 @@ export default function WCPrint(props) {
             <p> {pageProps.stats ? pageProps.stats["total_ratio"] : 0}</p>
           </div>
           <div className="Light">
-            <p>- see more on pages: 1, 2</p>
-            <p>- see more on pages: 1, 2</p>
-            <p>- see more on pages: 1, 2</p>
-            <p>- see more on pages: 1, 2</p>
+            <p>- see more on pages: 1, 3</p>
+            <p>- see more on pages: 1, 3</p>
+            <p>- see more on pages: 1, 2, 3</p>
+            <p>- see more on pages: 1, 2, 3</p>
           </div>
         </div>
         <div className="DocumentDivider">-</div>
@@ -55,12 +56,12 @@ export default function WCPrint(props) {
           <div className="Center">
             <p className="Light">TYPE</p>
             <p>{pageProps.stats ? pageProps.stats["most_issue"]["type"] : ""}s</p>
-              <p>{pageProps.stats ? pageProps.stats["least_issue"]["type"] : ""}s</p>
+            <p>{pageProps.stats ? pageProps.stats["least_issue"]["type"] : ""}s</p>
           </div>
           <div className="Center Bold">
             <p className="Light">NUMBER OF</p>
             <p>{pageProps.stats ? pageProps.stats["most_issue"]["value"] : ""}</p>
-              <p>{pageProps.stats ? pageProps.stats["least_issue"]["value"] : ""}</p>
+            <p>{pageProps.stats ? pageProps.stats["least_issue"]["value"] : ""}</p>
           </div>
         </div>
         <p className="DocumentSectionSubtitle">
@@ -81,20 +82,20 @@ export default function WCPrint(props) {
               {pageProps.stats ? pageProps.getLongCName(pageProps.stats["n_r"][[pageProps.getMostFunc("issue_num")]].nation) : ""}
             </p>
             <p>
-              {pageProps.stats  ?  pageProps.getLongCName(pageProps.stats["n_r"][[pageProps.getLeastFunc("issue_num")]].nation) : ""}
+              {pageProps.stats ? pageProps.getLongCName(pageProps.stats["n_r"][[pageProps.getLeastFunc("issue_num")]].nation) : ""}
             </p>
           </div>
           <div className="Center Bold">
             <p className="Light">NUMBER OF</p>
             <p>
               {pageProps.stats
-                  ? pageProps.stats["n_r"][pageProps.getMostFunc("issue_num")].issue_num
-                  : 0}
+                ? pageProps.stats["n_r"][pageProps.getMostFunc("issue_num")].issue_num
+                : 0}
             </p>
             <p>
-            {pageProps.stats
-                  ? pageProps.stats["n_r"][pageProps.getLeastFunc("issue_num")].issue_num
-                  : 0}
+              {pageProps.stats
+                ? pageProps.stats["n_r"][pageProps.getLeastFunc("issue_num")].issue_num
+                : 0}
             </p>
           </div>
         </div>
@@ -110,40 +111,98 @@ export default function WCPrint(props) {
           <div className="Center">
             <p className="Light">COUNTRY</p>
             <p>  {pageProps.stats ? pageProps.getLongCName(pageProps.stats["n_r"][[pageProps.getMostFunc("ratio")]].nation) : ""}</p>
-              <p>{pageProps.stats ? pageProps.getLongCName(pageProps.stats["n_r"][[pageProps.getLeastFunc("ratio")]].nation) : ""}</p>
+            <p>{pageProps.stats ? pageProps.getLongCName(pageProps.stats["n_r"][[pageProps.getLeastFunc("ratio")]].nation) : ""}</p>
           </div>
           <div className="Center Bold">
             <p className="Light">RATIO</p>
             <p>
-            {pageProps.stats
-                  ? pageProps.stats["n_r"][pageProps.getMostFunc("ratio")].issue_num
-                  : 0}
-              </p>
-              <p>
               {pageProps.stats
-                  ? pageProps.stats["n_r"][pageProps.getLeastFunc("ratio")].issue_num
-                  : 0}
-              </p>
+                ? pageProps.stats["n_r"][pageProps.getMostFunc("ratio")].issue_num
+                : 0}
+            </p>
+            <p>
+              {pageProps.stats
+                ? pageProps.stats["n_r"][pageProps.getLeastFunc("ratio")].issue_num
+                : 0}
+            </p>
           </div>
         </div>
         <div className="DocumentDivider">-</div>
         <div className="DocumentSection DocumentColumnLayout Growable WithChart">
           <p className="DocumentSectionSubtitle">
             NUMBER OF FENCERS BY COUNTRY
+            <span>- see more on page: 3</span>
           </p>
-          <div className="DocumentChartWrapper"></div>
+          <div className="DocumentChartWrapper">
+            {/* ATI IDE JÖN A CHART IDE BELE!!!!!444!! */}
+          </div>
         </div>
       </div>
+      {/* END OF PAGE 1 */}
+      {/* START OF PAGE 2 */}
       <div className="DocumentPage">
         <WCPrintHeader {...headerProps} />
-        <div className="DocumentSectionTitle">NUMBER OF ISSUES BY COUNTRY</div>
-        <div className="DocumentSection Growable">{/* datagrid */}</div>
+        <div className="DocumentSectionTitle">ABSTRACT</div>
+        <div className="DocumentSection DocumentColumnLayout Growable WithChart">
+          <p className="DocumentSectionSubtitle">
+            RATIOS BY COUNTRY
+            <span>- see more on page: 3</span>
+          </p>
+          <div className="DocumentChartWrapper">
+            {/* ATI IDE JÖN A CHART IDE BELE!!!!!444!! */}
+          </div>
+        </div>
+        <div className="DocumentDivider">-</div>
+        <div className="DocumentSection DocumentColumnLayout Growable WithChart">
+          <p className="DocumentSectionSubtitle">
+            NUMBER OF ISSUES BY COUNTRY
+            <span>- see more on page: 3</span>
+          </p>
+          <div className="DocumentChartWrapper">
+            {/* ATI IDE JÖN A CHART IDE BELE!!!!!444!! */}
+          </div>
+        </div>
       </div>
+      {/* END OF PAGE 2 */}
+      {/* START OF PAGE 3 */}
       <div className="DocumentPage">
         <WCPrintHeader {...headerProps} />
-        <div className="DocumentSectionTitle">NUMBER OF ISSUES BY COUNTRY</div>
-        <div className="DocumentSection Growable">{pageProps? pageProps.printCells : ""}</div>
+        <div className="DocumentSectionTitle">COUNTRIES SUMMARY</div>
+        <div className="DocumentSection Growable FullPage">
+          {/* ATI IDE JÖN A TABLE IDE BELE!!!!!444!! */}
+        </div>
       </div>
-    </div>
+      {/* END OF PAGE 3 */}
+      {/* START OF PAGE 4 */}
+      <div className="DocumentPage">
+        <WCPrintHeader {...headerProps} />
+        <div className="DocumentSectionTitle">ISSUES SUMMARY</div>
+        <div className="DocumentSection Growable FullPage">
+          {/* ATI IDE JÖN A TABLE IDE BELE!!!!!444!! */}
+        </div>
+      </div>
+      {/* END OF PAGE 4 */}
+      {/* START OF PAGE 5 */}
+      <div className="DocumentPage">
+        <WCPrintHeader {...headerProps} />
+        <div className="DocumentSectionTitle">COUNTRIES' ISSUES DETAIL</div>
+        <p className="DocumentSectionSubtitle">]COUNTRY NAME]</p>
+        <div className="DocumentSection DocumentColumnLayout TwoColumns">
+          <div>
+            <p>NUMBER OF FENCERS:</p>
+            <p>NUMBER OF ISSUES:</p>
+            <p>RATIO:</p>
+          </div>
+          <div>
+            <p>]no of fencer in country]</p>
+            <p>]no of issues in country]</p>
+            <p>]ratio in country]</p>
+          </div>
+        </div>
+        <div className="DocumentSection Growable FullPage">
+          {/* ATI IDE JÖN A TABLE IDE BELE!!!!!444!! */}
+        </div>
+      </div>
+    </div >
   );
 }

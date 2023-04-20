@@ -135,6 +135,7 @@
         display: flex;
         align-items: center;
         position: relative;
+        text-transform: uppercase;
     }
 
     .DocumentSectionTitle p {
@@ -151,8 +152,8 @@
     }
 
     .DocumentDivider {
-        height: 1.7mm;
-        flex: 0 0 1.7mm;
+        height: 1.2mm;
+        flex: 0 0 1.2mm;
         overflow: hidden;
     }
 
@@ -163,6 +164,12 @@
     .DocumentSection {
         flex: 0 0 auto;
         position: relative;
+    }
+
+    .DocumentSection.FullPage {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .DocumentSection.Growable {
@@ -178,6 +185,13 @@
         width: 100%;
         border: solid black;
         border-width: 0 var(--l-BorderWidth) 0 var(--l-BorderWidth);
+    }
+
+    .DocumentSectionSubtitle span {
+        font-weight: 200;
+        font-size: 9pt;
+        line-height: 14pt;
+        display: inline-block;
     }
 
     .DocumentSection .DocumentSectionSubtitle {
