@@ -1,7 +1,7 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 
-const API_URL = "http://localhost:8082/api/token/";
+const API_URL = `${process.env.REACT_APP_API}token/`;
 
 const register = (username, email, password) => {
   return axios.post(API_URL, {

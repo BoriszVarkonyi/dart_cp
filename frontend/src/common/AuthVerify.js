@@ -49,7 +49,7 @@ const refreshToken = () => {
   };
 
   const apiResponse = axios
-    .post("http://localhost:8082/api/token/refresh/", payload)
+    .post(`${process.env.REACT_APP_API}token/refresh/`, payload)
     .then((response) => {
       if (response.data.access) {
         localStorage.setItem(

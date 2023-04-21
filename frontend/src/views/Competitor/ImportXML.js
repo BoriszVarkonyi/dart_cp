@@ -82,21 +82,6 @@ export default function Import() {
   async function handleFile(file) {
     parseFencers(file, generateDataGrid, setFencerArray);
     setLoadingState(false);
-
-    /*
-    const formData = new FormData();
-    formData.append("xmlfile", file);
-
-    fetch("http://localhost:8082/api/uploadxml/", {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        generateDataGrid(data);
-        setFencerArray(data);
-      });
-    */
   }
 
   const updateFencer = (fencer) => {
