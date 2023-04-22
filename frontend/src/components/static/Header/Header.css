@@ -28,8 +28,8 @@ header {
 	white-space: nowrap;
 	background-color: #cbcbcb;
 	background-image: -webkit-linear-gradient(0deg,
-	#c8c8c8,
-	#cbcbcb);
+		#c8c8c8,
+		#cbcbcb);
 	background-size: 100%;
 	background-repeat: repeat;
 	-webkit-background-clip: text;
@@ -67,9 +67,9 @@ header:hover #AppVersion {
 	padding: 0 20px;
 	background: rgb(242,242,242);
 	background: linear-gradient(90deg,
-	rgba(242,242,242,0) 0%,
-	rgba(242,242,242,1) 10%,
-	rgba(242,242,242,1) 100%);
+		rgba(242,242,242,0) 0%,
+		rgba(242,242,242,1) 10%,
+		rgba(242,242,242,1) 100%);
 }
 
 .UserNameText {

@@ -57,17 +57,16 @@ html, body, #root {
   font-family: Poppins, sans-serif;
   padding: 0;
   line-height: 1.2;
-  font-size: 14px;
+  font-size: var(--f-T);
   overflow: hidden;
   width: 100vw;
   height: 100vh;
-  -webkit-text-size-adjust: 100%; /* 2 */
+  -webkit-text-size-adjust: 100%;
 }
 
 main {
   display: block;
 }
-
 
 img {
   margin: 0;
@@ -84,11 +83,10 @@ a {
   background-color: transparent;
 }
 
-
-/* might be temp */
+/* might be temporary */
 * {
-  -webkit-user-select: none;  /* Chrome all / Safari all */
-  -moz-user-select: none;     /* Firefox all */
+  -webkit-user-select: none;
+  -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
 }
@@ -166,17 +164,17 @@ button:-moz-focusring,
   left: 0;
   animation: backgroundChange .5s ease-in-out .3s both;
   background:
-  radial-gradient(
-  farthest-corner at top left,
-  var(--c-PrimaryBlue-300) 0%,
-  var(--c-PrimaryMix-300) 50%,
-  var(--c-PrimaryGreen-300) 100%);
+    radial-gradient(farthest-corner at top left,
+      var(--c-PrimaryBlue-300) 0%,
+      var(--c-PrimaryMix-300) 50%,
+      var(--c-PrimaryGreen-300) 100%);
 }
 
 @keyframes backgroundChange {
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
@@ -195,9 +193,9 @@ button:-moz-focusring,
   font-weight: 900;
   position: absolute;
   z-index: 0;
-  /*animation: 1.8s cubic-bezier(0.86, 0, 0.07, 1) 0.3s infinite normal both running blink;*/
   color: #ffffff;
   text-shadow: 0 0 30px rgba(0, 0, 0, 0.08);
+  /*animation: 1.8s cubic-bezier(0.86, 0, 0.07, 1) 0.3s infinite normal both running blink;*/
 }
 
 .Fencer1 {
@@ -212,23 +210,62 @@ button:-moz-focusring,
 }
 
 @keyframes blink {
-  0%   {opacity: 0.2;}
-  50%   {opacity: 1;}
-  100%   {opacity: 0.2;}
+  0% {
+    opacity: 0.2;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.2;
+  }
 }
 
 @keyframes slide-right {
-  0%   {right: 0; opacity: 0; visibility: visible;}
-  1%   {right: 0; opacity: 0}
-  65%   {right: -120px; opacity: 1}
-  100% {right: -120px; opacity: 0}
+  0% {
+    right: 0;
+    opacity: 0;
+    visibility: visible;
+  }
+
+  1% {
+    right: 0;
+    opacity: 0
+  }
+
+  65% {
+    right: -120px;
+    opacity: 1
+  }
+
+  100% {
+    right: -120px;
+    opacity: 0
+  }
 }
 
 @keyframes slide-left {
-  0%   {left: 0; opacity: 0}
-  1%   {right: 0; opacity: 0}
-  65%   {left: -120px; opacity: 1}
-  100% {left: -120px; opacity: 0}
+  0% {
+    left: 0;
+    opacity: 0
+  }
+
+  1% {
+    right: 0;
+    opacity: 0
+  }
+
+  65% {
+    left: -120px;
+    opacity: 1
+  }
+
+  100% {
+    left: -120px;
+    opacity: 0
+  }
 }
 
 .MuiDataGrid-columnHeaderTitleContainer {
@@ -245,36 +282,36 @@ button:-moz-focusring,
 }
 
 .PageHeader {
-	display: grid;
-	grid-template-columns: auto auto;
-	grid-template-rows: 1fr;
-	justify-content: space-between;
-	align-items: center;
-	padding: 20px;
-	background-color: #f9f9f9;
-	box-shadow: 1px 3px 1px rgba(0, 0, 0, 0.1);
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: 1fr;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+  box-shadow: 1px 3px 1px rgba(0, 0, 0, 0.1);
 }
 
 .PageTitle {
-	text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
-  font-size: 25px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  font-size: var(--f-L);
 }
 
 .PageContent {
-	background-color: #f5f5f5;
-	overflow-y: auto;
-	position: relative;
-	padding: var(--l-PagePadding);
+  background-color: #f5f5f5;
+  overflow-y: auto;
+  position: relative;
+  padding: var(--l-PagePadding);
 }
 
 .PageButtonsWrapper {
-	display: flex;
-	align-items: center;
-	min-height: 38px;
+  display: flex;
+  align-items: center;
+  min-height: 38px;
 }
 
 .PageButtonsWrapper > * {
-	margin: 5px 0 5px 10px !important;
+  margin: 5px 0 5px 10px !important;
 }
 
 @media screen {
@@ -315,7 +352,7 @@ button:-moz-focusring,
   padding: 20px;
   display: flex;
   align-items: center;
-	background-color: #f9f9f9;
+  background-color: #f9f9f9;
   border-bottom: 5px solid #d21818;
 }
 
@@ -337,7 +374,7 @@ button:-moz-focusring,
 }
 
 .DataGridWrapper {
-	width: 100%;
+  width: 100%;
   height: 100%;
   box-sizing: border-box;
   position: relative;
@@ -345,14 +382,14 @@ button:-moz-focusring,
 }
 
 .DataGridWrapper > .MuiDataGrid-root {
-	width: 100%;
+  width: 100%;
   height: 100%;
 }
 
 .GridToolbar {
   padding: 6px;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: center;
   width: 100%;
   box-sizing: border-box;
@@ -366,49 +403,49 @@ button:-moz-focusring,
 }
 
 .DataGridColumnOptions {
-	display: flex;
+  display: flex;
   align-items: center;
-	gap: 8px;
+  gap: 8px;
   justify-self: start;
   margin-right: auto;
   line-height: 1;
 }
 
 .Form {
-	display: flex;
-	flex-wrap: wrap;
-	flex-direction: row !important;
-	justify-content: center;
-	gap: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row !important;
+  justify-content: center;
+  gap: 40px;
 }
 
 .Form > .FormColumn {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	flex: 0 1 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 0 1 250px;
 }
 
 .Form > .FormColumn > * {
-	width: 100%;
-	margin-block: 8px;
+  width: 100%;
+  margin-block: 8px;
 }
 
 .FormRow {
-	display: flex;
-	gap: 16px;
+  display: flex;
+  gap: 16px;
 }
 
 .FormRow > * {
-	margin: 0 !important;
+  margin: 0 !important;
 }
 
 .PageAlert {
-	padding: 13px 26px;
+  padding: 13px 26px;
   box-sizing: border-box;
   width: 100%;
   line-height: 1.2;
-	background-color: white;
+  background-color: white;
   border-block: 5px solid #d21818;
 }
 
