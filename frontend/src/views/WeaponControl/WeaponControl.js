@@ -70,11 +70,11 @@ export default function WeaponControl(props) {
         if (key == "notes") {
           data[key] == null ? setNotes("") : setNotes(data[key]);
         }
-        if(key == "fencer_name"){
+        if (key == "fencer_name") {
           setFencerName(data[key])
         }
-  
-        if (key !== "exists" && key !== "notes" && key!=="fencer_name") {
+
+        if (key !== "exists" && key !== "notes" && key !== "fencer_name") {
           inputArray.push(
             <Issue
               key={key}
@@ -96,7 +96,7 @@ export default function WeaponControl(props) {
 
   const title = `${props.type} Weapon Control of ${fencerName}`;
   return (
-    <div className="Main">
+    <main>
       <div className="PageHeader">
         <h1 className="PageTitle">{title}</h1>
         <div className="PageButtonsWrapper">
@@ -140,6 +140,6 @@ export default function WeaponControl(props) {
           />
         </div>
       </div>
-    </div>
+    </main>
   );
 }

@@ -172,7 +172,7 @@ export default function WeaponControlStatistics() {
 
   return (
     <>
-      <div className="Main">
+      <main>
         <div className="PageHeader">
           <h1 className="PageTitle">Weapon Control Statistics</h1>
           <div className="PageButtonsWrapper">
@@ -471,7 +471,7 @@ export default function WeaponControlStatistics() {
             <div className="CountryGrid">{countryCells}</div>
           </div>
         </div>
-      </div>
+      </main>
       <WCPrint pageProps={printProps} headerProps={printHeaderProps} />
     </>
   );

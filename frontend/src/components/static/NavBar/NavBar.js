@@ -18,7 +18,7 @@ import { Cookies, useCookies } from "react-cookie";
 
 export default function NavBar() {
   const [cookies, setCookies] = useCookies("selectedComp");
-  const [compdId, setCompId] = useState(cookies["selectedComp"]==undefined? "" : cookies["selectedComp"]);
+  const [compdId, setCompId] = useState(cookies["selectedComp"] == undefined ? "" : cookies["selectedComp"]);
   const [hasSelectedComp, setHasSelectedComp] = useState(false);
   const [menuItems, setMenuItems] = useState([]);
   const { tournamentId } = useParams();
@@ -77,7 +77,7 @@ export default function NavBar() {
   }, [competitions]);
 
   return (
-    <div className="NavBar">
+    <nav>
       <div className="NavBarContent">
         <div className="NavBarContentInner">
           <Link className="NavBarTextButton" to="/panel">back to tournaments...</Link>
@@ -172,6 +172,6 @@ export default function NavBar() {
         <FirstPageIcon />
       </button>
       */}
-    </div>
+    </nav>
   );
 }

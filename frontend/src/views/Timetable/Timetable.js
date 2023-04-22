@@ -3,7 +3,7 @@ import { Button } from "@mui/material";
 
 export default function Timetable() {
     return (
-        <div className="Main">
+        <main>
             <div className="PageHeader">
                 <h1 className="PageTitle">Timetable</h1>
                 <div className="PageButtonsWrapper">
@@ -31,6 +31,6 @@ export default function Timetable() {
             </div>
             <div className="PageContent">
             </div>
-        </div>
+        </main>
     );
 }

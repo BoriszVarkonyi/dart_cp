@@ -12,7 +12,7 @@ export default function LoginLayout() {
       <div id="LoginBlock">
         <div className="LoginHeader">
           <p id="AppNameLogin">d'ARTAGNAN CONTROL</p>
-          <p id="AppVersion">Alpha</p>
+          <p id="AppVersionLogin">Alpha</p>
         </div>
         <p id="LoginText">{t('login.login')}</p>
         <Login />
