@@ -3,23 +3,11 @@ import PrintTable from "../../../components/static/PrintTable/PrintTable";
 import WCPrintHeader from "./WCPrintHeader";
 
 export default function PrintCell(props) {
-  const prop = props.props;
-  console.log(prop)
+  const prop = props.props
+  const header = props.printHeader
   return (
-    // <div className="CountryCell">
-    //   <p className="CountryName">{prop.longName}</p>
-    //   <div className="CountryData">
-    //     <p>{prop.fencerNum} fencers</p>
-    //     <b>{prop.issueNum} issues</b>
-    //     <p>{prop.ratio} ratio</p>
-    //   </div>
-    //   <div className="CountryContent">
-    //     <PrintTable row={prop.row} col={prop.col} sorting={{ field: "freq" }} />
-    //   </div>
-    // </div>
-
     <div className="DocumentPage">
-      {/* <WCPrintHeader {...headerProps} /> */}
+      <WCPrintHeader {...header} />
       <div className="DocumentSectionTitle">COUNTRIES' ISSUES DETAIL</div>
       <p className="DocumentSectionSubtitle">{prop.longName}</p>
       <div className="DocumentSection DocumentColumnLayout TwoColumns">

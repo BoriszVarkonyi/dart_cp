@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Button } from "@mui/material";
 import "./WeaponControlStatistics.css";
 import "../../DocumentPrinting.css";
-import { ResponsivePieCanvas } from "@nivo/pie";
 import { useNavigate } from "react-router-dom";
 import { DataGrid } from "@mui/x-data-grid";
 import { get, createCancelToken } from "../../services/backend.service";
@@ -16,10 +15,33 @@ import {
   translateSex,
   translateCompType,
 } from "../../services/translate.service";
+import { ResponsivePieCanvas } from "@nivo/pie";
 
 function getLongCountryName(value) {
   return countries["countries"].find((country) => country.short == value).long;
 }
+
+const greyColors = [
+  "#F5F5F5",
+  "#E8E8E8",
+  "#DCDCDC",
+  "#D3D3D3",
+  "#C8C8C8",
+  "#BEBEBE",
+  "#B0B0B0",
+  "#A8A8A8",
+  "#989898",
+  "#888888",
+  "#787878",
+  "#696969",
+  "#606060",
+  "#505050",
+  "#404040",
+  "#303030",
+  "#202020",
+  "#101010",
+  "#000000",
+];
 
 const colIssueByC = [
   { field: "country", headerName: "Country", width: 200, flex: 200 },
@@ -52,6 +74,33 @@ const setIssueWithValuesRow = (issueName, value) => {
   };
 };
 
+const printCountySummaryCol = [
+  { field: "country", headerName: "Country", width: 200, flex: 200 },
+  { field: "fencer_num", headerName: "NO.FENCER", width: 200, flex: 100 },
+  { field: "issue_num", headerName: "NO.ISSUE", width: 200, flex: 100 },
+  { field: "ratio", headerName: "RATIO", width: 200, flex: 100 },
+];
+
+const setPrintCountySummary = (element) => {
+  return {
+    id: element.nation,
+    country: element.nation,
+    fencer_num: element.fencer_num,
+    issue_num: element.issue_num,
+    ratio: element.ratio,
+  };
+};
+
+const setChartData = (countyName, vakue) => {
+  return {
+    id: countyName,
+    label: getLongCountryName(countyName),
+    value: vakue,
+    color: greyColors[Math.floor(Math.random() * greyColors.length)],
+  };
+};
+
+
 export default function WeaponControlStatistics() {
   const { compId, tournamentId } = useParams();
   const [statistics, setStatistics] = useState();
@@ -59,6 +108,7 @@ export default function WeaponControlStatistics() {
   const [issuesWithSums, setIssuesWithSums] = useState([]);
   const [countryCells, setCountryCells] = useState([]);
   const [printCells, setprintCells] = useState([]);
+  const [printCSummaryRows, setPrintCSummaryRows] = useState([]);
   const [listedIssues, setListedIssues] = useState();
   const [currentComp, setCurrentComp] = useState();
   const [currentTour, setCurrentTour] = useState();
@@ -115,13 +165,12 @@ export default function WeaponControlStatistics() {
         row: issues,
       };
 
-
-      printArrayProps.push();
+      printArrayProps.push({ printProps: props, key: e.fencer_nation });
       return <CountryCell props={props} key={e.fencer_nation} />;
     });
 
     const sortedPrintArray = printArrayProps.sort((a, b) => {
-      return b.props.props.issueNum - a.props.props.issueNum;
+      return b.printProps.issueNum - a.printProps.issueNum;
     });
 
     setprintCells(sortedPrintArray);
@@ -131,7 +180,19 @@ export default function WeaponControlStatistics() {
     });
 
     setCountryCells(sortedCompArray);
+
+    let nOFencerChartData = [];
+    let nOIssuesChartData = [];
+    let ratiosChartData = [];
+    const printCountrySum = data["n_r"].map((e) => {
+      nOFencerChartData.push(setChartData(e.nation, e.fencer_num));
+      nOIssuesChartData.push(setChartData(e.nation, e.issue_num));
+      ratiosChartData.push(setChartData(e.nation, e.ratio));
+      return setPrintCountySummary(e);
+    });
+    setPrintCSummaryRows(printCountrySum);
   }
+
 
   function getMost(prop) {
     return statistics["n_r"].indexOf(
@@ -149,15 +210,6 @@ export default function WeaponControlStatistics() {
     );
   }
 
-  const printProps = {
-    stats: statistics,
-    allIssues: listedIssues,
-    printCells: printCells,
-    getMostFunc: getMost,
-    getLeastFunc: getLeast,
-    getLongCName: getLongCountryName,
-  };
-
   const printHeaderProps = {
     compTitle: currentComp ? currentComp.title_long : "",
     tourTitle: currentTour ? currentTour.title_long : "",
@@ -170,13 +222,30 @@ export default function WeaponControlStatistics() {
     year: currentComp ? currentComp.start_date.substring(0, 4) : "",
   };
 
+  const printProps = {
+    stats: statistics,
+    allIssues: listedIssues,
+    printCells: printCells.map((e) => (
+      <PrintCell
+        props={e.printProps}
+        key={e.key}
+        printHeader={printHeaderProps}
+      />
+    )),
+    issueWithSumsTable: { row: issuesWithSums, col: colIssueWithValues },
+    countySummaryTable: { row: printCSummaryRows, col: printCountySummaryCol },
+    getMostFunc: getMost,
+    getLeastFunc: getLeast,
+    getLongCName: getLongCountryName,
+  };
+
   useEffect(() => {
     getData();
   }, []);
 
   return (
     <>
-      <div className="Main">
+      <main>
         <div className="PageHeader">
           <h1 className="PageTitle">Weapon Control Statistics</h1>
           <div className="PageButtonsWrapper">
@@ -291,22 +360,22 @@ export default function WeaponControlStatistics() {
                         <p className="StatTopic">
                           {statistics
                             ? getLongCountryName(
-                              statistics["n_r"][getMost("issue_num")].nation
-                            )
+                                statistics["n_r"][getMost("issue_num")].nation
+                              )
                             : ""}
                         </p>
                         <div>
                           <p>
                             {statistics
                               ? statistics["n_r"][getMost("issue_num")]
-                                .fencer_num
+                                  .fencer_num
                               : 0}
                             f.
                           </p>
                           <b>
                             {statistics
                               ? statistics["n_r"][getMost("issue_num")]
-                                .issue_num
+                                  .issue_num
                               : 0}
                             i.
                           </b>
@@ -330,22 +399,22 @@ export default function WeaponControlStatistics() {
                         <p className="StatTopic">
                           {statistics
                             ? getLongCountryName(
-                              statistics["n_r"][getLeast("issue_num")].nation
-                            )
+                                statistics["n_r"][getLeast("issue_num")].nation
+                              )
                             : ""}
                         </p>
                         <div>
                           <p>
                             {statistics
                               ? statistics["n_r"][getLeast("issue_num")]
-                                .fencer_num
+                                  .fencer_num
                               : 0}
                             f.
                           </p>
                           <b>
                             {statistics
                               ? statistics["n_r"][getLeast("issue_num")]
-                                .issue_num
+                                  .issue_num
                               : 0}
                             i.
                           </b>
@@ -372,8 +441,8 @@ export default function WeaponControlStatistics() {
                         <p className="StatTopic">
                           {statistics
                             ? getLongCountryName(
-                              statistics["n_r"][getMost("ratio")].nation
-                            )
+                                statistics["n_r"][getMost("ratio")].nation
+                              )
                             : ""}
                         </p>
                         <div>
@@ -409,8 +478,8 @@ export default function WeaponControlStatistics() {
                         <p className="StatTopic">
                           {statistics
                             ? getLongCountryName(
-                              statistics["n_r"][getLeast("ratio")].nation
-                            )
+                                statistics["n_r"][getLeast("ratio")].nation
+                              )
                             : ""}
                         </p>
                         <div>
@@ -475,7 +544,7 @@ export default function WeaponControlStatistics() {
             <div className="CountryGrid">{countryCells}</div>
           </div>
         </div>
-      </div>
+      </main>
       <WCPrint pageProps={printProps} headerProps={printHeaderProps} />
     </>
   );
