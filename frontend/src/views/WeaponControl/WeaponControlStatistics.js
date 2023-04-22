@@ -103,7 +103,9 @@ export default function WeaponControlStatistics() {
       const issues = filteredIssues.map((i) =>
         setIssueWithValuesRow(i.issue_human_readable_name, i.value)
       );
+
       const index = data["n_r"].findIndex((c) => c.nation == e.fencer_nation);
+
       const props = {
         longName: getLongCountryName(e.fencer_nation),
         fencerNum: data["n_r"][index].fencer_num,
@@ -112,6 +114,8 @@ export default function WeaponControlStatistics() {
         col: colIssueWithValues,
         row: issues,
       };
+
+
       printArray.push(<PrintCell props={props} key={e.fencer_nation} />);
       return <CountryCell props={props} key={e.fencer_nation} />;
     });
@@ -148,7 +152,7 @@ export default function WeaponControlStatistics() {
   const printProps = {
     stats: statistics,
     allIssues: listedIssues,
-    printCells: printCells,
+    printCells: printCells.map((e)=> {e.props, ...header: printHeaderProps} ),
     getMostFunc: getMost,
     getLeastFunc: getLeast,
     getLongCName: getLongCountryName,
