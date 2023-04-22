@@ -96,7 +96,7 @@ export default function WeaponControlStatistics() {
     });
     setIssuesWithSums(byIssueArray);
 
-    let printArray = [];
+    let printArrayProps = [];
 
     const compArray = issueByNat.map((e) => {
       const filteredIssues = e.issues.filter((i) => i.value != 0);
@@ -116,11 +116,11 @@ export default function WeaponControlStatistics() {
       };
 
 
-      printArray.push(<PrintCell props={props} key={e.fencer_nation} />);
+      printArrayProps.push();
       return <CountryCell props={props} key={e.fencer_nation} />;
     });
 
-    const sortedPrintArray = printArray.sort((a, b) => {
+    const sortedPrintArray = printArrayProps.sort((a, b) => {
       return b.props.props.issueNum - a.props.props.issueNum;
     });
 
@@ -152,7 +152,7 @@ export default function WeaponControlStatistics() {
   const printProps = {
     stats: statistics,
     allIssues: listedIssues,
-    printCells: printCells.map((e)=> {e.props, ...header: printHeaderProps} ),
+    printCells: printCells,
     getMostFunc: getMost,
     getLeastFunc: getLeast,
     getLongCName: getLongCountryName,
@@ -176,7 +176,7 @@ export default function WeaponControlStatistics() {
 
   return (
     <>
-      <main>
+      <div className="Main">
         <div className="PageHeader">
           <h1 className="PageTitle">Weapon Control Statistics</h1>
           <div className="PageButtonsWrapper">
@@ -475,7 +475,7 @@ export default function WeaponControlStatistics() {
             <div className="CountryGrid">{countryCells}</div>
           </div>
         </div>
-      </main>
+      </div>
       <WCPrint pageProps={printProps} headerProps={printHeaderProps} />
     </>
   );
