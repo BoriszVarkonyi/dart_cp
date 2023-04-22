@@ -51,6 +51,35 @@
 	background: #f9f9f9;
 }
 
+#NavBarAccessory {
+	position: absolute;
+	left: var(--l-NavBar);
+	bottom: 0;
+	height: 25px;
+	right: 0;
+	z-index: 5;
+	color: transparent;
+}
+
+#NavBarAccessory div:first-of-type {
+	width: 25px;
+	height: 25px;
+	border-radius: 0 0 0 25px;
+	border: 3px solid var(--c-PrimaryMix-300);
+	border-width: 0 0 3px 3px;
+	background-color: #f5f5f5;
+	position: absolute;
+	z-index: 2;
+}
+
+#NavBarAccessory div:last-of-type {
+	width: 25px;
+	height: 25px;
+	background-color: #f5f5f5;
+	position: absolute;
+	z-index: 1;
+}
+
 #ControlLayout::after {
 	content: '';
 	width: 100%;
