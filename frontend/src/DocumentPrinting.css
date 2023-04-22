@@ -91,7 +91,7 @@
     .DocumentHeaderTitle {
         font-size: 19pt;
         line-height: 0.8;
-        font-weight: bold;
+        font-weight: 700;
     }
 
     .DocumentHeaderTitleExtension {
@@ -129,7 +129,7 @@
         height: 8.5mm;
         flex: 0 0 8.5mm;
         font-size: 22pt;
-        font-weight: bold;
+        font-weight: 700;
         padding-left: 5mm;
         line-height: 13.75mm;
         display: flex;
@@ -181,7 +181,7 @@
         font-size: 16pt;
         padding: 3.5mm 0 0 13.5mm;
         line-height: 0.8;
-        font-weight: bold;
+        font-weight: 700;
         width: 100%;
         border: solid black;
         border-width: 0 var(--l-BorderWidth) 0 var(--l-BorderWidth);

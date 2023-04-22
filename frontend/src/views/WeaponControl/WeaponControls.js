@@ -137,7 +137,7 @@ export default function WeaponControls() {
   return (
     <>
       {!isLoading && (
-        <div className="Main">
+        <main>
           <div className="PageHeader">
             <h1 className="PageTitle">Weapon Control</h1>
             <div className="PageButtonsWrapper">
@@ -204,7 +204,7 @@ export default function WeaponControls() {
             </div>
           </div>
           <ModalComp modalProps={modalProps} />
-        </div>
+        </main>
       )}
     </>
   );

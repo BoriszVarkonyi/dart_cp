@@ -284,7 +284,7 @@ button:-moz-focusring,
 }
 
 @media print {
-  .Header, .NavBar, .Main, #root::after {
+  header, nav, main #root::after {
     display: none !important;
   }
 
@@ -333,7 +333,7 @@ button:-moz-focusring,
   display: block;
   margin-bottom: 20px;
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .DataGridWrapper {

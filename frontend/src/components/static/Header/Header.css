@@ -1,4 +1,4 @@
-.Header {
+header {
 	display: flex;
 	justify-content: end;
 	height: var(--l-Header);
@@ -9,40 +9,76 @@
 		#f2f2f2 100%
 	);
 	position: relative;
+	overflow: hidden;
 }
 
-.AppName {
-	font-size: calc(var(--l-Header) + 0.5rem);
-	margin: -3px 5px 0;
-	font-weight: bold;
-	line-height: 1;
-	color: #e3e3e3;
-	transition: color ease-in-out .2s;
+#HeaderTitle {
 	position: absolute;
 	left: 0;
-	z-index: 1;
+	z-index: 2;
+	display: flex;
+	align-items: center;
+}
+
+#AppName {
+	font-size: calc(var(--l-Header) + 0.5rem);
+	margin: -3px 5px 0;
+	font-weight: 700;
+	line-height: 1;
 	white-space: nowrap;
+	background-color: #cbcbcb;
+	background-image: -webkit-linear-gradient(0deg,
+	#c8c8c8,
+	#cbcbcb);
+	background-size: 100%;
+	background-repeat: repeat;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	-moz-background-clip: text;
+	-moz-text-fill-color: transparent;
 }
 
-.Header:hover .AppName {
-	color: #c7c7c7;
+#AppVersion {
+	font-size: 20px;
+	margin: -3px 5px 0;
+	font-weight: 800;
+	line-height: 0.8;
+	color: #bdbbbb;
+	display: flex;
+	flex-direction: column;
 }
 
-.HeaderContent {
+header:hover #AppName {
+	background-image: -webkit-linear-gradient(0deg,
+		var(--c-PrimaryBlue-300),
+		var(--c-PrimaryMix-300),
+		var(--c-PrimaryGreen-300));
+}
+
+header:hover #AppVersion {
+	color: #a0a0a0;
+}
+
+#HeaderContent {
 	display: flex;
 	align-items: center;
 	gap: 8px;
-	z-index: 2;
+	z-index: 3;
+	padding: 0 20px;
+	background: rgb(242,242,242);
+	background: linear-gradient(90deg,
+	rgba(242,242,242,0) 0%,
+	rgba(242,242,242,1) 10%,
+	rgba(242,242,242,1) 100%);
 }
 
 .UserNameText {
-	font-weight: bold;
+	font-weight: 700;
 }
 
 #LogOutButton {
 	font-size: 15px;
 	padding: 3px 5px;
-	margin-right: 6px;
 	border-radius: 3pt;
 	color: white;
 	font-weight: 700;

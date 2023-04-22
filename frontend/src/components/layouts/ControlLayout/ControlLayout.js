@@ -13,7 +13,11 @@ export function ControlLayout() {
       <Header />
       <NavBar />
       <Outlet />
-      <Loading/>
+      <Loading />
+      <div id="NavBarAccessory">
+        <div>-</div>
+        <div>-</div>
+      </div>
     </div>
   )
 }
