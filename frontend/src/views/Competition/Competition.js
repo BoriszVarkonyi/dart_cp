@@ -109,7 +109,7 @@ export default function Competition(props) {
   const text = `${props.type} competition`;
 
   return (
-    <div className="Main">
+    <main>
       <div className="PageHeader">
         <h1 className="PageTitle"> {text}</h1>
         <div className="PageButtonsWrapper">
@@ -453,6 +453,6 @@ export default function Competition(props) {
           </div>
         </Box>
       </div>
-    </div>
+    </main>
   );
 }

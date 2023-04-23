@@ -118,7 +118,7 @@ export default function Import() {
   return (
     <>
       {!isLoading && (
-        <div className="Main WithAlert">
+        <main className="WithAlert">
           <div className="PageHeader">
             <h1 className="PageTitle">Import XML</h1>
             <div className="PageButtonsWrapper">
@@ -185,7 +185,7 @@ export default function Import() {
             )}
           </div>
           <ModalComp modalProps={modalProps} />
-        </div>
+        </main>
       )}
     </>
   );

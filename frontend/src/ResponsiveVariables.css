@@ -1,0 +1,80 @@
+/* For extremely small screen devices (595px and below) */
+@media only screen and (max-width: 595px) {
+	:root {
+		--l-Header: 2.2em;
+		--l-NavBar: 280px;
+
+        --f-XXXL: calc(1.25em + 1vmin);
+        --f-XXL: calc(1.25em + 1vmin);
+        --f-XL: calc(1.25em + 1vmin);
+        --f-L: calc(1.1em + 1vmin);
+        --f-M: calc(0.8em + 0.8vmin);
+        --f-T: 14px;
+	    --f-S: calc(0.6em + 0.5vmin);
+	    --f-SX: calc(0.6em + 0.3vmin);
+	}
+}
+
+/* Small screen devices (600px and above) */
+@media only screen and (min-width: 600px) {
+	:root {
+		--l-Header: 2.2em;
+		--l-NavBar: 290px;
+
+        --f-XXL: calc(1.25em + 1vmin);
+        --f-XL: calc(1.25em + 1vmin);
+        --f-L: calc(1.1em + 1vmin);
+        --f-M: calc(0.8em + 0.8vmin);
+        --f-T: 14px;
+	    --f-S: calc(0.6em + 0.5vmin);
+	    --f-SX: calc(0.6em + 0.3vmin);
+	}
+}
+
+/* Medium screen devices (768px and above) */
+@media only screen and (min-width: 768px) {
+	:root {
+		--l-Header: 2.3em;
+		--l-NavBar: 290px;
+
+        --f-XXL: calc(1.25em + 1vmin);
+        --f-XL: calc(1.25em + 1vmin);
+        --f-L: calc(1.1em + 1vmin);
+        --f-M: calc(0.8em + 0.8vmin);
+        --f-T: 14px;
+	    --f-S: calc(0.6em + 0.5vmin);
+	    --f-SX: calc(0.6em + 0.3vmin);
+	}
+}
+
+/* Big screen devices (889px and above) */
+@media only screen and (min-width: 889px) {
+	:root {
+		--l-Header: 2.4em;
+		--l-NavBar: 300px;
+
+        --f-XXL: calc(1.25em + 1vmin);
+        --f-XL: calc(1.25em + 1vmin);
+        --f-L: calc(1.1em + 1vmin);
+        --f-M: calc(0.8em + 0.8vmin);
+        --f-T: 14px;
+	    --f-S: calc(0.6em + 0.5vmin);
+	    --f-SX: calc(0.6em + 0.3vmin);
+	}
+}
+
+/* Extra big screen devices (1200px and above) */
+@media only screen and (min-width: 1200px) {
+	:root {
+		--l-Header: 2.2em;
+		--l-NavBar: 300px;
+
+        --f-XXL: calc(1.25em + 1vmin);
+        --f-XL: calc(1.25em + 1vmin);
+        --f-L: calc(1em + 1vmin);
+        --f-M: calc(0.8em + 0.8vmin);
+        --f-T: 14px;
+	    --f-S: calc(0.6em + 0.5vmin);
+	    --f-SX: calc(0.6em + 0.3vmin);
+	}
+}

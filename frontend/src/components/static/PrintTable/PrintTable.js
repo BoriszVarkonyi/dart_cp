@@ -18,10 +18,12 @@ export default function PrintTable(props) {
       </thead>
       <tbody>
         {sortedCompArray.map((obj) => {
+          let counter = 0;
           return (
-            <tr>
+            <tr key={obj.id}>
               {fields.map((field) => {
-                return <td>{obj[field]}</td>;
+                counter++
+                return <td key={obj.id + counter}>{obj[field]}</td>;
               })}
             </tr>
           );

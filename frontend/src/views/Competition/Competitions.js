@@ -96,7 +96,7 @@ export default function Competitions() {
     <>
       {!isLoading && (
         <>
-          <div className="Main">
+          <main>
             <div className="PageHeader">
               <h1 className="PageTitle">Competitions</h1>
               <div className="PageButtonsWrapper">
@@ -148,7 +148,7 @@ export default function Competitions() {
                 />
               </div>
             </div>
-          </div>
+          </main>
           <ModalComp modalProps={modalProps} />
         </>
       )}

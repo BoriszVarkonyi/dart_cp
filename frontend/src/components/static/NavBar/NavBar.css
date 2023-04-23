@@ -1,4 +1,4 @@
-.NavBar {
+nav {
 	width: var(--l-NavBar);
 	position: relative;
 	z-index: 0;
@@ -41,7 +41,7 @@
 
 .NavBarSectionTitle {
 	font-size: 20px;
-	font-weight: bold;
+	font-weight: 700;
 	color: var(--c-Gray-600);
 	position: relative;
 	text-transform: uppercase;
@@ -108,11 +108,11 @@
 
 .NavBarRowTitle {
 	font-size: 16px;
-	font-weight: bold;
+	font-weight: 700;
 	margin-left: 6px;
 }
 
-.NavBar a {
+nav a {
 	color: var(--c-Black);
 	text-decoration: none;
 }

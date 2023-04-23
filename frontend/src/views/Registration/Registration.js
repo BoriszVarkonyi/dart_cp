@@ -168,7 +168,7 @@ export default function Registration() {
     <>
       {!isLoading && (
         <>
-          <div className="Main">
+          <main>
             <div className="PageHeader">
               <h1 className="PageTitle">Registration</h1>
               <div className="PageButtonsWrapper">
@@ -221,7 +221,7 @@ export default function Registration() {
                 />
               </div>
             </div>
-          </div>
+          </main>
           <div className="PrintableSticker" ref={cardRef}>
             <div className="Sticker">
               <QRCodeSVG value={hash} size="350" />
