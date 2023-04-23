@@ -19,9 +19,9 @@ const row = (element) => {
 
 //Sets the columns
 const columns = [
-  { field: "tournamentName", headerName: "Name", width: 200, flex: 200 },
-  { field: "startingDate", headerName: "Starting Date", width: 150 },
-  { field: "endingDate", headerName: "Ending Date", width: 150 },
+  { field: "tournamentName", headerName: "Name", width: 200, flex: 150 },
+  { field: "startingDate", headerName: "Starting Date", width: 150, flex: 100 },
+  { field: "endingDate", headerName: "Ending Date", flex: 100 },
 ];
 
 export default function Tournaments() {
@@ -124,7 +124,7 @@ export default function Tournaments() {
                 )}
               </div>
             </div>
-            <div className="PageContent">
+            <div>
               <div className="DataGridWrapper">
                 <DataGrid
                   checkboxSelection={true}
