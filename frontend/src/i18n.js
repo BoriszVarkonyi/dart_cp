@@ -20,9 +20,11 @@ i18n
         translation: {
           login: {
             email: 'Email',
+            username: 'Username',
             password: 'Password',
             login: 'Login',
             enterEmail: 'Please enter your email address!',
+            enterUsername: 'Please enter your username!',
             enterValidEmail: 'Please enter a valid email address!',
             enterPassword: 'Please enter your password!',
           },
@@ -32,9 +34,11 @@ i18n
         translation: {
           login: {
             email: 'E-mail',
+            username: 'Felhaszálónév',
             password: 'Jelszó',
             login: 'Bejelentkezés',
             enterEmail: 'Kérjük adja meg az e-mail-címét!',
+            enterUsername: 'Kérjük adja meg a felhasználónevét!',
             enterValidEmail: 'Kérjük érvényes e-mail-címet adjon meg!',
             enterPassword: 'Kérjük adja meg a jelszavát!',
           },

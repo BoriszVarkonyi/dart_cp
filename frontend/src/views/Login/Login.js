@@ -34,9 +34,9 @@ export default function Login() {
 
   //onSubmit function, after submit it navigates to the /panel path
   const onSubmit = (data) => {
-    const { email, password } = data;
+    const { username, password } = data;
     setLoading(true);
-    dispatch(login({ username: email, password: password }))
+    dispatch(login({ username, password }))
       .unwrap()
       .then(() => {
         navigate('/panel');
@@ -67,14 +67,14 @@ export default function Login() {
         noValidate
       >
         <TextField
-          error={!!errors.email}
-          helperText={errors?.email?.message}
-          label={t('login.email')}
+          error={!!errors.username}
+          helperText={errors?.username?.message}
+          label={t('login.username')}
           type="text"
           margin="normal"
           size="small"
           variant="filled"
-          {...register('email', emailRules)}
+          {...register('username', { required: t('login.enterUsername') })}
         />
         <TextField
           error={!!errors.password}
