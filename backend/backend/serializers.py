@@ -1,4 +1,4 @@
-from .models import FencerModel, TournamentModel, CompetitionModel, WeaponControlModel, RegistrationModel
+from .models import FencerModel, TournamentModel, CompetitionModel, WeaponControlModel, RegistrationModel, PisteModel
 from rest_framework import serializers
 from rest_framework.validators import UniqueTogetherValidator
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
@@ -222,5 +222,12 @@ class CompetitorsDataSerializer(serializers.ModelSerializer):
 
         return queryset
 
-# Nem vagyok benne biztos, hogy használni fogok itt serializert, de itthagyom mindenesetre
-#class StatisticsSerializer(serializers.ModelSerializer):
+class PisteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PisteModel
+        fields = [
+            'competitions',
+            'name',
+            'color',
+            'is_active'
+        ]

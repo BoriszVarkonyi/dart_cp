@@ -80,3 +80,10 @@ class RegistrationModel(models.Model):
 
     def __unicode__(self):
         return '%d: %s' % (self.registered)
+    
+
+class PisteModel(models.Model):
+    competitions = models.ForeignKey(CompetitionModel, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+    color = models.CharField(max_length=30, choices=PISTE_COLOR_CHOICE)
+    is_active = models.BooleanField()

@@ -346,3 +346,10 @@ CURRENCY_CHOICE = [
     ("ZMK"), ("Zambian Kwacha"),
     ("ZWL"), ("Zimbabwean Dollar"),
 ]
+PISTE_COLOR_CHOICE = [
+    ("B", "Blue"),
+    ("Y", "Yellow"),
+    ("R", "Red"),
+    ("G", "Green"),
+    ("N", "No color")
+]

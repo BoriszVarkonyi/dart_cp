@@ -20,3 +20,7 @@ class WeaponControlAdmin(admin.ModelAdmin):
 @admin.register(RegistrationModel)
 class RegistrationAdmin(admin.ModelAdmin):
   pass
+
+@admin.register(PisteModel)
+class PisteAdmin(admin.ModelAdmin):
+  pass

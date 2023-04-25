@@ -90,6 +90,13 @@ class CompetitionViewSet(viewsets.ModelViewSet):
   serializer_class = CompetitionSerializer
   permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
+
+class PisteViewSet(viewsets.ModelViewSet):
+  queryset = PisteModel.objects.all()
+  serializer_class = PisteSerializer
+  permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+
 class TournamentViewSet(viewsets.ModelViewSet):
   queryset = TournamentModel.objects.all()
   serializer_class = TournamentSerializer
@@ -836,4 +843,5 @@ class StatisticsGetByIssues(APIView):
             edited_list_return.append(obj)
 
         return Response(edited_list_return)
+
 
