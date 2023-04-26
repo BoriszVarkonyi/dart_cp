@@ -231,3 +231,21 @@ class PisteSerializer(serializers.ModelSerializer):
             'color',
             'is_active'
         ]
+
+class EquipmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PisteModel
+        fields = [
+            'competitions',
+            'mask',
+            'underplastron',
+            'chest_protector',
+            'jacket',
+            'electric_jacket',
+            'glove',
+            'breeches',
+            'socks',
+            'weapon',
+            'bodywire',
+            'maskwire'
+        ]

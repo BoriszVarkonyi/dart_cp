@@ -9,6 +9,8 @@ router.register(r'tournaments', views.TournamentViewSet)
 router.register(r'weaponcontrols', views.WeaponControlViewSet)
 router.register(r'registrations', views.RegistrationViewSet)
 router.register(r'pistes', views.PisteViewSet)
+router.register(r'equipments', views.EquipmentViewSet)
+
 
 urlpatterns = [
     path('', include(router.urls)),

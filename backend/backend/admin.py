@@ -24,3 +24,7 @@ class RegistrationAdmin(admin.ModelAdmin):
 @admin.register(PisteModel)
 class PisteAdmin(admin.ModelAdmin):
   pass
+
+@admin.register(EquipmentModel)
+class EquipmentAdmin(admin.ModelAdmin):
+  pass

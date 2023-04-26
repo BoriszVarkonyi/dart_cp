@@ -97,6 +97,12 @@ class PisteViewSet(viewsets.ModelViewSet):
   permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 
+class EquipmentViewSet(viewsets.ModelViewSet):
+  queryset = EquipmentModel.objects.all()
+  serializer_class = EquipmentSerializer 
+  permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+
 class TournamentViewSet(viewsets.ModelViewSet):
   queryset = TournamentModel.objects.all()
   serializer_class = TournamentSerializer

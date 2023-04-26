@@ -87,3 +87,18 @@ class PisteModel(models.Model):
     name = models.CharField(max_length=50)
     color = models.CharField(max_length=30, choices=PISTE_COLOR_CHOICE)
     is_active = models.BooleanField()
+
+class EquipmentModel(models.Model):
+    competitions = models.ForeignKey(CompetitionModel, on_delete=models.CASCADE)
+    mask = models.IntegerField()
+    underplastron = models.IntegerField()
+    chest_protector = models.IntegerField()
+    jacket = models.IntegerField()
+    electric_jacket = models.IntegerField()
+    glove = models.IntegerField()
+    breeches = models.IntegerField()
+    socks = models.IntegerField()
+    weapon = models.IntegerField()
+    bodywire = models.IntegerField()
+    maskwire = models.IntegerField()
+
