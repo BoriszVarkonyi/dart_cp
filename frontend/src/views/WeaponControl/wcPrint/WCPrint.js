@@ -1,11 +1,139 @@
-import React from "react";
+import React, { useEffect } from "react";
 import WCPrintHeader from "./WCPrintHeader";
 import PrintTable from "../../../components/static/PrintTable/PrintTable";
-import { ResponsivePieCanvas } from "@nivo/pie";
+import { Pie } from "@nivo/pie";
+import { useRef } from "react";
+import { useReactToPrint } from "react-to-print";
+import ReactToPrint from "react-to-print";
 
-export default function WCPrint(props) {
+
+import { forwardRef } from "react";
+
+export default function WCPrint(props){
   const pageProps = props.pageProps;
   const headerProps = props.headerProps;
+
+  const testdata = [
+    {
+      id: "rust",
+      label: "rust",
+      value: 317,
+      color: "hsl(311, 70%, 50%)",
+    },
+    {
+      id: "scala",
+      label: "scala",
+      value: 208,
+      color: "hsl(18, 70%, 50%)",
+    },
+    {
+      id: "java",
+      label: "java",
+      value: 590,
+      color: "hsl(150, 70%, 50%)",
+    },
+    {
+      id: "php",
+      label: "php",
+      value: 343,
+      color: "hsl(143, 70%, 50%)",
+    },
+    {
+      id: "go",
+      label: "go",
+      value: 55,
+      color: "hsl(174, 70%, 50%)",
+    },
+    {
+      id: "python",
+      label: "python",
+      value: 186,
+      color: "hsl(55, 70%, 50%)",
+    },
+    {
+      id: "hack",
+      label: "hack",
+      value: 375,
+      color: "hsl(289, 70%, 50%)",
+    },
+    {
+      id: "c",
+      label: "c",
+      value: 195,
+      color: "hsl(134, 70%, 50%)",
+    },
+    {
+      id: "sass",
+      label: "sass",
+      value: 161,
+      color: "hsl(89, 70%, 50%)",
+    },
+    {
+      id: "javascript",
+      label: "javascript",
+      value: 237,
+      color: "hsl(328, 70%, 50%)",
+    },
+    {
+      id: "css",
+      label: "css",
+      value: 186,
+      color: "hsl(322, 70%, 50%)",
+    },
+    {
+      id: "ruby",
+      label: "ruby",
+      value: 192,
+      color: "hsl(228, 70%, 50%)",
+    },
+    {
+      id: "stylus",
+      label: "stylus",
+      value: 242,
+      color: "hsl(67, 70%, 50%)",
+    },
+    {
+      id: "elixir",
+      label: "elixir",
+      value: 397,
+      color: "hsl(320, 70%, 50%)",
+    },
+    {
+      id: "lisp",
+      label: "lisp",
+      value: 593,
+      color: "hsl(75, 70%, 50%)",
+    },
+    {
+      id: "erlang",
+      label: "erlang",
+      value: 350,
+      color: "hsl(26, 70%, 50%)",
+    },
+    {
+      id: "make",
+      label: "make",
+      value: 342,
+      color: "hsl(55, 70%, 50%)",
+    },
+    {
+      id: "haskell",
+      label: "haskell",
+      value: 95,
+      color: "hsl(38, 70%, 50%)",
+    },
+  ];
+
+  // const printRef = useRef();
+  // const handlePrint = useReactToPrint({
+  //   content: () => printRef.current,
+  // });
+
+  // window.onbeforeprint = (event) => {
+  //   handlePrint()
+  // };
+
+  // useEffect(() => { if(printRef != undefined) handlePrint()}, [printRef]);
   return (
     <div className="PrintableDocument">
       {/* START OF PAGE 1 */}
@@ -24,9 +152,9 @@ export default function WCPrint(props) {
           </div>
           <div>
             <p>{pageProps.stats ? pageProps.stats["total_fencers"] : 0}</p>
-            <p> {pageProps.stats ? pageProps.stats["total_nation"] : 0}</p>
-            <p> {pageProps.stats ? pageProps.stats["total_issues"] : 0}</p>
-            <p> {pageProps.stats ? pageProps.stats["total_ratio"] : 0}</p>
+            <p>{pageProps.stats ? pageProps.stats["total_nation"] : 0}</p>
+            <p>{pageProps.stats ? pageProps.stats["total_issues"] : 0}</p>
+            <p>{pageProps.stats ? pageProps.stats["total_ratio"] : 0}</p>
           </div>
           <div className="Light">
             <p>- see more on pages: 1, 3</p>
@@ -174,7 +302,12 @@ export default function WCPrint(props) {
             <span>- see more on page: 3</span>
           </p>
           <div className="DocumentChartWrapper">
-            {/* ATI IDE JÖN A CHART IDE BELE!!!!!444!! */}
+          <Pie
+            width={200}
+            height={200}
+              animate={false}
+              data={pageProps.noFencerChart? pageProps.noFencerChart : []}
+            />
           </div>
         </div>
       </div>
@@ -189,7 +322,12 @@ export default function WCPrint(props) {
             <span>- see more on page: 3</span>
           </p>
           <div className="DocumentChartWrapper">
-            {/* ATI IDE JÖN A CHART IDE BELE!!!!!444!! */}
+          <Pie
+            width={200}
+            height={200}
+              animate={false}
+              data={pageProps.noIssuesChart? pageProps.noIssuesChart : []}
+            />
           </div>
         </div>
         <div className="DocumentDivider">-</div>
@@ -199,7 +337,12 @@ export default function WCPrint(props) {
             <span>- see more on page: 3</span>
           </p>
           <div className="DocumentChartWrapper">
-            {/* ATI IDE JÖN A CHART IDE BELE!!!!!444!! */}
+          <Pie
+            width={200}
+            height={200}
+              animate={false}
+              data={pageProps.ratiosChart? pageProps.ratiosChart : []}
+            />
           </div>
         </div>
       </div>
@@ -238,7 +381,7 @@ export default function WCPrint(props) {
         <WCPrintHeader {...headerProps} />
         <div className="DocumentSectionTitle">ISSUES SUMMARY</div>
         <div className="DocumentSection Growable FullPage">
-                    <p>
+          <p>
             Number of issue:
             {pageProps.stats ? pageProps.stats["total_issues"] : 0}
           </p>
@@ -258,4 +401,5 @@ export default function WCPrint(props) {
       {pageProps ? pageProps.printCells : ""}
     </div>
   );
-}
+};
+

@@ -15,33 +15,10 @@ import {
   translateSex,
   translateCompType,
 } from "../../services/translate.service";
-import { ResponsivePieCanvas } from "@nivo/pie";
 
 function getLongCountryName(value) {
   return countries["countries"].find((country) => country.short == value).long;
 }
-
-const greyColors = [
-  "#F5F5F5",
-  "#E8E8E8",
-  "#DCDCDC",
-  "#D3D3D3",
-  "#C8C8C8",
-  "#BEBEBE",
-  "#B0B0B0",
-  "#A8A8A8",
-  "#989898",
-  "#888888",
-  "#787878",
-  "#696969",
-  "#606060",
-  "#505050",
-  "#404040",
-  "#303030",
-  "#202020",
-  "#101010",
-  "#000000",
-];
 
 const colIssueByC = [
   { field: "country", headerName: "Country", width: 200, flex: 200 },
@@ -91,15 +68,12 @@ const setPrintCountySummary = (element) => {
   };
 };
 
-const setChartData = (countyName, vakue) => {
+const setChartData = (countyName, value) => {
   return {
-    id: countyName,
-    label: getLongCountryName(countyName),
-    value: vakue,
-    color: greyColors[Math.floor(Math.random() * greyColors.length)],
+    id: getLongCountryName(countyName),
+    value: value,
   };
 };
-
 
 export default function WeaponControlStatistics() {
   const { compId, tournamentId } = useParams();
@@ -112,6 +86,9 @@ export default function WeaponControlStatistics() {
   const [listedIssues, setListedIssues] = useState();
   const [currentComp, setCurrentComp] = useState();
   const [currentTour, setCurrentTour] = useState();
+  const [noFencerChart, setNofencerChart] = useState();
+  const [noIssuesChart, setNoIssuesChart] = useState();
+  const [ratiosChart, setRatiosChart] = useState();
   const navigate = useNavigate();
   const { setLoadingState } = useBasicServices();
 
@@ -191,8 +168,10 @@ export default function WeaponControlStatistics() {
       return setPrintCountySummary(e);
     });
     setPrintCSummaryRows(printCountrySum);
+    setNofencerChart(nOFencerChartData);
+    setNoIssuesChart(nOIssuesChartData)
+    setRatiosChart(ratiosChartData)
   }
-
 
   function getMost(prop) {
     return statistics["n_r"].indexOf(
@@ -234,6 +213,9 @@ export default function WeaponControlStatistics() {
     )),
     issueWithSumsTable: { row: issuesWithSums, col: colIssueWithValues },
     countySummaryTable: { row: printCSummaryRows, col: printCountySummaryCol },
+    noFencerChart: noFencerChart,
+    noIssuesChart: noIssuesChart,
+    ratiosChart: ratiosChart,
     getMostFunc: getMost,
     getLeastFunc: getLeast,
     getLongCName: getLongCountryName,
@@ -255,6 +237,12 @@ export default function WeaponControlStatistics() {
               onClick={() => navigate(-1)}
             >
               GO BACK
+            </Button>
+            <Button
+              variant="contained"
+              size="small"
+            >
+              PRINT Statistics
             </Button>
           </div>
         </div>
@@ -545,7 +533,10 @@ export default function WeaponControlStatistics() {
           </div>
         </div>
       </main>
-      <WCPrint pageProps={printProps} headerProps={printHeaderProps} />
+      <WCPrint
+        pageProps={printProps}
+        headerProps={printHeaderProps}
+      />
     </>
   );
 }
