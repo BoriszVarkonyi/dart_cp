@@ -1,6 +1,6 @@
 import React from "react";
 import PrintTable from "../../../components/static/PrintTable/PrintTable";
-import WCPrintHeader from "./WCPrintHeader";
+import WCPrintHeader from "./WCSDHeader";
 
 export default function PrintCell(props) {
   const prop = props.props

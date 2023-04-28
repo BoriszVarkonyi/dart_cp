@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import WCPrintHeader from "./WCPrintHeader";
+import WCPrintHeader from "./WCSDHeader";
 import PrintTable from "../../../components/static/PrintTable/PrintTable";
 import { Pie } from "@nivo/pie";
 import { useRef } from "react";
@@ -303,10 +303,10 @@ export default function WCPrint(props){
           </p>
           <div className="DocumentChartWrapper">
           <Pie
-            width={200}
-            height={200}
-              animate={false}
-              data={pageProps.noFencerChart? pageProps.noFencerChart : []}
+            width={460}
+            height={240}
+            animate={false}
+            data={pageProps.noFencerChart? pageProps.noFencerChart : []}
             />
           </div>
         </div>

@@ -1,20 +1,25 @@
+//react + dep
 import React, { useState, useEffect } from "react";
-import { Button } from "@mui/material";
-import "./WeaponControlStatistics.css";
-import "../../DocumentPrinting.css";
-import { useNavigate } from "react-router-dom";
-import { DataGrid } from "@mui/x-data-grid";
-import { get, createCancelToken } from "../../services/backend.service";
+import { useNavigate } from "react-router-dom"
 import { useParams } from "react-router-dom";
-import countries from "../../utils/countries.json";
-import CountryCell from "./CountryCell";
-import WCPrint from "./wcPrint/WCPrint";
-import useBasicServices from "../../services/basic.service";
-import PrintCell from "./wcPrint/PrintCell";
+//services
+import { get, createCancelToken } from "../../../services/backend.service";
+import useBasicServices from "../../../services/basic.service";
 import {
   translateSex,
   translateCompType,
-} from "../../services/translate.service";
+} from "../../../services/translate.service";
+//mui
+import { Button } from "@mui/material";
+import { DataGrid } from "@mui/x-data-grid";
+//utils + modules
+import countries from "../../../utils/countries.json";
+import CountryCell from "./WCSCountryCell";
+import WCSDocument from "./WCSDocument";
+import PrintCell from "./WCSDCell";
+//styles
+import "./WeaponControlStatistics.css";
+import "../../../styles/DocumentPrinting.css";
 
 function getLongCountryName(value) {
   return countries["countries"].find((country) => country.short == value).long;
@@ -533,7 +538,7 @@ export default function WeaponControlStatistics() {
           </div>
         </div>
       </main>
-      <WCPrint
+      <WCSDocument
         pageProps={printProps}
         headerProps={printHeaderProps}
       />

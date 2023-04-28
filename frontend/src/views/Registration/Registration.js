@@ -11,7 +11,7 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import useBasicServices from "../../services/basic.service";
 import { useSelector } from "react-redux";
 import { translateSex } from "../../services/translate.service";
-import "../../StickerPrinting.css";
+import "../../styles/StickerPrinting.css";
 import { QRCodeSVG } from "qrcode.react";
 import { useReactToPrint } from "react-to-print";
 import { DataGrid, GridToolbarContainer, GridToolbarQuickFilter } from '@mui/x-data-grid';
