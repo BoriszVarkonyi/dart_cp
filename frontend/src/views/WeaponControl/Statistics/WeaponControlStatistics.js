@@ -1,6 +1,6 @@
 //react + dep
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 //services
 import { get, createCancelToken } from "../../../services/backend.service";
@@ -166,16 +166,18 @@ export default function WeaponControlStatistics() {
     let nOFencerChartData = [];
     let nOIssuesChartData = [];
     let ratiosChartData = [];
-    const printCountrySum = data["n_r"].map((e) => {
-      nOFencerChartData.push(setChartData(e.nation, e.fencer_num));
-      nOIssuesChartData.push(setChartData(e.nation, e.issue_num));
-      ratiosChartData.push(setChartData(e.nation, e.ratio));
-      return setPrintCountySummary(e);
-    });
-    setPrintCSummaryRows(printCountrySum);
+    if (data != "Not a valid competition or no weapon control record added") {
+      const printCountrySum = data["n_r"].map((e) => {
+        nOFencerChartData.push(setChartData(e.nation, e.fencer_num));
+        nOIssuesChartData.push(setChartData(e.nation, e.issue_num));
+        ratiosChartData.push(setChartData(e.nation, e.ratio));
+        return setPrintCountySummary(e);
+      });
+      setPrintCSummaryRows(printCountrySum);
+    }
     setNofencerChart(nOFencerChartData);
-    setNoIssuesChart(nOIssuesChartData)
-    setRatiosChart(ratiosChartData)
+    setNoIssuesChart(nOIssuesChartData);
+    setRatiosChart(ratiosChartData);
   }
 
   function getMost(prop) {
@@ -232,316 +234,356 @@ export default function WeaponControlStatistics() {
 
   return (
     <>
-      <main>
-        <div className="PageHeader">
-          <h1 className="PageTitle">Weapon Control Statistics</h1>
-          <div className="PageButtonsWrapper">
-            <Button
-              variant="contained"
-              size="small"
-              onClick={() => navigate(-1)}
-            >
-              GO BACK
-            </Button>
-            <Button
-              variant="contained"
-              size="small"
-            >
-              PRINT Statistics
-            </Button>
-          </div>
-        </div>
-        <div className="ColumnPage">
-          <p className="PageSectionTitle">SUMMARY</p>
-          <div className="PageSection">
-            <div className="StatGrid">
-              <div className="StatGridCell1"></div>
-              <div className="StatGridCell2">
-                <p>GENERAL</p>
-              </div>
-              <div className="StatGridCell3">
-                <p>HIGHS & LOWS</p>
-              </div>
-              <div className="StatGridCell4">
-                <p>ISSUES</p>
-              </div>
-              <div className="StatGridCell5">
-                <div className="StatCard Large">
-                  <p className="StatTitle">ISSUE TOTAL</p>
-                  <p className="StatData">
-                    {statistics ? statistics["total_issues"] : 0}
-                  </p>
-                </div>
-              </div>
-              <div className="StatGridCell6">
-                <div className="StatGridCellStack">
-                  <div className="StatCard Small Red">
-                    <div>
-                      <p className="StatTitle">MOST COMMON</p>
-                    </div>
-                    <div className="StatDetails">
-                      <div>
-                        <p className="StatTopic">
-                          {statistics ? statistics["most_issue"]["type"] : 0}
-                        </p>
-                        <p>
-                          {statistics ? statistics["most_issue"]["value"] : 0}s
-                          i.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="StatCard Small Green">
-                    <div>
-                      <p className="StatTitle">LEAST COMMON</p>
-                    </div>
-                    <div className="StatDetails">
-                      <div>
-                        <p className="StatTopic">
-                          {statistics ? statistics["least_issue"]["type"] : 0}
-                        </p>
-                        <p>
-                          {statistics ? statistics["least_issue"]["value"] : 0}
-                          i.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="StatGridCell7"></div>
-              <div className="StatGridCell8">
-                <p>FENCERS</p>
-              </div>
-              <div className="StatGridCell9">
-                <div className="StatCard Large">
-                  <p className="StatTitle">FENCER TOTAL</p>
-                  <p className="StatData">
-                    {statistics ? statistics["total_fencers"] : 0}
-                  </p>
-                </div>
-              </div>
-              <div className="StatGridCell10">
-                <div className="StatCard Large Extra">
-                  <p className="StatTitle">AVARAGE RATIO</p>
-                  <p className="StatData">
-                    {statistics ? statistics["total_ratio"] : 0}
-                  </p>
-                </div>
-              </div>
-              <div className="StatGridCell11"></div>
-              <div className="StatGridCell12">
-                <p>COUNTRY</p>
-              </div>
-              <div className="StatGridCell13">
-                <div className="StatCard Large">
-                  <p className="StatTitle">COUNTRY TOTAL</p>
-                  <p className="StatData">
-                    {statistics ? statistics["total_nation"] : 0}
-                  </p>
-                </div>
-              </div>
-              <div className="StatGridCell14">
-                <div className="StatGridCellStack">
-                  <div className="StatCard Small Red">
-                    <div>
-                      <p className="StatTitle">MOST ISSUES</p>
-                    </div>
-                    <div className="StatDetails">
-                      <div>
-                        <p className="StatTopic">
-                          {statistics
-                            ? getLongCountryName(
-                                statistics["n_r"][getMost("issue_num")].nation
-                              )
-                            : ""}
-                        </p>
-                        <div>
-                          <p>
-                            {statistics
-                              ? statistics["n_r"][getMost("issue_num")]
-                                  .fencer_num
-                              : 0}
-                            f.
-                          </p>
-                          <b>
-                            {statistics
-                              ? statistics["n_r"][getMost("issue_num")]
-                                  .issue_num
-                              : 0}
-                            i.
-                          </b>
-                          <p>
-                            {statistics
-                              ? statistics["n_r"][getMost("issue_num")].ratio
-                              : 0}
-                            r
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="StatCard Small Green">
-                    <div>
-                      <p className="StatTitle">LEAST ISSUES</p>
-                    </div>
-                    <div className="StatDetails">
-                      <div>
-                        <p className="StatTopic">
-                          {statistics
-                            ? getLongCountryName(
-                                statistics["n_r"][getLeast("issue_num")].nation
-                              )
-                            : ""}
-                        </p>
-                        <div>
-                          <p>
-                            {statistics
-                              ? statistics["n_r"][getLeast("issue_num")]
-                                  .fencer_num
-                              : 0}
-                            f.
-                          </p>
-                          <b>
-                            {statistics
-                              ? statistics["n_r"][getLeast("issue_num")]
-                                  .issue_num
-                              : 0}
-                            i.
-                          </b>
-                          <p>
-                            {statistics
-                              ? statistics["n_r"][getLeast("issue_num")].ratio
-                              : 0}
-                            .1r
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="StatGridCell15">
-                <div className="StatGridCellStack">
-                  <div className="StatCard Small Red">
-                    <div>
-                      <p className="StatTitle">WORST RATIO</p>
-                    </div>
-                    <div className="StatDetails">
-                      <div>
-                        <p className="StatTopic">
-                          {statistics
-                            ? getLongCountryName(
-                                statistics["n_r"][getMost("ratio")].nation
-                              )
-                            : ""}
-                        </p>
-                        <div>
-                          <p>
-                            {statistics
-                              ? statistics["n_r"][getMost("ratio")].fencer_num
-                              : 0}
-                            f.
-                          </p>
-                          <p>
-                            {statistics
-                              ? statistics["n_r"][getMost("ratio")].issue_num
-                              : 0}
-                            i.
-                          </p>
-                          <b>
-                            {statistics
-                              ? statistics["n_r"][getMost("ratio")].ratio
-                              : 0}
-                            r
-                          </b>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="StatCard Small Green">
-                    <div>
-                      <p className="StatTitle">BEST RATIO</p>
-                    </div>
-                    <div className="StatDetails">
-                      <div>
-                        <p className="StatTopic">
-                          {statistics
-                            ? getLongCountryName(
-                                statistics["n_r"][getLeast("ratio")].nation
-                              )
-                            : ""}
-                        </p>
-                        <div>
-                          <p>
-                            {statistics
-                              ? statistics["n_r"][getLeast("ratio")].fencer_num
-                              : 0}
-                            f.
-                          </p>
-                          <p>
-                            {statistics
-                              ? statistics["n_r"][getLeast("ratio")].issue_num
-                              : 0}
-                            i.
-                          </p>
-                          <b>
-                            {statistics
-                              ? statistics["n_r"][getLeast("ratio")].ratio
-                              : 0}
-                            r
-                          </b>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+      {statistics == undefined ||
+      statistics ==
+        "Not a valid competition or no weapon control record added" ? (
+        <main>
+          <div className="PageHeader">
+            <h1 className="PageTitle">Weapon Control Statistics</h1>
+            <div className="PageButtonsWrapper">
+              <Button
+                variant="contained"
+                size="small"
+                onClick={() => navigate(-1)}
+              >
+                GO BACK
+              </Button>
             </div>
           </div>
-          <p className="PageSectionTitle">NUMBER OF ISSUES BY COUNTRY</p>
-          <div className="PageSection">
-            <DataGrid
-              className="StatsDataGrid"
-              disableRowSelectionOnClick
-              rows={issueByC}
-              rowHeight={25}
-              columns={colIssueByC}
-              initialState={{
-                sorting: {
-                  sortModel: [{ field: "issue_num", sort: "desc" }],
-                },
-              }}
-            />
+          <div>
+            <p>There is no weapon control statistic yet...</p>
           </div>
-          <p className="PageSectionTitle">ISSUE TYPES BY FREQUENCY</p>
-          <div className="PageSection">
-            <DataGrid
-              className="StatsDataGrid"
-              disableRowSelectionOnClick
-              rows={issuesWithSums}
-              rowHeight={25}
-              columns={colIssueWithValues}
-              initialState={{
-                sorting: {
-                  sortModel: [{ field: "freq", sort: "desc" }],
-                },
-              }}
-            />
-          </div>
-          <p className="PageSectionTitle">NUMBER OF ISSUE TYPES BY COUNTRY</p>
-          <div className="PageSection">
-            <div className="CountryGrid">{countryCells}</div>
-          </div>
-        </div>
-      </main>
-      <WCSDocument
-        pageProps={printProps}
-        headerProps={printHeaderProps}
-      />
+        </main>
+      ) : (
+        <>
+          <main>
+            <div className="PageHeader">
+              <h1 className="PageTitle">Weapon Control Statistics</h1>
+              <div className="PageButtonsWrapper">
+                <Button
+                  variant="contained"
+                  size="small"
+                  onClick={() => navigate(-1)}
+                >
+                  GO BACK
+                </Button>
+                <Button
+                  variant="contained"
+                  size="small"
+                  onClick={() => window.print()}
+                >
+                  PRINT Statistics
+                </Button>
+              </div>
+            </div>
+            <div className="ColumnPage">
+              <p className="PageSectionTitle">SUMMARY</p>
+              <div className="PageSection">
+                <div className="StatGrid">
+                  <div className="StatGridCell1"></div>
+                  <div className="StatGridCell2">
+                    <p>GENERAL</p>
+                  </div>
+                  <div className="StatGridCell3">
+                    <p>HIGHS & LOWS</p>
+                  </div>
+                  <div className="StatGridCell4">
+                    <p>ISSUES</p>
+                  </div>
+                  <div className="StatGridCell5">
+                    <div className="StatCard Large">
+                      <p className="StatTitle">ISSUE TOTAL</p>
+                      <p className="StatData">
+                        {statistics ? statistics["total_issues"] : 0}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="StatGridCell6">
+                    <div className="StatGridCellStack">
+                      <div className="StatCard Small Red">
+                        <div>
+                          <p className="StatTitle">MOST COMMON</p>
+                        </div>
+                        <div className="StatDetails">
+                          <div>
+                            <p className="StatTopic">
+                              {statistics
+                                ? statistics["most_issue"]["type"]
+                                : 0}
+                            </p>
+                            <p>
+                              {statistics
+                                ? statistics["most_issue"]["value"]
+                                : 0}
+                              s i.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="StatCard Small Green">
+                        <div>
+                          <p className="StatTitle">LEAST COMMON</p>
+                        </div>
+                        <div className="StatDetails">
+                          <div>
+                            <p className="StatTopic">
+                              {statistics
+                                ? statistics["least_issue"]["type"]
+                                : 0}
+                            </p>
+                            <p>
+                              {statistics
+                                ? statistics["least_issue"]["value"]
+                                : 0}
+                              i.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="StatGridCell7"></div>
+                  <div className="StatGridCell8">
+                    <p>FENCERS</p>
+                  </div>
+                  <div className="StatGridCell9">
+                    <div className="StatCard Large">
+                      <p className="StatTitle">FENCER TOTAL</p>
+                      <p className="StatData">
+                        {statistics ? statistics["total_fencers"] : 0}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="StatGridCell10">
+                    <div className="StatCard Large Extra">
+                      <p className="StatTitle">AVARAGE RATIO</p>
+                      <p className="StatData">
+                        {statistics ? statistics["total_ratio"] : 0}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="StatGridCell11"></div>
+                  <div className="StatGridCell12">
+                    <p>COUNTRY</p>
+                  </div>
+                  <div className="StatGridCell13">
+                    <div className="StatCard Large">
+                      <p className="StatTitle">COUNTRY TOTAL</p>
+                      <p className="StatData">
+                        {statistics ? statistics["total_nation"] : 0}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="StatGridCell14">
+                    <div className="StatGridCellStack">
+                      <div className="StatCard Small Red">
+                        <div>
+                          <p className="StatTitle">MOST ISSUES</p>
+                        </div>
+                        <div className="StatDetails">
+                          <div>
+                            <p className="StatTopic">
+                              {statistics
+                                ? getLongCountryName(
+                                    statistics["n_r"][getMost("issue_num")]
+                                      .nation
+                                  )
+                                : ""}
+                            </p>
+                            <div>
+                              <p>
+                                {statistics
+                                  ? statistics["n_r"][getMost("issue_num")]
+                                      .fencer_num
+                                  : 0}
+                                f.
+                              </p>
+                              <b>
+                                {statistics
+                                  ? statistics["n_r"][getMost("issue_num")]
+                                      .issue_num
+                                  : 0}
+                                i.
+                              </b>
+                              <p>
+                                {statistics
+                                  ? statistics["n_r"][getMost("issue_num")]
+                                      .ratio
+                                  : 0}
+                                r
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="StatCard Small Green">
+                        <div>
+                          <p className="StatTitle">LEAST ISSUES</p>
+                        </div>
+                        <div className="StatDetails">
+                          <div>
+                            <p className="StatTopic">
+                              {statistics
+                                ? getLongCountryName(
+                                    statistics["n_r"][getLeast("issue_num")]
+                                      .nation
+                                  )
+                                : ""}
+                            </p>
+                            <div>
+                              <p>
+                                {statistics
+                                  ? statistics["n_r"][getLeast("issue_num")]
+                                      .fencer_num
+                                  : 0}
+                                f.
+                              </p>
+                              <b>
+                                {statistics
+                                  ? statistics["n_r"][getLeast("issue_num")]
+                                      .issue_num
+                                  : 0}
+                                i.
+                              </b>
+                              <p>
+                                {statistics
+                                  ? statistics["n_r"][getLeast("issue_num")]
+                                      .ratio
+                                  : 0}
+                                .1r
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="StatGridCell15">
+                    <div className="StatGridCellStack">
+                      <div className="StatCard Small Red">
+                        <div>
+                          <p className="StatTitle">WORST RATIO</p>
+                        </div>
+                        <div className="StatDetails">
+                          <div>
+                            <p className="StatTopic">
+                              {statistics
+                                ? getLongCountryName(
+                                    statistics["n_r"][getMost("ratio")].nation
+                                  )
+                                : ""}
+                            </p>
+                            <div>
+                              <p>
+                                {statistics
+                                  ? statistics["n_r"][getMost("ratio")]
+                                      .fencer_num
+                                  : 0}
+                                f.
+                              </p>
+                              <p>
+                                {statistics
+                                  ? statistics["n_r"][getMost("ratio")]
+                                      .issue_num
+                                  : 0}
+                                i.
+                              </p>
+                              <b>
+                                {statistics
+                                  ? statistics["n_r"][getMost("ratio")].ratio
+                                  : 0}
+                                r
+                              </b>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="StatCard Small Green">
+                        <div>
+                          <p className="StatTitle">BEST RATIO</p>
+                        </div>
+                        <div className="StatDetails">
+                          <div>
+                            <p className="StatTopic">
+                              {statistics
+                                ? getLongCountryName(
+                                    statistics["n_r"][getLeast("ratio")].nation
+                                  )
+                                : ""}
+                            </p>
+                            <div>
+                              <p>
+                                {statistics
+                                  ? statistics["n_r"][getLeast("ratio")]
+                                      .fencer_num
+                                  : 0}
+                                f.
+                              </p>
+                              <p>
+                                {statistics
+                                  ? statistics["n_r"][getLeast("ratio")]
+                                      .issue_num
+                                  : 0}
+                                i.
+                              </p>
+                              <b>
+                                {statistics
+                                  ? statistics["n_r"][getLeast("ratio")].ratio
+                                  : 0}
+                                r
+                              </b>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p className="PageSectionTitle">NUMBER OF ISSUES BY COUNTRY</p>
+              <div className="PageSection">
+                <DataGrid
+                  className="StatsDataGrid"
+                  disableRowSelectionOnClick
+                  rows={issueByC}
+                  rowHeight={25}
+                  columns={colIssueByC}
+                  initialState={{
+                    sorting: {
+                      sortModel: [{ field: "issue_num", sort: "desc" }],
+                    },
+                  }}
+                />
+              </div>
+              <p className="PageSectionTitle">ISSUE TYPES BY FREQUENCY</p>
+              <div className="PageSection">
+                <DataGrid
+                  className="StatsDataGrid"
+                  disableRowSelectionOnClick
+                  rows={issuesWithSums}
+                  rowHeight={25}
+                  columns={colIssueWithValues}
+                  initialState={{
+                    sorting: {
+                      sortModel: [{ field: "freq", sort: "desc" }],
+                    },
+                  }}
+                />
+              </div>
+              <p className="PageSectionTitle">
+                NUMBER OF ISSUE TYPES BY COUNTRY
+              </p>
+              <div className="PageSection">
+                <div className="CountryGrid">{countryCells}</div>
+              </div>
+            </div>
+          </main>
+          <WCSDocument pageProps={printProps} headerProps={printHeaderProps} />
+        </>
+      )}
     </>
   );
 }
