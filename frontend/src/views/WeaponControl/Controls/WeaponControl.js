@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import { get, post, update } from "../../services/backend.service";
+import { get, post, update } from "../../../services/backend.service";
 import { TextField, Box } from "@mui/material";
 import { useForm } from "react-hook-form";
-import useBasicServices from "../../services/basic.service";
+import useBasicServices from "../../../services/basic.service";
 import Issue from "./Issue";
 
 export default function WeaponControl(props) {

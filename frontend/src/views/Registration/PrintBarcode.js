@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { QRCodeSVG } from 'qrcode.react';
 import { get } from '../../services/backend.service';
-import "../../StickerPrinting.css";
+import "../../styles/StickerPrinting.css";
 
 export default function PrintBarcode() {
   const { tournamentId, compId, fencerId } = useParams();
