@@ -80,7 +80,6 @@ class RegistrationModel(models.Model):
 
     def __unicode__(self):
         return '%d: %s' % (self.registered)
-    
 
 class PisteModel(models.Model):
     competitions = models.ForeignKey(CompetitionModel, on_delete=models.CASCADE)

@@ -1,21 +1,14 @@
-import http
-from django.db.models import Count, RestrictedError
-
 from dartagnan.settings import SECRET_KEY
 from .models import *
 from .serializers import *
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
-from django.core import serializers
 from django.forms.models import model_to_dict
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets, permissions
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import viewsets, permissions, status
-from rest_framework.viewsets import ViewSet
-from rest_framework.exceptions import ParseError
-from rest_framework.parsers import FileUploadParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_xml.parsers import XMLParser
@@ -24,7 +17,6 @@ import xml.etree.ElementTree as ET
 from collections import OrderedDict
 from backend.issues import *
 import random
-from itertools import groupby
 import json
 from Crypto.Cipher import AES
 from rest_framework_simplejwt.views import TokenObtainPairView
