@@ -7,20 +7,20 @@ import { useEffect } from "react";
 import { get, post, update } from "../../../services/backend.service";
 import { TextField, Box } from "@mui/material";
 import { useForm } from "react-hook-form";
-import useBasicServices from "../../../services/basic.service";
 import Issue from "./Issue";
+import { useDispatch } from "react-redux";
+import {useCrossTabState} from "../../../services/crosstab.service"
 
 export default function WeaponControl(props) {
   const [issues, setIssues] = useState([]);
-  const [issueValues, setIssueValues] = useState({});
-  const [fencerName, setFencerName] = useState("")
+  const [fencerName, setFencerName] = useState("");
   const [notes, setNotes] = useState("");
   const navigate = useNavigate();
   const { tourId, compId } = useParams();
   const { state } = useLocation();
   const { rowId } = state;
-  const { setLoadingState } = useBasicServices();
   const [exists, setExists] = useState(false);
+  const [wcReport, setWcReport] = useCrossTabState("weaponcontrols", [])
 
   //react-hook-form
   const {
@@ -44,14 +44,12 @@ export default function WeaponControl(props) {
     }
     data["notes"] == "" ? (data["notes"] = null) : (data["notes"] = notes);
 
-
     if (exists)
       await update(`stats/weaponcontrols/issues/${compId}/${rowId}/`, data);
-    else
-      await post(`stats/weaponcontrols/issues/${compId}/${rowId}/`, data);
-
+    else await post(`stats/weaponcontrols/issues/${compId}/${rowId}/`, data);
     navigate(-1);
   };
+
   useEffect(() => {
     console.log(errors);
   }, [errors]);
@@ -71,7 +69,7 @@ export default function WeaponControl(props) {
           data[key] == null ? setNotes("") : setNotes(data[key]);
         }
         if (key == "fencer_name") {
-          setFencerName(data[key])
+          setFencerName(data[key]);
         }
 
         if (key !== "exists" && key !== "notes" && key !== "fencer_name") {
@@ -92,6 +90,7 @@ export default function WeaponControl(props) {
       setIssues(inputArray);
     }
     getData();
+    //dispatch(setWeaponControls("test"))
   }, []);
 
   const title = `${props.type} Weapon Control of ${fencerName}`;
@@ -103,7 +102,12 @@ export default function WeaponControl(props) {
           <Button variant="contained" size="small" onClick={() => navigate(-1)}>
             Cancel
           </Button>
-          <Button variant="contained" size="small" type="submit" form="issue-form">
+          <Button
+            variant="contained"
+            size="small"
+            type="submit"
+            form="issue-form"
+          >
             Save weapon control
           </Button>
         </div>

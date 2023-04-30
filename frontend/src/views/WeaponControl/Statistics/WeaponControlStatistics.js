@@ -229,6 +229,7 @@ export default function WeaponControlStatistics() {
   };
 
   useEffect(() => {
+    setLoadingState(true);
     getData();
   }, []);
 
