@@ -1,4 +1,3 @@
-from rest_framework.viewsets import ViewSet
 from rest_framework.views import APIView
 from rest_framework import viewsets, permissions
 from rest_framework.response import Response
@@ -11,7 +10,7 @@ from ..serializers import *
 
 class EquipmentViewSet(viewsets.ModelViewSet):
   queryset = EquipmentModel.objects.all()
-  serializer_class = EquipmentSerializer 
+  serializer_class = EquipmentSerializer
   permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 class WeaponControlViewSet(viewsets.ModelViewSet):

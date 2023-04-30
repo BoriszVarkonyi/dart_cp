@@ -1,6 +1,5 @@
-from rest_framework.viewsets import ViewSet
 from rest_framework.views import APIView
-from rest_framework import viewsets, permissions
+from rest_framework import permissions
 from rest_framework.response import Response
 
 from ..models import *
@@ -271,7 +270,6 @@ class StatisticsGetByNationsByIssue(APIView):
         for nation in list_return:
             # make the objects
             obj = dict()
-            issues_obj = list_return[nation]
             #make issues_obj
             issues_list = []
             for hr_issue in list_return[nation]:

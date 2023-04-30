@@ -1,4 +1,3 @@
-from rest_framework.viewsets import ViewSet
 from rest_framework.views import APIView
 from rest_framework import viewsets, permissions
 from rest_framework.response import Response
@@ -6,14 +5,13 @@ from rest_framework.response import Response
 from ..models import *
 from ..serializers import *
 
-from rest_framework_xml.parsers import XMLParser
-from rest_framework.parsers import MultiPartParser
-import xml.etree.ElementTree as ET
-from django.core.files.storage import default_storage
-from django.core.files.base import ContentFile
-from django.forms.models import model_to_dict
-
-import random
+# from rest_framework_xml.parsers import XMLParser
+# from rest_framework.parsers import MultiPartParser
+# import xml.etree.ElementTree as ET
+# from django.core.files.storage import default_storage
+# from django.core.files.base import ContentFile
+# from django.forms.models import model_to_dict
+# import random
 
 class FencerModelMixin(object):
   def get_serializer(self, *args, **kwargs):
@@ -155,3 +153,4 @@ class AllCompetitorsData(APIView):
         serializer = CompetitorsDataSerializer(queryset, many=True, context={'competition': competition})
 
         return Response(data=serializer.data)
+

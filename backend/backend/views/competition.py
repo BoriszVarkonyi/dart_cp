@@ -4,9 +4,6 @@ from rest_framework import viewsets, permissions
 from ..models import *
 from ..serializers import *
 
-import xml.etree.ElementTree as ET
-from rest_framework_xml.parsers import XMLParser
-
 class CompetitionViewSet(viewsets.ModelViewSet):
     queryset = CompetitionModel.objects.all()
     serializer_class = CompetitionSerializer
