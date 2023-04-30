@@ -58,8 +58,7 @@ class WeaponControlFencersIssues(APIView):
                 )
         serializers_fencer = FencerSerializer(queryset_fencer)
         # add to obj
-        name = serializers_fencer.data['pre_nom'] + " " + serializers_fencer.data['nom']
-        response['fencer_name'] = name
+        response['fencer'] = serializers_fencer.data
 
         return Response(response)
 
