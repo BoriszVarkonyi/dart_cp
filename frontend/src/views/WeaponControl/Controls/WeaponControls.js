@@ -3,15 +3,15 @@ import { DataGrid, GridToolbarQuickFilter } from '@mui/x-data-grid';
 import { Button } from "@mui/material";
 import { Chip } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import useDataGridHelper from "../../services/datagrid.service";
+import useDataGridHelper from "../../../services/datagrid.service";
 import { useParams } from "react-router-dom";
-import { get, remove, createCancelToken } from "../../services/backend.service";
-import ModalComp from "../../components/static/Modal/ModalComp";
+import { get, remove, createCancelToken } from "../../../services/backend.service";
+import ModalComp from "../../../components/static/Modal/ModalComp";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { useLocation } from "react-router-dom";
-import useBasicServices from "../../services/basic.service";
-import { translateSex } from "../../services/translate.service";
+import useBasicServices from "../../../services/basic.service";
+import { translateSex } from "../../../services/translate.service";
 import { useSelector } from "react-redux";
 
 const row = (element) => {

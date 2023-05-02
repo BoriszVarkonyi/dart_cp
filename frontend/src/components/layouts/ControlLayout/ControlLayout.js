@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 import "./ControlLayout.css";
 
 export function ControlLayout() {
-  const { isLoading } = useSelector((state) => state.isLoading);
   return (
     <div id="ControlLayout">
       <Header />

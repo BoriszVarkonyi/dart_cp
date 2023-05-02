@@ -14,10 +14,10 @@ router.register(r'individualformulas', views.IndividualFormulaViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path(
-        'uploadxml/',
-        views.XmlUploadView.as_view()
-    ),
+    # path(
+    #     'uploadxml/',
+    #     views.XmlUploadView.as_view()
+    # ),
     path(
         'tournaments/<int:tournament>/competitions/',
         views.TournamentCompetitionsView.as_view()

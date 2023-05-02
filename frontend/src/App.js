@@ -12,9 +12,9 @@ import Competitors from "./views/Competitor/Competitors";
 import Competitor from "./views/Competitor/Competitor";
 import ImportXML from "./views/Competitor/ImportXML";
 import Registration from "./views/Registration/Registration";
-import WeaponControls from "./views/WeaponControl/WeaponControls";
-import WeaponControl from "./views/WeaponControl/WeaponControl";
-import WeaponControlStatistics from "./views/WeaponControl/WeaponControlStatistics";
+import WeaponControls from "./views/WeaponControl/Controls/WeaponControls";
+import WeaponControl from "./views/WeaponControl/Controls/WeaponControl";
+import WeaponControlStatistics from "./views/WeaponControl/Statistics/WeaponControlStatistics";
 import NotFound from "./components/static/NotFound/NotFound";
 
 /*

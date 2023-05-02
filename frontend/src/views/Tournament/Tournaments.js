@@ -47,7 +47,6 @@ export default function Tournaments() {
       const data = await get("tournaments/");
       const rows = data.map((e) => row(e));
       setRows(rows);
-      setLoadingState(false);
     }
     setLoadingState(true);
     getData();
