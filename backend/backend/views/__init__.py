@@ -10,3 +10,4 @@ from .statistic import *
 from .hash import *
 from .table import *
 from .pool import *
+from .formula import *
