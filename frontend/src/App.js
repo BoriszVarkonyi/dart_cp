@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import LoginLayout from "./components/layouts/LoginLayout/LoginLayout";
 import { ControlLayout } from "./components/layouts/ControlLayout/ControlLayout";
 import PanelLayout from "./components/layouts/PanelLayout/PanelLayout";
+import ReportLayout from "./components/layouts/ReportLayout/ReportLayout";
 import useTokenService from "./common/AuthVerify";
 
 import Competitions from "./views/Competition/Competitions";
@@ -32,6 +33,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginLayout />} />
         <Route path="/panel/*" element={<PanelLayout />} />
+        <Route path=":tournamentId/wepon_control/report" element={<ReportLayout />}/>
         <Route path=":tournamentId/*" element={<ControlLayout />}>
           <Route path="competitions">
             <Route index element={<Competitions />} />

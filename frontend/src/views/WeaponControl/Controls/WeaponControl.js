@@ -9,18 +9,18 @@ import { TextField, Box } from "@mui/material";
 import { useForm } from "react-hook-form";
 import Issue from "./Issue";
 import { useDispatch } from "react-redux";
-import {useCrossTabState} from "../../../services/crosstab.service"
+import { useCrossTabState } from "../../../services/crosstab.service";
 
 export default function WeaponControl(props) {
   const [issues, setIssues] = useState([]);
   const [fencerName, setFencerName] = useState("");
   const [notes, setNotes] = useState("");
   const navigate = useNavigate();
-  const { tourId, compId } = useParams();
+  const { tournamentId, compId } = useParams();
   const { state } = useLocation();
   const { rowId } = state;
   const [exists, setExists] = useState(false);
-  const [wcReport, setWcReport] = useCrossTabState("weaponcontrols", [])
+  const [wcReport, setWcReport] = useCrossTabState(tournamentId + "_weapon_control_report", []);
 
   //react-hook-form
   const {
@@ -30,15 +30,22 @@ export default function WeaponControl(props) {
   } = useForm();
 
   const onSubmit = async (data) => {
+
+    let counter = 1;
     for (const key of Object.keys(data)) {
       if (data[key] == "") {
         //If the data value is empty
         if (key != "notes") {
-          data[key] = 0;
+          data[`issue_${counter}`] = 0;
+          delete data[key]
+          counter++;
+
         }
       } else {
         if (key != "notes") {
-          data[key] = parseInt(data[key]);
+          data[`issue_${counter}`] = parseInt(data[key]);
+          delete data[key]
+          counter++;
         }
       }
     }
@@ -68,11 +75,11 @@ export default function WeaponControl(props) {
         if (key == "notes") {
           data[key] == null ? setNotes("") : setNotes(data[key]);
         }
-        if (key == "fencer_name") {
-          setFencerName(data[key]);
+        if (key == "fencer") {
+          setFencerName(data[key].pre_nom + " " + data[key].nom);
         }
 
-        if (key !== "exists" && key !== "notes" && key !== "fencer_name") {
+        if (key !== "exists" && key !== "notes" && key !== "fencer") {
           inputArray.push(
             <Issue
               key={key}
