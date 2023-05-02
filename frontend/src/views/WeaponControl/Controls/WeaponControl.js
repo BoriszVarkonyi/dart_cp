@@ -14,13 +14,17 @@ import { useCrossTabState } from "../../../services/crosstab.service";
 export default function WeaponControl(props) {
   const [issues, setIssues] = useState([]);
   const [fencerName, setFencerName] = useState("");
+  const [fencerNation, setFencerNation] = useState("");
   const [notes, setNotes] = useState("");
   const navigate = useNavigate();
   const { tournamentId, compId } = useParams();
   const { state } = useLocation();
   const { rowId } = state;
   const [exists, setExists] = useState(false);
-  const [wcReport, setWcReport] = useCrossTabState(tournamentId + "_weapon_control_report", []);
+  const [wcReport, setWcReport] = useCrossTabState(
+    tournamentId + "_weapon_control_report",
+    []
+  );
 
   //react-hook-form
   const {
@@ -30,6 +34,12 @@ export default function WeaponControl(props) {
   } = useForm();
 
   const onSubmit = async (data) => {
+    let issueArray = [];
+    for (const key of Object.keys(data)) {
+      if (data[key] != 0 && key != "notes") {
+        issueArray.push({ issueName: key, issueNum: parseInt(data[key]) });
+      }
+    }
 
     let counter = 1;
     for (const key of Object.keys(data)) {
@@ -37,29 +47,38 @@ export default function WeaponControl(props) {
         //If the data value is empty
         if (key != "notes") {
           data[`issue_${counter}`] = 0;
-          delete data[key]
+          delete data[key];
           counter++;
-
         }
       } else {
         if (key != "notes") {
           data[`issue_${counter}`] = parseInt(data[key]);
-          delete data[key]
+          delete data[key];
           counter++;
         }
       }
     }
     data["notes"] == "" ? (data["notes"] = null) : (data["notes"] = notes);
 
-    if (exists)
+    if (exists) {
       await update(`stats/weaponcontrols/issues/${compId}/${rowId}/`, data);
-    else await post(`stats/weaponcontrols/issues/${compId}/${rowId}/`, data);
+    } else {
+      const reportObj = {
+        fName: fencerName,
+        fNat: fencerNation,
+        fIssues: issueArray,
+        fNotes: data["notes"]
+      }
+
+      console.log(reportObj)
+      await post(`stats/weaponcontrols/issues/${compId}/${rowId}/`, data);
+    }
     navigate(-1);
   };
 
-  useEffect(() => {
-    console.log(errors);
-  }, [errors]);
+  // useEffect(() => {
+  //   console.log(errors);
+  // }, [errors]);
 
   //Gets the issue datas from api
   useEffect(() => {
@@ -77,6 +96,7 @@ export default function WeaponControl(props) {
         }
         if (key == "fencer") {
           setFencerName(data[key].pre_nom + " " + data[key].nom);
+          setFencerNation(data[key].nation)
         }
 
         if (key !== "exists" && key !== "notes" && key !== "fencer") {
@@ -97,7 +117,6 @@ export default function WeaponControl(props) {
       setIssues(inputArray);
     }
     getData();
-    //dispatch(setWeaponControls("test"))
   }, []);
 
   const title = `${props.type} Weapon Control of ${fencerName}`;
