@@ -353,3 +353,23 @@ PISTE_COLOR_CHOICE = [
     ("G", "Green"),
     ("N", "No color")
 ]
+ELIMINATION_TYPE_CHOICE = [ 
+    ("DI", "Direct elimination"),
+    ("DO", "Double elimination")
+]
+
+SEPARATION_TYPE_CHOICE = [ 
+    ("N", "Nation"),
+    ("C", "Club")
+]
+DIRECT_ELIMINATION_TYPE_CHOICE = [
+    ("O", "One phase table"), 
+    ("T", "Two phase table")
+]
+CALLROOM_NUMBER_CHOICE = [
+   (4, "4"),
+   (8, "8"),
+   (16, "16"),
+   (32, "32"),
+   (64, "64")
+]

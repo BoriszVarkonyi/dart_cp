@@ -102,3 +102,13 @@ class EquipmentModel(models.Model):
     bodywire = models.IntegerField()
     maskwire = models.IntegerField()
 
+class IndividualFormulaModel(models.Model):
+    competitions = models.ForeignKey(CompetitionModel, on_delete=models.CASCADE)
+    pool_points = models.IntegerField()
+    table_points = models.IntegerField()
+    elimination_type = models.CharField(max_length=2, choices=ELIMINATION_TYPE_CHOICE)
+    separation_type = models.CharField(max_length=1, choices=SEPARATION_TYPE_CHOICE)
+    direct_elimination_type = models.CharField(max_length=1, choices=DIRECT_ELIMINATION_TYPE_CHOICE)
+    third_place = models.BooleanField(default=False)
+    callroom = models.BooleanField(default=False)
+    callroom_number = models.IntegerField(default=16, choices=CALLROOM_NUMBER_CHOICE)

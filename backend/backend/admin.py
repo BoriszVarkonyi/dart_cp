@@ -28,3 +28,9 @@ class PisteAdmin(admin.ModelAdmin):
 @admin.register(EquipmentModel)
 class EquipmentAdmin(admin.ModelAdmin):
   pass
+
+@admin.register(IndividualFormulaModel)
+class IndividualFormulaAdmin(admin.ModelAdmin):
+  pass
+
+

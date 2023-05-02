@@ -10,7 +10,7 @@ router.register(r'weaponcontrols', views.WeaponControlViewSet)
 router.register(r'registrations', views.RegistrationViewSet)
 router.register(r'pistes', views.PisteViewSet)
 router.register(r'equipments', views.EquipmentViewSet)
-
+router.register(r'individualformulas', views.IndividualFormulaViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

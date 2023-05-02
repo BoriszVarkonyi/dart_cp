@@ -1,4 +1,4 @@
-from .models import FencerModel, TournamentModel, CompetitionModel, WeaponControlModel, RegistrationModel, PisteModel
+from .models import FencerModel, TournamentModel, CompetitionModel, WeaponControlModel, RegistrationModel, PisteModel, EquipmentModel, IndividualFormulaModel
 from rest_framework import serializers
 from rest_framework.validators import UniqueTogetherValidator
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
@@ -234,7 +234,7 @@ class PisteSerializer(serializers.ModelSerializer):
 
 class EquipmentSerializer(serializers.ModelSerializer):
     class Meta:
-        model = PisteModel
+        model = EquipmentModel 
         fields = [
             'competitions',
             'mask',
@@ -249,3 +249,22 @@ class EquipmentSerializer(serializers.ModelSerializer):
             'bodywire',
             'maskwire'
         ]
+
+
+class IndividualFormulaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model =  IndividualFormulaModel
+        fields = [ 
+            'competitions',
+            'pool_points',
+            'table_points',
+            'elimination_type',
+            'separation_type',
+            'direct_elimination_type',
+            'third_place',
+            'callroom',
+            'callroom_number' 
+        ]
+
+
+
