@@ -64,15 +64,18 @@ export default function WeaponControl(props) {
     if (exists) {
       await update(`stats/weaponcontrols/issues/${compId}/${rowId}/`, data);
     } else {
+      //Creates an object for Reports
       const reportObj = {
         fName: fencerName,
         fNat: fencerNation,
         fIssues: issueArray,
         fNotes: data["notes"]
       }
+      //If there would more than 2 it pops the last array element.
       if(wcReport.length >= 2){
         setWcReport(current => [current.pop()])
       }
+      //Updates the array. The new element will be pushed to the first place. Aka. 0 index element.
       setWcReport(current => [reportObj, ...current])
       await post(`stats/weaponcontrols/issues/${compId}/${rowId}/`, data);
     }
