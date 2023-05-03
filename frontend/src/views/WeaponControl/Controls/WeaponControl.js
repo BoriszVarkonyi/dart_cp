@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 import Issue from "./Issue";
 import { useDispatch } from "react-redux";
 import { useCrossTabState } from "../../../services/crosstab.service";
+import { current } from "@reduxjs/toolkit";
 
 export default function WeaponControl(props) {
   const [issues, setIssues] = useState([]);
@@ -69,8 +70,10 @@ export default function WeaponControl(props) {
         fIssues: issueArray,
         fNotes: data["notes"]
       }
-
-      console.log(reportObj)
+      if(wcReport.length >= 2){
+        setWcReport(current => [current.pop()])
+      }
+      setWcReport(current => [reportObj, ...current])
       await post(`stats/weaponcontrols/issues/${compId}/${rowId}/`, data);
     }
     navigate(-1);
