@@ -9,13 +9,15 @@ router.register(r'tournaments', views.TournamentViewSet)
 router.register(r'weaponcontrols', views.WeaponControlViewSet)
 router.register(r'registrations', views.RegistrationViewSet)
 router.register(r'pistes', views.PisteViewSet)
+router.register(r'equipments', views.EquipmentViewSet)
+router.register(r'individualformulas', views.IndividualFormulaViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path(
-        'uploadxml/',
-        views.XmlUploadView.as_view()
-    ),
+    # path(
+    #     'uploadxml/',
+    #     views.XmlUploadView.as_view()
+    # ),
     path(
         'tournaments/<int:tournament>/competitions/',
         views.TournamentCompetitionsView.as_view()

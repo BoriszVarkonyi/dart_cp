@@ -7,13 +7,13 @@ export default function Issue(props) {
       <td>{props.issueName}</td>
       <td>
         <TextField
-          error={!!props.errors[`issue_${props.rowKey}`]}
-          helperText={props.errors[`issue_${props.rowKey}`]?.message}
+          error={!!props.errors[props.issueName]}
+          helperText={props.errors[props.issueName]?.message}
           type="text"
           inputMode="numeric"
           size="small"
           defaultValue={props.issueNum} //Math.round((Math.random()*4)) use it to generate random values for test
-          {...props.register(`issue_${props.rowKey}`, {
+          {...props.register(props.issueName, {
             onChange: (e) => {
               if(e.target.value !="" && !e.target.value[e.target.value.length-1].match(/^[0-9]+$/s)){
                 e.target.value = e.target.value.slice(0, -1)

@@ -186,6 +186,7 @@ export default function Competitors() {
     //Creates cancel token(s). It prevents the user to spam api calls.
     const cancelToken = createCancelToken();
     getFencersData(cancelToken);
+
     //Cancels the old api call(s), if a new one is made.
     return () => cancelToken.cancel();
   }, [location]);

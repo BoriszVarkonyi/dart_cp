@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { areOptionsEqual } from "@mui/base";
 import { useDispatch } from "react-redux";
 import { setIsLoading } from "../slices/load";
+import authHeader from "./auth-header";
 
 export default function useBasicServices() {
   const { pathname } = useLocation();
@@ -23,7 +24,12 @@ export default function useBasicServices() {
 
   useEffect(() => {
     if (!isNaN(pathname.split("/")[1])) {
-      fetch(`${process.env.REACT_APP_API + getURL()}`)
+      fetch(`${process.env.REACT_APP_API + getURL()}`, {
+        headers: {
+          Authorization: authHeader(),
+          "Content-Type": "application/json",
+        },
+      })
         .then((response) => {
           if (response.status == 404) {
             navigate("/not_found");
@@ -40,5 +46,3 @@ export default function useBasicServices() {
 
   return { setLoadingState };
 }
-
-

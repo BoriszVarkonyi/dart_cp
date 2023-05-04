@@ -1,21 +1,14 @@
-import http
-from django.db.models import Count, RestrictedError
-
 from dartagnan.settings import SECRET_KEY
 from .models import *
 from .serializers import *
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
-from django.core import serializers
 from django.forms.models import model_to_dict
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets, permissions
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import viewsets, permissions, status
-from rest_framework.viewsets import ViewSet
-from rest_framework.exceptions import ParseError
-from rest_framework.parsers import FileUploadParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_xml.parsers import XMLParser
@@ -24,7 +17,6 @@ import xml.etree.ElementTree as ET
 from collections import OrderedDict
 from backend.issues import *
 import random
-from itertools import groupby
 import json
 from Crypto.Cipher import AES
 from rest_framework_simplejwt.views import TokenObtainPairView
@@ -38,7 +30,7 @@ class FencerModelMixin(object):
 class FencerViewSet(FencerModelMixin, viewsets.ModelViewSet):
     queryset = FencerModel.objects.all()
     serializer_class = FencerSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated]
 
     def create(self, request, *args, **kwargs):
 
@@ -71,7 +63,7 @@ class FencerViewSet(FencerModelMixin, viewsets.ModelViewSet):
                     if serializer.is_valid():
                         serializer.save()
             return Response(status=201)
-    
+
     def destroy(self, request, *args, **kwargs):
         fencerobj = FencerModel.objects.get(id=request.data['fencerID'])
         count_comps = fencerobj.competitions.count()
@@ -88,19 +80,29 @@ class FencerViewSet(FencerModelMixin, viewsets.ModelViewSet):
 class CompetitionViewSet(viewsets.ModelViewSet):
   queryset = CompetitionModel.objects.all()
   serializer_class = CompetitionSerializer
-  permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+  permission_classes = [permissions.IsAuthenticated]
 
 
 class PisteViewSet(viewsets.ModelViewSet):
   queryset = PisteModel.objects.all()
   serializer_class = PisteSerializer
-  permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+  permission_classes = [permissions.IsAuthenticated]
 
+
+class EquipmentViewSet(viewsets.ModelViewSet):
+  queryset = EquipmentModel.objects.all()
+  serializer_class = EquipmentSerializer 
+  permission_classes = [permissions.IsAuthenticated]
+
+class IndividualFormulaViewSet(viewsets.ModelViewSet):
+  queryset = IndividualFormulaModel.objects.all()
+  serializer_class = IndividualFormulaSerializer 
+  permission_classes = [permissions.IsAuthenticated]
 
 class TournamentViewSet(viewsets.ModelViewSet):
   queryset = TournamentModel.objects.all()
   serializer_class = TournamentSerializer
-  permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+  permission_classes = [permissions.IsAuthenticated]
 
   @action(detail=True, url_path='hascomp/(?P<comp_pk>[0-9]+)')
   def has_comp(self, request, comp_pk, pk=None):
@@ -112,12 +114,12 @@ class TournamentViewSet(viewsets.ModelViewSet):
 class WeaponControlViewSet(viewsets.ModelViewSet):
   queryset = WeaponControlModel.objects.all()
   serializer_class = WeaponControlSerializer
-  permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+  permission_classes = [permissions.IsAuthenticated]
 
 class RegistrationViewSet(viewsets.ModelViewSet):
     queryset = RegistrationModel.objects.all()
     serializer_class = RegistrationSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated]
 
 #XML beolvasás view
 class XmlUploadView(APIView):
@@ -184,6 +186,7 @@ class XmlUploadView(APIView):
 
 # get competitions of specific fencer
 class FencersCompetitionsView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
     def get(self, request, fencer):
         fencer = self.kwargs['fencer']
         queryset = FencerModel.objects.get(id=fencer)
@@ -194,6 +197,7 @@ class FencersCompetitionsView(APIView):
         return Response(serializer_class.data)
 
 class TournamentCompetitionsView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
     def get(self, request, tournament):
         tournament = self.kwargs['tournament']
         queryset = CompetitionModel.objects.filter(tournaments=tournament)
@@ -201,6 +205,7 @@ class TournamentCompetitionsView(APIView):
         return Response(serializer_class.data)
 
 class CompetitionsFencerView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
     def get(self, request, competition):
         competition = self.kwargs['competition']
         queryset = FencerModel.objects.filter(competitions=competition)
@@ -209,6 +214,7 @@ class CompetitionsFencerView(APIView):
 
 # get all fencers with a specific nationality grouped by tournaments
 class TournamentsFencersByNationality(APIView):
+    permission_classes = [permissions.IsAuthenticated]
     def get(self, request, nationality):
         nationality = self.kwargs['nationality']
         tournaments = TournamentModel.objects.all()
@@ -232,6 +238,7 @@ class TournamentsFencersByNationality(APIView):
         return Response(response)
 
 class WeaponControlFencersIssues(APIView):
+    permission_classes = [permissions.IsAuthenticated]
     def get(self, request, competition, fencer):
 
         competition = self.kwargs['competition']
@@ -345,24 +352,28 @@ def SetRegistration(competitions, fencers, registration_value):
     return Response(serializer.errors)
 
 class RegisterFencerIn(APIView):
+    permission_classes = [permissions.IsAuthenticated]
     def post(self, request, competition, fencer):
         competition = self.kwargs[ 'competition' ]
         fencer = self.kwargs[ 'fencer' ]
         return SetRegistration(competition, fencer, True)
 
 class RegisterFencerOut(APIView):
+    permission_classes = [permissions.IsAuthenticated]
     def post(self, request, competition, fencer):
         competition = self.kwargs[ 'competition' ]
         fencer = self.kwargs[ 'fencer' ]
         return SetRegistration(competition, fencer, False)
 
 class GetRegistrationsForCompetition(APIView):
+    permission_classes = [permissions.IsAuthenticated]
     def get(self, request, competition):
         queryset = RegistrationModel.objects.filter(competitions = competition)
         serializer_class = RegistrationSerializer(queryset, context={'request': request}, many=True)
         return Response(serializer_class.data)
 
 class RegisterFencerList(APIView):
+    permission_classes = [permissions.IsAuthenticated]
     def get(self, request, competition):
         queryset = RegistrationModel.objects.filter(competitions = competition)
         serializer = RegistrationSerializer(
@@ -379,6 +390,7 @@ class RegisterFencerList(APIView):
 # [x] Make json object wiht ciphertext and tag
 # [x] Return the made object
 class GetHash(APIView):
+    permission_classes = [permissions.IsAuthenticated]
     def get(self, request, competition, fencer):
 
         # Get compid & fencerid from request
@@ -425,6 +437,7 @@ class GetHash(APIView):
 # [x] Check if the fencer - comp relationship exists
 # [x] Return the fencer - comp object
 class VerifyHash(APIView):
+    permission_classes = [permissions.IsAuthenticated]
     def post(self, request):
 
         # errors
@@ -489,6 +502,7 @@ class CustomTokenObtainPairView(TokenObtainPairView):
 
 
 class AllCompetitorsData(APIView):
+    permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request, competition):
 
@@ -498,8 +512,9 @@ class AllCompetitorsData(APIView):
         serializer = CompetitorsDataSerializer(queryset, many=True, context={'competition': competition})
 
         return Response(data=serializer.data)
-    
+
 class Statistics(APIView):
+    permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request, competition):
 
@@ -618,6 +633,7 @@ class Statistics(APIView):
 
 
 class StatisticsGetByNations(APIView):
+    permission_classes = [permissions.IsAuthenticated]
     def get(self, request, competition):
 
         # get comp id from url
@@ -690,6 +706,7 @@ class StatisticsGetByNations(APIView):
 
 
 class StatisticsGetByNationsByIssue(APIView):
+    permission_classes = [permissions.IsAuthenticated]
     def get(self, request, competition):
 
         # get comp id from url
@@ -776,6 +793,7 @@ class StatisticsGetByNationsByIssue(APIView):
 
 
 class StatisticsGetByIssues(APIView):
+    permission_classes = [permissions.IsAuthenticated]
     def get(self, request, competition):
 
         # get comp id from url

@@ -12,6 +12,8 @@
         --f-T: 14px;
 	    --f-S: calc(0.6em + 0.5vmin);
 	    --f-SX: calc(0.6em + 0.3vmin);
+
+		--l-PagePadding: calc(1.2vw + 1.2vmin);
 	}
 }
 
@@ -28,6 +30,8 @@
         --f-T: 14px;
 	    --f-S: calc(0.6em + 0.5vmin);
 	    --f-SX: calc(0.6em + 0.3vmin);
+
+		--l-PagePadding: calc(1.4vw + 1.4vmin);
 	}
 }
 
@@ -44,6 +48,8 @@
         --f-T: 14px;
 	    --f-S: calc(0.6em + 0.5vmin);
 	    --f-SX: calc(0.6em + 0.3vmin);
+
+		--l-PagePadding: calc(1.5vw + 1.5vmin);
 	}
 }
 
@@ -60,6 +66,8 @@
         --f-T: 14px;
 	    --f-S: calc(0.6em + 0.5vmin);
 	    --f-SX: calc(0.6em + 0.3vmin);
+
+		--l-PagePadding: calc(1.5vw + 1.5vmin);
 	}
 }
 
@@ -76,5 +84,7 @@
         --f-T: 14px;
 	    --f-S: calc(0.6em + 0.5vmin);
 	    --f-SX: calc(0.6em + 0.3vmin);
+
+		--l-PagePadding: calc(1.7vw + 1.7vmin);
 	}
 }

@@ -80,10 +80,34 @@ class RegistrationModel(models.Model):
 
     def __unicode__(self):
         return '%d: %s' % (self.registered)
-    
 
 class PisteModel(models.Model):
     competitions = models.ForeignKey(CompetitionModel, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     color = models.CharField(max_length=30, choices=PISTE_COLOR_CHOICE)
     is_active = models.BooleanField()
+
+class EquipmentModel(models.Model):
+    competitions = models.ForeignKey(CompetitionModel, on_delete=models.CASCADE)
+    mask = models.IntegerField()
+    underplastron = models.IntegerField()
+    chest_protector = models.IntegerField()
+    jacket = models.IntegerField()
+    electric_jacket = models.IntegerField()
+    glove = models.IntegerField()
+    breeches = models.IntegerField()
+    socks = models.IntegerField()
+    weapon = models.IntegerField()
+    bodywire = models.IntegerField()
+    maskwire = models.IntegerField()
+
+class IndividualFormulaModel(models.Model):
+    competitions = models.ForeignKey(CompetitionModel, on_delete=models.CASCADE)
+    pool_points = models.IntegerField()
+    table_points = models.IntegerField()
+    elimination_type = models.CharField(max_length=2, choices=ELIMINATION_TYPE_CHOICE)
+    separation_type = models.CharField(max_length=1, choices=SEPARATION_TYPE_CHOICE)
+    direct_elimination_type = models.CharField(max_length=1, choices=DIRECT_ELIMINATION_TYPE_CHOICE)
+    third_place = models.BooleanField(default=False)
+    callroom = models.BooleanField(default=False)
+    callroom_number = models.IntegerField(default=16, choices=CALLROOM_NUMBER_CHOICE)

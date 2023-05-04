@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { DataGrid, GridToolbarQuickFilter } from '@mui/x-data-grid';
+import { DataGrid, GridToolbarQuickFilter } from "@mui/x-data-grid";
 import { Button } from "@mui/material";
 import { Chip } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import useDataGridHelper from "../../services/datagrid.service";
+import { Link, useNavigate } from "react-router-dom";
+import useDataGridHelper from "../../../services/datagrid.service";
 import { useParams } from "react-router-dom";
-import { get, remove, createCancelToken } from "../../services/backend.service";
-import ModalComp from "../../components/static/Modal/ModalComp";
+import {
+  get,
+  remove,
+  createCancelToken,
+} from "../../../services/backend.service";
+import ModalComp from "../../../components/static/Modal/ModalComp";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-import { useLocation } from "react-router-dom";
-import useBasicServices from "../../services/basic.service";
-import { translateSex } from "../../services/translate.service";
+import { useLocation, redirect } from "react-router-dom";
+import useBasicServices from "../../../services/basic.service";
+import { translateSex } from "../../../services/translate.service";
 import { useSelector } from "react-redux";
 
 const row = (element) => {
@@ -35,7 +39,7 @@ const columns = [
     type: "boolean",
     width: 170,
     align: "center",
-    headerAlign: 'center',
+    headerAlign: "center",
     renderCell: (params) => {
       return params.value ? (
         <div className="Chip Green">
@@ -66,7 +70,7 @@ export default function WeaponControls() {
   } = useDataGridHelper();
   const [modalProps, setModalProps] = useState({});
   const [hasWC, setHasWC] = useState(false);
-  const { tourId, compId } = useParams();
+  const { tournamentId, compId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
   const { setLoadingState } = useBasicServices();
@@ -109,8 +113,7 @@ export default function WeaponControls() {
   const deleteWc = () => {
     setModalProps({
       type: "Alert",
-      title:
-        "Are you sure you want to delete this competitors weapon control?",
+      title: "Are you sure you want to delete this competitors weapon control?",
       subtitle: "You can not undo this action!",
       confirmButtonText: "DELETE",
       deleteRow,
@@ -122,7 +125,8 @@ export default function WeaponControls() {
     return (
       <div className="GridToolbar">
         <GridToolbarQuickFilter />
-      </div>);
+      </div>
+    );
   }
 
   const openQRCode = () => {
@@ -180,6 +184,14 @@ export default function WeaponControls() {
               {!isSelected && (
                 <Button variant="contained" size="small" onClick={openQRCode}>
                   Read QR Code
+                </Button>
+              )}
+              {!isSelected && (
+                <Button
+                  variant="contained"
+                  size="small"
+                >
+                  <Link to={`/${tournamentId}/wepon_control/report`} target="_blank"> Show reports</Link>
                 </Button>
               )}
             </div>

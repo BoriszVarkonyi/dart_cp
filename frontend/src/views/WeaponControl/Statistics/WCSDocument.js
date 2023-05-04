@@ -1,11 +1,18 @@
-import React from "react";
-import WCPrintHeader from "./WCPrintHeader";
+import React, { useEffect } from "react";
+import WCPrintHeader from "./WCSDHeader";
 import PrintTable from "../../../components/static/PrintTable/PrintTable";
-import { ResponsivePieCanvas } from "@nivo/pie";
+import { Pie } from "@nivo/pie";
+import { useRef } from "react";
+import { useReactToPrint } from "react-to-print";
+import ReactToPrint from "react-to-print";
 
-export default function WCPrint(props) {
+
+import { forwardRef } from "react";
+
+export default function WCPrint(props){
   const pageProps = props.pageProps;
   const headerProps = props.headerProps;
+
   return (
     <div className="PrintableDocument">
       {/* START OF PAGE 1 */}
@@ -24,9 +31,9 @@ export default function WCPrint(props) {
           </div>
           <div>
             <p>{pageProps.stats ? pageProps.stats["total_fencers"] : 0}</p>
-            <p> {pageProps.stats ? pageProps.stats["total_nation"] : 0}</p>
-            <p> {pageProps.stats ? pageProps.stats["total_issues"] : 0}</p>
-            <p> {pageProps.stats ? pageProps.stats["total_ratio"] : 0}</p>
+            <p>{pageProps.stats ? pageProps.stats["total_nation"] : 0}</p>
+            <p>{pageProps.stats ? pageProps.stats["total_issues"] : 0}</p>
+            <p>{pageProps.stats ? pageProps.stats["total_ratio"] : 0}</p>
           </div>
           <div className="Light">
             <p>- see more on pages: 1, 3</p>
@@ -174,7 +181,12 @@ export default function WCPrint(props) {
             <span>- see more on page: 3</span>
           </p>
           <div className="DocumentChartWrapper">
-            {/* ATI IDE JÖN A CHART IDE BELE!!!!!444!! */}
+          <Pie
+            width={460}
+            height={240}
+            animate={false}
+            data={pageProps.noFencerChart? pageProps.noFencerChart : []}
+            />
           </div>
         </div>
       </div>
@@ -189,7 +201,12 @@ export default function WCPrint(props) {
             <span>- see more on page: 3</span>
           </p>
           <div className="DocumentChartWrapper">
-            {/* ATI IDE JÖN A CHART IDE BELE!!!!!444!! */}
+          <Pie
+            width={200}
+            height={200}
+              animate={false}
+              data={pageProps.noIssuesChart? pageProps.noIssuesChart : []}
+            />
           </div>
         </div>
         <div className="DocumentDivider">-</div>
@@ -199,7 +216,12 @@ export default function WCPrint(props) {
             <span>- see more on page: 3</span>
           </p>
           <div className="DocumentChartWrapper">
-            {/* ATI IDE JÖN A CHART IDE BELE!!!!!444!! */}
+          <Pie
+            width={200}
+            height={200}
+              animate={false}
+              data={pageProps.ratiosChart? pageProps.ratiosChart : []}
+            />
           </div>
         </div>
       </div>
@@ -238,7 +260,7 @@ export default function WCPrint(props) {
         <WCPrintHeader {...headerProps} />
         <div className="DocumentSectionTitle">ISSUES SUMMARY</div>
         <div className="DocumentSection Growable FullPage">
-                    <p>
+          <p>
             Number of issue:
             {pageProps.stats ? pageProps.stats["total_issues"] : 0}
           </p>
@@ -258,4 +280,5 @@ export default function WCPrint(props) {
       {pageProps ? pageProps.printCells : ""}
     </div>
   );
-}
+};
+

@@ -4,23 +4,28 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import { get, post, update } from "../../services/backend.service";
+import { get, post, update } from "../../../services/backend.service";
 import { TextField, Box } from "@mui/material";
 import { useForm } from "react-hook-form";
-import useBasicServices from "../../services/basic.service";
 import Issue from "./Issue";
+import { useDispatch } from "react-redux";
+import { useCrossTabState } from "../../../services/crosstab.service";
+import { current } from "@reduxjs/toolkit";
 
 export default function WeaponControl(props) {
   const [issues, setIssues] = useState([]);
-  const [issueValues, setIssueValues] = useState({});
-  const [fencerName, setFencerName] = useState("")
+  const [fencerName, setFencerName] = useState("");
+  const [fencerNation, setFencerNation] = useState("");
   const [notes, setNotes] = useState("");
   const navigate = useNavigate();
-  const { tourId, compId } = useParams();
+  const { tournamentId, compId } = useParams();
   const { state } = useLocation();
   const { rowId } = state;
-  const { setLoadingState } = useBasicServices();
   const [exists, setExists] = useState(false);
+  const [wcReport, setWcReport] = useCrossTabState(
+    tournamentId + "_weapon_control_report",
+    []
+  );
 
   //react-hook-form
   const {
@@ -30,31 +35,56 @@ export default function WeaponControl(props) {
   } = useForm();
 
   const onSubmit = async (data) => {
+    let issueArray = [];
+    for (const key of Object.keys(data)) {
+      if (data[key] != 0 && key != "notes") {
+        issueArray.push({ issueName: key, issueNum: parseInt(data[key]) });
+      }
+    }
+
+    let counter = 1;
     for (const key of Object.keys(data)) {
       if (data[key] == "") {
         //If the data value is empty
         if (key != "notes") {
-          data[key] = 0;
+          data[`issue_${counter}`] = 0;
+          delete data[key];
+          counter++;
         }
       } else {
         if (key != "notes") {
-          data[key] = parseInt(data[key]);
+          data[`issue_${counter}`] = parseInt(data[key]);
+          delete data[key];
+          counter++;
         }
       }
     }
     data["notes"] == "" ? (data["notes"] = null) : (data["notes"] = notes);
 
-
-    if (exists)
+    if (exists) {
       await update(`stats/weaponcontrols/issues/${compId}/${rowId}/`, data);
-    else
+    } else {
+      //Creates an object for Reports
+      const reportObj = {
+        fName: fencerName,
+        fNat: fencerNation,
+        fIssues: issueArray,
+        fNotes: data["notes"]
+      }
+      //If there would more than 2 it pops the last array element.
+      if(wcReport.length >= 2){
+        setWcReport(current => [current.pop()])
+      }
+      //Updates the array. The new element will be pushed to the first place. Aka. 0 index element.
+      setWcReport(current => [reportObj, ...current])
       await post(`stats/weaponcontrols/issues/${compId}/${rowId}/`, data);
-
+    }
     navigate(-1);
   };
-  useEffect(() => {
-    console.log(errors);
-  }, [errors]);
+
+  // useEffect(() => {
+  //   console.log(errors);
+  // }, [errors]);
 
   //Gets the issue datas from api
   useEffect(() => {
@@ -70,11 +100,12 @@ export default function WeaponControl(props) {
         if (key == "notes") {
           data[key] == null ? setNotes("") : setNotes(data[key]);
         }
-        if (key == "fencer_name") {
-          setFencerName(data[key])
+        if (key == "fencer") {
+          setFencerName(data[key].pre_nom + " " + data[key].nom);
+          setFencerNation(data[key].nation)
         }
 
-        if (key !== "exists" && key !== "notes" && key !== "fencer_name") {
+        if (key !== "exists" && key !== "notes" && key !== "fencer") {
           inputArray.push(
             <Issue
               key={key}
@@ -103,7 +134,12 @@ export default function WeaponControl(props) {
           <Button variant="contained" size="small" onClick={() => navigate(-1)}>
             Cancel
           </Button>
-          <Button variant="contained" size="small" type="submit" form="issue-form">
+          <Button
+            variant="contained"
+            size="small"
+            type="submit"
+            form="issue-form"
+          >
             Save weapon control
           </Button>
         </div>
