@@ -162,7 +162,7 @@ export default function Registration() {
       </div>);
   }
 
-  const modalContent = {};
+
 
   return (
     <>
