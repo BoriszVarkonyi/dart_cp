@@ -17,6 +17,7 @@ import { useLocation, redirect } from "react-router-dom";
 import useBasicServices from "../../../services/basic.service";
 import { translateSex } from "../../../services/translate.service";
 import { useSelector } from "react-redux";
+import Loading from "../../../components/static/Loading/Loading";
 
 const row = (element) => {
   return {
@@ -140,62 +141,64 @@ export default function WeaponControls() {
 
   return (
     <>
-      {!isLoading && (
-        <main>
-          <div className="PageHeader">
-            <h1 className="PageTitle">Weapon Control</h1>
-            <div className="PageButtonsWrapper">
-              {isSelected && hasWC && (
-                <Button variant="contained" size="small" onClick={deleteWc}>
-                  Remove weapon control
-                </Button>
-              )}
-              {isSelected && hasWC && (
-                <Button
-                  variant="contained"
-                  size="small"
-                  onClick={() =>
-                    navigate("modify", { state: { rowId: selectedRowId } })
-                  }
+      <main>
+        <div className="PageHeader">
+          <h1 className="PageTitle">Weapon Control</h1>
+          <div className="PageButtonsWrapper">
+            {isSelected && hasWC && (
+              <Button variant="contained" size="small" onClick={deleteWc}>
+                Remove weapon control
+              </Button>
+            )}
+            {isSelected && hasWC && (
+              <Button
+                variant="contained"
+                size="small"
+                onClick={() =>
+                  navigate("modify", { state: { rowId: selectedRowId } })
+                }
+              >
+                Modify weapon control
+              </Button>
+            )}
+            {isSelected && !hasWC && (
+              <Button
+                variant="contained"
+                size="small"
+                onClick={() =>
+                  navigate("add", { state: { rowId: selectedRowId } })
+                }
+              >
+                Add weapon control
+              </Button>
+            )}
+            {!isSelected && (
+              <Button
+                variant="contained"
+                size="small"
+                onClick={() => navigate("statistics")}
+              >
+                STATISTICS
+              </Button>
+            )}
+            {!isSelected && (
+              <Button variant="contained" size="small" onClick={openQRCode}>
+                Read QR Code
+              </Button>
+            )}
+            {!isSelected && (
+                <Link
+                  to={`/${tournamentId}/wepon_control/report`}
+                  target="_blank"
                 >
-                  Modify weapon control
-                </Button>
-              )}
-              {isSelected && !hasWC && (
-                <Button
-                  variant="contained"
-                  size="small"
-                  onClick={() =>
-                    navigate("add", { state: { rowId: selectedRowId } })
-                  }
-                >
-                  Add weapon control
-                </Button>
-              )}
-              {!isSelected && (
-                <Button
-                  variant="contained"
-                  size="small"
-                  onClick={() => navigate("statistics")}
-                >
-                  STATISTICS
-                </Button>
-              )}
-              {!isSelected && (
-                <Button variant="contained" size="small" onClick={openQRCode}>
-                  Read QR Code
-                </Button>
-              )}
-              {!isSelected && (
-                <Button
-                  variant="contained"
-                  size="small"
-                >
-                  <Link to={`/${tournamentId}/wepon_control/report`} target="_blank"> Show reports</Link>
-                </Button>
-              )}
-            </div>
+                  {" "}
+                  Show reports
+                </Link>
+            )}
           </div>
+        </div>
+        {isLoading && <Loading />}
+        {!isLoading && (
           <div className="PageContent">
             <div className="DataGridWrapper">
               <DataGrid
@@ -215,9 +218,9 @@ export default function WeaponControls() {
               />
             </div>
           </div>
-          <ModalComp modalProps={modalProps} />
-        </main>
-      )}
+        )}
+        <ModalComp modalProps={modalProps} />
+      </main>
     </>
   );
 }

@@ -14,13 +14,35 @@ import { translateSex } from "../../services/translate.service";
 import "../../styles/StickerPrinting.css";
 import { QRCodeSVG } from "qrcode.react";
 import { useReactToPrint } from "react-to-print";
-import { DataGrid, GridToolbarContainer, GridToolbarQuickFilter } from '@mui/x-data-grid';
+import {
+  DataGrid,
+  GridToolbarContainer,
+  GridToolbarQuickFilter,
+} from "@mui/x-data-grid";
+import Loading from "../../components/static/Loading/Loading";
 
 const columns = [
-  { field: "nom", headerName: "First Name", width: 150, flex: 150, minWidth: 150 },
-  { field: "pre_nom", headerName: "Last Name", width: 150, flex: 150, minWidth: 150 },
+  {
+    field: "nom",
+    headerName: "First Name",
+    width: 150,
+    flex: 150,
+    minWidth: 150,
+  },
+  {
+    field: "pre_nom",
+    headerName: "Last Name",
+    width: 150,
+    flex: 150,
+    minWidth: 150,
+  },
   { field: "nation", headerName: "Nationality", width: 100, flex: 100 },
-  { field: "date_naissance", headerName: "Date of Birth", width: 120, flex: 100 },
+  {
+    field: "date_naissance",
+    headerName: "Date of Birth",
+    width: 120,
+    flex: 100,
+  },
   { field: "sexe", headerName: "Sex", flex: 100 },
   {
     field: "registered",
@@ -46,7 +68,6 @@ const columns = [
 ];
 
 export default function Registration() {
-
   const {
     selectionModel,
     selectedRowId,
@@ -159,53 +180,49 @@ export default function Registration() {
     return (
       <div className="GridToolbar">
         <GridToolbarQuickFilter />
-      </div>);
+      </div>
+    );
   }
-
-
 
   return (
     <>
-      {!isLoading && (
-        <>
-          <main>
-            <div className="PageHeader">
-              <h1 className="PageTitle">Registration</h1>
-              <div className="PageButtonsWrapper">
-                {isSelected &&
-                  rows.filter((f) => f.id == selectedRowId)[0].registered && (
-                    <>
-                      <Button
-                        variant="contained"
-                        size="small"
-                        onClick={() => {
-                          getFencerQRCode();
-                        }}
-                      /* onClick={() => navigate(`${selectedRowId}/print`)}*/
-                      >
-                        Print QR Code
-                      </Button>
-                      <Button
-                        variant="contained"
-                        size="small"
-                        onClick={registerOut}
-                      >
-                        Register out
-                      </Button>
-                    </>
-                  )}
-                {isSelected &&
-                  !rows.filter((f) => f.id == selectedRowId)[0].registered && (
+      <>
+        <main>
+          <div className="PageHeader">
+            <h1 className="PageTitle">Registration</h1>
+            <div className="PageButtonsWrapper">
+              {isSelected &&
+                rows.filter((f) => f.id == selectedRowId)[0].registered && (
+                  <>
                     <Button
                       variant="contained"
                       size="small"
-                      onClick={registerIn}
+                      onClick={() => {
+                        getFencerQRCode();
+                      }}
+                      /* onClick={() => navigate(`${selectedRowId}/print`)}*/
                     >
-                      Register in
+                      Print QR Code
                     </Button>
-                  )}
-              </div>
+                    <Button
+                      variant="contained"
+                      size="small"
+                      onClick={registerOut}
+                    >
+                      Register out
+                    </Button>
+                  </>
+                )}
+              {isSelected &&
+                !rows.filter((f) => f.id == selectedRowId)[0].registered && (
+                  <Button variant="contained" size="small" onClick={registerIn}>
+                    Register in
+                  </Button>
+                )}
             </div>
+          </div>
+          {isLoading && <Loading />}
+          {!isLoading && (
             <div className="PageContent">
               <div className="DataGridWrapper">
                 <DataGrid
@@ -221,26 +238,26 @@ export default function Registration() {
                 />
               </div>
             </div>
-          </main>
-          <div className="PrintableSticker" ref={cardRef}>
-            <div className="Sticker">
-              <QRCodeSVG value={hash} size="350" />
-              <div>
-                <b className="StickerName">
-                  {fencer.nom} {fencer.pre_nom}
-                </b>
-                <p className="StickerNationality">
-                  {fencer.nation ?? fencer.club}
-                </p>
-              </div>
-              <b className="StickerCode">{selectedRowId}</b>
-              <p className="StickerWhitemark">
-                Made with: <b>D'ARTGANAN CONTROL</b>
+          )}
+        </main>
+        <div className="PrintableSticker" ref={cardRef}>
+          <div className="Sticker">
+            <QRCodeSVG value={hash} size="350" />
+            <div>
+              <b className="StickerName">
+                {fencer.nom} {fencer.pre_nom}
+              </b>
+              <p className="StickerNationality">
+                {fencer.nation ?? fencer.club}
               </p>
             </div>
+            <b className="StickerCode">{selectedRowId}</b>
+            <p className="StickerWhitemark">
+              Made with: <b>D'ARTGANAN CONTROL</b>
+            </p>
           </div>
-        </>
-      )}
+        </div>
+      </>
     </>
   );
 }

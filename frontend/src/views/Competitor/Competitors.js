@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Button } from "@mui/material";
 import { Chip } from "@mui/material";
-import { DataGrid, GridToolbarQuickFilter } from '@mui/x-data-grid';
+import { DataGrid, GridToolbarQuickFilter } from "@mui/x-data-grid";
 import { get, createCancelToken } from "../../services/backend.service";
 import { useNavigate } from "react-router-dom";
 import useDataGridHelper from "../../services/datagrid.service";
@@ -37,8 +37,20 @@ const rowDT = (element) => {
 const columns = [
   { field: "classement", headerName: "Ranking", width: 80 },
   { field: "points", headerName: "Points", width: 80 },
-  { field: "pre_nom", headerName: "First Name", width: 150, flex: 150, minWidth: 150 },
-  { field: "nom", headerName: "Last Name", width: 150, flex: 150, minWidth: 150 },
+  {
+    field: "pre_nom",
+    headerName: "First Name",
+    width: 150,
+    flex: 150,
+    minWidth: 150,
+  },
+  {
+    field: "nom",
+    headerName: "Last Name",
+    width: 150,
+    flex: 150,
+    minWidth: 150,
+  },
   { field: "nation", headerName: "Nationality", width: 100 },
   { field: "club", headerName: "Club", width: 150 },
   { field: "date_naissance", headerName: "Date of Birth", width: 120 },
@@ -52,7 +64,7 @@ const columns = [
     type: "boolean",
     width: 170,
     align: "center",
-    headerAlign: 'center',
+    headerAlign: "center",
     renderCell: (params) => {
       return params.value ? (
         <div className="Chip Green">
@@ -73,7 +85,7 @@ const columns = [
     type: "boolean",
     width: 170,
     align: "center",
-    headerAlign: 'center',
+    headerAlign: "center",
     renderCell: (params) => {
       return params.value ? (
         <div className="Chip Green">
@@ -92,8 +104,20 @@ const columns = [
 
 //Sets the columns for the DT view
 const columnsDT = [
-  { field: "pre_nom", headerName: "First Name", width: 150, flex: 150, minWidth: 150 },
-  { field: "nom", headerName: "Last Name", width: 150, flex: 150, minWidth: 150 },
+  {
+    field: "pre_nom",
+    headerName: "First Name",
+    width: 150,
+    flex: 150,
+    minWidth: 150,
+  },
+  {
+    field: "nom",
+    headerName: "Last Name",
+    width: 150,
+    flex: 150,
+    minWidth: 150,
+  },
   { field: "nation", headerName: "Nationality", width: 100 },
   { field: "club", headerName: "Club", width: 150 },
   {
@@ -102,7 +126,7 @@ const columnsDT = [
     type: "boolean",
     width: 170,
     align: "center",
-    headerAlign: 'center',
+    headerAlign: "center",
     renderCell: (params) => {
       return params.value ? (
         <div className="Chip Green">
@@ -123,7 +147,7 @@ const columnsDT = [
     type: "boolean",
     width: 170,
     align: "center",
-    headerAlign: 'center',
+    headerAlign: "center",
     renderCell: (params) => {
       return params.value ? (
         <div className="Chip Green">
@@ -137,7 +161,8 @@ const columnsDT = [
         </div>
       );
     },
-  },];
+  },
+];
 
 export default function Competitors() {
   const {
@@ -176,6 +201,7 @@ export default function Competitors() {
     //Sets the datas for the DT view
     let rowArray = data.map((e) => rowDT(e));
     setRowDTView(rowArray);
+
   }
 
   //Gets the competitors from api. Also updates the data on route change. For example when another comp is selected.
@@ -186,6 +212,7 @@ export default function Competitors() {
     //Creates cancel token(s). It prevents the user to spam api calls.
     const cancelToken = createCancelToken();
     getFencersData(cancelToken);
+
 
     //Cancels the old api call(s), if a new one is made.
     return () => cancelToken.cancel();
@@ -219,7 +246,8 @@ export default function Competitors() {
           </Button>
         </div>
         <GridToolbarQuickFilter />
-      </div>);
+      </div>
+    );
   }
 
   const modalProps = {
@@ -232,73 +260,72 @@ export default function Competitors() {
 
   return (
     <>
-      {!isLoading && (
-        <>
-          <main>
-            <div className="PageHeader">
-              <h1 className="PageTitle">Competitors</h1>
-              <div className="PageButtonsWrapper">
-                {!isSelected && (
-                  <Button
-                    variant="contained"
-                    size="small"
-                    onClick={() => navigate("importXML")}
-                  >
-                    Import XML
-                  </Button>
-                )}
-                {isSelected && (
-                  <Button
-                    variant="contained"
-                    size="small"
-                    onClick={openModalFunctiom}
-                  >
-                    Delete
-                  </Button>
-                )}
-                {isSelected && (
-                  <Button
-                    variant="contained"
-                    size="small"
-                    onClick={() =>
-                      navigate("modify", { state: { rowId: selectedRowId } })
-                    }
-                  >
-                    Modify
-                  </Button>
-                )}
-                {!isSelected && (
-                  <Button
-                    variant="contained"
-                    size="small"
-                    onClick={() =>
-                      navigate("add", { state: { rowId: selectedRowId } })
-                    }
-                  >
-                    Add
-                  </Button>
-                )}
-              </div>
+      <main>
+        <div className="PageHeader">
+          <h1 className="PageTitle">Competitors</h1>
+          <div className="PageButtonsWrapper">
+            {!isSelected && (
+              <Button
+                variant="contained"
+                size="small"
+                onClick={() => navigate("importXML")}
+              >
+                Import XML
+              </Button>
+            )}
+            {isSelected && (
+              <Button
+                variant="contained"
+                size="small"
+                onClick={openModalFunctiom}
+              >
+                Delete
+              </Button>
+            )}
+            {isSelected && (
+              <Button
+                variant="contained"
+                size="small"
+                onClick={() =>
+                  navigate("modify", { state: { rowId: selectedRowId } })
+                }
+              >
+                Modify
+              </Button>
+            )}
+            {!isSelected && (
+              <Button
+                variant="contained"
+                size="small"
+                onClick={() =>
+                  navigate("add", { state: { rowId: selectedRowId } })
+                }
+              >
+                Add
+              </Button>
+            )}
+          </div>
+        </div>
+        {isLoading && <Loading/>}
+        {!isLoading && (
+          <div className="PageContent">
+            <div className="DataGridWrapper">
+              <DataGrid
+                checkboxSelection={true}
+                selectionModel={selectionModel}
+                onSelectionModelChange={handleEvent}
+                rows={allDataView ? rows : rowDTView}
+                rowHeight={30}
+                columns={allDataView ? columns : columnsDT}
+                components={{
+                  Toolbar: CustomToolbar,
+                }}
+              />
             </div>
-            <div className="PageContent">
-              <div className="DataGridWrapper">
-                <DataGrid
-                  checkboxSelection={true}
-                  selectionModel={selectionModel}
-                  onSelectionModelChange={handleEvent}
-                  rows={allDataView ? rows : rowDTView}
-                  rowHeight={30}
-                  columns={allDataView ? columns : columnsDT}
-                  components={{
-                    Toolbar: CustomToolbar,
-                  }}
-                />
-              </div>
-            </div>
-          </main>
-          <ModalComp modalProps={modalProps} />
-        </>
-      )}
+          </div>
+        )}
+      </main>
+      <ModalComp modalProps={modalProps} />
     </>
   );
 }

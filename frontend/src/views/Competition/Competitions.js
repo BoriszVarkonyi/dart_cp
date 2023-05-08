@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "@mui/material";
-import { DataGrid, GridToolbarQuickFilter } from '@mui/x-data-grid';
+import { DataGrid, GridToolbarQuickFilter } from "@mui/x-data-grid";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { get, remove, createCancelToken } from "../../services/backend.service";
@@ -10,8 +10,13 @@ import ModalComp from "../../components/static/Modal/ModalComp";
 import { setCompetitions, deleteCompetition } from "../../slices/compSlice";
 import { useDispatch } from "react-redux";
 import useBasicServices from "../../services/basic.service";
-import { translateWeaponType, translateSex, translateCompType } from "../../services/translate.service";
+import {
+  translateWeaponType,
+  translateSex,
+  translateCompType,
+} from "../../services/translate.service";
 import { useSelector } from "react-redux";
+import Loading from "../../components/static/Loading/Loading";
 
 const row = (element) => {
   return {
@@ -28,7 +33,12 @@ const row = (element) => {
 const columns = [
   { field: "name", headerName: "NAME", width: 220, flex: 200, minWidth: 220 },
   { field: "weapon_type", headerName: "WEAPON TYPE", width: 150, flex: 150 },
-  { field: "is_wheelchair", headerName: "IS WHEELCHAIR", width: 150, flex: 150 },
+  {
+    field: "is_wheelchair",
+    headerName: "IS WHEELCHAIR",
+    width: 150,
+    flex: 150,
+  },
   { field: "sex", headerName: "SEX", width: 100, flex: 100 },
   { field: "type", headerName: "TYPE", width: 100, flex: 100 },
   { field: "age_group", headerName: "AGE GROUP", width: 150, flex: 150 },
@@ -81,7 +91,8 @@ export default function Competitions() {
     return (
       <div className="GridToolbar">
         <GridToolbarQuickFilter />
-      </div>);
+      </div>
+    );
   }
 
   const modalProps = {
@@ -94,64 +105,61 @@ export default function Competitions() {
 
   return (
     <>
-      {!isLoading && (
-        <>
-          <main>
-            <div className="PageHeader">
-              <h1 className="PageTitle">Competitions</h1>
-              <div className="PageButtonsWrapper">
-                {isSelected && (
-                  <Button
-                    variant="contained"
-                    size="small"
-                    onClick={openModalFunctiom}
-                  >
-                    Delete
-                  </Button>
-                )}
-                {isSelected && (
-                  <Button
-                    variant="contained"
-                    size="small"
-                    onClick={() =>
-                      navigate("modify", { state: { rowId: selectedRowId } })
-                    }
-                  >
-                    Modify
-                  </Button>
-                )}
-                {!isSelected && (
-                  <Button
-                    variant="contained"
-                    size="small"
-                    onClick={() =>
-                      navigate("create", { state: { rowId: selectedRowId } })
-                    }
-                  >
-                    Create
-                  </Button>
-                )}
-              </div>
-            </div>
-            <div className="PageContent">
-              <div className="DataGridWrapper">
-                <DataGrid
-                  checkboxSelection={true}
-                  selectionModel={selectionModel}
-                  onSelectionModelChange={handleEvent}
-                  rows={rows}
-                  rowHeight={55}
-                  columns={columns}
-                  components={{
-                    Toolbar: CustomToolbar,
-                  }}
-                />
-              </div>
-            </div>
-          </main>
-          <ModalComp modalProps={modalProps} />
-        </>
-      )}
+      <main>
+        <div className="PageHeader">
+          <h1 className="PageTitle">Competitions</h1>
+          <div className="PageButtonsWrapper">
+            {isSelected && (
+              <Button
+                variant="contained"
+                size="small"
+                onClick={openModalFunctiom}
+              >
+                Delete
+              </Button>
+            )}
+            {isSelected && (
+              <Button
+                variant="contained"
+                size="small"
+                onClick={() =>
+                  navigate("modify", { state: { rowId: selectedRowId } })
+                }
+              >
+                Modify
+              </Button>
+            )}
+            {!isSelected && (
+              <Button
+                variant="contained"
+                size="small"
+                onClick={() =>
+                  navigate("create", { state: { rowId: selectedRowId } })
+                }
+              >
+                Create
+              </Button>
+            )}
+          </div>
+        </div>
+        {isLoading && <Loading/>}
+        {!isLoading && (        <div className="PageContent">
+          <div className="DataGridWrapper">
+            <DataGrid
+              checkboxSelection={true}
+              selectionModel={selectionModel}
+              onSelectionModelChange={handleEvent}
+              rows={rows}
+              rowHeight={55}
+              columns={columns}
+              components={{
+                Toolbar: CustomToolbar,
+              }}
+            />
+          </div>
+        </div>)}
+      </main>
+      <ModalComp modalProps={modalProps} />
     </>
   );
 }
