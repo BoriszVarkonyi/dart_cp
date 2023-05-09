@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Alert, Modal } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { DataGrid, GridToolbarQuickFilter } from '@mui/x-data-grid';
+import { DataGrid, GridToolbarQuickFilter } from "@mui/x-data-grid";
 import { post, postBulk } from "./../../services/backend.service";
 import { useParams } from "react-router-dom";
 import { parseFencers } from "../../services/xml.service";
@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import { closeModal } from "../../slices/modalSlice";
 import useBasicServices from "../../services/basic.service";
 import { useSelector } from "react-redux";
+import Loading from "../../components/static/Loading/Loading";
 
 const row = (element) => {
   return {
@@ -25,7 +26,13 @@ const row = (element) => {
 //Sets the columns
 const columns = [
   { field: "ranking", headerName: "RANKING", width: 100, flex: 100 },
-  { field: "fencerName", headerName: "NAME", width: 220, flex: 220, minWidth: 200 },
+  {
+    field: "fencerName",
+    headerName: "NAME",
+    width: 220,
+    flex: 220,
+    minWidth: 200,
+  },
   { field: "fencerNat", headerName: "NATIONALITY", width: 100, flex: 100 },
   { field: "fencerClub", headerName: "CLUB", width: 150, flex: 150 },
 ];
@@ -47,7 +54,8 @@ export default function Import() {
     return (
       <div className="GridToolbar">
         <GridToolbarQuickFilter />
-      </div>);
+      </div>
+    );
   }
 
   const modalProps = {
@@ -115,8 +123,13 @@ export default function Import() {
     }, 3000);
   };
 
+  useEffect(()=>{ 
+    setLoadingState(false);
+  },[])
+
   return (
     <>
+      {isLoading && <Loading />}
       {!isLoading && (
         <main className="WithAlert">
           <div className="PageHeader">
@@ -155,7 +168,9 @@ export default function Import() {
           )}
           {importStatus === false && (
             <div className="PageAlert">
-              <p className="PageAlertTitle">A server error has occured while importing!</p>
+              <p className="PageAlertTitle">
+                A server error has occured while importing!
+              </p>
               <p className="PageAlertSubTitle">Please try again later!</p>
             </div>
           )}

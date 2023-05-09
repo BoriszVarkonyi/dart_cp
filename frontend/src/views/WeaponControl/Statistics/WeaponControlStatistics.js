@@ -17,6 +17,7 @@ import countries from "../../../utils/countries.json";
 import CountryCell from "./WCSCountryCell";
 import WCSDocument from "./WCSDocument";
 import PrintCell from "./WCSDCell";
+import Loading from "../../../components/static/Loading/Loading";
 //styles
 import "./WeaponControlStatistics.css";
 import "../../../styles/DocumentPrinting.css";
@@ -235,8 +236,7 @@ export default function WeaponControlStatistics() {
 
   return (
     <>
-      {statistics == undefined ||
-      statistics ==
+      {statistics == undefined ? <Loading/> :    statistics ==
         "Not a valid competition or no weapon control record added" ? (
         <main>
           <div className="PageHeader">
@@ -585,6 +585,7 @@ export default function WeaponControlStatistics() {
           <WCSDocument pageProps={printProps} headerProps={printHeaderProps} />
         </>
       )}
+    
     </>
   );
 }

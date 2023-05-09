@@ -22,6 +22,7 @@ export default function ModalComp(props) {
       let obj = {};
       try {
         obj = JSON.parse(e.target.value);
+        dispatch(closeModal())
       } catch (e) { }
       if (obj && obj.ciphertext && obj.nonce && obj.nonce) {
         const result = await verifyHash(obj);
