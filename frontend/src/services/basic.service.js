@@ -5,11 +5,13 @@ import { areOptionsEqual } from "@mui/base";
 import { useDispatch } from "react-redux";
 import { setIsLoading } from "../slices/load";
 import authHeader from "./auth-header";
+import { useSelector } from "react-redux";
 
 export default function useBasicServices() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { isLoggedIn } = useSelector((state) => state.auth);
 
   function getURL() {
     if (!isNaN(pathname.split("/")[2])) {
@@ -23,6 +25,10 @@ export default function useBasicServices() {
   }
 
   useEffect(() => {
+    if(!isLoggedIn){
+      navigate("/")
+    }
+
     if (!isNaN(pathname.split("/")[1])) {
       fetch(`${process.env.REACT_APP_API + getURL()}`, {
         headers: {
@@ -43,6 +49,7 @@ export default function useBasicServices() {
   const setLoadingState = (state) => {
     dispatch(setIsLoading(state));
   };
+
 
   return { setLoadingState };
 }

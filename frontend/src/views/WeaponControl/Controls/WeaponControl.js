@@ -8,9 +8,8 @@ import { get, post, update } from "../../../services/backend.service";
 import { TextField, Box } from "@mui/material";
 import { useForm } from "react-hook-form";
 import Issue from "./Issue";
-import { useDispatch } from "react-redux";
 import { useCrossTabState } from "../../../services/crosstab.service";
-import { current } from "@reduxjs/toolkit";
+import useBasicServices from "../../../services/basic.service";
 
 export default function WeaponControl(props) {
   const [issues, setIssues] = useState([]);
@@ -26,6 +25,7 @@ export default function WeaponControl(props) {
     tournamentId + "_weapon_control_report",
     []
   );
+  const basicServices = useBasicServices();
 
   //react-hook-form
   const {
