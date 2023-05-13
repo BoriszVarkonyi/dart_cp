@@ -36,7 +36,6 @@ export default function Tournaments() {
     deleteFunction,
     openModalFunctiom,
   } = useDataGridHelper();
-  const { isLoggedIn } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const { setLoadingState } = useBasicServices();
   const { isLoading } = useSelector((state) => state.isLoading);
@@ -51,10 +50,6 @@ export default function Tournaments() {
     setLoadingState(true);
     getData();
   }, []);
-
-  if (!isLoggedIn) {
-    return navigate("/");
-  }
 
   const deleteRow = () => {
     deleteFunction(`tournaments/${selectedRowId}/`);
