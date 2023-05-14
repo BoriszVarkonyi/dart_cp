@@ -9,7 +9,7 @@ import ReactToPrint from "react-to-print";
 
 import { forwardRef } from "react";
 
-export default function WCPrint(props){
+export default function WCPrint(props) {
   const pageProps = props.pageProps;
   const headerProps = props.headerProps;
 
@@ -98,18 +98,18 @@ export default function WCPrint(props){
             <p>
               {pageProps.stats
                 ? pageProps.getLongCName(
-                    pageProps.stats["n_r"][[pageProps.getMostFunc("issue_num")]]
-                      .nation
-                  )
+                  pageProps.stats["n_r"][[pageProps.getMostFunc("issue_num")]]
+                    .nation
+                )
                 : ""}
             </p>
             <p>
               {pageProps.stats
                 ? pageProps.getLongCName(
-                    pageProps.stats["n_r"][
-                      [pageProps.getLeastFunc("issue_num")]
-                    ].nation
-                  )
+                  pageProps.stats["n_r"][
+                    [pageProps.getLeastFunc("issue_num")]
+                  ].nation
+                )
                 : ""}
             </p>
           </div>
@@ -118,13 +118,13 @@ export default function WCPrint(props){
             <p>
               {pageProps.stats
                 ? pageProps.stats["n_r"][pageProps.getMostFunc("issue_num")]
-                    .issue_num
+                  .issue_num
                 : 0}
             </p>
             <p>
               {pageProps.stats
                 ? pageProps.stats["n_r"][pageProps.getLeastFunc("issue_num")]
-                    .issue_num
+                  .issue_num
                 : 0}
             </p>
           </div>
@@ -144,17 +144,17 @@ export default function WCPrint(props){
               {" "}
               {pageProps.stats
                 ? pageProps.getLongCName(
-                    pageProps.stats["n_r"][[pageProps.getMostFunc("ratio")]]
-                      .nation
-                  )
+                  pageProps.stats["n_r"][[pageProps.getMostFunc("ratio")]]
+                    .nation
+                )
                 : ""}
             </p>
             <p>
               {pageProps.stats
                 ? pageProps.getLongCName(
-                    pageProps.stats["n_r"][[pageProps.getLeastFunc("ratio")]]
-                      .nation
-                  )
+                  pageProps.stats["n_r"][[pageProps.getLeastFunc("ratio")]]
+                    .nation
+                )
                 : ""}
             </p>
           </div>
@@ -163,13 +163,13 @@ export default function WCPrint(props){
             <p>
               {pageProps.stats
                 ? pageProps.stats["n_r"][pageProps.getMostFunc("ratio")]
-                    .issue_num
+                  .issue_num
                 : 0}
             </p>
             <p>
               {pageProps.stats
                 ? pageProps.stats["n_r"][pageProps.getLeastFunc("ratio")]
-                    .issue_num
+                  .issue_num
                 : 0}
             </p>
           </div>
@@ -181,11 +181,11 @@ export default function WCPrint(props){
             <span>- see more on page: 3</span>
           </p>
           <div className="DocumentChartWrapper">
-          <Pie
-            width={460}
-            height={240}
-            animate={false}
-            data={pageProps.noFencerChart? pageProps.noFencerChart : []}
+            <Pie
+              width={460}
+              height={240}
+              animate={false}
+              data={pageProps.noFencerChart ? pageProps.noFencerChart : []}
             />
           </div>
         </div>
@@ -201,11 +201,11 @@ export default function WCPrint(props){
             <span>- see more on page: 3</span>
           </p>
           <div className="DocumentChartWrapper">
-          <Pie
-            width={200}
-            height={200}
+            <Pie
+              width={200}
+              height={200}
               animate={false}
-              data={pageProps.noIssuesChart? pageProps.noIssuesChart : []}
+              data={pageProps.noIssuesChart ? pageProps.noIssuesChart : []}
             />
           </div>
         </div>
@@ -216,11 +216,11 @@ export default function WCPrint(props){
             <span>- see more on page: 3</span>
           </p>
           <div className="DocumentChartWrapper">
-          <Pie
-            width={200}
-            height={200}
+            <Pie
+              width={200}
+              height={200}
               animate={false}
-              data={pageProps.ratiosChart? pageProps.ratiosChart : []}
+              data={pageProps.ratiosChart ? pageProps.ratiosChart : []}
             />
           </div>
         </div>
@@ -230,19 +230,19 @@ export default function WCPrint(props){
       <div className="DocumentPage">
         <WCPrintHeader {...headerProps} />
         <div className="DocumentSectionTitle">COUNTRIES SUMMARY</div>
+        <div className="DocumentSection DocumentColumnLayout TwoColumns">
+          <div>
+            <p>NUMBER OF FENCERS:</p>
+            <p>NUMBER OF ISSUES:</p>
+            <p>RATIO:</p>
+          </div>
+          <div>
+            <p>{pageProps.stats ? pageProps.stats["total_fencers"] : 0}</p>
+            <p>{pageProps.stats ? pageProps.stats["total_issues"] : 0}</p>
+            <p>{pageProps.stats ? pageProps.stats["total_ratio"] : 0}</p>
+          </div>
+        </div>
         <div className="DocumentSection Growable FullPage">
-          <p>
-            Number of fencers:
-            {pageProps.stats ? pageProps.stats["total_fencers"] : 0}
-          </p>
-          <p>
-            Number of issue:
-            {pageProps.stats ? pageProps.stats["total_issues"] : 0}
-          </p>
-          <p>
-            Number of Ratio
-            {pageProps.stats ? pageProps.stats["total_ratio"] : 0}
-          </p>
           {pageProps ? (
             <PrintTable
               row={pageProps.countySummaryTable.row}
@@ -259,11 +259,15 @@ export default function WCPrint(props){
       <div className="DocumentPage">
         <WCPrintHeader {...headerProps} />
         <div className="DocumentSectionTitle">ISSUES SUMMARY</div>
+        <div className="DocumentSection DocumentColumnLayout TwoColumns">
+          <div>
+            <p>NUMBER OF ISSUES:</p>
+          </div>
+          <div>
+            <p>{pageProps.stats ? pageProps.stats["total_issues"] : 0}</p>
+          </div>
+        </div>
         <div className="DocumentSection Growable FullPage">
-          <p>
-            Number of issue:
-            {pageProps.stats ? pageProps.stats["total_issues"] : 0}
-          </p>
           {pageProps ? (
             <PrintTable
               row={pageProps.issueWithSumsTable.row}
