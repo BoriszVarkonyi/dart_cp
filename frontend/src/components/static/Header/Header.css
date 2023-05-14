@@ -1,6 +1,6 @@
 header {
 	display: flex;
-	justify-content: end;
+	justify-content: flex-end;
 	height: var(--l-Header);
 	width: 100%;
 	background: linear-gradient(
