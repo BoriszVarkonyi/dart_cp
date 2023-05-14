@@ -187,13 +187,15 @@ export default function WeaponControls() {
               </Button>
             )}
             {!isSelected && (
+              <Button>
                 <Link
-                  to={`/${tournamentId}/wepon_control/report`}
+                  to={`/${tournamentId}/weapon_control/report`}
                   target="_blank"
                 >
                   {" "}
                   Show reports
                 </Link>
+              </Button>
             )}
           </div>
         </div>

@@ -33,7 +33,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginLayout />} />
         <Route path="/panel/*" element={<PanelLayout />} />
-        <Route path=":tournamentId/wepon_control/report" element={<ReportLayout />}/>
+        <Route path=":tournamentId/weapon_control/report" element={<ReportLayout />} />
         <Route path=":tournamentId/*" element={<ControlLayout />}>
           <Route path="competitions">
             <Route index element={<Competitions />} />
