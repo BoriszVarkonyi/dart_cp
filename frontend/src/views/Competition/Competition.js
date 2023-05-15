@@ -20,6 +20,7 @@ export default function Competition(props) {
   const { rowId } = state;
   let { tournamentId } = useParams();
   const navigate = useNavigate();
+  const dateString = new Date().toISOString().slice(0, 10);
 
   //react-hook-form
   const {
@@ -79,12 +80,14 @@ export default function Competition(props) {
   useEffect(() => {
     //Sets the state for the controlled inputs
     setInputState(modifyData);
+  }, [modifyData]);
 
-    //Updates the registered values for the ract-hook-form.
+  useEffect(() => {
+    //Updates the registered values for the react-hook-form.
     for (const key in inputState) {
       setValue(key, inputState[key]);
     }
-  }, [modifyData]);
+  }, [inputState]);
 
   const updateInputState = (prevState, updateObj) => {
     //Sets the registered value for the react-hook-form.

@@ -2,12 +2,9 @@ import React, { useEffect } from "react";
 import WCPrintHeader from "./WCSDHeader";
 import PrintTable from "../../../components/static/PrintTable/PrintTable";
 import { Pie } from "@nivo/pie";
-import { useRef } from "react";
-import { useReactToPrint } from "react-to-print";
-import ReactToPrint from "react-to-print";
 
 
-import { forwardRef } from "react";
+//Code for the print document
 
 export default function WCPrint(props) {
   const pageProps = props.pageProps;

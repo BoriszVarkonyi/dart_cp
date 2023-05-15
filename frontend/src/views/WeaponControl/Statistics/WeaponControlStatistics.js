@@ -26,6 +26,7 @@ function getLongCountryName(value) {
   return countries["countries"].find((country) => country.short == value).long;
 }
 
+//Columns for the country / issue numbers table.
 const colIssueByC = [
   { field: "country", headerName: "Country", width: 200, flex: 200 },
   { field: "issue_num", headerName: "Number of issues", width: 200, flex: 100 },
@@ -39,6 +40,9 @@ const setIssueByCRow = (shortName, number) => {
   };
 };
 
+
+
+//Columns for the issues / freq. tale.
 const colIssueWithValues = [
   { field: "issue_name", headerName: "Iusse name", width: 200, flex: 200 },
   { field: "freq", headerName: "Frequency", width: 200, flex: 100 },
@@ -57,6 +61,8 @@ const setIssueWithValuesRow = (issueName, value) => {
   };
 };
 
+
+//Columns for the print tables
 const printCountySummaryCol = [
   { field: "country", headerName: "Country", width: 200, flex: 200 },
   { field: "fencer_num", headerName: "NO.FENCER", width: 200, flex: 100 },
@@ -73,6 +79,8 @@ const setPrintCountySummary = (element) => {
     ratio: element.ratio,
   };
 };
+
+
 
 const setChartData = (countyName, value) => {
   return {

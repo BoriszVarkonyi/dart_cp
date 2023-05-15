@@ -48,23 +48,24 @@ export default function Tournament(props) {
     async function getData() {
       const response = await get(`/tournaments/${rowId}`);
       setModifyData(response);
-      setLoadingState(false);
     }
     if (props.type == 'Modify') {
+      setLoadingState(true);
       getData();
     }
-    setLoadingState(true);
-    getData();
   }, []);
 
   useEffect(() => {
     //Sets the state for the controlled inputs
     setInputState(modifyData);
-    //Updates the registered values for the ract-hook-form.
+  }, [modifyData]);
+
+  useEffect(() => {
+    //Updates the registered values for the react-hook-form.
     for (const key in inputState) {
       setValue(key, inputState[key]);
     }
-  }, [modifyData]);
+  }, [inputState]);
 
   const onSubmitSave = async (data) => {
     if (props.type == 'Create') {
@@ -130,7 +131,7 @@ export default function Tournament(props) {
                   type="date"
                   size="small"
                   variant="filled"
-                  value={inputState.starting_date}
+                  value={inputState.starting_date || dateString}
                   sx={{ width: 220 }}
                   InputLabelProps={{
                     shrink: true,
@@ -154,7 +155,7 @@ export default function Tournament(props) {
                   type="date"
                   size="small"
                   variant="filled"
-                  value={inputState.ending_date}
+                  value={inputState.ending_date || dateString}
                   sx={{ width: 220 }}
                   InputLabelProps={{
                     shrink: true,

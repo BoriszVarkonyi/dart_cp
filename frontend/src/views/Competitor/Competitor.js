@@ -20,6 +20,7 @@ export default function Competitor(props) {
   const { rowId } = state;
   const navigate = useNavigate();
   let { tourId, compId } = useParams();
+  const dateString = new Date().toISOString().slice(0, 10);
 
   //A state for the controlled inputs.
   const [inputState, setInputState] = useState({
@@ -76,12 +77,14 @@ export default function Competitor(props) {
   useEffect(() => {
     //Sets the state for the controlled inputs
     setInputState(modifyData);
+  }, [modifyData]);
 
-    //Updates the registered values for the ract-hook-form.
+  useEffect(() => {
+    //Updates the registered values for the react-hook-form.
     for (const key in inputState) {
       setValue(key, inputState[key]);
     }
-  }, [modifyData]);
+  }, [inputState]);
 
   const onSubmit = async (data) => {
     if (props.type == "Add") {
