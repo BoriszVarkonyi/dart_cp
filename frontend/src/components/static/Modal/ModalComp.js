@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import "./Modal.css";
 import { Button, Modal, Box, IconButton } from "@mui/material";
 import { closeModal } from "../../../slices/modalSlice";
@@ -14,7 +14,14 @@ export default function ModalComp(props) {
   const dispatch = useDispatch();
   const { isOpen } = useSelector((state) => state.modal);
   const navigate = useNavigate();
-  const testRef = useRef();
+  const [isQRCodeInputOpen, setIsQRCodeInputOpen] = useState(false);  //State is needed because of the usEffect. Technically it doesn't do much, just fires the useEffect function on state change.
+  const inputRef = useRef();
+  //Statemanager is needed to change the state, when the QR Code textfield is shown. useCallback runs everytime when the textfield appares
+  const stateManager = useCallback(() => {
+    if (!isQRCodeInputOpen) {
+      setIsQRCodeInputOpen(true);
+    }
+  });
 
   const modalProps = props.modalProps;
 
@@ -23,22 +30,27 @@ export default function ModalComp(props) {
       let obj = {};
       try {
         obj = JSON.parse(e.target.value);
-      } catch (e) {console.log(e)}
+      } catch (e) {
+        console.log(e);
+      }
       if (obj && obj.ciphertext && obj.nonce && obj.nonce) {
         const result = await verifyHash(obj);
 
         if (result !== false) {
           navigate("add", { state: { rowId: result.fencer } });
           dispatch(closeModal());
+          setIsQRCodeInputOpen(false);
         }
       }
     }
   };
 
-  useEffect(()=>{
-    if(isOpen == true && modalProps.type == "Barcode"){
+  useEffect(() => {
+    const element = inputRef.current;
+    if (element != null && element != undefined) {
+      element.focus();
     }
-  },[isOpen])
+  }, [isQRCodeInputOpen]);
 
   return (
     <Modal open={isOpen} className="ModalWrapper">
@@ -50,7 +62,10 @@ export default function ModalComp(props) {
           )}
           <IconButton
             className="ModalCloseButton"
-            onClick={() => dispatch(closeModal())}
+            onClick={() => {
+              dispatch(closeModal());
+              setIsQRCodeInputOpen(false);
+            }}
             sx={{ color: "white" }}
           >
             <CloseIcon />
@@ -85,8 +100,9 @@ export default function ModalComp(props) {
                 label="Code"
                 type="text"
                 size="small"
-                variant="filled" 
-                inputRef={testRef}
+                variant="filled"
+                ref={stateManager}
+                inputRef={inputRef}
                 onKeyDown={(e) => {
                   barCodeInputHandler(e);
                 }}
