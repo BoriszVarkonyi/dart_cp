@@ -54,7 +54,7 @@ export default function Competition(props) {
     );
   };
 
-  useEffect(() => {
+  useEffect(() => { 
     function setMenuItemsFromJson() {
       const countriesMenuItems = countries.countries.map((c) =>
         generateMenuItem(c)

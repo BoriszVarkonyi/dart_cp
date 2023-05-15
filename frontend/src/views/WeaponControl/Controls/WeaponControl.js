@@ -69,59 +69,60 @@ export default function WeaponControl(props) {
         fName: fencerName,
         fNat: fencerNation,
         fIssues: issueArray,
-        fNotes: data["notes"]
-      }
+        fNotes: data["notes"],
+      };
       //If there would more than 2 it pops the last array element.
-      if(wcReport.length >= 2){
-        setWcReport(current => [current.pop()])
+      if (wcReport.length >= 2) {
+        setWcReport((current) => [current.pop()]);
       }
       //Updates the array. The new element will be pushed to the first place. Aka. 0 index element.
-      setWcReport(current => [reportObj, ...current])
+      setWcReport((current) => [reportObj, ...current]);
       await post(`stats/weaponcontrols/issues/${compId}/${rowId}/`, data);
     }
     navigate(-1);
   };
 
+  async function getData() {
+    const data = await get(`stats/weaponcontrols/issues/${compId}/${rowId}/`);
+    setExists(data.exists);
+
+    let inputArray = [];
+
+    let rowKey = 0;
+    //Creates the issue rows
+    for (const key of Object.keys(data)) {
+      if (key == "notes") {
+        data[key] == null ? setNotes("") : setNotes(data[key]);
+      }
+      if (key == "fencer") {
+        setFencerName(data[key].pre_nom + " " + data[key].nom);
+        setFencerNation(data[key].nation);
+      }
+
+      if (key !== "exists" && key !== "notes" && key !== "fencer") {
+        inputArray.push(
+          <Issue
+            key={key}
+            issueName={key}
+            issueNum={data[key] ?? 0}
+            rowKey={rowKey + 1}
+            register={register}
+            errors={errors}
+          />
+        );
+        rowKey++;
+      }
+    }
+
+    setIssues(inputArray);
+  }
+
   // useEffect(() => {
-  //   console.log(errors);
+  //   console.log(issues);
   // }, [errors]);
 
   //Gets the issue datas from api
   useEffect(() => {
-    async function getData() {
-      const data = await get(`stats/weaponcontrols/issues/${compId}/${rowId}/`);
-      setExists(data.exists);
-
-      let inputArray = [];
-
-      let rowKey = 0;
-      //Creates the issue rows
-      for (const key of Object.keys(data)) {
-        if (key == "notes") {
-          data[key] == null ? setNotes("") : setNotes(data[key]);
-        }
-        if (key == "fencer") {
-          setFencerName(data[key].pre_nom + " " + data[key].nom);
-          setFencerNation(data[key].nation)
-        }
-
-        if (key !== "exists" && key !== "notes" && key !== "fencer") {
-          inputArray.push(
-            <Issue
-              key={key}
-              issueName={key}
-              issueNum={data[key] ?? 0}
-              rowKey={rowKey + 1}
-              register={register}
-              errors={errors}
-            />
-          );
-          rowKey++;
-        }
-      }
-
-      setIssues(inputArray);
-    }
     getData();
   }, []);
 

@@ -42,7 +42,8 @@ export default function Login() {
         navigate('/panel');
         window.location.reload();
       })
-      .catch(() => {
+      .catch((e) => {
+        console.log(e)
         setLoading(false);
       });
   };
@@ -90,7 +91,7 @@ export default function Login() {
           {t('login.login')}
         </button>
       </Box>
-      {message && <div>{message}</div>}
+      {message && <div>Incorrect username or password</div>}
     </div>
   );
 }

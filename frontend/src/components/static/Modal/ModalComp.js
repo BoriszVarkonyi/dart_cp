@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Modal.css";
 import { Button, Modal, Box, IconButton } from "@mui/material";
 import { closeModal } from "../../../slices/modalSlice";
@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { TextField } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
+import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner";
 import verifyHash from "../../../services/hash.service";
 import { useNavigate } from "react-router-dom";
 
@@ -14,6 +14,7 @@ export default function ModalComp(props) {
   const dispatch = useDispatch();
   const { isOpen } = useSelector((state) => state.modal);
   const navigate = useNavigate();
+  const testRef = useRef();
 
   const modalProps = props.modalProps;
 
@@ -22,15 +23,22 @@ export default function ModalComp(props) {
       let obj = {};
       try {
         obj = JSON.parse(e.target.value);
-        dispatch(closeModal())
-      } catch (e) { }
+      } catch (e) {console.log(e)}
       if (obj && obj.ciphertext && obj.nonce && obj.nonce) {
         const result = await verifyHash(obj);
-        if (result !== false)
+
+        if (result !== false) {
           navigate("add", { state: { rowId: result.fencer } });
+          dispatch(closeModal());
+        }
       }
     }
   };
+
+  useEffect(()=>{
+    if(isOpen == true && modalProps.type == "Barcode"){
+    }
+  },[isOpen])
 
   return (
     <Modal open={isOpen} className="ModalWrapper">
@@ -69,12 +77,16 @@ export default function ModalComp(props) {
         {modalProps.type == "Barcode" && (
           <div className="ModalContent">
             <div className="ModalContentInner">
-              <QrCodeScannerIcon className="BarcodeImage" sx={{ fontSize: 160 }} />
+              <QrCodeScannerIcon
+                className="BarcodeImage"
+                sx={{ fontSize: 160 }}
+              />
               <TextField
                 label="Code"
                 type="text"
                 size="small"
-                variant="filled"
+                variant="filled" 
+                inputRef={testRef}
                 onKeyDown={(e) => {
                   barCodeInputHandler(e);
                 }}
@@ -90,7 +102,6 @@ export default function ModalComp(props) {
             </div>
           </div>
         )}
-
 
         {/*props.type == "Print" && (
           <div>
