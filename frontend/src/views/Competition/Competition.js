@@ -189,7 +189,7 @@ export default function Competition(props) {
                 select
                 label="Wheelchair"
                 id="wheelchair"
-                value={inputState.is_wheelchair || false}
+                value={inputState.is_wheelchair || ""}
                 {...register("isWheel", {
                   required: "Please choose wheelchair!",
                   onChange: (e) =>
