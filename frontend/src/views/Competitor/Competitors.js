@@ -185,7 +185,6 @@ export default function Competitors() {
 
   async function getFencersData(cancelToken) {
     const data = await get(`competitorsdata/${compId}`, cancelToken.token);
-
     //Sets the datas for the All Data view
     setRows(
       data.map((f) => {

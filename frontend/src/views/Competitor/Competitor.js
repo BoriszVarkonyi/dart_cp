@@ -117,7 +117,12 @@ export default function Competitor(props) {
           <Button variant="contained" size="small" onClick={() => navigate(-1)}>
             CANCEL
           </Button>
-          <Button form="add-form" variant="contained" size="small" type="submit">
+          <Button
+            form="add-form"
+            variant="contained"
+            size="small"
+            type="submit"
+          >
             {text}
           </Button>
         </div>
@@ -237,10 +242,12 @@ export default function Competitor(props) {
               type="date"
               size="small"
               variant="filled"
-              value={inputState.date_naissance || ''}
+              value={inputState.date_naissance || ""}
               sx={{ width: 220 }}
               {...register("date_naissance", {
                 required: "Please enter your date of birth!",
+                validate: (value) =>
+                  value < dateString || "Please enter a valid date of birth!",
                 onChange: (e) =>
                   setInputState((prevState) =>
                     updateInputState(prevState, {
@@ -294,7 +301,7 @@ export default function Competitor(props) {
                 },
                 min: {
                   value: 0,
-                  message: "License should not be negative!"
+                  message: "License should not be negative!",
                 },
                 onChange: (e) =>
                   setInputState((prevState) =>
@@ -322,7 +329,7 @@ export default function Competitor(props) {
                 },
                 min: {
                   value: 0,
-                  message: "Points should be a positive number or zero!"
+                  message: "Points should be a positive number or zero!",
                 },
                 onChange: (e) =>
                   setInputState((prevState) =>
@@ -336,7 +343,7 @@ export default function Competitor(props) {
             <TextField
               error={!!errors.classement}
               helperText={errors?.classement?.message}
-              label="Classement"
+              label="Ranking"
               type="number"
               margin="normal"
               size="small"
@@ -353,7 +360,7 @@ export default function Competitor(props) {
                 },
                 min: {
                   value: 0,
-                  message: "Classement should not be negative!"
+                  message: "Classement should not be negative!",
                 },
                 onChange: (e) =>
                   setInputState((prevState) =>

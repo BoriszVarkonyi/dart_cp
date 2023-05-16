@@ -2,6 +2,19 @@ import React, { useEffect } from "react";
 import { TextField } from "@mui/material";
 
 export default function Issue(props) {
+
+  function focusHelper(e){
+    if(e.target.value == 0){
+      e.target.value = ""
+    }
+  }
+
+  function blurHelper(e){
+    if(e.target.value == ""){
+      e.target.value = 0
+    }
+  }
+
   return (
     <tr key={props.rowKey}>
       <td>{props.issueName}</td>
@@ -13,6 +26,8 @@ export default function Issue(props) {
           inputMode="numeric"
           size="small"
           defaultValue={props.issueNum} //Math.round((Math.random()*4)) use it to generate random values for test
+          onFocus={(e)=>focusHelper(e)}
+          onBlurCapture={(e)=>blurHelper(e)}
           {...props.register(props.issueName, {
             onChange: (e) => {
               if(e.target.value !="" && !e.target.value[e.target.value.length-1].match(/^[0-9]+$/s)){

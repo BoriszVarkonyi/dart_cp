@@ -35,7 +35,7 @@ export default function Competition(props) {
   const [inputState, setInputState] = useState({
     title_long: "",
     weapon_type: "",
-    is_wheelchair: false,
+    is_wheelchair: "false",
     sex: "",
     type: "",
     age_group: "",
@@ -79,6 +79,7 @@ export default function Competition(props) {
 
   useEffect(() => {
     //Sets the state for the controlled inputs
+    modifyData.is_wheelchair === true? modifyData.is_wheelchair = "true" : modifyData.is_wheelchair = "false"
     setInputState(modifyData);
   }, [modifyData]);
 
