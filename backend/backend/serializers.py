@@ -210,7 +210,7 @@ class CompetitorsDataSerializer(serializers.ModelSerializer):
 
         competition = self.context.get('competition')
 
-        queryset = RegistrationModel.objects.filter(fencers=obj.id, competitions=competition).exists()
+        queryset = RegistrationModel.objects.filter(fencers=obj.id, competitions=competition, registered=True).exists()
 
         return queryset
     
