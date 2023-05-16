@@ -179,10 +179,22 @@ export default function WCPrint(props) {
           </p>
           <div className="DocumentChartWrapper">
             <Pie
-              width={460}
-              height={240}
+              margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
+              width={680}
+              height={230}
               animate={false}
               data={pageProps.noFencerChart ? pageProps.noFencerChart : []}
+              innerRadius={0.7}
+              padAngle={3}
+              cornerRadius={3}
+              activeOuterRadiusOffset={8}
+              colors={{ scheme: 'greys' }}
+              arcLinkLabelsTextColor="#333333"
+              arcLinkLabelsThickness={2}
+              arcLinkLabelsColor="#333333"
+              arcLabelsTextColor="#333333"
+              isInteractive={false}
+              legends={[]}
             />
           </div>
         </div>
@@ -199,10 +211,22 @@ export default function WCPrint(props) {
           </p>
           <div className="DocumentChartWrapper">
             <Pie
-              width={200}
-              height={200}
+              margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
+              width={680}
+              height={330}
               animate={false}
               data={pageProps.noIssuesChart ? pageProps.noIssuesChart : []}
+              innerRadius={0.7}
+              padAngle={3}
+              cornerRadius={3}
+              activeOuterRadiusOffset={8}
+              colors={{ scheme: 'greys' }}
+              arcLinkLabelsTextColor="#333333"
+              arcLinkLabelsThickness={2}
+              arcLinkLabelsColor="#333333"
+              arcLabelsTextColor="#333333"
+              isInteractive={false}
+              legends={[]}
             />
           </div>
         </div>
@@ -214,10 +238,22 @@ export default function WCPrint(props) {
           </p>
           <div className="DocumentChartWrapper">
             <Pie
-              width={200}
-              height={200}
+              margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
+              width={460}
+              height={330}
               animate={false}
               data={pageProps.ratiosChart ? pageProps.ratiosChart : []}
+              innerRadius={0.7}
+              padAngle={3}
+              cornerRadius={3}
+              activeOuterRadiusOffset={8}
+              colors={{ scheme: 'greys' }}
+              arcLinkLabelsTextColor="#333333"
+              arcLinkLabelsThickness={2}
+              arcLinkLabelsColor="#333333"
+              arcLabelsTextColor="#333333"
+              isInteractive={false}
+              legends={[]}
             />
           </div>
         </div>

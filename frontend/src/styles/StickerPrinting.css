@@ -43,7 +43,7 @@
         align-self: center;
     }
 
-    svg {
+    .PrintableSticker svg {
         height: 23mm;
         width: 23mm;
         aspect-ratio: 1;
