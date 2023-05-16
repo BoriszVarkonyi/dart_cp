@@ -71,9 +71,9 @@ export default function WeaponControl(props) {
         fIssues: issueArray,
         fNotes: data["notes"],
       };
-      //If there would more than 2 it pops the last array element.
-      if (wcReport.length >= 2) {
-        setWcReport((current) => [current.pop()]);
+      //If there would more than 3 it pops the last array element.
+      if (wcReport.length >= 3) {
+        setWcReport((current) => (current.slice(0, -1))); 
       }
       //Updates the array. The new element will be pushed to the first place. Aka. 0 index element.
       setWcReport((current) => [reportObj, ...current]);
@@ -117,9 +117,8 @@ export default function WeaponControl(props) {
     setIssues(inputArray);
   }
 
-  // useEffect(() => {
-  //   console.log(issues);
-  // }, [errors]);
+  useEffect(() => {
+  }, [errors]);
 
   //Gets the issue datas from api
   useEffect(() => {
