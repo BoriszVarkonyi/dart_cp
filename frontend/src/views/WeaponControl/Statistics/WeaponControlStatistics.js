@@ -263,8 +263,6 @@ export default function WeaponControlStatistics() {
             <p className="PageAlertTitle">There aren't any Weapon Controls on record!</p>
             <p className="PageAlertSubTitle">Statistics will be available when there are atleast one Weapon Control on record.</p>
           </div>
-          <div className="PageContent">
-          </div>
         </main>
       ) : (
         <>
