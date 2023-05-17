@@ -98,6 +98,13 @@ class WeaponControlSerializer(serializers.ModelSerializer):
             'issue_26',
             'issue_27',
             'issue_28',
+            'issue_29',
+            'issue_30',
+            'issue_31',
+            'issue_32',
+            'issue_33',
+            'issue_34',
+            'issue_35',
             'notes'
         ]
 
@@ -187,6 +194,13 @@ class WeaponControlNationSerializer(serializers.ModelSerializer):
             'issue_26',
             'issue_27',
             'issue_28',
+            'issue_29',
+            'issue_30',
+            'issue_31',
+            'issue_32',
+            'issue_33',
+            'issue_34',
+            'issue_35',
             'notes'
         ]
 
