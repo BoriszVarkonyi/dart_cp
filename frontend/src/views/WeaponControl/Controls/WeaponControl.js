@@ -31,6 +31,7 @@ export default function WeaponControl(props) {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm();
 
@@ -62,10 +63,12 @@ export default function WeaponControl(props) {
     data["notes"] == "" ? (data["notes"] = null) : (data["notes"] = notes);
 
     if (exists) {
+      console.log(data)
       await update(`stats/weaponcontrols/issues/${compId}/${rowId}/`, data);
     } else {
       //Creates an object for Reports
       const reportObj = {
+        key: new Date(),
         fName: fencerName,
         fNat: fencerNation,
         fIssues: issueArray,
@@ -93,6 +96,9 @@ export default function WeaponControl(props) {
     for (const key of Object.keys(data)) {
       if (key == "notes") {
         data[key] == null ? setNotes("") : setNotes(data[key]);
+        if(data[key] !== null){
+          setValue("notes", data[key]);
+        }
       }
       if (key == "fencer") {
         setFencerName(data[key].pre_nom + " " + data[key].nom);
@@ -117,13 +123,18 @@ export default function WeaponControl(props) {
     setIssues(inputArray);
   }
 
-  useEffect(() => {
-  }, [errors]);
-
   //Gets the issue datas from api
   useEffect(() => {
     getData();
   }, []);
+
+  useEffect(()=>{
+    // for(let i=0; i< issues.length; i++){
+    //   issues[i].props.errors = errors
+    // }
+
+    console.log(issues)
+  },[errors])
 
   const title = `${props.type} Weapon Control of ${fencerName}`;
   return (
