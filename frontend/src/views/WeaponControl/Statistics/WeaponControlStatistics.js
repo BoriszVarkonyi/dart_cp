@@ -244,9 +244,9 @@ export default function WeaponControlStatistics() {
 
   return (
     <>
-      {statistics == undefined ? <Loading/> :    statistics ==
+      {statistics == undefined ? <Loading /> : statistics ==
         "Not a valid competition or no weapon control record added" ? (
-        <main>
+        <main className="WithAlert">
           <div className="PageHeader">
             <h1 className="PageTitle">Weapon Control Statistics</h1>
             <div className="PageButtonsWrapper">
@@ -259,8 +259,11 @@ export default function WeaponControlStatistics() {
               </Button>
             </div>
           </div>
-          <div>
-            <p>There is no weapon control statistic yet...</p>
+          <div className="PageAlert">
+            <p className="PageAlertTitle">There aren't any Weapon Controls on record!</p>
+            <p className="PageAlertSubTitle">Statistics will be available when there are atleast one Weapon Control on record.</p>
+          </div>
+          <div className="PageContent">
           </div>
         </main>
       ) : (
@@ -395,30 +398,30 @@ export default function WeaponControlStatistics() {
                             <p className="StatTopic">
                               {statistics
                                 ? getLongCountryName(
-                                    statistics["n_r"][getMost("issue_num")]
-                                      .nation
-                                  )
+                                  statistics["n_r"][getMost("issue_num")]
+                                    .nation
+                                )
                                 : ""}
                             </p>
                             <div>
                               <p>
                                 {statistics
                                   ? statistics["n_r"][getMost("issue_num")]
-                                      .fencer_num
+                                    .fencer_num
                                   : 0}
                                 f.
                               </p>
                               <b>
                                 {statistics
                                   ? statistics["n_r"][getMost("issue_num")]
-                                      .issue_num
+                                    .issue_num
                                   : 0}
                                 i.
                               </b>
                               <p>
                                 {statistics
                                   ? statistics["n_r"][getMost("issue_num")]
-                                      .ratio
+                                    .ratio
                                   : 0}
                                 r
                               </p>
@@ -436,30 +439,30 @@ export default function WeaponControlStatistics() {
                             <p className="StatTopic">
                               {statistics
                                 ? getLongCountryName(
-                                    statistics["n_r"][getLeast("issue_num")]
-                                      .nation
-                                  )
+                                  statistics["n_r"][getLeast("issue_num")]
+                                    .nation
+                                )
                                 : ""}
                             </p>
                             <div>
                               <p>
                                 {statistics
                                   ? statistics["n_r"][getLeast("issue_num")]
-                                      .fencer_num
+                                    .fencer_num
                                   : 0}
                                 f.
                               </p>
                               <b>
                                 {statistics
                                   ? statistics["n_r"][getLeast("issue_num")]
-                                      .issue_num
+                                    .issue_num
                                   : 0}
                                 i.
                               </b>
                               <p>
                                 {statistics
                                   ? statistics["n_r"][getLeast("issue_num")]
-                                      .ratio
+                                    .ratio
                                   : 0}
                                 .1r
                               </p>
@@ -480,22 +483,22 @@ export default function WeaponControlStatistics() {
                             <p className="StatTopic">
                               {statistics
                                 ? getLongCountryName(
-                                    statistics["n_r"][getMost("ratio")].nation
-                                  )
+                                  statistics["n_r"][getMost("ratio")].nation
+                                )
                                 : ""}
                             </p>
                             <div>
                               <p>
                                 {statistics
                                   ? statistics["n_r"][getMost("ratio")]
-                                      .fencer_num
+                                    .fencer_num
                                   : 0}
                                 f.
                               </p>
                               <p>
                                 {statistics
                                   ? statistics["n_r"][getMost("ratio")]
-                                      .issue_num
+                                    .issue_num
                                   : 0}
                                 i.
                               </p>
@@ -519,22 +522,22 @@ export default function WeaponControlStatistics() {
                             <p className="StatTopic">
                               {statistics
                                 ? getLongCountryName(
-                                    statistics["n_r"][getLeast("ratio")].nation
-                                  )
+                                  statistics["n_r"][getLeast("ratio")].nation
+                                )
                                 : ""}
                             </p>
                             <div>
                               <p>
                                 {statistics
                                   ? statistics["n_r"][getLeast("ratio")]
-                                      .fencer_num
+                                    .fencer_num
                                   : 0}
                                 f.
                               </p>
                               <p>
                                 {statistics
                                   ? statistics["n_r"][getLeast("ratio")]
-                                      .issue_num
+                                    .issue_num
                                   : 0}
                                 i.
                               </p>
@@ -593,7 +596,7 @@ export default function WeaponControlStatistics() {
           <WCSDocument pageProps={printProps} headerProps={printHeaderProps} />
         </>
       )}
-    
+
     </>
   );
 }

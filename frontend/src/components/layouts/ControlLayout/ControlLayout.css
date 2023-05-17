@@ -89,10 +89,6 @@ main {
 	grid-template-columns: 1fr;
 	overflow: hidden;
 	width: 100%;
-	background: radial-gradient(
-		farthest-corner at top left,
-		rgba(214,231,240,1),
-		rgba(255,255,255,1));
 }
 
 main.WithAlert {

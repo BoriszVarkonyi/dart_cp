@@ -82,6 +82,11 @@ a {
   background-color: transparent;
 }
 
+button a {
+  color: white;
+  text-decoration: none;
+}
+
 /* might be temporary */
 * {
   -webkit-user-select: none;

@@ -187,7 +187,7 @@ export default function WeaponControls() {
               </Button>
             )}
             {!isSelected && (
-              <Button>
+              <Button variant="contained" size="small">
                 <Link
                   to={`/${tournamentId}/weapon_control/report`}
                   target="_blank"
