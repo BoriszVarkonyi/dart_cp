@@ -38,6 +38,13 @@ const columns = [
     headerName: "IS WHEELCHAIR",
     width: 150,
     flex: 150,
+    renderCell: (params) => {
+      return params.value ? (
+        <p>Yes</p>
+      ) : (
+        <p>No</p>
+      );
+    },
   },
   { field: "sex", headerName: "SEX", width: 100, flex: 100 },
   { field: "type", headerName: "TYPE", width: 100, flex: 100 },

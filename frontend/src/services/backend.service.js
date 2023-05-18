@@ -67,10 +67,15 @@ async function remove(url, payload) {
   const resp = await instance.delete(`${url}`, { data: payload });
 }
 
-async function update(url, payload) {
 
+async function update(url, payload) {
   instance.defaults.headers.Authorization = authHeader();
-  const resp = await instance.patch(`${url}`, payload);
+  try {
+    const resp = await instance.patch(`${url}`, payload);
+    return resp.data;
+  } catch (err) {
+    return err;
+  }
 }
 
 export { get, post, postBulk, remove, update, createCancelToken };
