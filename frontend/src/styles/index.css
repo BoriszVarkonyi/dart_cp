@@ -433,10 +433,12 @@ button:-moz-focusring,
 .Form > .FormColumn > * {
   width: 100%;
   margin-block: 8px;
+  box-sizing: border-box;
 }
 
 .FormRow {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 16px;
 }
 

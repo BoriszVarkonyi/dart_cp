@@ -55,7 +55,7 @@ export default function Competition(props) {
     );
   };
 
-  useEffect(() => { 
+  useEffect(() => {
     function setMenuItemsFromJson() {
       const countriesMenuItems = countries.countries.map((c) =>
         generateMenuItem(c)
@@ -79,7 +79,7 @@ export default function Competition(props) {
 
   useEffect(() => {
     //Sets the state for the controlled inputs
-    modifyData.is_wheelchair === true? modifyData.is_wheelchair = "true" : modifyData.is_wheelchair = "false"
+    modifyData.is_wheelchair === true ? modifyData.is_wheelchair = "true" : modifyData.is_wheelchair = "false"
     setInputState(modifyData);
   }, [modifyData]);
 
@@ -417,6 +417,7 @@ export default function Competition(props) {
               id="date"
               label="Starting Date"
               type="date"
+              InputLabelProps={{ shrink: true }}
               size="small"
               variant="filled"
               value={inputState.start_date || ""}
@@ -442,6 +443,7 @@ export default function Competition(props) {
               id="date"
               label="Ending Date"
               type="date"
+              InputLabelProps={{ shrink: true }}
               size="small"
               variant="filled"
               sx={{ width: 220 }}
