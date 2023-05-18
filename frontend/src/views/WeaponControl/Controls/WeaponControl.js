@@ -128,13 +128,6 @@ export default function WeaponControl(props) {
     getData();
   }, []);
 
-  useEffect(()=>{
-    // for(let i=0; i< issues.length; i++){
-    //   issues[i].props.errors = errors
-    // }
-
-    console.log(issues)
-  },[errors])
 
   const title = `${props.type} Weapon Control of ${fencerName}`;
   return (

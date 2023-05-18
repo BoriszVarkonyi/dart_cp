@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { TextField } from "@mui/material";
 
 export default function Issue(props) {
-
   function focusHelper(e){
     if(e.target.value == 0){
       e.target.value = ""
