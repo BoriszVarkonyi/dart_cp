@@ -181,7 +181,7 @@ export default function WCPrint(props) {
             <Pie
               margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
               width={680}
-              height={230}
+              height={180}
               animate={false}
               data={pageProps.noFencerChart ? pageProps.noFencerChart : []}
               innerRadius={0.7}
