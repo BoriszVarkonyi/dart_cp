@@ -212,10 +212,10 @@ export default function WCPrint(props) {
           <div className="DocumentChartWrapper">
             <Pie
               margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
-              width={680}
+              width={460}
               height={330}
               animate={false}
-              data={pageProps.noIssuesChart ? pageProps.noIssuesChart : []}
+              data={pageProps.ratiosChart ? pageProps.ratiosChart : []}
               innerRadius={0.7}
               padAngle={3}
               cornerRadius={3}
@@ -239,10 +239,10 @@ export default function WCPrint(props) {
           <div className="DocumentChartWrapper">
             <Pie
               margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
-              width={460}
+              width={680}
               height={330}
               animate={false}
-              data={pageProps.ratiosChart ? pageProps.ratiosChart : []}
+              data={pageProps.noIssuesChart ? pageProps.noIssuesChart : []}
               innerRadius={0.7}
               padAngle={3}
               cornerRadius={3}
