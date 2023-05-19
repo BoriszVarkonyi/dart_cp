@@ -121,7 +121,7 @@ export default function Registration() {
           sexe: translateSex(f.sexe),
         };
       } else {
-        return { ...f, registered: false };
+        return { ...f, registered: false, sexe: translateSex(f.sexe) };
       }
     });
   }
