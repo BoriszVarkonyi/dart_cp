@@ -42,10 +42,10 @@ export default function WCLiveReports() {
     <>
       {reports.length > 0 && (
         <Button
-          variant="contained"
           size="small"
           type="submit"
           form="issue-form"
+          className="CardClearButton"
           onClick={() => {
             setReports([]);
             setWcReport([]);
@@ -54,7 +54,7 @@ export default function WCLiveReports() {
           Clear Reports
         </Button>
       )}
-      {reports.length > 0? (reports) : (<p>The is no Reports yet</p>)}
+      {reports.length > 0 ? (reports) : (<p className="NoReportsText">There are no recent reports!</p>)}
     </>
   );
 }
