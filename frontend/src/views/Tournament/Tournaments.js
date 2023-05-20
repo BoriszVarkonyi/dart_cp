@@ -85,7 +85,7 @@ export default function Tournaments() {
         <>
           <div className="Panel">
             <div className="PageHeader">
-              <h1 className="PageTitle">Your tournament</h1>
+              <h1 className="PageTitle">Your tournaments</h1>
               <div className="PageButtonsWrapper">
                 {/*Conditonal rendering by isSelected state*/}
                 {!isSelected && (
