@@ -164,7 +164,7 @@ nav a {
 	content: '';
 	position: absolute;
 	width: var(--L-LineWidth);
-	height: 27px;
+	height: 25px;
 	background-color: var(--c-Gray-600);
 	left: 0.8rem;
 	top: -25px;
@@ -176,7 +176,7 @@ nav a {
 }
 
 .CompetitionSelect legend {
-    margin-left: 2px;
+    margin-left: 3px;
 }
 
 .CompetitionSelect .MuiOutlinedInput-notchedOutline {
