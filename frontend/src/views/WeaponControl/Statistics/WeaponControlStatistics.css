@@ -165,14 +165,10 @@
 .CountryGrid {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
 }
 
 .CountryCell {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
     border-radius: 6px;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.05);
     position: relative;
@@ -185,7 +181,7 @@
 
 .CountryName {
     width: 100%;
-    padding: 0.5rem 0;
+    padding: 0.5rem 1rem;
     font-size: 18px;
     font-weight: 700;
     background-color: #fefefe;
@@ -197,13 +193,18 @@
     padding: 0.3rem 0;
     justify-content: center;
     gap: 5px;
+    font-size: 12px;
 }
 
 .CountryContent {
     background-color: #fefefe;
     width: 100%;
-    padding: 2rem;
+    padding: 1rem;
     box-sizing: border-box;
+}
+
+.CountryContent * {
+    font-size: 11px !important;
 }
 
 .CountryContent .StatsDataGrid > div:nth-of-type(3) {

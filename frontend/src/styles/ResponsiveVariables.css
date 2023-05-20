@@ -15,6 +15,10 @@
 
 		--l-PagePadding: calc(1.2vw + 1.2vmin);
 	}
+
+	.CountryGrid {
+		grid-template-columns: repeat(2, 1fr);
+	}
 }
 
 /* Small screen devices (600px and above) */
@@ -32,6 +36,10 @@
 	    --f-SX: calc(0.6em + 0.3vmin);
 
 		--l-PagePadding: calc(1.4vw + 1.4vmin);
+	}
+
+	.CountryGrid {
+		grid-template-columns: repeat(2, 1fr);
 	}
 }
 
@@ -51,6 +59,10 @@
 
 		--l-PagePadding: calc(1.5vw + 1.5vmin);
 	}
+
+	.CountryGrid {
+		grid-template-columns: repeat(2, 1fr);
+	}
 }
 
 /* Big screen devices (889px and above) */
@@ -69,6 +81,10 @@
 
 		--l-PagePadding: calc(1.5vw + 1.5vmin);
 	}
+
+	.CountryGrid {
+		grid-template-columns: repeat(2, 1fr);
+	}
 }
 
 /* Extra big screen devices (1200px and above) */
@@ -86,5 +102,31 @@
 	    --f-SX: calc(0.6em + 0.3vmin);
 
 		--l-PagePadding: calc(1.7vw + 1.7vmin);
+	}
+
+	.CountryGrid {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+/* Huge screen devices (1200px and above) */
+@media only screen and (min-width: 1500px) {
+	:root {
+		--l-Header: 2.2em;
+		--l-NavBar: 300px;
+
+        --f-XXL: calc(1.25em + 1vmin);
+        --f-XL: calc(1.25em + 1vmin);
+        --f-L: calc(1em + 1vmin);
+        --f-M: calc(0.8em + 0.8vmin);
+        --f-T: 14px;
+	    --f-S: calc(0.6em + 0.5vmin);
+	    --f-SX: calc(0.6em + 0.3vmin);
+
+		--l-PagePadding: calc(1.7vw + 1.7vmin);
+	}
+
+	.CountryGrid {
+		grid-template-columns: repeat(4, 1fr);
 	}
 }
