@@ -54,7 +54,7 @@ export default function WCLiveReports() {
           Clear Reports
         </Button>
       )}
-      {reports}
+      {reports.length > 0? (reports) : (<p>The is no Reports yet</p>)}
     </>
   );
 }

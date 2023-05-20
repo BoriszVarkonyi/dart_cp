@@ -43,8 +43,8 @@ export default function Competition(props) {
     address: "",
     entry_fee: "",
     currency: "",
-    start_date: "",
-    end_date: "",
+    start_date: dateString,
+    end_date: dateString,
   });
 
   const generateMenuItem = (value) => {
@@ -420,7 +420,7 @@ export default function Competition(props) {
               InputLabelProps={{ shrink: true }}
               size="small"
               variant="filled"
-              value={inputState.start_date || ""}
+              value={inputState.start_date || dateString}
               sx={{ width: 220 }}
               {...register("start_date", {
                 required: "Please choose a starting date!",
@@ -447,7 +447,7 @@ export default function Competition(props) {
               size="small"
               variant="filled"
               sx={{ width: 220 }}
-              value={inputState.end_date || ""}
+              value={inputState.end_date || dateString}
               {...register("end_date", {
                 required: "Please choose an ending date!!",
                 onChange: (e) =>
