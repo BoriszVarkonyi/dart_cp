@@ -1,4 +1,5 @@
 nav {
+	--L-LineWidth: 2px;
 	width: var(--l-NavBar);
 	position: relative;
 	z-index: 0;
@@ -48,9 +49,23 @@ nav {
 	z-index: 0;
 }
 
+.NavBarSectionTitle.Bottom {
+	margin-left: 20px;
+}
+
+.NavBarSectionTitle.Bottom::before {
+	content: '';
+	height: var(--L-LineWidth);
+	width: 7px;
+	position: absolute;
+	left: -0.8rem;
+	top: 50%;
+	background-color: var(--c-Gray-600);
+}
+
 .NavBarSectionTitle::after {
 	content: '';
-	height: 2pt;
+	height: var(--L-LineWidth);
 	width: 100%;
 	position: absolute;
 	top: 100%;
@@ -64,13 +79,31 @@ nav {
 	align-items: flex-start;
 	position: relative;
 	padding-top: 5px;
+}
+
+.NavBarSection.Top {
+	z-index: 2;
+}
+
+.NavBarSection.Bottom {
 	z-index: 0;
+	margin-left: 20px;
+}
+
+.NavBarSection.Bottom::after {
+	content: '';
+	position: absolute;
+	width: var(--L-LineWidth);
+	height: 33px;
+	background-color: var(--c-Gray-600);
+	left: -0.8rem;
+	top: -42px;
 }
 
 .NavBarSection::before {
 	content: '';
 	position: absolute;
-	width: 2pt;
+	width: var(--L-LineWidth);
 	height: 100%;
 	background-color: var(--c-Gray-600);
 	left: 0.8rem;
@@ -94,7 +127,7 @@ nav {
 	width: 1.4rem;
 	height: 1.4rem;
 	background-color: var(--c-White);
-	border: 2pt solid var(--c-Gray-600);
+	border: var(--L-LineWidth) solid var(--c-Gray-600);
 	border-radius: 50%;
 	display: flex;
 	justify-content: center;
@@ -123,6 +156,33 @@ nav a {
 	position: relative;
 }
 
+.CompetitionSelect > * {
+	z-index: 2;
+}
+
+.CompetitionSelect::before {
+	content: '';
+	position: absolute;
+	width: var(--L-LineWidth);
+	height: 27px;
+	background-color: var(--c-Gray-600);
+	left: 0.8rem;
+	top: -25px;
+	z-index: -1;
+}
+
+.CompetitionSelect .MuiFormLabel-root {
+	transform: translate(17px, -9px) scale(0.75) !important;
+}
+
+.CompetitionSelect legend {
+    margin-left: 2px;
+}
+
+.CompetitionSelect .MuiOutlinedInput-notchedOutline {
+	border: var(--L-LineWidth) solid var(--c-Gray-600);
+}
+
 .AppNameCopyright {
 	position: absolute;
 	bottom: 10px;
@@ -139,7 +199,7 @@ nav a {
 	justify-content: center;
 	align-items: center;
 	background-color: var(--c-Gray-100);
-	border: 2pt solid var(--c-Gray-500);
+	border: var(--L-LineWidth) solid var(--c-Gray-500);
 	border-radius: 3pt;
 }
 

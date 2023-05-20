@@ -82,7 +82,7 @@ export default function NavBar() {
         <div className="NavBarContentInner">
           <Link className="NavBarTextButton" to="/panel">back to tournaments...</Link>
           <p className="NavBarSectionTitle">Tournament</p>
-          <div className="NavBarSection">
+          <div className="NavBarSection Top">
             <Link to="competitions">
               <div className="NavBarRow">
                 <div className="NavBarIconWrapper">
@@ -121,8 +121,8 @@ export default function NavBar() {
           </div>
           {hasSelectedComp && (
             <>
-              <p className="NavBarSectionTitle">Competition</p>
-              <div className="NavBarSection">
+              <p className="NavBarSectionTitle Bottom">Competition</p>
+              <div className="NavBarSection Bottom">
                 <Link to={`${compdId}/competitors`}>
                   <div className="NavBarRow">
                     <div className="NavBarIconWrapper">

@@ -82,9 +82,6 @@ export default function WCPrint(props) {
           COUNTRIES WITH MOST AND LEAST ISSUES
         </p>
         <div className="DocumentSection DocumentColumnLayout ThreeColumns">
-          <p className="DocumentFootnote">
-            *Number of issues divided by number of fencers in each country
-          </p>
           <div>
             <p className="Hidden">-</p>
             <p>MOST ISSUES:</p>
@@ -130,6 +127,9 @@ export default function WCPrint(props) {
           COUNTRIES WITH WORST AND BEST RATIOS*
         </p>
         <div className="DocumentSection DocumentColumnLayout ThreeColumns">
+          <p className="DocumentFootnote">
+            *Number of issues divided by number of fencers in each country
+          </p>
           <div>
             <p className="Hidden">-</p>
             <p>WORST RATIO:</p>
@@ -189,10 +189,12 @@ export default function WCPrint(props) {
               cornerRadius={3}
               activeOuterRadiusOffset={8}
               colors={{ scheme: 'greys' }}
-              arcLinkLabelsTextColor="#333333"
+              borderWidth={2}
+              borderColor={{ from: 'color', modifiers: [['darker', '0.2']] }}
+              arcLinkLabelsTextColor="#000000"
               arcLinkLabelsThickness={2}
-              arcLinkLabelsColor="#333333"
-              arcLabelsTextColor="#333333"
+              arcLinkLabelsColor="#000000"
+              arcLabelsTextColor="#000000"
               isInteractive={false}
               legends={[]}
             />
@@ -212,7 +214,7 @@ export default function WCPrint(props) {
           <div className="DocumentChartWrapper">
             <Pie
               margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
-              width={460}
+              width={680}
               height={330}
               animate={false}
               data={pageProps.ratiosChart ? pageProps.ratiosChart : []}
@@ -221,10 +223,12 @@ export default function WCPrint(props) {
               cornerRadius={3}
               activeOuterRadiusOffset={8}
               colors={{ scheme: 'greys' }}
-              arcLinkLabelsTextColor="#333333"
+              borderWidth={2}
+              borderColor={{ from: 'color', modifiers: [['darker', '0.2']] }}
+              arcLinkLabelsTextColor="#000000"
               arcLinkLabelsThickness={2}
-              arcLinkLabelsColor="#333333"
-              arcLabelsTextColor="#333333"
+              arcLinkLabelsColor="#000000"
+              arcLabelsTextColor="#000000"
               isInteractive={false}
               legends={[]}
             />
@@ -248,10 +252,12 @@ export default function WCPrint(props) {
               cornerRadius={3}
               activeOuterRadiusOffset={8}
               colors={{ scheme: 'greys' }}
-              arcLinkLabelsTextColor="#333333"
+              borderWidth={2}
+              borderColor={{ from: 'color', modifiers: [['darker', '0.2']] }}
+              arcLinkLabelsTextColor="#000000"
               arcLinkLabelsThickness={2}
-              arcLinkLabelsColor="#333333"
-              arcLabelsTextColor="#333333"
+              arcLinkLabelsColor="#000000"
+              arcLabelsTextColor="#000000"
               isInteractive={false}
               legends={[]}
             />
