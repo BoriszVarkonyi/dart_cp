@@ -173,6 +173,8 @@ nav a {
 
 .CompetitionSelect .MuiFormLabel-root {
 	transform: translate(17px, -9px) scale(0.75) !important;
+	background-color: #efefef;
+	font-weight: 700;
 }
 
 .CompetitionSelect legend {
