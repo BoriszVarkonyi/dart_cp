@@ -11,7 +11,7 @@ from ..serializers import *
 class EquipmentViewSet(viewsets.ModelViewSet):
   queryset = EquipmentModel.objects.all()
   serializer_class = EquipmentSerializer
-  permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+  permission_classes = [permissions.IsAuthenticated]
 
 class WeaponControlViewSet(viewsets.ModelViewSet):
   queryset = WeaponControlModel.objects.all()
