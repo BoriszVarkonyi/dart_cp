@@ -20,5 +20,5 @@ root.render(
         </BrowserRouter>
       </Provider>
     </CookiesProvider>
-  </React.StrictMode>
+    </React.StrictMode>
 );

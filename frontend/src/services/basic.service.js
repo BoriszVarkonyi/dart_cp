@@ -41,16 +41,6 @@ export default function useBasicServices() {
       .catch((error) => console.log(error));
   }
 
-  function getURL() {
-    if (!isNaN(parseInt(pathname.split("/")[2]))) {
-      let tourID = pathname.split("/")[1];
-      let compID = pathname.split("/")[2];
-      return `tournaments/${tourID}/hascomp/${compID}/`;
-    } else {
-      let tourID = pathname.split("/")[1];
-      return `tournaments/${tourID}/`;
-    }
-  }
 
   useEffect(() => {
     if (isLoggedIn) {
