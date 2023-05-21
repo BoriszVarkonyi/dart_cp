@@ -9,7 +9,6 @@ import { TextField, Box } from "@mui/material";
 import { useForm } from "react-hook-form";
 import Issue from "./Issue";
 import { useCrossTabState } from "../../../services/crosstab.service";
-import useBasicServices from "../../../services/basic.service";
 
 export default function WeaponControl(props) {
   const [issues, setIssues] = useState([]);
@@ -62,7 +61,6 @@ export default function WeaponControl(props) {
     data["notes"] == "" ? (data["notes"] = null) : (data["notes"] = notes);
 
     if (exists) {
-      console.log(data)
       await update(`stats/weaponcontrols/issues/${compId}/${rowId}/`, data);
     } else {
       //Creates an object for Reports
@@ -126,6 +124,12 @@ export default function WeaponControl(props) {
   useEffect(() => {
     getData();
   }, []);
+
+  useEffect(()=>{
+    const testIssues = issues.map((e)=>{
+      
+    })
+  },[errors])
 
 
   const title = `${props.type} Weapon Control of ${fencerName}`;
