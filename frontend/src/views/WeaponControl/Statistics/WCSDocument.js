@@ -187,6 +187,8 @@ export default function WCPrint(props) {
               innerRadius={0.7}
               padAngle={3}
               cornerRadius={3}
+              arcLinkLabel={d => `${d.id}: ${d.value}`}
+              enableArcLabels={false}
               activeOuterRadiusOffset={8}
               colors={{ scheme: 'greys' }}
               borderWidth={2}
@@ -221,6 +223,8 @@ export default function WCPrint(props) {
               innerRadius={0.7}
               padAngle={3}
               cornerRadius={3}
+              arcLinkLabel={d => `${d.id}: ${d.value}`}
+              enableArcLabels={false}
               activeOuterRadiusOffset={8}
               colors={{ scheme: 'greys' }}
               borderWidth={2}
@@ -249,6 +253,8 @@ export default function WCPrint(props) {
               data={pageProps.noIssuesChart ? pageProps.noIssuesChart : []}
               innerRadius={0.7}
               padAngle={3}
+              arcLinkLabel={d => `${d.id}: ${d.value}`}
+              enableArcLabels={false}
               cornerRadius={3}
               activeOuterRadiusOffset={8}
               colors={{ scheme: 'greys' }}
