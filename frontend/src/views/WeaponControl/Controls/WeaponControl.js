@@ -125,11 +125,6 @@ export default function WeaponControl(props) {
     getData();
   }, []);
 
-  useEffect(()=>{
-    const testIssues = issues.map((e)=>{
-      
-    })
-  },[errors])
 
 
   const title = `${props.type} Weapon Control of ${fencerName}`;
