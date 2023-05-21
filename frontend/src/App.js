@@ -17,6 +17,7 @@ import WeaponControls from "./views/WeaponControl/Controls/WeaponControls";
 import WeaponControl from "./views/WeaponControl/Controls/WeaponControl";
 import WeaponControlStatistics from "./views/WeaponControl/Statistics/WeaponControlStatistics";
 import NotFound from "./components/static/NotFound/NotFound";
+import useBasicServices from "./services/basic.service";
 
 /*
 import LoginStyles from "./components/layouts/LoginLayout/LoginLayout.css"
@@ -28,20 +29,23 @@ import ControlStyles from "./components/layouts/ControlLayout/ControlLayout.css"
 
 function App() {
   const tokenHandler = useTokenService();
+  const basicServices = useBasicServices();
   return (
     <>
       <Routes>
         <Route path="/" element={<LoginLayout />} />
         <Route path="/panel/*" element={<PanelLayout />} />
-        <Route path=":tournamentId/weapon_control/report" element={<ReportLayout />} />
+        <Route path=":tournamentId/weapon_control_report" element={<ReportLayout />} />
         <Route path=":tournamentId/*" element={<ControlLayout />}>
+        <Route path=""/>
           <Route path="competitions">
             <Route index element={<Competitions />} />
             <Route path="create" element={<Competition type="Create" />} />
             <Route path="modify" element={<Competition type="Modify" />} />
           </Route>
           <Route path="timetable" element={<Timetable />} />
-          <Route path=":compId">
+          <Route path=":compId/*">
+            <Route path="" />
             <Route path="competitors">
               <Route index element={<Competitors />} />
               <Route path="add" element={<Competitor type="Add" />} />

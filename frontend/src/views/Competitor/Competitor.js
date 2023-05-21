@@ -11,7 +11,6 @@ import useBasicServices from "../../services/basic.service";
 import { useParams } from "react-router-dom";
 
 export default function Competitor(props) {
-  const basicServices = useBasicServices();
   const [isOther, setIsOther] = useState(false);
   const [menuItems, setMenuItems] = useState([]);
   const [modifyData, setModifyData] = useState({});
@@ -71,6 +70,9 @@ export default function Competitor(props) {
     }
     if (props.type == "Modify") {
       getData();
+    }
+    if(props.type == "Add"){
+      setValue("date_naissance", dateString)
     }
   }, []);
 
@@ -242,7 +244,7 @@ export default function Competitor(props) {
               type="date"
               size="small"
               variant="filled"
-              value={inputState.date_naissance || ""}
+              value={inputState.date_naissance || dateString}
               sx={{ width: 220 }}
               {...register("date_naissance", {
                 required: "Please enter your date of birth!",

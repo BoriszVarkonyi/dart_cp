@@ -1,7 +1,5 @@
 import { useEffect } from "react";
-import { get } from "./backend.service";
 import { useNavigate, useLocation } from "react-router-dom";
-import { areOptionsEqual } from "@mui/base";
 import { useDispatch } from "react-redux";
 import { setIsLoading } from "../slices/load";
 import authHeader from "./auth-header";
@@ -13,8 +11,38 @@ export default function useBasicServices() {
   const dispatch = useDispatch();
   const { isLoggedIn } = useSelector((state) => state.auth);
 
+  function checkURL() {
+    let url = "";
+    if (!isNaN(parseInt(pathname.split("/")[2]))) {
+      let tourID = pathname.split("/")[1];
+      let compID = pathname.split("/")[2];
+      url = `tournaments/${tourID}/hascomp/${compID}/`;
+    } else {
+      let tourID = pathname.split("/")[1];
+      url = `tournaments/${tourID}/`;
+      if(pathname.split("/")[2] !== "weapon_control_report" && pathname.split("/")[2] !== "competitions" && pathname.split("/")[2] !== undefined){
+        navigate("/not_found");
+        console.clear();
+      }
+    }
+
+    fetch(`${process.env.REACT_APP_API + url}`, {
+      headers: {
+        Authorization: authHeader(),
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.status == 404) {
+          navigate("/not_found");
+          console.clear();
+        }
+      })
+      .catch((error) => console.log(error));
+  }
+
   function getURL() {
-    if (!isNaN(pathname.split("/")[2])) {
+    if (!isNaN(parseInt(pathname.split("/")[2]))) {
       let tourID = pathname.split("/")[1];
       let compID = pathname.split("/")[2];
       return `tournaments/${tourID}/hascomp/${compID}/`;
@@ -25,31 +53,23 @@ export default function useBasicServices() {
   }
 
   useEffect(() => {
-    if(!isLoggedIn){
-      navigate("/")
-    }
-
-    if (!isNaN(pathname.split("/")[1])) {
-      fetch(`${process.env.REACT_APP_API + getURL()}`, {
-        headers: {
-          Authorization: authHeader(),
-          "Content-Type": "application/json",
-        },
-      })
-        .then((response) => {
-          if (response.status == 404) {
-            navigate("/not_found");
-            console.clear();
-          }
-        })
-        .catch((error) => console.log(error));
+    if (isLoggedIn) {
+      if (!isNaN(parseInt(pathname.split("/")[1]))) {
+        checkURL();
+      } else {
+        if (pathname.split("/")[1] !== "panel" && pathname.split("/")[1] !== "" && pathname.split("/")[1] !== "not_found") {
+          navigate("/not_found");
+          console.clear();
+        }
+      }
+    } else {
+      navigate("/");
     }
   }, [pathname]);
 
   const setLoadingState = (state) => {
     dispatch(setIsLoading(state));
   };
-
 
   return { setLoadingState };
 }

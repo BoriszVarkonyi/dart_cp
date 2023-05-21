@@ -11,7 +11,6 @@ import currencies from "../../utils/currencies.json";
 import useBasicServices from "../../services/basic.service";
 
 export default function Competition(props) {
-  const basicServices = useBasicServices();
   const [isOther, setIsOther] = useState(false);
   const [modifyData, setModifyData] = useState({});
   const [countriesMenuItems, setCountriesMenuItems] = useState([]);

@@ -32,7 +32,12 @@ export default function NavBar() {
     setHasSelectedComp(true);
     const pathName = window.location.pathname.split("/");
     if (!pathName.includes("competitions") && !pathName.includes("timetable")) {
-      navigate(`/${tournamentId}/${id}/${pathName[3]}`);
+      if(pathName[3] !== undefined && pathName[3] !== null){
+        navigate(`/${tournamentId}/${id}/${pathName[3]}`);
+      }
+      else{
+        navigate(`/${tournamentId}/${id}`);
+      }
     }
   };
 

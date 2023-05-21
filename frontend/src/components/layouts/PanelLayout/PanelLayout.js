@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import Loading from "../../static/Loading/Loading";
 import Header from "../../static/Header/Header";
 import { useSelector } from "react-redux";
+import NotFound from "../../static/NotFound/NotFound";
 
 export default function LoginLayout() {
   const { isLoading } = useSelector((state) => state.isLoading);
@@ -23,6 +24,7 @@ export default function LoginLayout() {
             path="/modify_tournament"
             element={<Tournament type="Modify" />}
           />
+          <Route path="*" element={<NotFound/>} />
         </Routes>
         {isLoading && <Loading />}
       </div>

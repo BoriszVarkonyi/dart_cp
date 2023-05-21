@@ -25,7 +25,6 @@ export default function WeaponControl(props) {
     tournamentId + "_weapon_control_report",
     []
   );
-  const basicServices = useBasicServices();
 
   //react-hook-form
   const {

@@ -86,6 +86,10 @@ export default function Tournament(props) {
     }
   };
 
+  const checkKeyDown = (e) => {
+    if (e.key === 'Enter') e.preventDefault();
+  };
+
   const text = `${props.type} tournament`;
 
   return (
@@ -107,7 +111,7 @@ export default function Tournament(props) {
                 </Button>
               </div>
             </div>
-            <Box className="PanelContent Form" component="form">
+            <Box className="PanelContent Form" component="form" onKeyDown={(e) => checkKeyDown(e)}>
               <div className="FormColumn">
                 <TextField
                   error={!!errors.title_long}
