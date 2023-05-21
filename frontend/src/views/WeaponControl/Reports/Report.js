@@ -14,7 +14,7 @@ export default function Report(props) {
             </div>
             <div className="CardIssues">
                 <div>
-                    {reportProps.fIssues.map((e) => <p key={e.issueName}>{e.issueName} <span>{e.issueNum}</span></p>)}
+                    {reportProps.fIssues.length > 0? (reportProps.fIssues.map((e) => <p key={e.issueName}>{e.issueName} <span>{e.issueNum}</span></p>)) : (<p>There was no issues</p>) }
                 </div>
             </div>
         </div>
