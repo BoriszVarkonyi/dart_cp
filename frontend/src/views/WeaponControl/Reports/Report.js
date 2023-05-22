@@ -2,6 +2,7 @@ import React from "react";
 
 export default function Report(props) {
     const reportProps = props.props
+
     return (
         <div className="ReportCard">
             <div className="CardName">
@@ -14,7 +15,7 @@ export default function Report(props) {
             </div>
             <div className="CardIssues">
                 <div>
-                    {reportProps.fIssues.length > 0? (reportProps.fIssues.map((e) => <p key={e.issueName}>{e.issueName} <span>{e.issueNum}</span></p>)) : (<p>There was no issues</p>) }
+                    {reportProps.fIssues.length > 0? (reportProps.fIssues.map((e) => <p key={e.issueName}>{e.issueName} <span>{e.issueNum}</span></p>)) : (<p>There were no issues</p>) }
                 </div>
             </div>
         </div>
