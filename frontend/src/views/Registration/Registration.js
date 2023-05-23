@@ -184,6 +184,8 @@ export default function Registration() {
     );
   }
 
+  
+
   return (
     <>
       <>
@@ -192,7 +194,7 @@ export default function Registration() {
             <h1 className="PageTitle">Registration</h1>
             <div className="PageButtonsWrapper">
               {isSelected &&
-                rows.filter((f) => f.id == selectedRowId)[0].registered && (
+                rows.filter((f) => f.id == selectedRowId)[0]?.registered && (
                   <>
                     <Button
                       variant="contained"
@@ -214,7 +216,7 @@ export default function Registration() {
                   </>
                 )}
               {isSelected &&
-                !rows.filter((f) => f.id == selectedRowId)[0].registered && (
+                !rows.filter((f) => f.id == selectedRowId)[0]?.registered && (
                   <Button variant="contained" size="small" onClick={registerIn}>
                     Register in
                   </Button>

@@ -144,7 +144,6 @@ export default function WeaponControlStatistics() {
       const issues = filteredIssues.map((i) =>
         setIssueWithValuesRow(i.issue_human_readable_name, i.value)
       );
-
       const index = data["n_r"].findIndex((c) => c.nation == e.fencer_nation);
 
       const props = {
