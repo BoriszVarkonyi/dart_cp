@@ -46,14 +46,14 @@ const colIssueWithValues = [
   { field: "freq", headerName: "Frequency", width: 200, flex: 100 },
 ];
 
-const setIssueWithValuesRow = (issueName, value) => {
+const setIssueWithValuesRow = (issueName, value, key) => {
   const splittedName = issueName.split(" ");
   let code = "";
   for (let i = 0; i < splittedName.length; i++) {
     code += splittedName[i][0];
   }
   return {
-    id: code + value,
+    id: code + key,
     issue_name: issueName,
     freq: value,
   };
@@ -108,7 +108,7 @@ export default function WeaponControlStatistics() {
     const byNation = await get(`/stats/byNation/${compId}`);
     const comp = await get(`competitions/${compId}`);
     const tour = await get(`tournaments/${tournamentId}`);
-
+    
     setCurrentComp(comp);
     setCurrentTour(tour);
     setStatistics(data);
@@ -130,7 +130,7 @@ export default function WeaponControlStatistics() {
     let counter = 0;
     const byIssueArray = filteredByIssueArray.map((e) => {
       counter++;
-      return setIssueWithValuesRow(e.issue_human_readable_name, counter);
+      return setIssueWithValuesRow(e.issue_human_readable_name, e.issues, counter);
     });
     setIssuesWithSums(byIssueArray);
 
@@ -140,7 +140,7 @@ export default function WeaponControlStatistics() {
       const filteredIssues = e.issues.filter((i) => i.value != 0);
       const issues = filteredIssues.map((i) => {
         counter++;
-        return setIssueWithValuesRow(i.issue_human_readable_name, counter);
+        return setIssueWithValuesRow(i.issue_human_readable_name, i.value, counter);
       });
       const index = data["n_r"].findIndex((c) => c.nation == e.fencer_nation);
 
@@ -466,7 +466,7 @@ export default function WeaponControlStatistics() {
                                   ? statistics["n_r"][getLeast("issue_num")]
                                       .ratio
                                   : 0}
-                                .1r
+                                .r
                               </p>
                             </div>
                           </div>
