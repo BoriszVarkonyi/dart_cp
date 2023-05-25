@@ -108,7 +108,7 @@ export default function WeaponControlStatistics() {
     const byNation = await get(`/stats/byNation/${compId}`);
     const comp = await get(`competitions/${compId}`);
     const tour = await get(`tournaments/${tournamentId}`);
-    
+
     setCurrentComp(comp);
     setCurrentTour(tour);
     setStatistics(data);
@@ -125,37 +125,49 @@ export default function WeaponControlStatistics() {
     iessueListText = iessueListText.slice(0, -2);
     setListedIssues(iessueListText);
 
-    const filteredByIssueArray = byIssues.filter((e) => e.issues != 0);
-
     let counter = 0;
-    const byIssueArray = filteredByIssueArray.map((e) => {
-      counter++;
-      return setIssueWithValuesRow(e.issue_human_readable_name, e.issues, counter);
-    });
+    const byIssueArray = byIssues
+      .filter((e) => e.issues != 0)
+      .map((e) => {
+        counter++;
+        return setIssueWithValuesRow(
+          e.issue_human_readable_name,
+          e.issues,
+          counter
+        );
+      });
     setIssuesWithSums(byIssueArray);
 
     let printArrayProps = [];
 
-    const compArray = issueByNat.map((e) => {
-      const filteredIssues = e.issues.filter((i) => i.value != 0);
-      const issues = filteredIssues.map((i) => {
-        counter++;
-        return setIssueWithValuesRow(i.issue_human_readable_name, i.value, counter);
+    const compArray = issueByNat
+      .filter((e) =>(
+          data["n_r"][data["n_r"].findIndex((c) => c.nation == e.fencer_nation)].issue_num != 0)
+      )
+      .map((e) => {
+        const issues = e.issues
+          .filter((i) => i.value != 0)
+          .map((i) => {
+            counter++;
+            return setIssueWithValuesRow(
+              i.issue_human_readable_name,
+              i.value,
+              counter
+            );
+          });
+        const index = data["n_r"].findIndex((c) => c.nation == e.fencer_nation);
+
+        const props = {
+          longName: getLongCountryName(e.fencer_nation),
+          fencerNum: data["n_r"][index].fencer_num,
+          issueNum: data["n_r"][index].issue_num,
+          ratio: data["n_r"][index].ratio,
+          col: colIssueWithValues,
+          row: issues,
+        };
+        printArrayProps.push({ printProps: props, key: e.fencer_nation });
+        return <CountryCell props={props} key={e.fencer_nation} />;
       });
-      const index = data["n_r"].findIndex((c) => c.nation == e.fencer_nation);
-
-      const props = {
-        longName: getLongCountryName(e.fencer_nation),
-        fencerNum: data["n_r"][index].fencer_num,
-        issueNum: data["n_r"][index].issue_num,
-        ratio: data["n_r"][index].ratio,
-        col: colIssueWithValues,
-        row: issues,
-      };
-
-      printArrayProps.push({ printProps: props, key: e.fencer_nation });
-      return <CountryCell props={props} key={e.fencer_nation} />;
-    });
 
     const sortedPrintArray = printArrayProps.sort((a, b) => {
       return b.printProps.issueNum - a.printProps.issueNum;
