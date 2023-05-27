@@ -118,3 +118,26 @@ class IndividualFormulaModel(models.Model):
     third_place = models.BooleanField(default=False)
     callroom = models.BooleanField(default=False)
     callroom_number = models.IntegerField(default=16, choices=CALLROOM_NUMBER_CHOICE)
+
+
+class GivenEquipmentModel(models.Model):
+    competitions = models.ForeignKey(CompetitionModel, on_delete=models.CASCADE)
+    fencers = models.ForeignKey(FencerModel, on_delete=models.CASCADE)
+    isready = models.BooleanField(default=False)
+    mask = models.IntegerField()
+    underplastron = models.IntegerField()
+    chest_protector = models.IntegerField()
+    jacket = models.IntegerField()
+    electric_jacket = models.IntegerField()
+    glove = models.IntegerField()
+    breeches = models.IntegerField()
+    socks = models.IntegerField()
+    weapon = models.IntegerField()
+    bodywire = models.IntegerField()
+    maskwire = models.IntegerField()
+
+
+
+
+
+

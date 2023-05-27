@@ -33,4 +33,6 @@ class EquipmentAdmin(admin.ModelAdmin):
 class IndividualFormulaAdmin(admin.ModelAdmin):
   pass
 
-
+@admin.register(GivenEquipmentModel)
+class GivenEquipmentAdmin(admin.ModelAdmin):
+  pass

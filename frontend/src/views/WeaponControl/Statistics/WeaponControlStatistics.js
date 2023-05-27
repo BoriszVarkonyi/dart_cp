@@ -139,10 +139,10 @@ export default function WeaponControlStatistics() {
     setIssuesWithSums(byIssueArray);
 
     let printArrayProps = [];
-
+      console.log("pls work")
     const compArray = issueByNat
       .filter((e) =>(
-          data["n_r"][data["n_r"].findIndex((c) => c.nation == e.fencer_nation)].issue_num != 0)
+          data["n_r"][data["n_r"].findIndex((c) => c.nation == e.fencer_nation)]?.issue_num != 0)
       )
       .map((e) => {
         const issues = e.issues
@@ -156,7 +156,8 @@ export default function WeaponControlStatistics() {
             );
           });
         const index = data["n_r"].findIndex((c) => c.nation == e.fencer_nation);
-
+        console.log("Hellooooooooooo")
+        if(index !== -1){
         const props = {
           longName: getLongCountryName(e.fencer_nation),
           fencerNum: data["n_r"][index].fencer_num,
@@ -166,7 +167,8 @@ export default function WeaponControlStatistics() {
           row: issues,
         };
         printArrayProps.push({ printProps: props, key: e.fencer_nation });
-        return <CountryCell props={props} key={e.fencer_nation} />;
+        return <CountryCell props={props} key={e.fencer_nation} />; 
+        }
       });
 
     const sortedPrintArray = printArrayProps.sort((a, b) => {

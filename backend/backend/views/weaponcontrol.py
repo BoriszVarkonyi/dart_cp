@@ -13,6 +13,12 @@ class EquipmentViewSet(viewsets.ModelViewSet):
   serializer_class = EquipmentSerializer
   permission_classes = [permissions.IsAuthenticated]
 
+class GivenEquipmentViewSet(viewsets.ModelViewSet):
+  queryset = GivenEquipmentModel.objects.all()
+  serializer_class = GivenEquipmentSerializer
+  permission_classes = [permissions.IsAuthenticated]
+
+
 class WeaponControlViewSet(viewsets.ModelViewSet):
   queryset = WeaponControlModel.objects.all()
   serializer_class = WeaponControlSerializer
